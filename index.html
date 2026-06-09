@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VESSEL STATUS v1.0</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Noto Sans JP', 'Noto Sans KR', 'Segoe UI', Arial, sans-serif;
     background: #0d1117;
     color: #c9d1d9;
     min-height: 100vh;
@@ -30,7 +32,7 @@
     padding: 2px 8px; border-radius: 20px; font-weight: 600;
   }
   .header-right { display: flex; align-items: center; gap: 12px; }
-  #user-info { font-size: 0.82rem; color: #8b949e; }
+  #user-info { font-size: 0.82rem; color: #e6edf3; font-weight: 600; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   #btn-login {
     background: #238636; color: #fff; border: none;
     padding: 7px 18px; border-radius: 6px; font-size: 0.85rem;
@@ -671,4 +673,5 @@ window.addEventListener('load', async () => {
 </script>
 </body>
 </html>
+
 
