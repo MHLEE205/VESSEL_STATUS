@@ -410,7 +410,9 @@ function showDashboard() {
   document.getElementById('dashboard').style.display = 'block';
   document.getElementById('btn-login').style.display = 'none';
   document.getElementById('btn-logout').style.display = 'inline-block';
-  document.getElementById('user-info').textContent = S.userName || S.userEmail;
+  // 영문만 표시: 이메일 앞부분 사용
+  const displayName = S.userEmail ? S.userEmail.split('@')[0].toUpperCase() : (S.userName || '');
+  document.getElementById('user-info').textContent = displayName;
   buildMonthFilter();
 }
 
@@ -673,5 +675,6 @@ window.addEventListener('load', async () => {
 </script>
 </body>
 </html>
+
 
 
