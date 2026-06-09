@@ -150,6 +150,24 @@
     font-size: 0.88rem; display: none;
   }
 
+  /* ── 遅延ETD ── */
+  .delay-cell {
+    cursor: pointer;
+    min-width: 110px;
+  }
+  .delay-badge {
+    display: inline-block; padding: 2px 9px; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 600;
+    background: #3a1a1a; color: #f85149;
+    border: 1px solid #f85149;
+  }
+  .delay-empty {
+    display: inline-block; padding: 2px 9px; border-radius: 20px;
+    font-size: 0.75rem; color: #30363d; border: 1px dashed #30363d;
+    cursor: pointer;
+  }
+  .delay-empty:hover { border-color: #f85149; color: #f85149; }
+
   /* ── FOOTER ── */
   footer {
     text-align: center; padding: 20px;
@@ -263,6 +281,7 @@
             <th>CY CUT</th>
             <th>ETD</th>
             <th>ETA</th>
+            <th style="color:#f85149;">遅延ETD</th>
           </tr>
         </thead>
         <tbody id="tbl-body"></tbody>
@@ -600,10 +619,65 @@ function renderTable(bookings, carrierMap, polMap, podMap) {
       <td>${fmtDate(b.cr49f_cy_cut)}</td>
       <td><span class="badge badge-etd">${fmtDate(b.cr49f_etd)}</span></td>
       <td><span class="badge badge-eta">${fmtDate(b.cr49f_eta)}</span></td>
+      <td class="delay-cell" data-bkg="${b.cr49f_booking_no || ''}">
+        ${getDelayETD(b.cr49f_booking_no)}
+      </td>
     `;
     tbody.appendChild(tr);
   });
 }
+
+// ════════════════════════════════════════════════════════
+// 遅延ETD (localStorage)
+// ════════════════════════════════════════════════════════
+const DELAY_KEY = 'vs_delay_etd';
+
+function loadDelayMap() {
+  try {
+    return JSON.parse(localStorage.getItem(DELAY_KEY) || '{}');
+  } catch(e) { return {}; }
+}
+
+function saveDelayMap(map) {
+  try {
+    localStorage.setItem(DELAY_KEY, JSON.stringify(map));
+  } catch(e) {}
+}
+
+function getDelayETD(bkgNo) {
+  if (!bkgNo) return '<span class="delay-empty">+ 遅延ETD</span>';
+  const map = loadDelayMap();
+  const val = map[bkgNo];
+  if (!val) return '<span class="delay-empty">+ 遅延ETD</span>';
+  return `<span class="delay-badge" title="클릭하여 수정/삭제">⚠ ${val}</span>`;
+}
+
+function handleDelayClick(e) {
+  const cell = e.target.closest('.delay-cell');
+  if (!cell) return;
+  const bkgNo = cell.dataset.bkg;
+  if (!bkgNo) return;
+
+  const map = loadDelayMap();
+  const current = map[bkgNo] || '';
+
+  const input = prompt(`[${bkgNo}] 遅延ETD 입력
+(삭제하려면 비워두세요)`, current);
+  if (input === null) return; // 취소
+
+  if (input.trim() === '') {
+    delete map[bkgNo];
+  } else {
+    map[bkgNo] = input.trim();
+  }
+  saveDelayMap(map);
+
+  // 해당 셀만 업데이트
+  cell.innerHTML = getDelayETD(bkgNo);
+}
+
+// 테이블 클릭 이벤트 위임
+document.addEventListener('click', handleDelayClick);
 
 function fmtDate(val) {
   if (!val) return '-';
@@ -675,6 +749,7 @@ window.addEventListener('load', async () => {
 </script>
 </body>
 </html>
+
 
 
 
