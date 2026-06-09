@@ -281,6 +281,37 @@ const SCOPE        = `${DV_URL}/user_impersonation openid profile email offline_
 
 let S = { accessToken: null, tokenExpiry: 0, userName: '', userEmail: '' };
 
+// ════════════════════════════════════════════════════════
+// TOKEN CACHE (localStorage)
+// ════════════════════════════════════════════════════════
+const CACHE_KEY = 'vs_token_cache';
+
+function saveTokenCache(accessToken, tokenExpiry, userName, userEmail) {
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify({
+      accessToken, tokenExpiry, userName, userEmail
+    }));
+  } catch(e) {}
+}
+
+function loadTokenCache() {
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const cache = JSON.parse(raw);
+    if (!cache.accessToken) return null;
+    if (Date.now() > cache.tokenExpiry) {
+      localStorage.removeItem(CACHE_KEY);
+      return null;
+    }
+    return cache;
+  } catch(e) { return null; }
+}
+
+function clearTokenCache() {
+  try { localStorage.removeItem(CACHE_KEY); } catch(e) {}
+}
+
 // 전체 데이터 캐시 (클라이언트 필터링용)
 let allBookings = [];
 let carrierMapG = {}, polMapG = {}, podMapG = {};
@@ -349,6 +380,9 @@ async function handleCallback() {
       } catch(e) {}
     }
 
+    // 토큰 캐시 저장
+    saveTokenCache(S.accessToken, S.tokenExpiry, S.userName, S.userEmail);
+
     hideLoading();
     showDashboard();
     loadData();
@@ -361,6 +395,7 @@ async function handleCallback() {
 function doLogout() {
   S = { accessToken: null, tokenExpiry: 0, userName: '', userEmail: '' };
   allBookings = []; carrierMapG = {}; polMapG = {}; podMapG = {};
+  clearTokenCache();
   document.getElementById('dashboard').style.display = 'none';
   document.getElementById('login-prompt').style.display = 'block';
   document.getElementById('btn-login').style.display = 'inline-block';
@@ -618,7 +653,22 @@ function hideLoading() {
   document.getElementById(id)?.addEventListener('change', applyClientFilter);
 });
 
-window.addEventListener('load', handleCallback);
+window.addEventListener('load', async () => {
+  // 먼저 캐시된 토큰 확인
+  const cache = loadTokenCache();
+  if (cache) {
+    S.accessToken = cache.accessToken;
+    S.tokenExpiry = cache.tokenExpiry;
+    S.userName    = cache.userName;
+    S.userEmail   = cache.userEmail;
+    showDashboard();
+    loadData();
+    return;
+  }
+  // 캐시 없으면 콜백 처리 (로그인 후 리다이렉트)
+  await handleCallback();
+});
 </script>
 </body>
 </html>
+
