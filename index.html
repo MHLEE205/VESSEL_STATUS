@@ -289,7 +289,7 @@ async function loadData() {
     if (inv)    filters.push("contains(cr49f_invoice_no,'" + inv + "')");
     if (vessel) filters.push("contains(cr49f_main_ship_name,'" + vessel + "')");
 
-    let query = 'cr49f_bookings?$select=cr49f_bookingid,cr49f_booking_no,cr49f_invoice_no,cr49f_bl_number,cr49f_main_ship_name,cr49f_cy_open,cr49f_cy_cut,cr49f_etd,cr49f_eta,_cr49f_carrier_id_value,_cr49f_region_japan_id_value,_cr49f_region_id_value&$top=500&$orderby=cr49f_etd asc';
+    let query = 'cr49f_bookings?$select=cr49f_bookingid,cr49f_booking_no,cr49f_invoice_no,cr49f_bl_number,cr49f_main_ship_name,cr49f_cy_open,cr49f_cy_cut,cr49f_etd,cr49f_eta,_cr49f_carrier_id_value,_cr49f_region_japan_id_value,_cr49f_region_id_value,_cr49f_sale_contract_id_value&$top=500&$orderby=cr49f_etd asc';
     if (filters.length) query += '&$filter=' + filters.join(' and ');
 
     const data     = await dvGet(query);
@@ -316,25 +316,39 @@ async function loadData() {
     podMapG     = results[2];
     allBookings = bookings;
 
-    // Agent 조회: 부킹 → 부킹상세 → 판매계약 → Agent
+    // Agent 조회: 부킹 → 판매계약(직접) → Agent
     showLoading('Loading agent info...');
     agentMapG = {};
-    await Promise.all(bookings.map(async function(b) {
-      const bkgId = b.cr49f_bookingid;
-      if (!bkgId) return;
+    // 판매계약ID 목록 수집
+    const scGuids = [...new Set(bookings.map(function(b) { return b['_cr49f_sale_contract_id_value']; }).filter(Boolean))];
+    // 판매계약 → AgentID 일괄 조회
+    const scToAgent = {};
+    await Promise.all(scGuids.map(async function(scId) {
       try {
-        const bdRes  = await dvGet('cr49f_booking_details?$filter=_cr49f_booking_id_value eq ' + bkgId + '&$select=_cr49f_sale_contract_id_value&$top=1');
-        const bd     = bdRes.value && bdRes.value[0];
-        if (!bd) return;
-        const scId   = bd['_cr49f_sale_contract_id_value'];
-        if (!scId) return;
-        const sc     = await dvGet('cr49f_sale_contracts(' + scId + ')?$select=_cr49f_agent_id_value');
-        const agentId = sc['_cr49f_agent_id_value'];
-        if (!agentId) return;
-        const ag     = await dvGet('cr49f_agents(' + agentId + ')?$select=cr49f_agent_name');
-        agentMapG[bkgId] = ag.cr49f_agent_name || '';
-      } catch(e) { agentMapG[bkgId] = ''; }
+        const sc = await dvGet('cr49f_sale_contracts(' + scId + ')?$select=_cr49f_agent_id_value,cr49f_agent_idname');
+        scToAgent[scId] = {
+          agentId: sc['_cr49f_agent_id_value'] || null,
+          agentName: sc['cr49f_agent_idname'] || ''
+        };
+      } catch(e) { scToAgent[scId] = { agentId: null, agentName: '' }; }
     }));
+    // AgentID → Agent이름 일괄 조회
+    const agentGuids = [...new Set(Object.values(scToAgent).map(function(v) { return v.agentId; }).filter(Boolean))];
+    const agentNames = {};
+    await Promise.all(agentGuids.map(async function(agId) {
+      try {
+        const ag = await dvGet('cr49f_agents(' + agId + ')?$select=cr49f_agent_name');
+        agentNames[agId] = ag.cr49f_agent_name || '';
+      } catch(e) { agentNames[agId] = ''; }
+    }));
+    // 부킹 → agentMapG 매핑
+    bookings.forEach(function(b) {
+      const scId = b['_cr49f_sale_contract_id_value'];
+      if (!scId) { agentMapG[b.cr49f_bookingid] = ''; return; }
+      const sc = scToAgent[scId];
+      if (!sc) { agentMapG[b.cr49f_bookingid] = ''; return; }
+      agentMapG[b.cr49f_bookingid] = sc.agentName || (sc.agentId ? agentNames[sc.agentId] : '') || '';
+    });
 
     hideLoading();
     applyClientFilter();
@@ -495,3 +509,4 @@ window.addEventListener('load', async function() {
 </script>
 </body>
 </html>
+
