@@ -2,66 +2,163 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VESSEL STATUS v1.0</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Sans JP', 'Noto Sans KR', 'Segoe UI', Arial, sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; }
-  header { background: #161b22; border-bottom: 1px solid #30363d; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #0d1117;
+    color: #c9d1d9;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: #161b22;
+    border-bottom: 1px solid #30363d;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   .header-left { display: flex; align-items: center; gap: 14px; }
   .logo { font-size: 1.2rem; font-weight: 700; color: #58a6ff; letter-spacing: 1px; }
   .tool-title { font-size: 1rem; font-weight: 600; color: #e6edf3; }
-  .version { font-size: 0.72rem; background: #1f6feb; color: #fff; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+  .version {
+    font-size: 0.72rem; background: #1f6feb; color: #fff;
+    padding: 2px 8px; border-radius: 20px; font-weight: 600;
+  }
   .header-right { display: flex; align-items: center; gap: 12px; }
-  #user-info { font-size: 0.82rem; color: #e6edf3; font-weight: 600; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  #btn-login { background: #238636; color: #fff; border: none; padding: 7px 18px; border-radius: 6px; font-size: 0.85rem; cursor: pointer; font-weight: 600; }
+  #user-info { font-size: 0.82rem; color: #8b949e; }
+  #btn-login {
+    background: #238636; color: #fff; border: none;
+    padding: 7px 18px; border-radius: 6px; font-size: 0.85rem;
+    cursor: pointer; font-weight: 600; transition: background .2s;
+  }
   #btn-login:hover { background: #2ea043; }
-  #btn-logout { background: transparent; color: #8b949e; border: 1px solid #30363d; padding: 6px 14px; border-radius: 6px; font-size: 0.82rem; cursor: pointer; display: none; }
+  #btn-logout {
+    background: transparent; color: #8b949e; border: 1px solid #30363d;
+    padding: 6px 14px; border-radius: 6px; font-size: 0.82rem;
+    cursor: pointer; display: none;
+  }
   #btn-logout:hover { color: #f85149; border-color: #f85149; }
+
+  /* ── MAIN ── */
   main { padding: 24px; }
-  .filter-section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
-  .filter-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+
+  /* ── FILTER BAR ── */
+  .filter-section {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .filter-row {
+    display: flex; gap: 10px; align-items: center;
+    flex-wrap: wrap; margin-bottom: 10px;
+  }
   .filter-row:last-child { margin-bottom: 0; }
-  .filter-label { font-size: 0.75rem; color: #8b949e; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; min-width: 60px; }
-  .filter-row input, .filter-row select { background: #0d1117; border: 1px solid #30363d; color: #c9d1d9; padding: 7px 10px; border-radius: 6px; font-size: 0.83rem; outline: none; }
+  .filter-label {
+    font-size: 0.75rem; color: #8b949e; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .5px;
+    min-width: 60px;
+  }
+  .filter-row input, .filter-row select {
+    background: #0d1117; border: 1px solid #30363d; color: #c9d1d9;
+    padding: 7px 10px; border-radius: 6px; font-size: 0.83rem;
+    outline: none;
+  }
   .filter-row input:focus, .filter-row select:focus { border-color: #58a6ff; }
   .filter-row input { width: 160px; }
   .filter-row select { min-width: 130px; }
   .date-range { display: flex; align-items: center; gap: 6px; }
   .date-range span { color: #8b949e; font-size: 0.8rem; }
   .date-range input[type="date"] { width: 140px; }
-  #btn-search { background: #1f6feb; color: #fff; border: none; padding: 8px 20px; border-radius: 6px; font-size: 0.85rem; cursor: pointer; font-weight: 600; }
+
+  #btn-search {
+    background: #1f6feb; color: #fff; border: none;
+    padding: 8px 20px; border-radius: 6px; font-size: 0.85rem;
+    cursor: pointer; font-weight: 600;
+  }
   #btn-search:hover { background: #388bfd; }
-  #btn-clear { background: transparent; color: #8b949e; border: 1px solid #30363d; padding: 7px 14px; border-radius: 6px; font-size: 0.85rem; cursor: pointer; }
+  #btn-clear {
+    background: transparent; color: #8b949e; border: 1px solid #30363d;
+    padding: 7px 14px; border-radius: 6px; font-size: 0.85rem; cursor: pointer;
+  }
   #btn-clear:hover { border-color: #8b949e; color: #c9d1d9; }
   .record-count { font-size: 0.82rem; color: #8b949e; margin-left: auto; }
-  .table-wrap { background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: auto; }
+
+  /* ── TABLE ── */
+  .table-wrap {
+    background: #161b22; border: 1px solid #30363d;
+    border-radius: 8px; overflow: auto;
+  }
   table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
   thead { background: #1c2128; position: sticky; top: 0; z-index: 1; }
-  th { padding: 11px 14px; text-align: left; font-weight: 600; color: #8b949e; font-size: 0.78rem; text-transform: uppercase; letter-spacing: .5px; border-bottom: 1px solid #30363d; white-space: nowrap; }
-  td { padding: 10px 14px; border-bottom: 1px solid #21262d; white-space: nowrap; }
+  th {
+    padding: 11px 14px; text-align: left; font-weight: 600;
+    color: #8b949e; font-size: 0.78rem; text-transform: uppercase;
+    letter-spacing: .5px; border-bottom: 1px solid #30363d;
+    white-space: nowrap;
+  }
+  td {
+    padding: 10px 14px; border-bottom: 1px solid #21262d;
+    white-space: nowrap;
+  }
   tr:last-child td { border-bottom: none; }
   tr:hover td { background: #1c2128; }
-  .badge { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+
+  /* badges */
+  .badge {
+    display: inline-block; padding: 2px 9px; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 600;
+  }
   .badge-carrier { background: #1f3a5f; color: #79c0ff; }
   .badge-etd { background: #1a3a2a; color: #56d364; }
   .badge-eta { background: #3a2a1a; color: #f0883e; }
-  #status-bar { text-align: center; padding: 60px 20px; color: #8b949e; font-size: 0.9rem; display: none; }
-  .spinner { width: 32px; height: 32px; border: 3px solid #30363d; border-top-color: #58a6ff; border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 14px; }
+
+  /* ── STATUS / LOADING ── */
+  #status-bar {
+    text-align: center; padding: 60px 20px;
+    color: #8b949e; font-size: 0.9rem; display: none;
+  }
+  .spinner {
+    width: 32px; height: 32px; border: 3px solid #30363d;
+    border-top-color: #58a6ff; border-radius: 50%;
+    animation: spin .8s linear infinite; margin: 0 auto 14px;
+  }
   @keyframes spin { to { transform: rotate(360deg); } }
-  #login-prompt { text-align: center; padding: 80px 20px; color: #8b949e; }
+
+  #login-prompt {
+    text-align: center; padding: 80px 20px; color: #8b949e;
+  }
   #login-prompt h2 { color: #e6edf3; margin-bottom: 10px; font-size: 1.1rem; }
   #login-prompt p { font-size: 0.88rem; margin-bottom: 24px; }
-  #btn-login-center { background: #238636; color: #fff; border: none; padding: 10px 28px; border-radius: 6px; font-size: 0.92rem; cursor: pointer; font-weight: 600; }
+  #btn-login-center {
+    background: #238636; color: #fff; border: none;
+    padding: 10px 28px; border-radius: 6px; font-size: 0.92rem;
+    cursor: pointer; font-weight: 600;
+  }
   #btn-login-center:hover { background: #2ea043; }
-  #no-data { text-align: center; padding: 40px; color: #8b949e; font-size: 0.88rem; display: none; }
-  footer { text-align: center; padding: 20px; font-size: 0.75rem; color: #484f58; border-top: 1px solid #21262d; margin-top: 30px; }
+
+  #no-data {
+    text-align: center; padding: 40px; color: #8b949e;
+    font-size: 0.88rem; display: none;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 20px;
+    font-size: 0.75rem; color: #484f58;
+    border-top: 1px solid #21262d; margin-top: 30px;
+  }
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
   <div class="header-left">
     <span class="logo">LEENAI.</span>
@@ -75,15 +172,23 @@
   </div>
 </header>
 
+<!-- MAIN -->
 <main>
+
+  <!-- Login prompt (before auth) -->
   <div id="login-prompt">
     <h2>LEENEAR VESSEL STATUS</h2>
     <p>Login with your company account to view real-time booking & vessel schedule.</p>
     <button id="btn-login-center" onclick="startLogin()">🔐 Login with Company Account</button>
   </div>
 
+  <!-- Dashboard (after auth) -->
   <div id="dashboard" style="display:none;">
+
+    <!-- Filter Section -->
     <div class="filter-section">
+
+      <!-- Row 1: BKG / Invoice / Vessel / Month -->
       <div class="filter-row">
         <span class="filter-label">Search</span>
         <input type="text" id="f-bkg" placeholder="BKG No" />
@@ -91,12 +196,16 @@
         <input type="text" id="f-vessel" placeholder="Vessel Name" />
         <select id="f-month"><option value="">All Months</option></select>
       </div>
+
+      <!-- Row 2: Carrier / POL / POD -->
       <div class="filter-row">
         <span class="filter-label">Filter</span>
         <select id="f-carrier"><option value="">All Carriers</option></select>
         <select id="f-pol"><option value="">All POL</option></select>
         <select id="f-pod"><option value="">All POD</option></select>
       </div>
+
+      <!-- Row 3: CY CUT / ETD / ETA 날짜 범위 -->
       <div class="filter-row">
         <span class="filter-label">CY CUT</span>
         <div class="date-range">
@@ -117,25 +226,41 @@
           <input type="date" id="f-eta-to" />
         </div>
       </div>
+
+      <!-- Row 4: Buttons -->
       <div class="filter-row">
         <button id="btn-search" onclick="loadData()">🔍 Search</button>
         <button id="btn-clear" onclick="clearFilter()">✕ Clear</button>
         <span class="record-count" id="rec-count"></span>
       </div>
+
     </div>
 
+    <!-- Loading -->
     <div id="status-bar">
       <div class="spinner"></div>
       <div id="status-msg">Loading...</div>
     </div>
+
+    <!-- No Data -->
     <div id="no-data">No records found.</div>
+
+    <!-- Table -->
     <div class="table-wrap" id="table-wrap" style="display:none;">
       <table>
         <thead>
           <tr>
-            <th>BKG No</th><th>Invoice No</th><th>B/L No</th><th>Vessel Name</th>
-            <th>Carrier</th><th>POL</th><th>POD</th><th>CY OPEN</th>
-            <th>CY CUT</th><th>ETD</th><th>ETA</th>
+            <th>BKG No</th>
+            <th>Invoice No</th>
+            <th>B/L No</th>
+            <th>Vessel Name</th>
+            <th>Carrier</th>
+            <th>POL</th>
+            <th>POD</th>
+            <th>CY OPEN</th>
+            <th>CY CUT</th>
+            <th>ETD</th>
+            <th>ETA</th>
           </tr>
         </thead>
         <tbody id="tbl-body"></tbody>
@@ -153,199 +278,347 @@ const DV_URL       = 'https://orgde512c6f.crm7.dynamics.com';
 const DV_API       = `${DV_URL}/api/data/v9.2`;
 const REDIRECT_URI = 'https://mhlee205.github.io/VESSEL_STATUS/';
 const SCOPE        = `${DV_URL}/user_impersonation openid profile email offline_access`;
-const CACHE_KEY    = 'vs_token_cache';
 
 let S = { accessToken: null, tokenExpiry: 0, userName: '', userEmail: '' };
-let allBookings = [], carrierMapG = {}, polMapG = {}, podMapG = {};
 
-// ── TOKEN CACHE ──
-function saveTokenCache(t, exp, name, email) {
-  try { localStorage.setItem(CACHE_KEY, JSON.stringify({accessToken:t,tokenExpiry:exp,userName:name,userEmail:email})); } catch(e){}
+// 전체 데이터 캐시 (클라이언트 필터링용)
+let allBookings = [];
+let carrierMapG = {}, polMapG = {}, podMapG = {};
+
+function b64url(buf) {
+  return btoa(String.fromCharCode(...new Uint8Array(buf)))
+    .replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'');
 }
-function loadTokenCache() {
-  try {
-    const c = JSON.parse(localStorage.getItem(CACHE_KEY)||'{}');
-    if (!c.accessToken || Date.now() > c.tokenExpiry) { localStorage.removeItem(CACHE_KEY); return null; }
-    return c;
-  } catch(e){ return null; }
+async function sha256(str) {
+  return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
 }
-function clearTokenCache() { try{ localStorage.removeItem(CACHE_KEY); }catch(e){} }
+function randomStr(len=64) {
+  const arr = new Uint8Array(len);
+  crypto.getRandomValues(arr);
+  return b64url(arr).slice(0,len);
+}
 
-// ── PKCE ──
-function b64url(buf){ return btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,''); }
-async function sha256(str){ return crypto.subtle.digest('SHA-256',new TextEncoder().encode(str)); }
-function randomStr(len=64){ const a=new Uint8Array(len); crypto.getRandomValues(a); return b64url(a).slice(0,len); }
-
-// ── LOGIN ──
 async function startLogin() {
-  const verifier=randomStr(64), challenge=b64url(await sha256(verifier)), state=randomStr(16);
-  sessionStorage.setItem('pkce_v',verifier); sessionStorage.setItem('pkce_s',state);
-  const p=new URLSearchParams({client_id:CLIENT_ID,response_type:'code',redirect_uri:REDIRECT_URI,scope:SCOPE,state,code_challenge:challenge,code_challenge_method:'S256',prompt:'select_account'});
-  location.href=`https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/authorize?${p}`;
+  const verifier  = randomStr(64);
+  const challenge = b64url(await sha256(verifier));
+  const state     = randomStr(16);
+  sessionStorage.setItem('pkce_v', verifier);
+  sessionStorage.setItem('pkce_s', state);
+  const params = new URLSearchParams({
+    client_id: CLIENT_ID, response_type: 'code',
+    redirect_uri: REDIRECT_URI, scope: SCOPE,
+    state, code_challenge: challenge, code_challenge_method: 'S256',
+    prompt: 'select_account'
+  });
+  location.href = `https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/authorize?${params}`;
 }
 
-// ── CALLBACK ──
 async function handleCallback() {
-  const params=new URLSearchParams(location.search), code=params.get('code');
-  if(!code) return;
-  history.replaceState({},'',location.pathname);
-  const verifier=sessionStorage.getItem('pkce_v');
-  if(!verifier){ alert('Session expired. Please login again.'); return; }
+  const params = new URLSearchParams(location.search);
+  const code   = params.get('code');
+  if (!code) return;
+  history.replaceState({}, '', location.pathname);
+
+  const verifier = sessionStorage.getItem('pkce_v');
+  if (!verifier) { alert('Session expired. Please login again.'); return; }
+
   showLoading('Authenticating...');
   try {
-    const res=await fetch(`https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/token`,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({client_id:CLIENT_ID,grant_type:'authorization_code',code,redirect_uri:REDIRECT_URI,code_verifier:verifier,scope:SCOPE})});
-    const data=await res.json();
-    if(!data.access_token) throw new Error(data.error_description||'Token fetch failed');
-    S.accessToken=data.access_token; S.tokenExpiry=Date.now()+(data.expires_in-60)*1000;
-    if(data.id_token){ try{ const p=JSON.parse(atob(data.id_token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'))); S.userName=p.name||''; S.userEmail=p.email||p.preferred_username||''; }catch(e){} }
-    saveTokenCache(S.accessToken,S.tokenExpiry,S.userName,S.userEmail);
-    hideLoading(); showDashboard(); loadData();
-  } catch(e){ hideLoading(); alert('Auth Error: '+e.message); }
+    const res = await fetch(
+      `https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/token`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          client_id: CLIENT_ID, grant_type: 'authorization_code',
+          code, redirect_uri: REDIRECT_URI, code_verifier: verifier, scope: SCOPE
+        })
+      }
+    );
+    const data = await res.json();
+    if (!data.access_token) throw new Error(data.error_description || 'Token fetch failed');
+
+    S.accessToken = data.access_token;
+    S.tokenExpiry = Date.now() + (data.expires_in - 60) * 1000;
+
+    if (data.id_token) {
+      try {
+        const payload = JSON.parse(atob(data.id_token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));
+        S.userName  = payload.name  || '';
+        S.userEmail = payload.email || payload.preferred_username || '';
+      } catch(e) {}
+    }
+
+    hideLoading();
+    showDashboard();
+    loadData();
+  } catch(e) {
+    hideLoading();
+    alert('Auth Error: ' + e.message);
+  }
 }
 
 function doLogout() {
-  S={accessToken:null,tokenExpiry:0,userName:'',userEmail:''}; allBookings=[]; carrierMapG={}; polMapG={}; podMapG={};
-  clearTokenCache();
-  document.getElementById('dashboard').style.display='none';
-  document.getElementById('login-prompt').style.display='block';
-  document.getElementById('btn-login').style.display='inline-block';
-  document.getElementById('btn-logout').style.display='none';
-  document.getElementById('user-info').textContent='';
+  S = { accessToken: null, tokenExpiry: 0, userName: '', userEmail: '' };
+  allBookings = []; carrierMapG = {}; polMapG = {}; podMapG = {};
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('login-prompt').style.display = 'block';
+  document.getElementById('btn-login').style.display = 'inline-block';
+  document.getElementById('btn-logout').style.display = 'none';
+  document.getElementById('user-info').textContent = '';
 }
 
 function showDashboard() {
-  document.getElementById('login-prompt').style.display='none';
-  document.getElementById('dashboard').style.display='block';
-  document.getElementById('btn-login').style.display='none';
-  document.getElementById('btn-logout').style.display='inline-block';
-  const displayName=S.userEmail?S.userEmail.split('@')[0].toUpperCase():(S.userName||'');
-  document.getElementById('user-info').textContent=displayName;
+  document.getElementById('login-prompt').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  document.getElementById('btn-login').style.display = 'none';
+  document.getElementById('btn-logout').style.display = 'inline-block';
+  document.getElementById('user-info').textContent = S.userName || S.userEmail;
   buildMonthFilter();
 }
 
 function checkToken() {
-  if(!S.accessToken) throw new Error('Please login first.');
-  if(Date.now()>S.tokenExpiry) throw new Error('Session expired. Please login again.');
+  if (!S.accessToken) throw new Error('Please login first.');
+  if (Date.now() > S.tokenExpiry) throw new Error('Session expired. Please login again.');
 }
 
 async function dvGet(path) {
   checkToken();
-  const url=path.startsWith('http')?path:`${DV_API}/${path}`;
-  const res=await fetch(url,{headers:{'Authorization':`Bearer ${S.accessToken}`,'OData-MaxVersion':'4.0','OData-Version':'4.0','Accept':'application/json','Prefer':'odata.include-annotations="OData.Community.Display.V1.FormattedValue"'}});
-  if(!res.ok){ const err=await res.json().catch(()=>({})); throw new Error(`API ${res.status}: ${err?.error?.message||res.statusText}`); }
+  const url = path.startsWith('http') ? path : `${DV_API}/${path}`;
+  const res = await fetch(url, {
+    headers: {
+      'Authorization': `Bearer ${S.accessToken}`,
+      'OData-MaxVersion': '4.0',
+      'OData-Version': '4.0',
+      'Accept': 'application/json',
+      'Prefer': 'odata.include-annotations="OData.Community.Display.V1.FormattedValue"'
+    }
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(`API ${res.status}: ${err?.error?.message || res.statusText}`);
+  }
   return res.json();
 }
 
 async function loadData() {
   showLoading('Loading vessel data...');
-  document.getElementById('table-wrap').style.display='none';
-  document.getElementById('no-data').style.display='none';
+  document.getElementById('table-wrap').style.display = 'none';
+  document.getElementById('no-data').style.display = 'none';
+
   try {
-    const filters=[];
-    const bkg=document.getElementById('f-bkg').value.trim();
-    const inv=document.getElementById('f-inv').value.trim();
-    const vessel=document.getElementById('f-vessel').value.trim();
-    const month=document.getElementById('f-month').value;
-    if(bkg) filters.push(`contains(cr49f_booking_no,'${bkg}')`);
-    if(inv) filters.push(`contains(cr49f_invoice_no,'${inv}')`);
-    if(vessel) filters.push(`contains(cr49f_main_ship_name,'${vessel}')`);
-    if(month){ const[y,m]=month.split('-'); const from=`${y}-${m}-01T00:00:00Z`; const last=new Date(y,m,0).getDate(); const to=`${y}-${m}-${String(last).padStart(2,'0')}T23:59:59Z`; filters.push(`cr49f_etd ge ${from} and cr49f_etd le ${to}`); }
-    let query=`cr49f_bookings?$select=cr49f_booking_no,cr49f_invoice_no,cr49f_bl_number,cr49f_main_ship_name,cr49f_cy_open,cr49f_cy_cut,cr49f_etd,cr49f_eta,_cr49f_carrier_id_value,_cr49f_region_japan_id_value,_cr49f_region_id_value&$top=500&$orderby=cr49f_etd desc`;
-    if(filters.length) query+=`&$filter=${filters.join(' and ')}`;
-    const data=await dvGet(query); const bookings=data.value||[];
-    if(!bookings.length){ hideLoading(); document.getElementById('no-data').style.display='block'; document.getElementById('rec-count').textContent='0 records'; return; }
-    const cG=[...new Set(bookings.map(b=>b['_cr49f_carrier_id_value']).filter(Boolean))];
-    const pG=[...new Set(bookings.map(b=>b['_cr49f_region_japan_id_value']).filter(Boolean))];
-    const dG=[...new Set(bookings.map(b=>b['_cr49f_region_id_value']).filter(Boolean))];
-    const[cM,pM,dM]=await Promise.all([fetchMasterMap(cG,'crcf9_carriers','crcf9_carrierid','crcf9_carrier'),fetchMasterMap(pG,'crcf9_region_japans','crcf9_region_japanid','crcf9_pol'),fetchMasterMap(dG,'cr49f_regions','cr49f_regionid','cr49f_pod')]);
-    allBookings=bookings; carrierMapG=cM; polMapG=pM; podMapG=dM;
-    buildDropdown('f-carrier',[...new Set(Object.values(cM))].sort());
-    buildDropdown('f-pol',[...new Set(Object.values(pM))].sort());
-    buildDropdown('f-pod',[...new Set(Object.values(dM))].sort());
-    hideLoading(); applyClientFilter();
-  } catch(e){ hideLoading(); alert('Error: '+e.message); }
+    const filters = [];
+    const bkg    = document.getElementById('f-bkg').value.trim();
+    const inv    = document.getElementById('f-inv').value.trim();
+    const vessel = document.getElementById('f-vessel').value.trim();
+    const month  = document.getElementById('f-month').value;
+
+    if (bkg)    filters.push(`contains(cr49f_booking_no,'${bkg}')`);
+    if (inv)    filters.push(`contains(cr49f_invoice_no,'${inv}')`);
+    if (vessel) filters.push(`contains(cr49f_main_ship_name,'${vessel}')`);
+    if (month) {
+      const [y, m] = month.split('-');
+      const from = `${y}-${m}-01T00:00:00Z`;
+      const last  = new Date(y, m, 0).getDate();
+      const to    = `${y}-${m}-${String(last).padStart(2,'0')}T23:59:59Z`;
+      filters.push(`cr49f_etd ge ${from} and cr49f_etd le ${to}`);
+    }
+
+    let query = `cr49f_bookings?$select=cr49f_booking_no,cr49f_invoice_no,cr49f_bl_number,` +
+      `cr49f_main_ship_name,cr49f_cy_open,cr49f_cy_cut,cr49f_etd,cr49f_eta,` +
+      `_cr49f_carrier_id_value,_cr49f_region_japan_id_value,_cr49f_region_id_value` +
+      `&$top=500&$orderby=cr49f_etd desc`;
+
+    if (filters.length) query += `&$filter=${filters.join(' and ')}`;
+
+    const data = await dvGet(query);
+    const bookings = data.value || [];
+
+    if (!bookings.length) {
+      hideLoading();
+      document.getElementById('no-data').style.display = 'block';
+      document.getElementById('rec-count').textContent = '0 records';
+      return;
+    }
+
+    const carrierGuids = [...new Set(bookings.map(b => b['_cr49f_carrier_id_value']).filter(Boolean))];
+    const polGuids     = [...new Set(bookings.map(b => b['_cr49f_region_japan_id_value']).filter(Boolean))];
+    const podGuids     = [...new Set(bookings.map(b => b['_cr49f_region_id_value']).filter(Boolean))];
+
+    const [carrierMap, polMap, podMap] = await Promise.all([
+      fetchMasterMap(carrierGuids, 'crcf9_carriers', 'crcf9_carrierid', 'crcf9_carrier'),
+      fetchMasterMap(polGuids,     'crcf9_region_japans', 'crcf9_region_japanid', 'crcf9_pol'),
+      fetchMasterMap(podGuids,     'cr49f_regions', 'cr49f_regionid', 'cr49f_pod'),
+    ]);
+
+    // 전체 데이터 캐시 저장
+    allBookings = bookings;
+    carrierMapG = carrierMap;
+    polMapG = polMap;
+    podMapG = podMap;
+
+    // 드롭다운 옵션 업데이트
+    buildDropdown('f-carrier', [...new Set(Object.values(carrierMap))].sort());
+    buildDropdown('f-pol',     [...new Set(Object.values(polMap))].sort());
+    buildDropdown('f-pod',     [...new Set(Object.values(podMap))].sort());
+
+    hideLoading();
+    applyClientFilter();
+
+  } catch(e) {
+    hideLoading();
+    alert('Error: ' + e.message);
+  }
 }
 
+// 클라이언트 사이드 필터링
 function applyClientFilter() {
-  const carrier=document.getElementById('f-carrier').value;
-  const pol=document.getElementById('f-pol').value;
-  const pod=document.getElementById('f-pod').value;
-  const ccF=document.getElementById('f-cycut-from').value, ccT=document.getElementById('f-cycut-to').value;
-  const edF=document.getElementById('f-etd-from').value, edT=document.getElementById('f-etd-to').value;
-  const eaF=document.getElementById('f-eta-from').value, eaT=document.getElementById('f-eta-to').value;
-  let filtered=allBookings.filter(b=>{
-    const bC=carrierMapG[b['_cr49f_carrier_id_value']]||'';
-    const bP=polMapG[b['_cr49f_region_japan_id_value']]||'';
-    const bD=podMapG[b['_cr49f_region_id_value']]||'';
-    if(carrier&&bC!==carrier) return false;
-    if(pol&&bP!==pol) return false;
-    if(pod&&bD!==pod) return false;
-    if(ccF&&b.cr49f_cy_cut&&b.cr49f_cy_cut.slice(0,10)<ccF) return false;
-    if(ccT&&b.cr49f_cy_cut&&b.cr49f_cy_cut.slice(0,10)>ccT) return false;
-    if(edF&&b.cr49f_etd&&b.cr49f_etd.slice(0,10)<edF) return false;
-    if(edT&&b.cr49f_etd&&b.cr49f_etd.slice(0,10)>edT) return false;
-    if(eaF&&b.cr49f_eta&&b.cr49f_eta.slice(0,10)<eaF) return false;
-    if(eaT&&b.cr49f_eta&&b.cr49f_eta.slice(0,10)>eaT) return false;
+  const carrier   = document.getElementById('f-carrier').value;
+  const pol       = document.getElementById('f-pol').value;
+  const pod       = document.getElementById('f-pod').value;
+  const cycutFrom = document.getElementById('f-cycut-from').value;
+  const cycutTo   = document.getElementById('f-cycut-to').value;
+  const etdFrom   = document.getElementById('f-etd-from').value;
+  const etdTo     = document.getElementById('f-etd-to').value;
+  const etaFrom   = document.getElementById('f-eta-from').value;
+  const etaTo     = document.getElementById('f-eta-to').value;
+
+  let filtered = allBookings.filter(b => {
+    const bCarrier = carrierMapG[b['_cr49f_carrier_id_value']] || '';
+    const bPol     = polMapG[b['_cr49f_region_japan_id_value']] || '';
+    const bPod     = podMapG[b['_cr49f_region_id_value']] || '';
+
+    if (carrier && bCarrier !== carrier) return false;
+    if (pol     && bPol !== pol)         return false;
+    if (pod     && bPod !== pod)         return false;
+
+    if (cycutFrom && b.cr49f_cy_cut && b.cr49f_cy_cut.slice(0,10) < cycutFrom) return false;
+    if (cycutTo   && b.cr49f_cy_cut && b.cr49f_cy_cut.slice(0,10) > cycutTo)   return false;
+    if (etdFrom   && b.cr49f_etd    && b.cr49f_etd.slice(0,10)    < etdFrom)   return false;
+    if (etdTo     && b.cr49f_etd    && b.cr49f_etd.slice(0,10)    > etdTo)     return false;
+    if (etaFrom   && b.cr49f_eta    && b.cr49f_eta.slice(0,10)    < etaFrom)   return false;
+    if (etaTo     && b.cr49f_eta    && b.cr49f_eta.slice(0,10)    > etaTo)     return false;
+
     return true;
   });
-  if(!filtered.length){ document.getElementById('no-data').style.display='block'; document.getElementById('table-wrap').style.display='none'; document.getElementById('rec-count').textContent='0 records'; return; }
-  document.getElementById('no-data').style.display='none';
-  renderTable(filtered,carrierMapG,polMapG,podMapG);
-  document.getElementById('rec-count').textContent=`${filtered.length} records`;
-  document.getElementById('table-wrap').style.display='block';
+
+  if (!filtered.length) {
+    document.getElementById('no-data').style.display = 'block';
+    document.getElementById('table-wrap').style.display = 'none';
+    document.getElementById('rec-count').textContent = '0 records';
+    return;
+  }
+
+  document.getElementById('no-data').style.display = 'none';
+  renderTable(filtered, carrierMapG, polMapG, podMapG);
+  document.getElementById('rec-count').textContent = `${filtered.length} records`;
+  document.getElementById('table-wrap').style.display = 'block';
 }
 
-function buildDropdown(id,values){
-  const sel=document.getElementById(id); const cur=sel.value; const ph=sel.options[0].text;
-  sel.innerHTML=`<option value="">${ph}</option>`;
-  values.forEach(v=>{ if(!v) return; const o=document.createElement('option'); o.value=v; o.textContent=v; if(v===cur) o.selected=true; sel.appendChild(o); });
+function buildDropdown(id, values) {
+  const sel = document.getElementById(id);
+  const current = sel.value;
+  const placeholder = sel.options[0].text;
+  sel.innerHTML = `<option value="">${placeholder}</option>`;
+  values.forEach(v => {
+    if (!v) return;
+    const opt = document.createElement('option');
+    opt.value = v; opt.textContent = v;
+    if (v === current) opt.selected = true;
+    sel.appendChild(opt);
+  });
 }
 
-async function fetchMasterMap(guids,entitySet,pkField,nameField){
-  const map={};
-  if(!guids.length) return map;
-  await Promise.all(guids.map(async guid=>{ try{ const d=await dvGet(`${entitySet}(${guid})?$select=${nameField}`); map[guid]=d[nameField]||''; }catch(e){ map[guid]=''; } }));
+async function fetchMasterMap(guids, entitySet, pkField, nameField) {
+  const map = {};
+  if (!guids.length) return map;
+  await Promise.all(guids.map(async guid => {
+    try {
+      const d = await dvGet(`${entitySet}(${guid})?$select=${nameField}`);
+      map[guid] = d[nameField] || '';
+    } catch(e) { map[guid] = ''; }
+  }));
   return map;
 }
 
-function renderTable(bookings,cM,pM,dM){
-  const tbody=document.getElementById('tbl-body'); tbody.innerHTML='';
-  bookings.forEach(b=>{
-    const carrier=cM[b['_cr49f_carrier_id_value']]||'-';
-    const pol=pM[b['_cr49f_region_japan_id_value']]||'-';
-    const pod=dM[b['_cr49f_region_id_value']]||'-';
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td><strong>${b.cr49f_booking_no||'-'}</strong></td><td>${b.cr49f_invoice_no||'-'}</td><td>${b.cr49f_bl_number||'-'}</td><td>${b.cr49f_main_ship_name||'-'}</td><td><span class="badge badge-carrier">${carrier}</span></td><td>${pol}</td><td>${pod}</td><td>${fmtDate(b.cr49f_cy_open)}</td><td>${fmtDate(b.cr49f_cy_cut)}</td><td><span class="badge badge-etd">${fmtDate(b.cr49f_etd)}</span></td><td><span class="badge badge-eta">${fmtDate(b.cr49f_eta)}</span></td>`;
+function renderTable(bookings, carrierMap, polMap, podMap) {
+  const tbody = document.getElementById('tbl-body');
+  tbody.innerHTML = '';
+  bookings.forEach(b => {
+    const carrier = carrierMap[b['_cr49f_carrier_id_value']] || '-';
+    const pol     = polMap[b['_cr49f_region_japan_id_value']] || '-';
+    const pod     = podMap[b['_cr49f_region_id_value']] || '-';
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><strong>${b.cr49f_booking_no || '-'}</strong></td>
+      <td>${b.cr49f_invoice_no || '-'}</td>
+      <td>${b.cr49f_bl_number || '-'}</td>
+      <td>${b.cr49f_main_ship_name || '-'}</td>
+      <td><span class="badge badge-carrier">${carrier}</span></td>
+      <td>${pol}</td>
+      <td>${pod}</td>
+      <td>${fmtDate(b.cr49f_cy_open)}</td>
+      <td>${fmtDate(b.cr49f_cy_cut)}</td>
+      <td><span class="badge badge-etd">${fmtDate(b.cr49f_etd)}</span></td>
+      <td><span class="badge badge-eta">${fmtDate(b.cr49f_eta)}</span></td>
+    `;
     tbody.appendChild(tr);
   });
 }
 
-function fmtDate(val){ if(!val) return '-'; const d=new Date(val); if(isNaN(d)) return val; return d.toISOString().slice(0,10); }
-
-function buildMonthFilter(){
-  const sel=document.getElementById('f-month'); sel.innerHTML='<option value="">All Months</option>';
-  const now=new Date();
-  for(let i=-3;i<=6;i++){ const d=new Date(now.getFullYear(),now.getMonth()+i,1); const val=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`; const label=d.toLocaleString('en-US',{year:'numeric',month:'short'}); const opt=document.createElement('option'); opt.value=val; opt.textContent=label; if(i===0) opt.selected=true; sel.appendChild(opt); }
+function fmtDate(val) {
+  if (!val) return '-';
+  const d = new Date(val);
+  if (isNaN(d)) return val;
+  return d.toISOString().slice(0,10);
 }
 
-function clearFilter(){
-  ['f-bkg','f-inv','f-vessel','f-carrier','f-pol','f-pod','f-cycut-from','f-cycut-to','f-etd-from','f-etd-to','f-eta-from','f-eta-to'].forEach(id=>{ document.getElementById(id).value=''; });
-  document.getElementById('f-month').value='';
+function buildMonthFilter() {
+  const sel = document.getElementById('f-month');
+  sel.innerHTML = '<option value="">All Months</option>';
+  const now = new Date();
+  for (let i = -3; i <= 6; i++) {
+    const d = new Date(now.getFullYear(), now.getMonth() + i, 1);
+    const val = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+    const label = d.toLocaleString('en-US', { year:'numeric', month:'short' });
+    const opt = document.createElement('option');
+    opt.value = val; opt.textContent = label;
+    if (i === 0) opt.selected = true;
+    sel.appendChild(opt);
+  }
+}
+
+function clearFilter() {
+  document.getElementById('f-bkg').value = '';
+  document.getElementById('f-inv').value = '';
+  document.getElementById('f-vessel').value = '';
+  document.getElementById('f-carrier').value = '';
+  document.getElementById('f-pol').value = '';
+  document.getElementById('f-pod').value = '';
+  document.getElementById('f-cycut-from').value = '';
+  document.getElementById('f-cycut-to').value = '';
+  document.getElementById('f-etd-from').value = '';
+  document.getElementById('f-etd-to').value = '';
+  document.getElementById('f-eta-from').value = '';
+  document.getElementById('f-eta-to').value = '';
+  document.getElementById('f-month').value = '';
   loadData();
 }
 
-function showLoading(msg){ document.getElementById('status-bar').style.display='block'; document.getElementById('status-msg').textContent=msg; }
-function hideLoading(){ document.getElementById('status-bar').style.display='none'; }
+function showLoading(msg) {
+  document.getElementById('status-bar').style.display = 'block';
+  document.getElementById('status-msg').textContent = msg;
+}
+function hideLoading() {
+  document.getElementById('status-bar').style.display = 'none';
+}
 
-['f-carrier','f-pol','f-pod','f-cycut-from','f-cycut-to','f-etd-from','f-etd-to','f-eta-from','f-eta-to'].forEach(id=>{
-  document.getElementById(id)?.addEventListener('change',applyClientFilter);
+// Carrier/POL/POD/날짜 필터는 즉시 반영
+['f-carrier','f-pol','f-pod','f-cycut-from','f-cycut-to','f-etd-from','f-etd-to','f-eta-from','f-eta-to'].forEach(id => {
+  document.getElementById(id)?.addEventListener('change', applyClientFilter);
 });
 
-window.addEventListener('load', async()=>{
-  const cache=loadTokenCache();
-  if(cache){ S.accessToken=cache.accessToken; S.tokenExpiry=cache.tokenExpiry; S.userName=cache.userName; S.userEmail=cache.userEmail; showDashboard(); loadData(); return; }
-  await handleCallback();
-});
+window.addEventListener('load', handleCallback);
 </script>
 </body>
 </html>
