@@ -270,7 +270,7 @@ async function loadData(){
     if(inv) filters.push(`contains(cr49f_invoice_no,'${inv}')`);
     if(vessel) filters.push(`contains(cr49f_main_ship_name,'${vessel}')`);
     if(month){ const[y,m]=month.split('-'); const from=`${y}-${m}-01T00:00:00Z`; const last=new Date(y,m,0).getDate(); const to=`${y}-${m}-${String(last).padStart(2,'0')}T23:59:59Z`; filters.push(`cr49f_etd ge ${from} and cr49f_etd le ${to}`); }
-    let query=`cr49f_bookings?$select=cr49f_booking_no,cr49f_invoice_no,cr49f_bl_number,cr49f_main_ship_name,cr49f_cy_open,cr49f_cy_cut,cr49f_etd,cr49f_eta,cr49f_agent,_cr49f_carrier_id_value,_cr49f_region_japan_id_value,_cr49f_region_id_value,_cr49f_sale_contract_id_value&$top=500&$orderby=cr49f_etd desc`;
+    let query=`cr49f_bookings?$select=cr49f_booking_no,cr49f_invoice_no,cr49f_bl_number,cr49f_main_ship_name,cr49f_cy_open,cr49f_cy_cut,cr49f_etd,cr49f_eta,_cr49f_carrier_id_value,_cr49f_region_japan_id_value,_cr49f_region_id_value,_cr49f_sale_contract_id_value&$top=500&$orderby=cr49f_etd desc`;
     if(filters.length) query+=`&$filter=${filters.join(' and ')}`;
     const data=await dvGet(query); const bookings=data.value||[];
     if(!bookings.length){ hideLoading(); document.getElementById('no-data').style.display='block'; document.getElementById('rec-count').textContent='0 records'; return; }
@@ -346,7 +346,7 @@ function renderTable(bookings){
     const pol=polMapG[b['_cr49f_region_japan_id_value']]||'-';
     const pod=podMapG[b['_cr49f_region_id_value']]||'-';
     const scGuid=b['_cr49f_sale_contract_id_value'];
-    const agent=b.cr49f_agent||(scGuid&&agentMapG[scGuid])||'-';
+    const agent=(scGuid&&agentMapG[scGuid])||'-';
     const tr=document.createElement('tr');
     tr.innerHTML=`
       <td><strong>${b.cr49f_booking_no||'-'}</strong></td>
@@ -413,5 +413,6 @@ window.addEventListener('load',async()=>{
 </script>
 </body>
 </html>
+
 
 
