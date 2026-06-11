@@ -281,6 +281,20 @@ const SCOPE        = `${DV_URL}/user_impersonation openid profile email offline_
 
 let S = { accessToken: null, tokenExpiry: 0, userName: '', userEmail: '' };
 
+// ── TOKEN CACHE (로그인 유지) ──
+const CACHE_KEY = 'vs_token_v3';
+function saveTokenCache(t, exp, name, email) {
+  try { localStorage.setItem(CACHE_KEY, JSON.stringify({accessToken:t, tokenExpiry:exp, userName:name, userEmail:email})); } catch(e) {}
+}
+function loadTokenCache() {
+  try {
+    const c = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
+    if (!c.accessToken || Date.now() > c.tokenExpiry) { localStorage.removeItem(CACHE_KEY); return null; }
+    return c;
+  } catch(e) { return null; }
+}
+function clearTokenCache() { try { localStorage.removeItem(CACHE_KEY); } catch(e) {} }
+
 // 전체 데이터 캐시 (클라이언트 필터링용)
 let allBookings = [];
 let carrierMapG = {}, polMapG = {}, podMapG = {};
@@ -360,6 +374,7 @@ async function handleCallback() {
 
 function doLogout() {
   S = { accessToken: null, tokenExpiry: 0, userName: '', userEmail: '' };
+  clearTokenCache();
   allBookings = []; carrierMapG = {}; polMapG = {}; podMapG = {};
   document.getElementById('dashboard').style.display = 'none';
   document.getElementById('login-prompt').style.display = 'block';
@@ -427,7 +442,7 @@ async function loadData() {
     let query = `cr49f_bookings?$select=cr49f_booking_no,cr49f_invoice_no,cr49f_bl_number,` +
       `cr49f_main_ship_name,cr49f_cy_open,cr49f_cy_cut,cr49f_etd,cr49f_eta,` +
       `_cr49f_carrier_id_value,_cr49f_region_japan_id_value,_cr49f_region_id_value` +
-      `&$top=500&$orderby=cr49f_etd desc`;
+      `&$top=500&$orderby=cr49f_etd asc`;
 
     if (filters.length) query += `&$filter=${filters.join(' and ')}`;
 
@@ -618,8 +633,21 @@ function hideLoading() {
   document.getElementById(id)?.addEventListener('change', applyClientFilter);
 });
 
-window.addEventListener('load', handleCallback);
+window.addEventListener('load', async () => {
+  const cache = loadTokenCache();
+  if (cache) {
+    S.accessToken = cache.accessToken;
+    S.tokenExpiry = cache.tokenExpiry;
+    S.userName    = cache.userName;
+    S.userEmail   = cache.userEmail;
+    showMainUI();
+    loadData();
+    return;
+  }
+  await handleCallback();
+});
 </script>
 </body>
 </html>
+
 
