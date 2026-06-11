@@ -276,7 +276,9 @@ const TENANT_ID    = 'a56988ff-c2b8-4df8-9727-889ad4205198';
 const DV_URL       = 'https://orgde512c6f.crm7.dynamics.com';
 const DV_API       = `${DV_URL}/api/data/v9.2`;
 const REDIRECT_URI = 'https://mhlee205.github.io/VESSEL_STATUS/';
-const SCOPE        = `${DV_URL}/user_impersonation openid profile email offline_access`;
+const SCOPE        = `${DV_URL}/user_impersonation openid profile email offline_access Files.Read`;
+const DRIVE_ID     = 'b!6ipbB0X2qUWjv1GbI-TGUuXwl6VrbEBBqmzVPVQU8lgaRBezcz1GQaO04IUyFRIV';
+const FILE_ID      = '01623V6XAYPX25DOZSPZA2HLYY4S6HLAJY';
 
 let S = { accessToken: null, tokenExpiry: 0, userName: '', userEmail: '' };
 
@@ -296,6 +298,7 @@ function clearTokenCache() { try { localStorage.removeItem(CACHE_KEY); } catch(e
 
 // 전체 데이터 캐시 (클라이언트 필터링용)
 let allBookings = [];
+let actualMapG = {}; // BKG No → {actualEtd, actualEta}
 let carrierMapG = {}, polMapG = {}, podMapG = {};
 
 function b64url(buf) {
@@ -494,6 +497,8 @@ async function loadData() {
     buildDropdown('f-pol',     [...new Set(Object.values(polMap))].sort());
     buildDropdown('f-pod',     [...new Set(Object.values(podMap))].sort());
 
+    // Actual ETD/ETA 데이터 로드
+    await loadActualData();
     hideLoading();
     applyClientFilter();
 
@@ -559,6 +564,47 @@ function buildDropdown(id, values) {
     if (v === current) opt.selected = true;
     sel.appendChild(opt);
   });
+}
+
+// ── SharePoint vessel_actual.xlsx 읽기 ──
+async function loadActualData() {
+  try {
+    // Graph API로 Excel 데이터 읽기
+    const res = await fetch(
+      `https://graph.microsoft.com/v1.0/drives/${DRIVE_ID}/items/${FILE_ID}/workbook/worksheets/Vessel Status/usedRange`,
+      {
+        headers: {
+          'Authorization': `Bearer ${S.accessToken}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    if (!res.ok) return;
+    const data = await res.json();
+    const rows = data.values || [];
+    if (rows.length < 2) return;
+
+    // 헤더 확인 (row 0)
+    const headers = rows[0].map(h => (h||'').toString().trim());
+    const bkgIdx  = headers.indexOf('BKG No');
+    const aEtdIdx = headers.indexOf('Actual ETD');
+    const aEtaIdx = headers.indexOf('Actual ETA');
+    if (bkgIdx < 0) return;
+
+    actualMapG = {};
+    for (let i = 1; i < rows.length; i++) {
+      const row = rows[i];
+      const bkg = (row[bkgIdx] || '').toString().trim();
+      if (!bkg) continue;
+      actualMapG[bkg] = {
+        actualEtd: (row[aEtdIdx] || '').toString().trim(),
+        actualEta: (row[aEtaIdx] || '').toString().trim()
+      };
+    }
+    console.log('✅ Actual data loaded:', Object.keys(actualMapG).length, 'records');
+  } catch(e) {
+    console.warn('Actual data load failed:', e.message);
+  }
 }
 
 async function fetchMasterMap(guids, entitySet, pkField, nameField) {
@@ -653,6 +699,7 @@ window.addEventListener('load', async () => {
 </script>
 </body>
 </html>
+
 
 
 
