@@ -194,7 +194,6 @@
         <input type="text" id="f-bkg" placeholder="BKG No" />
         <input type="text" id="f-inv" placeholder="Invoice No" />
         <input type="text" id="f-vessel" placeholder="Vessel Name" />
-        <select id="f-month"><option value="">All Months</option></select>
       </div>
 
       <!-- Row 2: Carrier / POL / POD -->
@@ -389,7 +388,6 @@ function showDashboard() {
   document.getElementById('btn-login').style.display = 'none';
   document.getElementById('btn-logout').style.display = 'inline-block';
   document.getElementById('user-info').textContent = S.userName || S.userEmail;
-  buildMonthFilter();
 }
 
 function checkToken() {
@@ -426,18 +424,11 @@ async function loadData() {
     const bkg    = document.getElementById('f-bkg').value.trim();
     const inv    = document.getElementById('f-inv').value.trim();
     const vessel = document.getElementById('f-vessel').value.trim();
-    const month  = document.getElementById('f-month').value;
 
     if (bkg)    filters.push(`contains(cr49f_booking_no,'${bkg}')`);
     if (inv)    filters.push(`contains(cr49f_invoice_no,'${inv}')`);
     if (vessel) filters.push(`contains(cr49f_main_ship_name,'${vessel}')`);
-    if (month) {
-      const [y, m] = month.split('-');
-      const from = `${y}-${m}-01T00:00:00Z`;
-      const last  = new Date(y, m, 0).getDate();
-      const to    = `${y}-${m}-${String(last).padStart(2,'0')}T23:59:59Z`;
-      filters.push(`cr49f_etd ge ${from} and cr49f_etd le ${to}`);
-    }
+
 
     let query = `cr49f_bookings?$select=cr49f_booking_no,cr49f_invoice_no,cr49f_bl_number,` +
       `cr49f_main_ship_name,cr49f_cy_open,cr49f_cy_cut,cr49f_etd,cr49f_eta,` +
@@ -588,20 +579,7 @@ function fmtDate(val) {
   return d.toISOString().slice(0,10);
 }
 
-function buildMonthFilter() {
-  const sel = document.getElementById('f-month');
-  sel.innerHTML = '<option value="">All Months</option>';
-  const now = new Date();
-  for (let i = -3; i <= 6; i++) {
-    const d = new Date(now.getFullYear(), now.getMonth() + i, 1);
-    const val = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
-    const label = d.toLocaleString('en-US', { year:'numeric', month:'short' });
-    const opt = document.createElement('option');
-    opt.value = val; opt.textContent = label;
-    if (i === 0) opt.selected = true;
-    sel.appendChild(opt);
-  }
-}
+
 
 function clearFilter() {
   document.getElementById('f-bkg').value = '';
@@ -616,7 +594,6 @@ function clearFilter() {
   document.getElementById('f-etd-to').value = '';
   document.getElementById('f-eta-from').value = '';
   document.getElementById('f-eta-to').value = '';
-  document.getElementById('f-month').value = '';
   loadData();
 }
 
@@ -649,5 +626,6 @@ window.addEventListener('load', async () => {
 </script>
 </body>
 </html>
+
 
 
