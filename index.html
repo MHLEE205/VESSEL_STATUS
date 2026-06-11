@@ -422,14 +422,36 @@ async function loadData() {
 
   try {
     const filters = [];
-    const bkg    = document.getElementById('f-bkg').value.trim();
-    const inv    = document.getElementById('f-inv').value.trim();
-    const vessel = document.getElementById('f-vessel').value.trim();
+    const bkg      = document.getElementById('f-bkg').value.trim();
+    const inv      = document.getElementById('f-inv').value.trim();
+    const vessel   = document.getElementById('f-vessel').value.trim();
+    const cycutFrom = document.getElementById('f-cycut-from').value;
+    const cycutTo   = document.getElementById('f-cycut-to').value;
+    const etdFromInput = document.getElementById('f-etd-from').value;
+    const etdTo     = document.getElementById('f-etd-to').value;
+    const etaFrom   = document.getElementById('f-eta-from').value;
+    const etaTo     = document.getElementById('f-eta-to').value;
 
-    if (bkg)    filters.push(`contains(cr49f_booking_no,'${bkg}')`);
-    if (inv)    filters.push(`contains(cr49f_invoice_no,'${inv}')`);
-    if (vessel) filters.push(`contains(cr49f_main_ship_name,'${vessel}')`);
+    // ETD FROM 미입력시 자동으로 과거 3개월
+    const etdFrom = etdFromInput || (() => {
+      const d = new Date();
+      d.setMonth(d.getMonth() - 3);
+      return d.toISOString().slice(0, 10);
+    })();
+    // ETD FROM 값을 필터 입력란에도 표시
+    if (!etdFromInput) {
+      document.getElementById('f-etd-from').value = etdFrom;
+    }
 
+    if (bkg)       filters.push(`contains(cr49f_booking_no,'${bkg}')`);
+    if (inv)       filters.push(`contains(cr49f_invoice_no,'${inv}')`);
+    if (vessel)    filters.push(`contains(cr49f_main_ship_name,'${vessel}')`);
+    if (cycutFrom) filters.push(`cr49f_cy_cut ge ${cycutFrom}T00:00:00Z`);
+    if (cycutTo)   filters.push(`cr49f_cy_cut le ${cycutTo}T23:59:59Z`);
+    filters.push(`cr49f_etd ge ${etdFrom}T00:00:00Z`);
+    if (etdTo)     filters.push(`cr49f_etd le ${etdTo}T23:59:59Z`);
+    if (etaFrom)   filters.push(`cr49f_eta ge ${etaFrom}T00:00:00Z`);
+    if (etaTo)     filters.push(`cr49f_eta le ${etaTo}T23:59:59Z`);
 
     let query = `cr49f_bookings?$select=cr49f_booking_no,cr49f_invoice_no,cr49f_bl_number,` +
       `cr49f_main_ship_name,cr49f_cy_open,cr49f_cy_cut,cr49f_etd,cr49f_eta,` +
@@ -593,6 +615,7 @@ function clearFilter() {
   document.getElementById('f-cycut-to').value = '';
   document.getElementById('f-etd-from').value = '';
   document.getElementById('f-etd-to').value = '';
+  document.getElementById('f-etd-to').value = '';
   document.getElementById('f-eta-from').value = '';
   document.getElementById('f-eta-to').value = '';
   loadData();
@@ -627,6 +650,7 @@ window.addEventListener('load', async () => {
 </script>
 </body>
 </html>
+
 
 
 
