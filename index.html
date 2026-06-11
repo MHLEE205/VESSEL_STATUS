@@ -389,14 +389,6 @@ function showDashboard() {
   document.getElementById('btn-logout').style.display = 'inline-block';
   const dn = S.userEmail ? S.userEmail.split('@')[0].toUpperCase() : (S.userName || '');
   document.getElementById('user-info').textContent = dn;
-
-  // ETD 기본값: 과거 3개월 ~ (미래 제한 없음)
-  const fromEl = document.getElementById('f-etd-from');
-  if (!fromEl.value) {
-    const d = new Date();
-    d.setMonth(d.getMonth() - 3);
-    fromEl.value = d.toISOString().slice(0, 10);
-  }
 }
 
 function checkToken() {
@@ -635,6 +627,7 @@ window.addEventListener('load', async () => {
 </script>
 </body>
 </html>
+
 
 
 
