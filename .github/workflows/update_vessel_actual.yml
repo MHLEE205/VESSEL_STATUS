@@ -1,0 +1,31 @@
+name: Update Vessel Actual ETD
+
+on:
+  schedule:
+    # 매일 오전 8시 (일본시간 = UTC 23:00 전날)
+    - cron: '0 23 * * *'
+  workflow_dispatch:  # 수동 실행도 가능
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Run VSS update script
+      run: python .github/scripts/update_vessel_actual.py
+
+    - name: Commit and push if changed
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add vessel_actual.json
+        git diff --staged --quiet || git commit -m "Auto update vessel actual ETD - $(date '+%Y-%m-%d %H:%M')"
+        git push
