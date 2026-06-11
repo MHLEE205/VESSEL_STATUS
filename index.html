@@ -276,9 +276,7 @@ const TENANT_ID    = 'a56988ff-c2b8-4df8-9727-889ad4205198';
 const DV_URL       = 'https://orgde512c6f.crm7.dynamics.com';
 const DV_API       = `${DV_URL}/api/data/v9.2`;
 const REDIRECT_URI = 'https://mhlee205.github.io/VESSEL_STATUS/';
-const SCOPE        = `${DV_URL}/user_impersonation openid profile email offline_access Files.Read`;
-const DRIVE_ID     = 'b!6ipbB0X2qUWjv1GbI-TGUuXwl6VrbEBBqmzVPVQU8lgaRBezcz1GQaO04IUyFRIV';
-const FILE_ID      = '01623V6XAYPX25DOZSPZA2HLYY4S6HLAJY';
+const SCOPE        = `${DV_URL}/user_impersonation openid profile email offline_access`;
 
 let S = { accessToken: null, tokenExpiry: 0, userName: '', userEmail: '' };
 
@@ -566,41 +564,17 @@ function buildDropdown(id, values) {
   });
 }
 
-// ── SharePoint vessel_actual.xlsx 읽기 ──
+// ── GitHub vessel_actual.json 읽기 ──
 async function loadActualData() {
   try {
-    // Graph API로 Excel 데이터 읽기
+    // GitHub Pages에서 vessel_actual.json 읽기 (캐시 방지)
     const res = await fetch(
-      `https://graph.microsoft.com/v1.0/drives/${DRIVE_ID}/items/${FILE_ID}/workbook/worksheets/Vessel Status/usedRange`,
-      {
-        headers: {
-          'Authorization': `Bearer ${S.accessToken}`,
-          'Content-Type': 'application/json'
-        }
-      }
+      `https://mhlee205.github.io/VESSEL_STATUS/vessel_actual.json?t=${Date.now()}`,
+      { cache: 'no-store' }
     );
     if (!res.ok) return;
     const data = await res.json();
-    const rows = data.values || [];
-    if (rows.length < 2) return;
-
-    // 헤더 확인 (row 0)
-    const headers = rows[0].map(h => (h||'').toString().trim());
-    const bkgIdx  = headers.indexOf('BKG No');
-    const aEtdIdx = headers.indexOf('Actual ETD');
-    const aEtaIdx = headers.indexOf('Actual ETA');
-    if (bkgIdx < 0) return;
-
-    actualMapG = {};
-    for (let i = 1; i < rows.length; i++) {
-      const row = rows[i];
-      const bkg = (row[bkgIdx] || '').toString().trim();
-      if (!bkg) continue;
-      actualMapG[bkg] = {
-        actualEtd: (row[aEtdIdx] || '').toString().trim(),
-        actualEta: (row[aEtaIdx] || '').toString().trim()
-      };
-    }
+    actualMapG = data;
     console.log('✅ Actual data loaded:', Object.keys(actualMapG).length, 'records');
   } catch(e) {
     console.warn('Actual data load failed:', e.message);
@@ -699,6 +673,7 @@ window.addEventListener('load', async () => {
 </script>
 </body>
 </html>
+
 
 
 
