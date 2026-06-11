@@ -30,7 +30,7 @@
     padding: 2px 8px; border-radius: 20px; font-weight: 600;
   }
   .header-right { display: flex; align-items: center; gap: 12px; }
-  #user-info { font-size: 0.82rem; color: #8b949e; }
+  #user-info { font-size: 0.82rem; color: #e6edf3; font-weight: 600; }
   #btn-login {
     background: #238636; color: #fff; border: none;
     padding: 7px 18px; border-radius: 6px; font-size: 0.85rem;
@@ -387,7 +387,8 @@ function showDashboard() {
   document.getElementById('dashboard').style.display = 'block';
   document.getElementById('btn-login').style.display = 'none';
   document.getElementById('btn-logout').style.display = 'inline-block';
-  document.getElementById('user-info').textContent = S.userName || S.userEmail;
+  const dn = S.userEmail ? S.userEmail.split('@')[0].toUpperCase() : (S.userName || '');
+  document.getElementById('user-info').textContent = dn;
 }
 
 function checkToken() {
@@ -617,7 +618,7 @@ window.addEventListener('load', async () => {
     S.tokenExpiry = cache.tokenExpiry;
     S.userName    = cache.userName;
     S.userEmail   = cache.userEmail;
-    showMainUI();
+    showDashboard();
     loadData();
     return;
   }
@@ -626,6 +627,7 @@ window.addEventListener('load', async () => {
 </script>
 </body>
 </html>
+
 
 
 
