@@ -169,6 +169,7 @@
     <span id="user-info"></span>
     <button id="btn-login" onclick="startLogin()">🔐 Login</button>
     <button id="btn-logout" onclick="doLogout()">Logout</button>
+    <button id="btn-pat" onclick="setPAT()" title="GitHub PAT設定" style="background:transparent;border:none;color:#484f58;cursor:pointer;font-size:0.75rem;">⚙</button>
   </div>
 </header>
 
@@ -618,6 +619,54 @@ function renderTable(bookings, carrierMap, polMap, podMap) {
   });
 }
 
+// ── Bookings → GitHub vessel_for_vss.json 저장 ──
+async function saveBookingsForVSS(bookings) {
+  try {
+    const PAT = sessionStorage.getItem('gh_pat');
+    if (!PAT) return;
+
+    // 필요한 데이터만 추출
+    const data = bookings.map(b => ({
+      bkg_no:      b.cr49f_booking_no || '',
+      vessel_name: b.cr49f_main_ship_name || '',
+      carrier:     carrierMapG[b['_cr49f_carrier_id_value']] || '',
+      pol:         polMapG[b['_cr49f_region_japan_id_value']] || '',
+      etd:         (b.cr49f_etd || '').slice(0, 10)
+    })).filter(b => b.bkg_no && b.vessel_name && b.carrier && b.pol);
+
+    // 현재 SHA 가져오기
+    const shaRes = await fetch(
+      'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/bookings_for_vss.json',
+      { headers: { 'Authorization': `token ${PAT}` } }
+    );
+    const shaData = await shaRes.json().catch(() => ({}));
+    const sha = shaData.sha || null;
+
+    // GitHub API로 업데이트
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+    const body = {
+      message: `Update bookings_for_vss.json - ${new Date().toISOString().slice(0,10)}`,
+      content,
+      ...(sha && { sha })
+    };
+
+    await fetch(
+      'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/bookings_for_vss.json',
+      {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${PAT}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      }
+    );
+    console.log('✅ bookings_for_vss.json updated:', data.length, 'records');
+  } catch(e) {
+    console.warn('bookings_for_vss save failed:', e.message);
+  }
+}
+
 function fmtDate(val) {
   if (!val) return '-';
   const d = new Date(val);
@@ -642,6 +691,19 @@ function clearFilter() {
   document.getElementById('f-eta-from').value = '';
   document.getElementById('f-eta-to').value = '';
   loadData();
+}
+
+function setPAT() {
+  const current = sessionStorage.getItem('gh_pat') ? '設定済み' : '未設定';
+  const pat = prompt(`GitHub PAT (${current})\n空欄でクリア：`);
+  if (pat === null) return;
+  if (pat.trim() === '') {
+    sessionStorage.removeItem('gh_pat');
+    alert('PAT cleared');
+  } else {
+    sessionStorage.setItem('gh_pat', pat.trim());
+    alert('PAT saved！');
+  }
 }
 
 function showLoading(msg) {
@@ -673,6 +735,7 @@ window.addEventListener('load', async () => {
 </script>
 </body>
 </html>
+
 
 
 
