@@ -362,6 +362,9 @@ async function handleCallback() {
       } catch(e) {}
     }
 
+    // 토큰 캐시 저장 → 다음 방문시 자동 로그인
+    saveTokenCache(S.accessToken, S.tokenExpiry, S.userName, S.userEmail);
+
     hideLoading();
     showDashboard();
     loadData();
@@ -650,6 +653,7 @@ window.addEventListener('load', async () => {
 </script>
 </body>
 </html>
+
 
 
 
