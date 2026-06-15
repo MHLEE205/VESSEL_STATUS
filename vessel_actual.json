@@ -385,6 +385,195 @@
     "pol": "KOBE",
     "scheduled_etd": "2026-06-17",
     "confirmed": false,
-    "updated_at": "2026-06-15 23:50"
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0548995": {
+    "actual_etd": "2026-06-12",
+    "vessel_name": "CMA CGM VALPARAISO 0IZOPS1NC",
+    "carrier": "CNC",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-06-12",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0550437": {
+    "actual_etd": "2026-06-17",
+    "vessel_name": "CMA CGM VALPARAISO 0IZOPS1NC",
+    "carrier": "CNC",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-15",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0548981": {
+    "actual_etd": "2026-06-19",
+    "vessel_name": "CNC JAGUAR 0IZORS1NC",
+    "carrier": "CNC",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-06-17",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0549001B": {
+    "actual_etd": "2026-06-19",
+    "vessel_name": "CNC JAGUAR 0IZORS1NC",
+    "carrier": "CNC",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-06-17",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0549000": {
+    "actual_etd": "2026-06-19",
+    "vessel_name": "CNC JAGUAR 0IZORS1NC",
+    "carrier": "CNC",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-06-19",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0552331": {
+    "actual_etd": "2026-06-20",
+    "vessel_name": "WILLIAM 0CG7FS1NC",
+    "carrier": "CNC",
+    "pol": "NAGOYA",
+    "scheduled_etd": "2026-06-20",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0551179": {
+    "actual_etd": "2026-06-22",
+    "vessel_name": "HAIAN EAST 0QIOFS1NC",
+    "carrier": "CNC",
+    "pol": "YOKOHAMA",
+    "scheduled_etd": "2026-06-22",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0551845": {
+    "actual_etd": "2026-06-22",
+    "vessel_name": "CNC JAGUAR 0IZORS",
+    "carrier": "CNC",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-22",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0551623": {
+    "actual_etd": "2026-06-23",
+    "vessel_name": "CNC JAGUAR 0IZORS",
+    "carrier": "CNC",
+    "pol": "YOKOHAMA",
+    "scheduled_etd": "2026-06-22",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0551786": {
+    "actual_etd": "2026-06-21",
+    "vessel_name": "HAIAN EAST 0QIOFS1NC",
+    "carrier": "CNC",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-22",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0551804": {
+    "actual_etd": "2026-06-23",
+    "vessel_name": "CNC JAGUAR 0IZORS1NC",
+    "carrier": "CNC",
+    "pol": "YOKOHAMA",
+    "scheduled_etd": "2026-06-22",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0550450": {
+    "actual_etd": "2026-06-21",
+    "vessel_name": "HAIAN EAST 0IZOPS1NC",
+    "carrier": "CNC",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-22",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0550468": {
+    "actual_etd": "2026-06-22",
+    "vessel_name": "HAIAN EAST 0QIOFS1NC",
+    "carrier": "CNC",
+    "pol": "YOKOHAMA",
+    "scheduled_etd": "2026-06-22",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0551862": {
+    "actual_etd": "2026-06-23",
+    "vessel_name": "CNC JAGUAR 0IZORS",
+    "carrier": "CNC",
+    "pol": "YOKOHAMA",
+    "scheduled_etd": "2026-06-23",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0550194A": {
+    "actual_etd": "2026-06-24",
+    "vessel_name": "CMA CGM FORT SAINT CHARLES 0IZOTS1NC",
+    "carrier": "CNC",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-06-24",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0549499": {
+    "actual_etd": "2026-06-24",
+    "vessel_name": "CMA CGM FORT SAINT CHARLES 0IZOTS1NC",
+    "carrier": "CNC",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-06-24",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0550194B": {
+    "actual_etd": "2026-06-24",
+    "vessel_name": "CMA CGM FORT SAINT CHARLES 0IZOTS1NC",
+    "carrier": "CNC",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-06-24",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0552330": {
+    "actual_etd": "2026-06-28",
+    "vessel_name": "CNC SATURN 0CG7HS1NC",
+    "carrier": "CNC",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-26",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0551760": {
+    "actual_etd": "2026-06-29",
+    "vessel_name": "CMA CGM FORT SAINT CHARLES 0IZOTS1NC",
+    "carrier": "CNC",
+    "pol": "YOKOHAMA",
+    "scheduled_etd": "2026-06-29",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0550427": {
+    "actual_etd": "2026-06-30",
+    "vessel_name": "SHUN LONG 0QIOHS1NC",
+    "carrier": "CNC",
+    "pol": "NAGOYA",
+    "scheduled_etd": "2026-06-30",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
+  },
+  "AMP0550432": {
+    "actual_etd": "2026-06-30",
+    "vessel_name": "EVER BUILD 0PL4OS1NC",
+    "carrier": "CNC",
+    "pol": "NAGOYA",
+    "scheduled_etd": "2026-06-30",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:57"
   }
 }
