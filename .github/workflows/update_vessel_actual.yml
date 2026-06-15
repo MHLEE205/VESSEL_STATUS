@@ -6,6 +6,9 @@ on:
     - cron: '0 23 * * *'
   workflow_dispatch:  # 수동 실행도 가능
 
+permissions:
+  contents: write
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -27,5 +30,9 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add vessel_actual.json
-        git diff --staged --quiet || git commit -m "Auto update vessel actual ETD - $(date '+%Y-%m-%d %H:%M')"
-        git push
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Auto update vessel actual ETD - $(date '+%Y-%m-%d %H:%M')"
+          git push
+        fi
