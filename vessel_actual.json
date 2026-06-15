@@ -1,4 +1,22 @@
 {
+  "A07GX12706": {
+    "actual_etd": "2026-06-20",
+    "vessel_name": "INTERASIA ELEVATE S068",
+    "carrier": "INTERASIA",
+    "pol": "HAKATA",
+    "scheduled_etd": "2026-06-14",
+    "confirmed": false,
+    "updated_at": "2026-06-15 06:29"
+  },
+  "A07GX11307": {
+    "actual_etd": "2026-06-20",
+    "vessel_name": "INTERASIA ELEVATE S068",
+    "carrier": "INTERASIA",
+    "pol": "HAKATA",
+    "scheduled_etd": "2026-06-14",
+    "confirmed": false,
+    "updated_at": "2026-06-15 06:29"
+  },
   "NGJF2600100": {
     "actual_etd": "2026-06-18",
     "vessel_name": "HEUNG-A AKITA 2621N",
@@ -6,44 +24,7 @@
     "pol": "NAGOYA",
     "scheduled_etd": "2026-06-16",
     "confirmed": false,
-    "updated_at": "2026-06-15 04:58"
-  },
-  "SNKO0040260600193": {
-    "actual_etd": "2026-06-19",
-    "vessel_name": "HEUNG-A HAIPHONG 2623W",
-    "carrier": "SINOKOR",
-    "pol": "ISHIKARI",
-    "scheduled_etd": "2026-06-17",
-    "confirmed": false,
-    "note": "OMIT→2623W 다음항차",
-    "updated_at": "2026-06-15 04:58"
-  },
-  "I272245289": {
-    "actual_etd": "2026-06-19",
-    "vessel_name": "YM INCREMENT 329S",
-    "carrier": "YANGMING",
-    "pol": "TOKYO",
-    "scheduled_etd": "2026-06-19",
-    "confirmed": false,
-    "updated_at": "2026-06-15 04:58"
-  },
-  "I272245291": {
-    "actual_etd": "2026-06-19",
-    "vessel_name": "YM INCREMENT 329S",
-    "carrier": "YANGMING",
-    "pol": "TOKYO",
-    "scheduled_etd": "2026-06-19",
-    "confirmed": false,
-    "updated_at": "2026-06-15 04:58"
-  },
-  "I272245659": {
-    "actual_etd": "2026-06-19",
-    "vessel_name": "YM INCREMENT 329S",
-    "carrier": "YANGMING",
-    "pol": "TOKYO",
-    "scheduled_etd": "2026-06-19",
-    "confirmed": false,
-    "updated_at": "2026-06-15 04:58"
+    "updated_at": "2026-06-15 06:29"
   },
   "I272244407": {
     "actual_etd": "2026-06-20",
@@ -52,51 +33,123 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-17",
     "confirmed": false,
-    "updated_at": "2026-06-15 04:58"
+    "updated_at": "2026-06-15 06:29"
   },
-  "SNKO0040260600395": {
-    "actual_etd": "2026-06-23",
-    "vessel_name": "ATLANTIC SOUTH 2624W",
+  "SNKO040260600193": {
+    "actual_etd": "2026-06-22",
+    "vessel_name": "HEUNG-A HAIPHONG 2623W",
     "carrier": "SINOKOR",
-    "pol": "KANAZAWA",
+    "pol": "ISHIKARI",
+    "scheduled_etd": "2026-06-17",
+    "confirmed": false,
+    "updated_at": "2026-06-15 06:29"
+  },
+  "I272245289": {
+    "actual_etd": "2026-06-20",
+    "vessel_name": "YM INCREMENT 329S",
+    "carrier": "YANGMING",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-19",
+    "confirmed": false,
+    "updated_at": "2026-06-15 06:29"
+  },
+  "I272245291": {
+    "actual_etd": "2026-06-20",
+    "vessel_name": "YM INCREMENT 329S",
+    "carrier": "YANGMING",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-19",
+    "confirmed": false,
+    "updated_at": "2026-06-15 06:29"
+  },
+  "I272245659": {
+    "actual_etd": "2026-06-20",
+    "vessel_name": "YM INCREMENT 329S",
+    "carrier": "YANGMING",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-19",
+    "confirmed": false,
+    "updated_at": "2026-06-15 06:29"
+  },
+  "I272244409": {
+    "actual_etd": "2026-06-24",
+    "vessel_name": "TS LIANYUNGANG 2613S",
+    "carrier": "YANGMING",
+    "pol": "OSAKA",
     "scheduled_etd": "2026-06-23",
     "confirmed": false,
-    "updated_at": "2026-06-15 04:58"
+    "updated_at": "2026-06-15 06:29"
   },
-  "SNKO0040260600396": {
-    "actual_etd": "2026-06-25",
-    "vessel_name": "ATLANTIC SOUTH 2624W",
-    "carrier": "SINOKOR",
-    "pol": "SENDAI",
+  "I272245891": {
+    "actual_etd": "2026-06-24",
+    "vessel_name": "TS LIANYUNGANG 2613S",
+    "carrier": "YANGMING",
+    "pol": "KOBE",
     "scheduled_etd": "2026-06-24",
     "confirmed": false,
-    "updated_at": "2026-06-15 04:58"
+    "updated_at": "2026-06-15 06:29"
   },
-  "NTK2606-01": {
-    "actual_etd": "2026-06-24",
-    "vessel_name": "SUNNY IVY 2608W",
-    "carrier": "KMTC",
-    "pol": "SENDAI",
-    "scheduled_etd": "2026-06-21",
-    "confirmed": false,
-    "updated_at": "2026-06-15 04:58"
-  },
-  "NNS2606-01": {
-    "actual_etd": "2026-06-24",
-    "vessel_name": "SUNNY IVY 2608W",
+  "SGM26E00148": {
+    "actual_etd": "2026-06-27",
+    "vessel_name": "SUNNY VIOLET 2607W",
     "carrier": "NAMSUNG",
     "pol": "SENDAI",
-    "scheduled_etd": "2026-06-21",
-    "confirmed": false,
-    "updated_at": "2026-06-15 04:58"
-  },
-  "NJS2606-01": {
-    "actual_etd": "2026-06-24",
-    "vessel_name": "HEUNG-A AKITA 2622N",
-    "carrier": "DONG YOUNG",
-    "pol": "NAGOYA",
     "scheduled_etd": "2026-06-24",
     "confirmed": false,
-    "updated_at": "2026-06-15 04:58"
+    "updated_at": "2026-06-15 06:29"
+  },
+  "SNKO040260600357": {
+    "actual_etd": "2026-06-22",
+    "vessel_name": "HEUNG-A HAIPHONG 2624W",
+    "carrier": "SINOKOR",
+    "pol": "ISHIKARI",
+    "scheduled_etd": "2026-06-25",
+    "confirmed": false,
+    "updated_at": "2026-06-15 06:29"
+  },
+  "NGJF2600111": {
+    "actual_etd": "2026-06-26",
+    "vessel_name": "PEGASUS PETA 2614W",
+    "carrier": "DONG YOUNG",
+    "pol": "NAGOYA",
+    "scheduled_etd": "2026-06-25",
+    "confirmed": false,
+    "updated_at": "2026-06-15 06:29"
+  },
+  "SNKO040260600372": {
+    "actual_etd": "2026-06-26",
+    "vessel_name": "VOSTOCHNY VOYAGER 2636W",
+    "carrier": "SINOKOR",
+    "pol": "KANAZAWA",
+    "scheduled_etd": "2026-06-26",
+    "confirmed": false,
+    "updated_at": "2026-06-15 06:29"
+  },
+  "SNKO040260600380": {
+    "actual_etd": "2026-06-27",
+    "vessel_name": "HEUNG-A XIAMEN 2625W",
+    "carrier": "SINOKOR",
+    "pol": "SENDAI",
+    "scheduled_etd": "2026-06-27",
+    "confirmed": false,
+    "updated_at": "2026-06-15 06:29"
+  },
+  "SGM26E00149": {
+    "actual_etd": "2026-07-01",
+    "vessel_name": "STAR CHASER 2607W",
+    "carrier": "NAMSUNG",
+    "pol": "SENDAI",
+    "scheduled_etd": "2026-06-28",
+    "confirmed": false,
+    "updated_at": "2026-06-15 06:29"
+  },
+  "JP01214379": {
+    "actual_etd": "2026-07-01",
+    "vessel_name": "STAR CHASER 2607W",
+    "carrier": "KMTC",
+    "pol": "SENDAI",
+    "scheduled_etd": "2026-07-01",
+    "confirmed": false,
+    "updated_at": "2026-06-15 06:29"
   }
 }
