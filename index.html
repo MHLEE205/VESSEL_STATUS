@@ -97,6 +97,9 @@
   }
   table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
   thead { background: #1c2128; position: sticky; top: 0; z-index: 1; }
+  .badge-actual-same { background:#1a472a; color:#4caf50; border-radius:4px; padding:2px 8px; font-size:.85em; }
+  .badge-actual-changed { background:#5c2900; color:#f0a500; border-radius:4px; padding:2px 8px; font-size:.85em; font-weight:bold; }
+  .badge-actual-omit { background:#5c0000; color:#ff5555; border-radius:4px; padding:2px 8px; font-size:.85em; font-weight:bold; }
   th {
     padding: 11px 14px; text-align: left; font-weight: 600;
     color: #8b949e; font-size: 0.78rem; text-transform: uppercase;
@@ -261,6 +264,7 @@
             <th>CY OPEN</th>
             <th>CY CUT</th>
             <th>ETD</th>
+            <th style="color:#f0a500;">Actual ETD</th>
             <th>ETA</th>
           </tr>
         </thead>
@@ -614,6 +618,17 @@ function renderTable(bookings, carrierMap, polMap, podMap) {
       <td>${fmtDate(b.cr49f_cy_open)}</td>
       <td>${fmtDate(b.cr49f_cy_cut)}</td>
       <td><span class="badge badge-etd">${fmtDate(b.cr49f_etd)}</span></td>
+      <td>${(()=>{
+        const bkgNo = b.cr49f_booking_no || '';
+        const actual = actualMapG[bkgNo];
+        if (!actual || !actual.actual_etd) return '<span style="color:#555">-</span>';
+        const sched = (b.cr49f_etd||'').slice(0,10);
+        const act = actual.actual_etd;
+        const note = actual.note || '';
+        if (note.includes('OMIT')) return '<span class="badge-actual-omit">OMIT→' + act + '</span>';
+        if (act === sched) return '<span class="badge-actual-same">' + act + '</span>';
+        return '<span class="badge-actual-changed">⚠ ' + act + '</span>';
+      })()}</td>
       <td><span class="badge badge-eta">${fmtDate(b.cr49f_eta)}</span></td>
     `;
     tbody.appendChild(tr);
