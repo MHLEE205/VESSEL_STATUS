@@ -264,7 +264,7 @@
             <th>CY OPEN</th>
             <th>CY CUT</th>
             <th>ETD</th>
-            <th style="color:#f0a500;">Actual ETD</th>
+            <th style="color:#f0a500;">VSS ETD</th>
             <th>ETA</th>
           </tr>
         </thead>
@@ -621,8 +621,8 @@ function renderTable(bookings, carrierMap, polMap, podMap) {
       <td>${(()=>{
         const bkgNo = b.cr49f_booking_no || '';
         const actual = actualMapG[bkgNo];
-        if (!actual || !actual.actual_etd) return '<span style="color:#555">-</span>';
         const sched = (b.cr49f_etd||'').slice(0,10);
+        if (!actual || !actual.actual_etd) return '<span style="color:#444;font-size:.85em">' + sched + '</span>';
         const act = actual.actual_etd;
         const note = actual.note || '';
         if (note.includes('OMIT')) return '<span class="badge-actual-omit">OMIT→' + act + '</span>';
