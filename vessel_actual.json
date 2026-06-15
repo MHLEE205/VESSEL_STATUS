@@ -6,7 +6,7 @@
     "pol": "NAGOYA",
     "scheduled_etd": "2026-06-16",
     "confirmed": false,
-    "updated_at": "2026-06-15 04:36"
+    "updated_at": "2026-06-15 04:58"
   },
   "SNKO0040260600193": {
     "actual_etd": "2026-06-19",
@@ -15,8 +15,8 @@
     "pol": "ISHIKARI",
     "scheduled_etd": "2026-06-17",
     "confirmed": false,
-    "note": "OMIT→2623W",
-    "updated_at": "2026-06-15 04:36"
+    "note": "OMIT→2623W 다음항차",
+    "updated_at": "2026-06-15 04:58"
   },
   "I272245289": {
     "actual_etd": "2026-06-19",
@@ -25,7 +25,7 @@
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-19",
     "confirmed": false,
-    "updated_at": "2026-06-15 04:36"
+    "updated_at": "2026-06-15 04:58"
   },
   "I272245291": {
     "actual_etd": "2026-06-19",
@@ -34,7 +34,7 @@
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-19",
     "confirmed": false,
-    "updated_at": "2026-06-15 04:36"
+    "updated_at": "2026-06-15 04:58"
   },
   "I272245659": {
     "actual_etd": "2026-06-19",
@@ -43,6 +43,60 @@
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-19",
     "confirmed": false,
-    "updated_at": "2026-06-15 04:36"
+    "updated_at": "2026-06-15 04:58"
+  },
+  "I272244407": {
+    "actual_etd": "2026-06-20",
+    "vessel_name": "INTERASIA RESILIENCE S081",
+    "carrier": "YANGMING",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-06-17",
+    "confirmed": false,
+    "updated_at": "2026-06-15 04:58"
+  },
+  "SNKO0040260600395": {
+    "actual_etd": "2026-06-23",
+    "vessel_name": "ATLANTIC SOUTH 2624W",
+    "carrier": "SINOKOR",
+    "pol": "KANAZAWA",
+    "scheduled_etd": "2026-06-23",
+    "confirmed": false,
+    "updated_at": "2026-06-15 04:58"
+  },
+  "SNKO0040260600396": {
+    "actual_etd": "2026-06-25",
+    "vessel_name": "ATLANTIC SOUTH 2624W",
+    "carrier": "SINOKOR",
+    "pol": "SENDAI",
+    "scheduled_etd": "2026-06-24",
+    "confirmed": false,
+    "updated_at": "2026-06-15 04:58"
+  },
+  "NTK2606-01": {
+    "actual_etd": "2026-06-24",
+    "vessel_name": "SUNNY IVY 2608W",
+    "carrier": "KMTC",
+    "pol": "SENDAI",
+    "scheduled_etd": "2026-06-21",
+    "confirmed": false,
+    "updated_at": "2026-06-15 04:58"
+  },
+  "NNS2606-01": {
+    "actual_etd": "2026-06-24",
+    "vessel_name": "SUNNY IVY 2608W",
+    "carrier": "NAMSUNG",
+    "pol": "SENDAI",
+    "scheduled_etd": "2026-06-21",
+    "confirmed": false,
+    "updated_at": "2026-06-15 04:58"
+  },
+  "NJS2606-01": {
+    "actual_etd": "2026-06-24",
+    "vessel_name": "HEUNG-A AKITA 2622N",
+    "carrier": "DONG YOUNG",
+    "pol": "NAGOYA",
+    "scheduled_etd": "2026-06-24",
+    "confirmed": false,
+    "updated_at": "2026-06-15 04:58"
   }
 }
