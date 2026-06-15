@@ -1,30 +1,57 @@
 {
-  "A07GX12706": {
-    "actual_etd": "2026-06-20",
-    "vessel_name": "INTERASIA ELEVATE S068",
-    "carrier": "INTERASIA",
-    "pol": "HAKATA",
-    "scheduled_etd": "2026-06-14",
+  "HASLJ01260500700": {
+    "actual_etd": "2026-06-12",
+    "vessel_name": "HONOR GLORY 2620W",
+    "carrier": "HEUNG A",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-06-12",
     "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
+    "updated_at": "2026-06-15 23:45"
   },
-  "A07GX11307": {
-    "actual_etd": "2026-06-20",
-    "vessel_name": "INTERASIA ELEVATE S068",
-    "carrier": "INTERASIA",
-    "pol": "HAKATA",
-    "scheduled_etd": "2026-06-14",
+  "HASLJ01260500702": {
+    "actual_etd": "2026-07-01",
+    "vessel_name": "HONOR GLORY 2624W",
+    "carrier": "HEUNG A",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-07-01",
     "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
+    "updated_at": "2026-06-15 23:45"
   },
-  "NGJF2600100": {
-    "actual_etd": "2026-06-18",
-    "vessel_name": "HEUNG-A AKITA 2621N",
-    "carrier": "DONG YOUNG",
-    "pol": "NAGOYA",
-    "scheduled_etd": "2026-06-16",
+  "I272244680": {
+    "actual_etd": "2026-06-12",
+    "vessel_name": "YM INITIATIVE 354S",
+    "carrier": "YANGMING",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-12",
+    "confirmed": true,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "I272245289": {
+    "actual_etd": "2026-06-19",
+    "vessel_name": "YM INCREMENT 329S",
+    "carrier": "YANGMING",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-19",
     "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
+    "updated_at": "2026-06-15 23:45"
+  },
+  "I272245291": {
+    "actual_etd": "2026-06-19",
+    "vessel_name": "YM INCREMENT 329S",
+    "carrier": "YANGMING",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-19",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "I272245659": {
+    "actual_etd": "2026-06-19",
+    "vessel_name": "YM INCREMENT 329S",
+    "carrier": "YANGMING",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-19",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
   },
   "I272244407": {
     "actual_etd": "2026-06-20",
@@ -33,52 +60,34 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-17",
     "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
-  },
-  "SNKO040260600193": {
-    "actual_etd": "2026-06-22",
-    "vessel_name": "HEUNG-A HAIPHONG 2623W",
-    "carrier": "SINOKOR",
-    "pol": "ISHIKARI",
-    "scheduled_etd": "2026-06-17",
-    "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
-  },
-  "I272245289": {
-    "actual_etd": "2026-06-20",
-    "vessel_name": "YM INCREMENT 329S",
-    "carrier": "YANGMING",
-    "pol": "TOKYO",
-    "scheduled_etd": "2026-06-19",
-    "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
-  },
-  "I272245291": {
-    "actual_etd": "2026-06-20",
-    "vessel_name": "YM INCREMENT 329S",
-    "carrier": "YANGMING",
-    "pol": "TOKYO",
-    "scheduled_etd": "2026-06-19",
-    "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
-  },
-  "I272245659": {
-    "actual_etd": "2026-06-20",
-    "vessel_name": "YM INCREMENT 329S",
-    "carrier": "YANGMING",
-    "pol": "TOKYO",
-    "scheduled_etd": "2026-06-19",
-    "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
+    "updated_at": "2026-06-15 23:45"
   },
   "I272244409": {
-    "actual_etd": "2026-06-24",
+    "actual_etd": "2026-06-25",
     "vessel_name": "TS LIANYUNGANG 2613S",
     "carrier": "YANGMING",
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-23",
     "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
+    "updated_at": "2026-06-15 23:45"
+  },
+  "I272244404": {
+    "actual_etd": "2026-06-30",
+    "vessel_name": "TAICHUNG 428S",
+    "carrier": "YANGMING",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-06-30",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "I272245627": {
+    "actual_etd": "2026-06-22",
+    "vessel_name": "TS GUANGZHOU 2609S",
+    "carrier": "YANGMING",
+    "pol": "HAKATA",
+    "scheduled_etd": "2026-06-19",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
   },
   "I272245891": {
     "actual_etd": "2026-06-24",
@@ -87,25 +96,151 @@
     "pol": "KOBE",
     "scheduled_etd": "2026-06-24",
     "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
+    "updated_at": "2026-06-15 23:45"
   },
-  "SGM26E00148": {
-    "actual_etd": "2026-06-27",
-    "vessel_name": "SUNNY VIOLET 2607W",
-    "carrier": "NAMSUNG",
-    "pol": "SENDAI",
+  "A07GX12706": {
+    "actual_etd": "2026-06-24",
+    "vessel_name": "INTERASIA ELEVATE S068",
+    "carrier": "INTERASIA",
+    "pol": "HAKATA",
+    "scheduled_etd": "2026-06-14",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "A07GX11307": {
+    "actual_etd": "2026-06-24",
+    "vessel_name": "INTERASIA ELEVATE S068",
+    "carrier": "INTERASIA",
+    "pol": "HAKATA",
+    "scheduled_etd": "2026-06-14",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "A07GX11308": {
+    "actual_etd": "2026-06-22",
+    "vessel_name": "TS GUANGZHOU S609",
+    "carrier": "INTERASIA",
+    "pol": "HAKATA",
+    "scheduled_etd": "2026-06-19",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "A07GX11315": {
+    "actual_etd": "2026-06-22",
+    "vessel_name": "TS GUANGZHOU S609",
+    "carrier": "INTERASIA",
+    "pol": "HAKATA",
+    "scheduled_etd": "2026-06-19",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "A07GX13427": {
+    "actual_etd": "2026-07-02",
+    "vessel_name": "YM CERTAINTY S086",
+    "carrier": "INTERASIA",
+    "pol": "HAKATA",
+    "scheduled_etd": "2026-06-26",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "A07GX12707": {
+    "actual_etd": "2026-07-02",
+    "vessel_name": "YM CERTAINTY S086",
+    "carrier": "INTERASIA",
+    "pol": "HAKATA",
+    "scheduled_etd": "2026-06-26",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "A07GX11309": {
+    "actual_etd": "2026-07-02",
+    "vessel_name": "YM CERTAINTY S086",
+    "carrier": "INTERASIA",
+    "pol": "HAKATA",
+    "scheduled_etd": "2026-06-26",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "A07GX12781": {
+    "actual_etd": "2026-06-17",
+    "vessel_name": "WAN HAI 290 S085",
+    "carrier": "INTERASIA",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-06-15",
+    "confirmed": true,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "A07GX12094": {
+    "actual_etd": "2026-06-17",
+    "vessel_name": "WAN HAI 290 S085",
+    "carrier": "INTERASIA",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-06-15",
+    "confirmed": true,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "A07GX12404": {
+    "actual_etd": "2026-06-17",
+    "vessel_name": "WAN HAI 290 S085",
+    "carrier": "INTERASIA",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-06-15",
+    "confirmed": true,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "A07GX13315": {
+    "actual_etd": "2026-06-25",
+    "vessel_name": "WAN HAI 288 S109",
+    "carrier": "INTERASIA",
+    "pol": "OSAKA",
     "scheduled_etd": "2026-06-24",
     "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
+    "updated_at": "2026-06-15 23:45"
   },
-  "SNKO040260600357": {
-    "actual_etd": "2026-06-22",
-    "vessel_name": "HEUNG-A HAIPHONG 2624W",
-    "carrier": "SINOKOR",
-    "pol": "ISHIKARI",
-    "scheduled_etd": "2026-06-25",
+  "A07GX12779": {
+    "actual_etd": "2026-06-25",
+    "vessel_name": "WAN HAI 288 S109",
+    "carrier": "INTERASIA",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-06-24",
     "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
+    "updated_at": "2026-06-15 23:45"
+  },
+  "A07GX12963": {
+    "actual_etd": "2026-06-25",
+    "vessel_name": "WAN HAI 288 S109",
+    "carrier": "INTERASIA",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-06-24",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "A07GX12868": {
+    "actual_etd": "2026-06-23",
+    "vessel_name": "WAN HAI 332 S014",
+    "carrier": "INTERASIA",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-21",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "A07GX12421": {
+    "actual_etd": "2026-06-23",
+    "vessel_name": "WAN HAI 332 S014",
+    "carrier": "INTERASIA",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-21",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "NGJF2600100": {
+    "actual_etd": "2026-06-18",
+    "vessel_name": "HEUNG-A AKITA 2621N",
+    "carrier": "DONG YOUNG",
+    "pol": "NAGOYA",
+    "scheduled_etd": "2026-06-16",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
   },
   "NGJF2600111": {
     "actual_etd": "2026-06-26",
@@ -114,16 +249,44 @@
     "pol": "NAGOYA",
     "scheduled_etd": "2026-06-25",
     "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
+    "updated_at": "2026-06-15 23:45"
+  },
+  "SNKO040260600193": {
+    "actual_etd": "2026-06-19",
+    "vessel_name": "HEUNG-A HAIPHONG 2623W",
+    "carrier": "SINOKOR",
+    "pol": "ISHIKARI",
+    "scheduled_etd": "2026-06-17",
+    "confirmed": false,
+    "note": "OMIT→2623W",
+    "updated_at": "2026-06-15 23:45"
+  },
+  "SNKO040260500145": {
+    "actual_etd": "2026-06-19",
+    "vessel_name": "HONOR OCEAN 1060W",
+    "carrier": "SINOKOR",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-06-19",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "SNKO040260600357": {
+    "actual_etd": "2026-06-28",
+    "vessel_name": "HEUNG-A HAIPHONG 2624W",
+    "carrier": "SINOKOR",
+    "pol": "ISHIKARI",
+    "scheduled_etd": "2026-06-25",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
   },
   "SNKO040260600372": {
-    "actual_etd": "2026-06-26",
+    "actual_etd": "2026-06-23",
     "vessel_name": "VOSTOCHNY VOYAGER 2636W",
     "carrier": "SINOKOR",
     "pol": "KANAZAWA",
     "scheduled_etd": "2026-06-26",
     "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
+    "updated_at": "2026-06-15 23:45"
   },
   "SNKO040260600380": {
     "actual_etd": "2026-06-27",
@@ -132,7 +295,52 @@
     "pol": "SENDAI",
     "scheduled_etd": "2026-06-27",
     "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
+    "updated_at": "2026-06-15 23:45"
+  },
+  "SNKO040260600368": {
+    "actual_etd": "2026-06-20",
+    "vessel_name": "MOJI EXPRESS 2637W",
+    "carrier": "SINOKOR",
+    "pol": "MIZUSHIMA",
+    "scheduled_etd": "2026-06-20",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "SNKO040260600370": {
+    "actual_etd": "2026-06-27",
+    "vessel_name": "HANSUNG WEIHAI 2634W",
+    "carrier": "SINOKOR",
+    "pol": "MIZUSHIMA",
+    "scheduled_etd": "2026-06-27",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "SNKO040260600395": {
+    "actual_etd": "2026-06-23",
+    "vessel_name": "ATLANTIC SOUTH 2624W",
+    "carrier": "SINOKOR",
+    "pol": "KANAZAWA",
+    "scheduled_etd": "2026-06-23",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "SNKO040260600396": {
+    "actual_etd": "2026-06-25",
+    "vessel_name": "ATLANTIC SOUTH 2624W",
+    "carrier": "SINOKOR",
+    "pol": "SENDAI",
+    "scheduled_etd": "2026-06-24",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
+  },
+  "SGM26E00148": {
+    "actual_etd": "2026-06-27",
+    "vessel_name": "SUNNY VIOLET 2607W",
+    "carrier": "NAMSUNG",
+    "pol": "SENDAI",
+    "scheduled_etd": "2026-06-24",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:45"
   },
   "SGM26E00149": {
     "actual_etd": "2026-07-01",
@@ -141,7 +349,7 @@
     "pol": "SENDAI",
     "scheduled_etd": "2026-06-28",
     "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
+    "updated_at": "2026-06-15 23:45"
   },
   "JP01214379": {
     "actual_etd": "2026-07-01",
@@ -150,6 +358,6 @@
     "pol": "SENDAI",
     "scheduled_etd": "2026-07-01",
     "confirmed": false,
-    "updated_at": "2026-06-15 06:29"
+    "updated_at": "2026-06-15 23:45"
   }
 }
