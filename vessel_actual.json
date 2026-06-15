@@ -359,5 +359,32 @@
     "scheduled_etd": "2026-07-01",
     "confirmed": false,
     "updated_at": "2026-06-15 23:45"
+  },
+  "NMG2606-05": {
+    "actual_etd": "2026-06-19",
+    "vessel_name": "CNC JAGUAR 0IZORS1NC",
+    "carrier": "CNC",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-06-17",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:50"
+  },
+  "NA2606-01": {
+    "actual_etd": "2026-06-19",
+    "vessel_name": "CNC JAGUAR 0IZORS1NC",
+    "carrier": "CNC",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-06-17",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:50"
+  },
+  "AMP0549001A": {
+    "actual_etd": "2026-06-19",
+    "vessel_name": "CNC JAGUAR 0IZORS1NC",
+    "carrier": "CNC",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-06-17",
+    "confirmed": false,
+    "updated_at": "2026-06-15 23:50"
   }
 }
