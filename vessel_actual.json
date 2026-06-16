@@ -575,5 +575,68 @@
     "scheduled_etd": "2026-06-30",
     "confirmed": false,
     "updated_at": "2026-06-15 23:57"
+  },
+  "TYOGA3120600": {
+    "actual_etd": "2026-06-12",
+    "vessel_name": "MIYARABI II 2611W",
+    "carrier": "ONE",
+    "pol": "NAHA",
+    "scheduled_etd": "2026-06-12",
+    "confirmed": false,
+    "updated_at": "2026-06-16 00:02"
+  },
+  "TYOG86187800": {
+    "actual_etd": "2026-06-15",
+    "vessel_name": "SEASPAN OSAKA 0035W",
+    "carrier": "ONE",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-15",
+    "confirmed": false,
+    "updated_at": "2026-06-16 00:02"
+  },
+  "TYOG86209300": {
+    "actual_etd": "2026-06-22",
+    "vessel_name": "NYK FUJI 0138W",
+    "carrier": "ONE",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-22",
+    "confirmed": false,
+    "updated_at": "2026-06-16 00:02"
+  },
+  "TYOGB7230600": {
+    "actual_etd": "2026-06-22",
+    "vessel_name": "NYK FUJI 0138W",
+    "carrier": "ONE",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-22",
+    "confirmed": false,
+    "updated_at": "2026-06-16 00:02"
+  },
+  "TYOG86204500": {
+    "actual_etd": "2026-06-22",
+    "vessel_name": "NYK FUJI 0138W",
+    "carrier": "ONE",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-22",
+    "confirmed": false,
+    "updated_at": "2026-06-16 00:02"
+  },
+  "TYOGB6296300": {
+    "actual_etd": "2026-06-26",
+    "vessel_name": "MIYARABI II 2613W",
+    "carrier": "ONE",
+    "pol": "NAHA",
+    "scheduled_etd": "2026-06-26",
+    "confirmed": false,
+    "updated_at": "2026-06-16 00:02"
+  },
+  "TYOGB0311600": {
+    "actual_etd": "2026-06-27",
+    "vessel_name": "ITX HIGO 266S",
+    "carrier": "ONE",
+    "pol": "NAHA",
+    "scheduled_etd": "2026-06-27",
+    "confirmed": false,
+    "updated_at": "2026-06-16 00:02"
   }
 }
