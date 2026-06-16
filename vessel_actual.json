@@ -688,5 +688,27 @@
     "confirmed": false,
     "voyage": "624N/626S",
     "updated_at": "2026-06-16 01:11"
+  },
+  "PCJTYO26055201": {
+    "actual_etd": "2026-06-24",
+    "vessel_name": "HONOR OCEAN 1061W",
+    "carrier": "PAN OCEAN",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-06-24",
+    "confirmed": false,
+    "voyage": "1061E/1061W",
+    "note": "SINOKOR 사이트에서 확인 (공동운항)",
+    "updated_at": "2026-06-16 02:21"
+  },
+  "PCJTYO26065347": {
+    "actual_etd": "2026-06-22",
+    "vessel_name": "AKITA TRADER 2623W",
+    "carrier": "PAN OCEAN",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-22",
+    "confirmed": false,
+    "voyage": "2623E/2623W",
+    "note": "SINOKOR 사이트에서 확인 (공동운항)",
+    "updated_at": "2026-06-16 02:21"
   }
 }
