@@ -395,13 +395,14 @@
     "updated_at": "2026-06-15 23:50"
   },
   "AMP0549001A": {
-    "actual_etd": "2026-06-19",
-    "vessel_name": "CNC JAGUAR 0IZORS1NC",
+    "actual_etd": "2026-06-24",
+    "vessel_name": "CMA CGM FORT SAINT CHARLES 0IZOTS1NC",
     "carrier": "CNC",
     "pol": "KOBE",
     "scheduled_etd": "2026-06-17",
     "confirmed": false,
-    "updated_at": "2026-06-15 23:57"
+    "updated_at": "2026-06-16 02:00",
+    "voyage": "0IZNZN/0IZOTS"
   },
   "AMP0548995": {
     "actual_etd": "2026-06-12",
@@ -422,31 +423,34 @@
     "updated_at": "2026-06-15 23:57"
   },
   "AMP0548981": {
-    "actual_etd": "2026-06-19",
-    "vessel_name": "CNC JAGUAR 0IZORS1NC",
+    "actual_etd": "2026-06-24",
+    "vessel_name": "CMA CGM FORT SAINT CHARLES 0IZOTS1NC",
     "carrier": "CNC",
     "pol": "KOBE",
     "scheduled_etd": "2026-06-17",
     "confirmed": false,
-    "updated_at": "2026-06-15 23:57"
+    "updated_at": "2026-06-16 02:00",
+    "voyage": "0IZNZN/0IZOTS"
   },
   "AMP0549001B": {
-    "actual_etd": "2026-06-19",
-    "vessel_name": "CNC JAGUAR 0IZORS1NC",
+    "actual_etd": "2026-06-24",
+    "vessel_name": "CMA CGM FORT SAINT CHARLES 0IZOTS1NC",
     "carrier": "CNC",
     "pol": "KOBE",
     "scheduled_etd": "2026-06-17",
     "confirmed": false,
-    "updated_at": "2026-06-15 23:57"
+    "updated_at": "2026-06-16 02:00",
+    "voyage": "0IZNZN/0IZOTS"
   },
   "AMP0549000": {
-    "actual_etd": "2026-06-19",
-    "vessel_name": "CNC JAGUAR 0IZORS1NC",
+    "actual_etd": "2026-06-24",
+    "vessel_name": "CMA CGM FORT SAINT CHARLES 0IZOTS1NC",
     "carrier": "CNC",
     "pol": "KOBE",
     "scheduled_etd": "2026-06-19",
     "confirmed": false,
-    "updated_at": "2026-06-15 23:57"
+    "updated_at": "2026-06-16 02:00",
+    "voyage": "0IZNZN/0IZOTS"
   },
   "AMP0552331": {
     "actual_etd": "2026-06-20",
