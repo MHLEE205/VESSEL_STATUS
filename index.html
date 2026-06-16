@@ -818,6 +818,13 @@ function hideLoading() {
 });
 
 window.addEventListener('load', async () => {
+  // config.json 로드 (GH_TOK 설정)
+  try {
+    const cfgRes = await fetch('config.json?t=' + Date.now());
+    const cfg = await cfgRes.json();
+    window.GH_TOK = cfg.t || '';
+  } catch(e) { window.GH_TOK = ''; }
+
   const cache = loadTokenCache();
   if (cache) {
     S.accessToken = cache.accessToken;
