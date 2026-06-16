@@ -710,5 +710,16 @@
     "voyage": "2623E/2623W",
     "note": "SINOKOR 사이트에서 확인 (공동운항)",
     "updated_at": "2026-06-16 02:21"
+  },
+  "OSJJ2600025": {
+    "actual_etd": "2026-07-03",
+    "vessel_name": "HONOR OCEAN 1063W",
+    "carrier": "DONG YOUNG",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-07-03",
+    "confirmed": false,
+    "voyage": "1063E/1063W",
+    "note": "NAMSUNG 사이트에서 확인 (공동운항 PAN)",
+    "updated_at": "2026-06-16 02:25"
   }
 }
