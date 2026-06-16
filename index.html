@@ -699,42 +699,63 @@ async function triggerVssRefresh() {
   btn.disabled = true;
   btn.style.background = '#555';
 
+  const steps = ['COMPASSデータ取得中...','bookings同期中...','VSS ETD読込中...','画面更新中...'];
+  let step = 0;
+  const tick = setInterval(() => { if (step < steps.length) btn.textContent = '⏳ ' + steps[step++]; }, 900);
+
   try {
-    // ① COMPASS 최신 부킹 목록 동기화
-    btn.textContent = '⏳ COMPASS 同期中...';
-    if (window._lastData && window._lastData.length > 0) {
-      await saveBookingsForVSS(window._lastData);
-    }
+    if (!S.accessToken || Date.now() > S.tokenExpiry) throw new Error('再ログインが必要です。');
 
-    // ② vessel_actual.json 즉시 재로드
-    btn.textContent = '⏳ VSS ETD 読込中...';
+    const h = {'Authorization':`Bearer ${S.accessToken}`,'OData-MaxVersion':'4.0','OData-Version':'4.0','Accept':'application/json'};
+    const today = new Date(); today.setDate(today.getDate() - 3);
+    const fromDate = today.toISOString().slice(0,10);
+
+    // ① COMPASS 부킹 전체 취득
+    const bkgRes = await fetch(`${DV_API}/cr49f_bookings?$filter=cr49f_etd ge ${fromDate}T00:00:00Z&$select=cr49f_booking_no,cr49f_main_ship_name,cr49f_etd,_cr49f_carrier_id_value,_cr49f_region_japan_id_value&$top=500&$orderby=cr49f_etd asc`,{headers:h});
+    const allBkgs = (await bkgRes.json()).value || [];
+
+    const cGuids = [...new Set(allBkgs.map(b=>b['_cr49f_carrier_id_value']).filter(Boolean))];
+    const pGuids = [...new Set(allBkgs.map(b=>b['_cr49f_region_japan_id_value']).filter(Boolean))];
+    const cMap={}, pMap={};
+    await Promise.all([
+      ...cGuids.map(async g=>{try{const d=await(await fetch(`${DV_API}/crcf9_carriers(${g})?$select=crcf9_carrier`,{headers:h})).json();cMap[g]=d.crcf9_carrier||'';}catch(e){}}),
+      ...pGuids.map(async g=>{try{const d=await(await fetch(`${DV_API}/crcf9_region_japans(${g})?$select=crcf9_pol`,{headers:h})).json();pMap[g]=d.crcf9_pol||'';}catch(e){}})
+    ]);
+    const bookingList = allBkgs.map(b=>({
+      bkg_no:b.cr49f_booking_no, vessel_name:b.cr49f_main_ship_name,
+      carrier:cMap[b['_cr49f_carrier_id_value']]||'', pol:pMap[b['_cr49f_region_japan_id_value']]||'',
+      etd:(b.cr49f_etd||'').slice(0,10)
+    })).filter(b=>b.carrier&&b.pol&&b.vessel_name);
+
+    // ② bookings_for_vss.json 동기화 (GH_TOK 상수 사용)
+    const tok = window.GH_TOK || '';
+    if (!tok) throw new Error('GH_TOKが未設定です。管理者にお問い合わせください。');
+    const bvR = await fetch('https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/bookings_for_vss.json',{headers:{'Authorization':`token ${tok}`}});
+    const bvD = await bvR.json();
+    const enc2 = btoa(unescape(encodeURIComponent(JSON.stringify(bookingList,null,2))));
+    await fetch('https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/bookings_for_vss.json',{
+      method:'PUT', headers:{'Authorization':`token ${tok}`,'Content-Type':'application/json'},
+      body:JSON.stringify({message:`Sync bookings ${new Date().toISOString().slice(0,16)} (${bookingList.length}件)`,content:enc2,sha:bvD.sha})
+    });
+
+    // ③ vessel_actual.json 재로드 + ④ 화면 갱신
     await loadActualData();
+    if (window._lastData && window._lastData.length > 0) renderTable(window._lastData);
 
-    // ③ 화면 즉시 갱신
-    if (window._lastData && window._lastData.length > 0) {
-      renderTable(window._lastData);
-    }
-
-    // ④ 완료 표시
-    btn.textContent = '✅ 更新完了！';
+    clearInterval(tick);
+    btn.textContent = `✅ 更新完了！(${bookingList.length}件)`;
     btn.style.background = '#2ea043';
-
     const t = document.createElement('div');
     t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#2ea043;color:#fff;padding:14px 32px;border-radius:8px;font-size:0.95rem;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.3);';
-    t.textContent = '✅ VSS ETDを最新データに更新しました！';
-    document.body.appendChild(t);
-    setTimeout(() => t.remove(), 4000);
+    t.textContent = `✅ COMPASS ${bookingList.length}件を同期・VSS ETDを最新に更新しました！`;
+    document.body.appendChild(t); setTimeout(()=>t.remove(),5000);
 
   } catch(e) {
-    btn.textContent = '❌ 更新失敗';
+    clearInterval(tick);
+    btn.textContent = '❌ ' + e.message.slice(0,25);
     btn.style.background = '#c0392b';
-    console.error('VSS更新エラー:', e.message);
   } finally {
-    setTimeout(() => {
-      btn.textContent = '🔄 VSS 更新';
-      btn.style.background = '#1a6bc4';
-      btn.disabled = false;
-    }, 4000);
+    setTimeout(()=>{btn.textContent='🔄 VSS 更新';btn.style.background='#1a6bc4';btn.disabled=false;},5000);
   }
 }
 
