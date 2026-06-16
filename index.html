@@ -235,6 +235,7 @@
         <button id="btn-search" onclick="loadData()">🔍 Search</button>
         <button id="btn-clear" onclick="clearFilter()">✕ Clear</button>
         <button id="btn-today" onclick="loadToday()" style="background:#2ea043;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:0.85rem;cursor:pointer;font-weight:600;">📅 Today</button>
+        <button id="btn-vss-refresh" onclick="triggerVssRefresh()" style="background:#1a6bc4;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:0.85rem;cursor:pointer;font-weight:600;margin-left:8px;">🔄 VSS 갱신</button>
         <span class="record-count" id="rec-count"></span>
       </div>
 
@@ -691,6 +692,78 @@ function fmtDate(val) {
 }
 
 
+
+// ── VSS 갱신 버튼 ──
+async function triggerVssRefresh() {
+  const btn = document.getElementById('btn-vss-refresh');
+
+  // sessionStorage에 저장된 토큰 사용 (없으면 prompt)
+  let vssToken = sessionStorage.getItem('vss_refresh_token');
+  if (!vssToken) {
+    vssToken = prompt('VSS 갱신 토큰을 입력해 주세요 (관리자 문의):');
+    if (!vssToken) return;
+    sessionStorage.setItem('vss_refresh_token', vssToken);
+  }
+
+  btn.disabled = true;
+  btn.textContent = '⏳ 갱신 중...';
+  btn.style.background = '#555';
+
+  try {
+    // 1. COMPASS에서 최신 부킹 목록 가져오기 (현재 로그인 토큰 사용)
+    btn.textContent = '⏳ COMPASS 동기화 중...';
+    if (typeof saveBookingsForVSS === 'function' && window._lastData) {
+      await saveBookingsForVSS(window._lastData);
+    }
+
+    // 2. GitHub Actions workflow_dispatch 트리거
+    btn.textContent = '⏳ VSS 스캔 요청 중...';
+    const res = await fetch(
+      'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/workflows/update_vessel_actual.yml/dispatches',
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': 'token ' + vssToken,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ref: 'main' })
+      }
+    );
+
+    if (res.status === 204) {
+      btn.textContent = '✅ 요청 완료! (약 2분 후 반영)';
+      btn.style.background = '#2ea043';
+
+      // 2분 후 vessel_actual.json 새로고침
+      setTimeout(async () => {
+        await loadActualData();
+        if (window._lastData) renderTable(window._lastData);
+        btn.textContent = '🔄 VSS 갱신';
+        btn.style.background = '#1a6bc4';
+        btn.disabled = false;
+        // 완료 토스트
+        const t = document.createElement('div');
+        t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#2ea043;color:#fff;padding:12px 28px;border-radius:8px;font-size:0.95rem;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.3);';
+        t.textContent = '✅ VSS ETD 갱신 완료！';
+        document.body.appendChild(t);
+        setTimeout(() => t.remove(), 4000);
+      }, 120000);
+
+    } else if (res.status === 401 || res.status === 403) {
+      // 토큰 오류 → 초기화
+      sessionStorage.removeItem('vss_refresh_token');
+      throw new Error('토큰이 유효하지 않습니다. 다시 시도해 주세요。');
+    } else {
+      throw new Error('오류 상태: ' + res.status);
+    }
+  } catch(e) {
+    alert('VSS 갱신 실패: ' + e.message);
+    btn.textContent = '🔄 VSS 갱신';
+    btn.style.background = '#1a6bc4';
+    btn.disabled = false;
+  }
+}
 
 // Today 버튼 - ETD 오늘 이후 안건 표시
 function loadToday() {
