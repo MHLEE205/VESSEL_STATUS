@@ -47,7 +47,7 @@
   /* ── MAIN ── */
   main { padding: 24px; }
 
-  /* ── FILTER BAR ── */
+  /* ── フィルター BAR ── */
   .filter-section {
     background: #161b22;
     border: 1px solid #30363d;
@@ -171,7 +171,7 @@
   <div class="header-right">
     <span id="user-info"></span>
     <button id="btn-login" onclick="startLogin()">🔐 Login</button>
-    <button id="btn-logout" onclick="doLogout()">Logout</button>
+    <button id="btn-logout" onclick="doログアウト()">ログアウト</button>
     <button id="btn-pat" onclick="setPAT()" title="GitHub PAT設定" style="background:transparent;border:none;color:#484f58;cursor:pointer;font-size:0.75rem;">⚙</button>
   </div>
 </header>
@@ -182,8 +182,8 @@
   <!-- Login prompt (before auth) -->
   <div id="login-prompt">
     <h2>LEENEAR VESSEL STATUS</h2>
-    <p>Login with your company account to view real-time booking & vessel schedule.</p>
-    <button id="btn-login-center" onclick="startLogin()">🔐 Login with Company Account</button>
+    <p>ログインして本船スケジュールをリアルタイムで確認できます。</p>
+    <button id="btn-login-center" onclick="startLogin()">🔐 🔐 会社アカウントでログイン</button>
   </div>
 
   <!-- Dashboard (after auth) -->
@@ -197,15 +197,15 @@
         <span class="filter-label">Search</span>
         <input type="text" id="f-bkg" placeholder="BKG No" />
         <input type="text" id="f-inv" placeholder="Invoice No" />
-        <input type="text" id="f-vessel" placeholder="Vessel Name" />
+        <input type="text" id="f-vessel" placeholder="本船名" />
       </div>
 
       <!-- Row 2: Carrier / POL / POD -->
       <div class="filter-row">
         <span class="filter-label">Filter</span>
-        <select id="f-carrier"><option value="">All Carriers</option></select>
-        <select id="f-pol"><option value="">All POL</option></select>
-        <select id="f-pod"><option value="">All POD</option></select>
+        <select id="f-carrier"><option value="">すべての船社</option></select>
+        <select id="f-pol"><option value="">すべてのPOL</option></select>
+        <select id="f-pod"><option value="">すべてのPOD</option></select>
       </div>
 
       <!-- Row 3: CY CUT / ETD / ETA 날짜 범위 -->
@@ -232,10 +232,10 @@
 
       <!-- Row 4: Buttons -->
       <div class="filter-row">
-        <button id="btn-search" onclick="loadData()">🔍 Search</button>
-        <button id="btn-clear" onclick="clearFilter()">✕ Clear</button>
-        <button id="btn-today" onclick="loadToday()" style="background:#2ea043;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:0.85rem;cursor:pointer;font-weight:600;">📅 Today</button>
-        <button id="btn-vss-refresh" onclick="triggerVssRefresh()" style="background:#1a6bc4;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:0.85rem;cursor:pointer;font-weight:600;margin-left:8px;">🔄 VSS 갱신</button>
+        <button id="btn-search" onclick="loadData()">🔍 検索</button>
+        <button id="btn-clear" onclick="clearFilter()">✕ クリア</button>
+        <button id="btn-today" onclick="loadToday()" style="background:#2ea043;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:0.85rem;cursor:pointer;font-weight:600;">📅 今日以降</button>
+        <button id="btn-vss-refresh" onclick="triggerVssRefresh()" style="background:#1a6bc4;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:0.85rem;cursor:pointer;font-weight:600;margin-left:8px;">🔄 VSS 更新</button>
         <span class="record-count" id="rec-count"></span>
       </div>
 
@@ -248,7 +248,7 @@
     </div>
 
     <!-- No Data -->
-    <div id="no-data">No records found.</div>
+    <div id="no-data">No 件 found.</div>
 
     <!-- Table -->
     <div class="table-wrap" id="table-wrap" style="display:none;">
@@ -258,8 +258,8 @@
             <th>BKG No</th>
             <th>Invoice No</th>
             <th>B/L No</th>
-            <th>Vessel Name</th>
-            <th>Carrier</th>
+            <th>本船名</th>
+            <th>船社</th>
             <th>POL</th>
             <th>POD</th>
             <th>CY OPEN</th>
@@ -382,7 +382,7 @@ async function handleCallback() {
   }
 }
 
-function doLogout() {
+function doログアウト() {
   S = { accessToken: null, tokenExpiry: 0, userName: '', userEmail: '' };
   clearTokenCache();
   allBookings = []; carrierMapG = {}; polMapG = {}; podMapG = {};
@@ -477,7 +477,7 @@ async function loadData() {
     if (!bookings.length) {
       hideLoading();
       document.getElementById('no-data').style.display = 'block';
-      document.getElementById('rec-count').textContent = '0 records';
+      document.getElementById('rec-count').textContent = '0 件';
       return;
     }
 
@@ -547,13 +547,13 @@ function applyClientFilter() {
   if (!filtered.length) {
     document.getElementById('no-data').style.display = 'block';
     document.getElementById('table-wrap').style.display = 'none';
-    document.getElementById('rec-count').textContent = '0 records';
+    document.getElementById('rec-count').textContent = '0 件';
     return;
   }
 
   document.getElementById('no-data').style.display = 'none';
   renderTable(filtered, carrierMapG, polMapG, podMapG);
-  document.getElementById('rec-count').textContent = `${filtered.length} records`;
+  document.getElementById('rec-count').textContent = `${filtered.length} 件`;
   document.getElementById('table-wrap').style.display = 'block';
 }
 
@@ -582,7 +582,7 @@ async function loadActualData() {
     if (!res.ok) return;
     const data = await res.json();
     actualMapG = data;
-    console.log('✅ Actual data loaded:', Object.keys(actualMapG).length, 'records');
+    console.log('✅ Actual data loaded:', Object.keys(actualMapG).length, '件');
   } catch(e) {
     console.warn('Actual data load failed:', e.message);
   }
@@ -678,7 +678,7 @@ async function saveBookingsForVSS(bookings) {
         body: JSON.stringify(body)
       }
     );
-    console.log('✅ bookings_for_vss.json updated:', data.length, 'records');
+    console.log('✅ bookings_for_vss.json updated:', data.length, '件');
   } catch(e) {
     console.warn('bookings_for_vss save failed:', e.message);
   }
@@ -693,75 +693,42 @@ function fmtDate(val) {
 
 
 
-// ── VSS 갱신 버튼 ──
+// ── VSS 更新ボタン ──
 async function triggerVssRefresh() {
   const btn = document.getElementById('btn-vss-refresh');
-
-  // sessionStorage에 저장된 토큰 사용 (없으면 prompt)
-  let vssToken = sessionStorage.getItem('vss_refresh_token');
-  if (!vssToken) {
-    vssToken = prompt('VSS 갱신 토큰을 입력해 주세요 (관리자 문의):');
-    if (!vssToken) return;
-    sessionStorage.setItem('vss_refresh_token', vssToken);
-  }
-
   btn.disabled = true;
-  btn.textContent = '⏳ 갱신 중...';
+  btn.textContent = '⏳ COMPASS 同期中...';
   btn.style.background = '#555';
 
   try {
-    // 1. COMPASS에서 최신 부킹 목록 가져오기 (현재 로그인 토큰 사용)
-    btn.textContent = '⏳ COMPASS 동기화 중...';
-    if (typeof saveBookingsForVSS === 'function' && window._lastData) {
+    // COMPASS 최신 부킹 목록 → bookings_for_vss.json 자동 업데이트
+    if (window._lastData && window._lastData.length > 0) {
       await saveBookingsForVSS(window._lastData);
-    }
-
-    // 2. GitHub Actions workflow_dispatch 트리거
-    btn.textContent = '⏳ VSS 스캔 요청 중...';
-    const res = await fetch(
-      'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/workflows/update_vessel_actual.yml/dispatches',
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': 'token ' + vssToken,
-          'Accept': 'application/vnd.github.v3+json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ref: 'main' })
-      }
-    );
-
-    if (res.status === 204) {
-      btn.textContent = '✅ 요청 완료! (약 2분 후 반영)';
+      btn.textContent = '✅ 同期完了！(翌朝8時に自動更新)';
       btn.style.background = '#2ea043';
 
-      // 2분 후 vessel_actual.json 새로고침
-      setTimeout(async () => {
-        await loadActualData();
-        if (window._lastData) renderTable(window._lastData);
-        btn.textContent = '🔄 VSS 갱신';
-        btn.style.background = '#1a6bc4';
-        btn.disabled = false;
-        // 완료 토스트
-        const t = document.createElement('div');
-        t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#2ea043;color:#fff;padding:12px 28px;border-radius:8px;font-size:0.95rem;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.3);';
-        t.textContent = '✅ VSS ETD 갱신 완료！';
-        document.body.appendChild(t);
-        setTimeout(() => t.remove(), 4000);
-      }, 120000);
-
-    } else if (res.status === 401 || res.status === 403) {
-      // 토큰 오류 → 초기화
-      sessionStorage.removeItem('vss_refresh_token');
-      throw new Error('토큰이 유효하지 않습니다. 다시 시도해 주세요。');
+      const t = document.createElement('div');
+      t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#2ea043;color:#fff;padding:12px 28px;border-radius:8px;font-size:0.95rem;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.3);';
+      t.textContent = '✅ COMPASSデータを同期しました。翌朝8時にVSS ETDが自動更新されます。';
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 5000);
     } else {
-      throw new Error('오류 상태: ' + res.status);
+      // 데이터가 없으면 먼저 로드
+      btn.textContent = '⏳ データ読込中...';
+      await loadData();
+      btn.textContent = '✅ 同期完了！(翌朝8時に自動更新)';
+      btn.style.background = '#2ea043';
     }
   } catch(e) {
-    alert('VSS 갱신 실패: ' + e.message);
-    btn.textContent = '🔄 VSS 갱신';
-    btn.style.background = '#1a6bc4';
-    btn.disabled = false;
+    btn.textContent = '❌ 更新失敗';
+    btn.style.background = '#c0392b';
+    console.error('VSS更新エラー:', e.message);
+  } finally {
+    setTimeout(() => {
+      btn.textContent = '🔄 VSS 更新';
+      btn.style.background = '#1a6bc4';
+      btn.disabled = false;
+    }, 4000);
   }
 }
 
