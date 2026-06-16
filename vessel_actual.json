@@ -315,7 +315,8 @@
     "pol": "MIZUSHIMA",
     "scheduled_etd": "2026-06-20",
     "confirmed": false,
-    "updated_at": "2026-06-15 23:45"
+    "voyage": "2637E/2637W",
+    "updated_at": "2026-06-16 00:57"
   },
   "SNKO040260600370": {
     "actual_etd": "2026-06-27",
@@ -324,7 +325,8 @@
     "pol": "MIZUSHIMA",
     "scheduled_etd": "2026-06-27",
     "confirmed": false,
-    "updated_at": "2026-06-15 23:45"
+    "voyage": "2634E/2634W",
+    "updated_at": "2026-06-16 00:57"
   },
   "SNKO040260600395": {
     "actual_etd": "2026-06-23",
