@@ -697,28 +697,34 @@ function fmtDate(val) {
 async function triggerVssRefresh() {
   const btn = document.getElementById('btn-vss-refresh');
   btn.disabled = true;
-  btn.textContent = '⏳ COMPASS 同期中...';
   btn.style.background = '#555';
 
   try {
-    // COMPASS 최신 부킹 목록 → bookings_for_vss.json 자동 업데이트
+    // ① COMPASS 최신 부킹 목록 동기화
+    btn.textContent = '⏳ COMPASS 同期中...';
     if (window._lastData && window._lastData.length > 0) {
       await saveBookingsForVSS(window._lastData);
-      btn.textContent = '✅ 同期完了！(翌朝8時に自動更新)';
-      btn.style.background = '#2ea043';
-
-      const t = document.createElement('div');
-      t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#2ea043;color:#fff;padding:12px 28px;border-radius:8px;font-size:0.95rem;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.3);';
-      t.textContent = '✅ COMPASSデータを同期しました。翌朝8時にVSS ETDが自動更新されます。';
-      document.body.appendChild(t);
-      setTimeout(() => t.remove(), 5000);
-    } else {
-      // 데이터가 없으면 먼저 로드
-      btn.textContent = '⏳ データ読込中...';
-      await loadData();
-      btn.textContent = '✅ 同期完了！(翌朝8時に自動更新)';
-      btn.style.background = '#2ea043';
     }
+
+    // ② vessel_actual.json 즉시 재로드
+    btn.textContent = '⏳ VSS ETD 読込中...';
+    await loadActualData();
+
+    // ③ 화면 즉시 갱신
+    if (window._lastData && window._lastData.length > 0) {
+      renderTable(window._lastData);
+    }
+
+    // ④ 완료 표시
+    btn.textContent = '✅ 更新完了！';
+    btn.style.background = '#2ea043';
+
+    const t = document.createElement('div');
+    t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#2ea043;color:#fff;padding:14px 32px;border-radius:8px;font-size:0.95rem;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.3);';
+    t.textContent = '✅ VSS ETDを最新データに更新しました！';
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 4000);
+
   } catch(e) {
     btn.textContent = '❌ 更新失敗';
     btn.style.background = '#c0392b';
