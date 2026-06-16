@@ -74,6 +74,13 @@ VSS_CONFIG = {
             "KOBE":41, "MIZUSHIMA":50,
         }
     },
+    "PAN OCEAN_NAMSUNG": {
+        "base": "https://www.toyoshingo.com/namsung/index.php",
+        "ports": {
+            "TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41,
+            "SENDAI":19, "YOKOHAMA":13, "KOBE":11,
+        }
+    },
     "CNC": {
         "base": "https://www.toyoshingo.com/cmacgm/index.php",
         "ports": {
