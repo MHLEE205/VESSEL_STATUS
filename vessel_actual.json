@@ -654,5 +654,35 @@
     "scheduled_etd": "2026-06-27",
     "confirmed": false,
     "updated_at": "2026-06-16 00:02"
+  },
+  "271796540": {
+    "actual_etd": "2026-06-28",
+    "vessel_name": "MAERSK NARVIK 626S",
+    "carrier": "MAERSK",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-06-28",
+    "confirmed": false,
+    "voyage": "624N/626S",
+    "updated_at": "2026-06-16 01:11"
+  },
+  "271907556": {
+    "actual_etd": "2026-06-29",
+    "vessel_name": "MAERSK NARVIK 626S",
+    "carrier": "MAERSK",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-06-29",
+    "confirmed": false,
+    "voyage": "624N/626S",
+    "updated_at": "2026-06-16 01:11"
+  },
+  "271264937": {
+    "actual_etd": "2026-06-29",
+    "vessel_name": "MAERSK NARVIK 626S",
+    "carrier": "MAERSK",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-06-29",
+    "confirmed": false,
+    "voyage": "624N/626S",
+    "updated_at": "2026-06-16 01:11"
   }
 }
