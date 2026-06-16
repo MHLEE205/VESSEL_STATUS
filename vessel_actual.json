@@ -784,5 +784,60 @@
     "confirmed": false,
     "voyage": "2625N/2625S",
     "updated_at": "2026-06-16 02:54"
+  },
+  "2330595010": {
+    "actual_etd": "2026-06-24",
+    "vessel_name": "IRENES RAINBOW 032S",
+    "carrier": "OOCL",
+    "pol": "TAKAMATSU",
+    "scheduled_etd": "2026-06-24",
+    "confirmed": false,
+    "voyage": "031N/032S",
+    "note": "vessel-schedule-service.com OOCL 確認 (KOBE 6/24 出港)",
+    "updated_at": "2026-06-16 05:07"
+  },
+  "ILN0052014948": {
+    "actual_etd": "2026-06-11",
+    "vessel_name": "ITX EHIME 110S",
+    "carrier": "EHIME OCEAN",
+    "pol": "NAHA",
+    "scheduled_etd": "2026-06-16",
+    "confirmed": true,
+    "voyage": "109N/110S",
+    "note": "ehime-ocean.co.jp Actual確認済み",
+    "updated_at": "2026-06-16 05:07"
+  },
+  "ILN0052014949": {
+    "actual_etd": "2026-06-22",
+    "vessel_name": "ITX HIGO 265S",
+    "carrier": "EHIME OCEAN",
+    "pol": "NAHA",
+    "scheduled_etd": "2026-06-22",
+    "confirmed": false,
+    "voyage": "265N/265S",
+    "note": "要確認 ehime-ocean.co.jp",
+    "updated_at": "2026-06-16 05:07"
+  },
+  "ILN0052015007": {
+    "actual_etd": "2026-06-27",
+    "vessel_name": "ITX HIGO 266S",
+    "carrier": "EHIME OCEAN",
+    "pol": "NAHA",
+    "scheduled_etd": "2026-06-27",
+    "confirmed": false,
+    "voyage": "266N/266S",
+    "note": "要確認 ehime-ocean.co.jp",
+    "updated_at": "2026-06-16 05:07"
+  },
+  "ILN0052014950": {
+    "actual_etd": "2026-06-29",
+    "vessel_name": "ITX EHIME 111S",
+    "carrier": "EHIME OCEAN",
+    "pol": "NAHA",
+    "scheduled_etd": "2026-06-29",
+    "confirmed": false,
+    "voyage": "111N/111S",
+    "note": "要確認 ehime-ocean.co.jp",
+    "updated_at": "2026-06-16 05:07"
   }
 }
