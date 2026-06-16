@@ -66,6 +66,14 @@ VSS_CONFIG = {
             "YOKOHAMA":11, "KOBE":41,
         }
     },
+    "PAN OCEAN": {
+        "base": "https://www.toyoshingo.com/sinokor/index.php",
+        "ports": {
+            "TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41,
+            "SENDAI":19, "AKITA":17, "YOKOHAMA":13, "ISHIKARI":7,
+            "KOBE":41, "MIZUSHIMA":50,
+        }
+    },
     "CNC": {
         "base": "https://www.toyoshingo.com/cmacgm/index.php",
         "ports": {
