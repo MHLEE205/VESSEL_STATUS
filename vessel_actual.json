@@ -839,5 +839,15 @@
     "voyage": "111N/111S",
     "note": "要確認 ehime-ocean.co.jp",
     "updated_at": "2026-06-16 05:07"
+  },
+  "SNKO040260600786": {
+    "actual_etd": "2026-06-24",
+    "vessel_name": "HONOR OCEAN 1061W",
+    "carrier": "SINOKOR",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-06-24",
+    "confirmed": false,
+    "voyage": "1061E/1061W",
+    "updated_at": "2026-06-16 05:36"
   }
 }
