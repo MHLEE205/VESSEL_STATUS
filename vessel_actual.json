@@ -240,14 +240,15 @@
     "updated_at": "2026-06-15 23:45"
   },
   "NGJF2600100": {
-    "actual_etd": "2026-06-18",
+    "actual_etd": "2026-06-25",
     "vessel_name": "HEUNG-A AKITA 2621N",
     "carrier": "DONG YOUNG",
     "pol": "NAGOYA",
-    "scheduled_etd": "2026-06-16",
+    "scheduled_etd": "2026-06-25",
     "confirmed": false,
-    "updated_at": "2026-06-16 00:45",
-    "voyage": "2621S/2621N"
+    "voyage": "2621N",
+    "note": "要確認 toyoshingo.com/dongjin",
+    "updated_at": "2026-06-18 22:39"
   },
   "NGJF2600111": {
     "actual_etd": "2026-06-26",
@@ -849,5 +850,82 @@
     "confirmed": false,
     "voyage": "1061E/1061W",
     "updated_at": "2026-06-16 05:36"
+  },
+  "JJCOSSGJNA66A13": {
+    "actual_etd": "2026-06-26",
+    "vessel_name": "GLORY SHENGDONG 2626W",
+    "carrier": "JIN JIANG",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-06-26",
+    "confirmed": false,
+    "voyage": "2626E/2626W",
+    "note": "要確認 jinjiangshipping.com",
+    "updated_at": "2026-06-18 22:39"
+  },
+  "JJCOSLCJNA66A07": {
+    "actual_etd": "2026-06-26",
+    "vessel_name": "GLORY SHENGDONG 2626W",
+    "carrier": "JIN JIANG",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-06-26",
+    "confirmed": false,
+    "voyage": "2626E/2626W",
+    "note": "要確認 jinjiangshipping.com",
+    "updated_at": "2026-06-18 22:39"
+  },
+  "JJCNATALNA66A18": {
+    "actual_etd": "2026-06-26",
+    "vessel_name": "MILD SONATA 2625W",
+    "carrier": "JIN JIANG",
+    "pol": "NAHA",
+    "scheduled_etd": "2026-06-26",
+    "confirmed": false,
+    "voyage": "2625E/2625W",
+    "note": "要確認 jinjiangshipping.com",
+    "updated_at": "2026-06-18 22:39"
+  },
+  "JJCHALCJNA66A04": {
+    "actual_etd": "2026-06-29",
+    "vessel_name": "GLORY ZHENDONG 2626S",
+    "carrier": "JIN JIANG",
+    "pol": "HAKATA",
+    "scheduled_etd": "2026-06-29",
+    "confirmed": false,
+    "voyage": "2626N/2626S",
+    "note": "要確認 jinjiangshipping.com",
+    "updated_at": "2026-06-18 22:39"
+  },
+  "JJCHAHPJNA66A08": {
+    "actual_etd": "2026-06-29",
+    "vessel_name": "GLORY ZHENDONG 2626S",
+    "carrier": "JIN JIANG",
+    "pol": "HAKATA",
+    "scheduled_etd": "2026-06-29",
+    "confirmed": false,
+    "voyage": "2626N/2626S",
+    "note": "要確認 jinjiangshipping.com",
+    "updated_at": "2026-06-18 22:39"
+  },
+  "I272246077": {
+    "actual_etd": "2026-06-28",
+    "vessel_name": "IBN AL ABBAR 343S",
+    "carrier": "YANGMING",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-28",
+    "confirmed": false,
+    "voyage": "343S",
+    "note": "要確認 toyoshingo.com/yangming",
+    "updated_at": "2026-06-18 22:39"
+  },
+  "TKJJ2600052": {
+    "actual_etd": "2026-06-25",
+    "vessel_name": "PEGASUS PETA 2614W",
+    "carrier": "DONG YOUNG",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-25",
+    "confirmed": true,
+    "voyage": "2614E/2614W",
+    "note": "toyoshingo.com Departure 2026-06-25 確認済み",
+    "updated_at": "2026-06-18 22:39"
   }
 }
