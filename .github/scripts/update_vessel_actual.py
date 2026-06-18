@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-VESSEL STATUS - Actual ETD Auto Update v4.0
+VESSEL STATUS - Actual ETD Auto Update v4.1
 - toyoshingo.com: urllib 직접 스크래핑 (기존 방식)
 - jinjiangshipping.jp: Playwright 브라우저로 스크래핑 (신규)
 - VOYAGE 번호 기반 정확 매칭
@@ -261,6 +261,176 @@ def match_jinjiang(bookings, all_vessels, actual_map, now):
 
     return results
 
+# ── EHIME OCEAN Playwright 스크래핑 ──
+# 항로구조: Naha① → PUSAN/LAT KRABANG행 / Naha② → TAICHUNG행 (귀항)
+EHIME_VESSELS = {
+    '512': 'ITX EHIME',
+    '519': 'ITX HIGO',
+}
+
+def fetch_ehime_playwright():
+    """Playwright로 ehime-ocean.co.jp 스케줄 스크래핑"""
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        print("  ⚠ Playwright 미설치 → EHIME OCEAN 스킵")
+        return {}
+
+    def parse_schedule(page, vessel_name):
+        """페이지에서 Voyage + Naha ETD 파싱"""
+        results = []
+        # Current Voyage 번호 추출
+        voyage_text = ''
+        for el in page.query_selector_all('p, h2, h3, span, div'):
+            t = el.inner_text().strip()
+            m = re.search(r'(\d{3}N\s*/\s*\d{3}S)', t)
+            if m:
+                voyage_text = m.group(1).replace(' ', '')
+                break
+
+        # 테이블 행 파싱
+        naha_idx = 0
+        rows = page.query_selector_all('tr')
+        for row in rows:
+            cells = row.query_selector_all('td')
+            if not cells: continue
+            port = cells[0].inner_text().strip()
+            if port != 'Naha': continue
+            naha_idx += 1
+
+            # Departure Date 셀(index 3) - OMIT 또는 날짜
+            if len(cells) < 4: continue
+            dep_cell = cells[3].inner_text().strip()
+            is_omit = 'OMIT' in dep_cell
+
+            if is_omit:
+                results.append({
+                    'vessel': vessel_name, 'voyage': voyage_text,
+                    'naha_idx': naha_idx, 'omit': True, 'etd': None
+                })
+            else:
+                # 날짜 추출: Estimated(2번째) 우선, 없으면 Original(1번째)
+                dates = re.findall(r'(\d{4}-\d{2}-\d{2})', dep_cell)
+                etd = dates[1] if len(dates) >= 2 else (dates[0] if dates else None)
+                results.append({
+                    'vessel': vessel_name, 'voyage': voyage_text,
+                    'naha_idx': naha_idx, 'omit': False, 'etd': etd
+                })
+        return results
+
+    all_results = {}  # vessel_value → [naha_schedule]
+    print("  Playwright 기동 (EHIME OCEAN)...")
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
+
+        for vessel_value, vessel_name in EHIME_VESSELS.items():
+            try:
+                page.goto('https://ehime-ocean.co.jp/service/schedule/', timeout=30000)
+                page.wait_for_load_state('networkidle', timeout=15000)
+                # 드롭다운 선택
+                page.select_option('select', vessel_value)
+                page.wait_for_timeout(2000)
+                schedules = parse_schedule(page, vessel_name)
+                all_results[vessel_name] = schedules
+                print(f"  {vessel_name}: Naha {len(schedules)}행 확인")
+            except Exception as e:
+                print(f"  {vessel_name} error: {e}")
+
+        browser.close()
+
+    return all_results
+
+
+def match_ehime(bookings, ehime_data, actual_map, now):
+    """EHIME OCEAN 부킹 매칭 - POD로 Naha① or ② 판정"""
+    results = {}
+    # POD → Naha 인덱스 매핑
+    # Naha①: PUSAN, LAT KRABANG, BUSAN 등 북행 POD
+    # Naha②: TAICHUNG, KEELUNG, KAOHSIUNG 등 남행 POD
+    NAHA1_PODS = {'PUSAN', 'BUSAN', 'LAT KRABANG', 'BANGKOK', 'LAEM CHABANG'}
+    NAHA2_PODS = {'TAICHUNG', 'KEELUNG', 'KAOHSIUNG', 'TAOYUAN'}
+
+    ehime_bookings = [b for b in bookings if b.get('carrier') in ('EHIME OCEAN', 'ONE')
+                      and b.get('pol', '').upper() == 'NAHA'
+                      and 'ITX' in b.get('vessel_name', '').upper()]
+
+    for bkg in ehime_bookings:
+        vessel_name = bkg.get('vessel_name', '')
+        # ITX EHIME / ITX HIGO 판별
+        vessel_key = None
+        if 'EHIME' in vessel_name.upper():
+            vessel_key = 'ITX EHIME'
+        elif 'HIGO' in vessel_name.upper():
+            vessel_key = 'ITX HIGO'
+        if not vessel_key: continue
+
+        # VOYAGE 번호 추출 (예: ITX HIGO 265S → 265)
+        vm = re.search(r'(\d{3})[NS]', vessel_name.upper())
+        if not vm: continue
+        voy_num = vm.group(1)
+
+        # POD 확인 (vessel_actual.json의 기존 데이터 또는 bookings에서)
+        existing = actual_map.get(bkg['bkg_no'], {})
+        pod = existing.get('pod', '').upper()
+        # bookings_for_vss에 pod가 없으므로 기존 note나 vessel_actual에서 추론
+        # 일단 naha_idx로 판별: Naha① = PUSAN계, Naha② = TAICHUNG계
+        # POD 정보가 없으면 기존 confirmed 데이터 유지
+        if not pod:
+            # vessel_name의 S/N 방향으로 추정: S=남행(TAICHUNG), N=북행(PUSAN)
+            direction = 'S' if re.search(r'\d{3}S', vessel_name.upper()) else 'N'
+            # S항차 = TAICHUNG행 = Naha②, N항차는 스킵(출항전)
+            if direction == 'S':
+                pod = 'TAICHUNG'  # 기본값
+            else:
+                continue
+
+        # Naha 인덱스 결정
+        if any(p in pod for p in NAHA1_PODS):
+            target_naha_idx = 1
+        elif any(p in pod for p in NAHA2_PODS):
+            target_naha_idx = 2
+        else:
+            continue
+
+        # ehime_data에서 해당 vessel + voyage + naha_idx 찾기
+        vessel_schedules = ehime_data.get(vessel_key, [])
+        matched = None
+        for s in vessel_schedules:
+            if voy_num in s.get('voyage', '').replace(' ', '') and s.get('naha_idx') == target_naha_idx:
+                matched = s
+                break
+
+        if not matched: continue
+
+        if matched['omit']:
+            etd = existing.get('scheduled_etd') or bkg.get('etd', '')
+            note = 'EHIME OCEAN NAHA OMIT'
+        else:
+            etd = matched['etd']
+            note = f"ehime-ocean.co.jp {vessel_key} {matched['voyage']} NAHA{target_naha_idx} auto-confirmed"
+
+        if not etd: continue
+
+        changed = existing.get('actual_etd') != etd
+        results[bkg['bkg_no']] = {
+            **existing,
+            'actual_etd': etd,
+            'vessel_name': vessel_name,
+            'carrier': bkg.get('carrier'),
+            'pol': 'NAHA',
+            'scheduled_etd': existing.get('scheduled_etd') or bkg.get('etd', etd),
+            'confirmed': not matched['omit'],
+            'voyage': matched['voyage'],
+            'note': note + (' (ETD changed)' if changed else ''),
+            'updated_at': now,
+        }
+        status = f"OMIT" if matched['omit'] else f"ETD:{etd}{' changed' if changed else ''}"
+        print(f"  {bkg['bkg_no']:<25} {vessel_key} {matched['voyage']} NAHA{target_naha_idx} POD:{pod} → {status}")
+
+    return results
+
+
 # ── GitHub API ──
 def github_get(path):
     req = urllib.request.Request(f"{API}/repos/{REPO}/contents/{path}")
@@ -355,20 +525,27 @@ def main():
             if best['omit']: tyo_results[bkg_no]["note"] = "OMIT"
 
     # ── JIN JIANG Playwright 스크래핑 ──
-    print("\n[2/2] JIN JIANG jinjiangshipping.jp 스크래핑...")
+    print("\n[2/3] JIN JIANG jinjiangshipping.jp 스크래핑...")
     jj_vessels = fetch_jinjiang_playwright()
     jj_results = match_jinjiang(bookings, jj_vessels, actual_map, now) if jj_vessels else {}
     print(f"JIN JIANG 매칭: {len(jj_results)}건")
 
+    # ── EHIME OCEAN Playwright 스크래핑 ──
+    print("\n[3/3] EHIME OCEAN ehime-ocean.co.jp 스크래핑...")
+    ehime_data = fetch_ehime_playwright()
+    ehime_results = match_ehime(bookings, ehime_data, actual_map, now) if ehime_data else {}
+    print(f"EHIME OCEAN 매칭: {len(ehime_results)}건")
+
     # 병합 후 저장
     actual_map.update(tyo_results)
     actual_map.update(jj_results)
-    total = len(tyo_results) + len(jj_results)
-    print(f"\n✅ 전체 갱신: {total}건 (toyoshingo:{len(tyo_results)}, JIN JIANG:{len(jj_results)})")
+    actual_map.update(ehime_results)
+    total = len(tyo_results) + len(jj_results) + len(ehime_results)
+    print(f"\n✅ 전체 갱신: {total}건 (toyoshingo:{len(tyo_results)}, JIN JIANG:{len(jj_results)}, EHIME:{len(ehime_results)})")
 
     content = json.dumps(actual_map, ensure_ascii=False, indent=2)
     r = github_put('vessel_actual.json', content,
-        f"Auto update v4.0 - {now} (tyo:{len(tyo_results)}, jj:{len(jj_results)})", actual_sha)
+        f"Auto update v4.1 - {now} (tyo:{len(tyo_results)}, jj:{len(jj_results)}, ehime:{len(ehime_results)})", actual_sha)
     print(f"✅ 저장 완료: {r['commit']['sha'][:7]}")
 
 if __name__ == '__main__':
