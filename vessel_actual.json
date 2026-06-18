@@ -699,9 +699,9 @@
     "pol": "NAHA",
     "scheduled_etd": "2026-06-27",
     "confirmed": true,
-    "updated_at": "2026-06-18 23:23",
-    "voyage": "266N/266S",
-    "note": "ehime-ocean.co.jp 266N/266S NAHA Dep.7/06確認済み (ONE共同運航)"
+    "updated_at": "2026-06-18 23:32",
+    "voyage": "265N/266S",
+    "note": "ehime-ocean.co.jp ITX HIGO 265N/266S NAHA2 auto-confirmed"
   },
   "PCJTYO26055201": {
     "actual_etd": "2026-06-24",
@@ -744,8 +744,8 @@
     "scheduled_etd": "2026-06-12",
     "confirmed": true,
     "voyage": "2624E/2624W",
-    "note": "jinjiangshipping.jp 自動確認済み",
-    "updated_at": "2026-06-18 23:03"
+    "note": "jinjiangshipping.jp auto-confirmed",
+    "updated_at": "2026-06-18 23:32"
   },
   "JJCOSSGJNA66A12": {
     "actual_etd": "2026-06-12",
@@ -755,8 +755,8 @@
     "scheduled_etd": "2026-06-12",
     "confirmed": true,
     "voyage": "2624E/2624W",
-    "note": "jinjiangshipping.jp 自動確認済み",
-    "updated_at": "2026-06-18 23:03"
+    "note": "jinjiangshipping.jp auto-confirmed",
+    "updated_at": "2026-06-18 23:32"
   },
   "JJCNATALNA66A12": {
     "actual_etd": "2026-06-19",
@@ -766,8 +766,8 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "voyage": "2624E/2624W",
-    "note": "jinjiangshipping.jp 自動確認済み",
-    "updated_at": "2026-06-18 23:03"
+    "note": "jinjiangshipping.jp auto-confirmed",
+    "updated_at": "2026-06-18 23:32"
   },
   "JJCOSLCJNA66A06": {
     "actual_etd": "2026-06-19",
@@ -777,8 +777,8 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "voyage": "2625E/2625W",
-    "updated_at": "2026-06-18 23:03",
-    "note": "jinjiangshipping.jp 自動確認済み"
+    "updated_at": "2026-06-18 23:32",
+    "note": "jinjiangshipping.jp auto-confirmed"
   },
   "JJCOSLCJNA66A09": {
     "actual_etd": "2026-06-19",
@@ -788,8 +788,8 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "voyage": "2625E/2625W",
-    "updated_at": "2026-06-18 23:03",
-    "note": "jinjiangshipping.jp 自動確認済み"
+    "updated_at": "2026-06-18 23:32",
+    "note": "jinjiangshipping.jp auto-confirmed"
   },
   "JJCHAHPJNA66A07": {
     "actual_etd": "2026-06-28",
@@ -799,30 +799,30 @@
     "scheduled_etd": "2026-06-22",
     "confirmed": true,
     "voyage": "2625N/2625S",
-    "note": "jinjiangshipping.jp 自動確認済み",
-    "updated_at": "2026-06-18 23:03"
+    "note": "jinjiangshipping.jp auto-confirmed",
+    "updated_at": "2026-06-18 23:32"
   },
   "ILN0052014948": {
-    "actual_etd": "2026-06-11",
+    "actual_etd": "2026-06-30",
     "vessel_name": "ITX EHIME 110S",
     "carrier": "EHIME OCEAN",
     "pol": "NAHA",
     "scheduled_etd": "2026-06-16",
     "confirmed": true,
-    "voyage": "109N/110S",
-    "note": "ehime-ocean.co.jp ActualÃ§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿",
-    "updated_at": "2026-06-16 05:07"
+    "voyage": "110N/111S",
+    "note": "ehime-ocean.co.jp ITX EHIME 110N/111S NAHA2 auto-confirmed (ETD changed)",
+    "updated_at": "2026-06-18 23:32"
   },
   "ILN0052014949": {
-    "actual_etd": "2026-06-22",
+    "actual_etd": "2026-07-06",
     "vessel_name": "ITX HIGO 265S",
     "carrier": "EHIME OCEAN",
     "pol": "NAHA",
     "scheduled_etd": "2026-06-22",
     "confirmed": true,
-    "voyage": "265N/265S",
-    "note": "ehime-ocean.co.jp ITX HIGO 264N/265S NAHA② POD:TAICHUNG Departure Estimated 2026-06-22確認済み",
-    "updated_at": "2026-06-18 23:28"
+    "voyage": "265N/266S",
+    "note": "ehime-ocean.co.jp ITX HIGO 265N/266S NAHA2 auto-confirmed (ETD changed)",
+    "updated_at": "2026-06-18 23:32"
   },
   "ILN0052015007": {
     "actual_etd": "2026-07-06",
@@ -831,20 +831,20 @@
     "pol": "NAHA",
     "scheduled_etd": "2026-06-27",
     "confirmed": true,
-    "voyage": "266N/266S",
-    "note": "ehime-ocean.co.jp 266N/266S NAHA Dep.7/06確認済み",
-    "updated_at": "2026-06-18 23:23"
+    "voyage": "265N/266S",
+    "note": "ehime-ocean.co.jp ITX HIGO 265N/266S NAHA2 auto-confirmed",
+    "updated_at": "2026-06-18 23:32"
   },
   "ILN0052014950": {
-    "actual_etd": "2026-06-29",
+    "actual_etd": "2026-06-30",
     "vessel_name": "ITX EHIME 111S",
     "carrier": "EHIME OCEAN",
     "pol": "NAHA",
     "scheduled_etd": "2026-06-29",
     "confirmed": true,
     "voyage": "110N/111S",
-    "note": "ehime-ocean.co.jp ITX EHIME 110N/111S NAHA② POD:TAICHUNG Departure 2026-06-29確認済み",
-    "updated_at": "2026-06-18 23:29"
+    "note": "ehime-ocean.co.jp ITX EHIME 110N/111S NAHA2 auto-confirmed (ETD changed)",
+    "updated_at": "2026-06-18 23:32"
   },
   "SNKO040260600786": {
     "actual_etd": "2026-06-24",
@@ -864,8 +864,8 @@
     "scheduled_etd": "2026-06-26",
     "confirmed": true,
     "voyage": "2626E/2626W",
-    "note": "jinjiangshipping.jp 自動確認済み",
-    "updated_at": "2026-06-18 23:03"
+    "note": "jinjiangshipping.jp auto-confirmed",
+    "updated_at": "2026-06-18 23:32"
   },
   "JJCOSLCJNA66A07": {
     "actual_etd": "2026-06-26",
@@ -875,8 +875,8 @@
     "scheduled_etd": "2026-06-26",
     "confirmed": true,
     "voyage": "2626E/2626W",
-    "note": "jinjiangshipping.jp 自動確認済み",
-    "updated_at": "2026-06-18 23:03"
+    "note": "jinjiangshipping.jp auto-confirmed",
+    "updated_at": "2026-06-18 23:32"
   },
   "JJCNATALNA66A18": {
     "actual_etd": "2026-06-26",
@@ -886,8 +886,8 @@
     "scheduled_etd": "2026-06-26",
     "confirmed": true,
     "voyage": "2625E/2625W",
-    "note": "jinjiangshipping.jp 自動確認済み",
-    "updated_at": "2026-06-18 23:03"
+    "note": "jinjiangshipping.jp auto-confirmed",
+    "updated_at": "2026-06-18 23:32"
   },
   "JJCHALCJNA66A04": {
     "actual_etd": "2026-06-29",
@@ -941,7 +941,7 @@
     "scheduled_etd": "2026-06-26",
     "confirmed": true,
     "voyage": "2626E/2626W",
-    "note": "jinjiangshipping.jp 自動確認済み",
-    "updated_at": "2026-06-18 23:03"
+    "note": "jinjiangshipping.jp auto-confirmed",
+    "updated_at": "2026-06-18 23:32"
   }
 }
