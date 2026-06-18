@@ -777,14 +777,15 @@
     "updated_at": "2026-06-16 02:54"
   },
   "JJCHAHPJNA66A07": {
-    "actual_etd": "2026-06-22",
+    "actual_etd": "2026-06-27",
     "vessel_name": "GLORY GUANDONG 2625S",
     "carrier": "JIN JIANG",
     "pol": "HAKATA",
     "scheduled_etd": "2026-06-22",
-    "confirmed": false,
+    "confirmed": true,
     "voyage": "2625N/2625S",
-    "updated_at": "2026-06-16 02:54"
+    "note": "jinjiangshipping.jp 上海航路 来週 HAKATA 6/27-6/29 Delay確認済み",
+    "updated_at": "2026-06-18 22:49"
   },
   "2330595010": {
     "actual_etd": "2026-06-24",
@@ -857,10 +858,10 @@
     "carrier": "JIN JIANG",
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-26",
-    "confirmed": false,
+    "confirmed": true,
     "voyage": "2626E/2626W",
-    "note": "要確認 jinjiangshipping.com",
-    "updated_at": "2026-06-18 22:39"
+    "note": "jinjiangshipping.jp 上海航路 来週 OSAKA 6/25-6/26確認済み",
+    "updated_at": "2026-06-18 22:49"
   },
   "JJCOSLCJNA66A07": {
     "actual_etd": "2026-06-26",
@@ -868,10 +869,10 @@
     "carrier": "JIN JIANG",
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-26",
-    "confirmed": false,
+    "confirmed": true,
     "voyage": "2626E/2626W",
-    "note": "要確認 jinjiangshipping.com",
-    "updated_at": "2026-06-18 22:39"
+    "note": "jinjiangshipping.jp 上海航路 来週 OSAKA 6/25-6/26確認済み",
+    "updated_at": "2026-06-18 22:49"
   },
   "JJCNATALNA66A18": {
     "actual_etd": "2026-06-26",
@@ -879,10 +880,10 @@
     "carrier": "JIN JIANG",
     "pol": "NAHA",
     "scheduled_etd": "2026-06-26",
-    "confirmed": false,
+    "confirmed": true,
     "voyage": "2625E/2625W",
-    "note": "要確認 jinjiangshipping.com",
-    "updated_at": "2026-06-18 22:39"
+    "note": "jinjiangshipping.jp 上海航路 来週 NAHA 6/26確認済み",
+    "updated_at": "2026-06-18 22:49"
   },
   "JJCHALCJNA66A04": {
     "actual_etd": "2026-06-29",
@@ -892,8 +893,8 @@
     "scheduled_etd": "2026-06-29",
     "confirmed": false,
     "voyage": "2626N/2626S",
-    "note": "要確認 jinjiangshipping.com",
-    "updated_at": "2026-06-18 22:39"
+    "note": "上海航路・青島大連航路・東南アジア航路 全て未掲載 → 要確認",
+    "updated_at": "2026-06-18 22:49"
   },
   "JJCHAHPJNA66A08": {
     "actual_etd": "2026-06-29",
@@ -903,8 +904,8 @@
     "scheduled_etd": "2026-06-29",
     "confirmed": false,
     "voyage": "2626N/2626S",
-    "note": "要確認 jinjiangshipping.com",
-    "updated_at": "2026-06-18 22:39"
+    "note": "上海航路・青島大連航路・東南アジア航路 全て未掲載 → 要確認",
+    "updated_at": "2026-06-18 22:49"
   },
   "I272246077": {
     "actual_etd": "2026-06-28",
