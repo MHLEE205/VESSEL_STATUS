@@ -693,13 +693,15 @@
     "updated_at": "2026-06-16 00:02"
   },
   "TYOGB0311600": {
-    "actual_etd": "2026-06-27",
+    "actual_etd": "2026-07-06",
     "vessel_name": "ITX HIGO 266S",
     "carrier": "ONE",
     "pol": "NAHA",
     "scheduled_etd": "2026-06-27",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:02"
+    "confirmed": true,
+    "updated_at": "2026-06-18 23:23",
+    "voyage": "266N/266S",
+    "note": "ehime-ocean.co.jp 266N/266S NAHA Dep.7/06確認済み (ONE共同運航)"
   },
   "PCJTYO26055201": {
     "actual_etd": "2026-06-24",
@@ -812,26 +814,26 @@
     "updated_at": "2026-06-16 05:07"
   },
   "ILN0052014949": {
-    "actual_etd": "2026-06-22",
+    "actual_etd": "2026-06-27",
     "vessel_name": "ITX HIGO 265S",
     "carrier": "EHIME OCEAN",
     "pol": "NAHA",
     "scheduled_etd": "2026-06-22",
-    "confirmed": false,
+    "confirmed": true,
     "voyage": "265N/265S",
-    "note": "Ã¨Â¦ÂÃ§Â¢ÂºÃ¨ÂªÂ ehime-ocean.co.jp",
-    "updated_at": "2026-06-16 05:07"
+    "note": "ehime-ocean.co.jp 265N/265S NAHA Dep.6/27確認済み",
+    "updated_at": "2026-06-18 23:23"
   },
   "ILN0052015007": {
-    "actual_etd": "2026-06-27",
+    "actual_etd": "2026-07-06",
     "vessel_name": "ITX HIGO 266S",
     "carrier": "EHIME OCEAN",
     "pol": "NAHA",
     "scheduled_etd": "2026-06-27",
-    "confirmed": false,
+    "confirmed": true,
     "voyage": "266N/266S",
-    "note": "Ã¨Â¦ÂÃ§Â¢ÂºÃ¨ÂªÂ ehime-ocean.co.jp",
-    "updated_at": "2026-06-16 05:07"
+    "note": "ehime-ocean.co.jp 266N/266S NAHA Dep.7/06確認済み",
+    "updated_at": "2026-06-18 23:23"
   },
   "ILN0052014950": {
     "actual_etd": "2026-06-29",
@@ -839,10 +841,10 @@
     "carrier": "EHIME OCEAN",
     "pol": "NAHA",
     "scheduled_etd": "2026-06-29",
-    "confirmed": false,
-    "voyage": "111N/111S",
-    "note": "Ã¨Â¦ÂÃ§Â¢ÂºÃ¨ÂªÂ ehime-ocean.co.jp",
-    "updated_at": "2026-06-16 05:07"
+    "confirmed": true,
+    "voyage": "110N/111S",
+    "note": "ehime-ocean.co.jp 110N/111S NAHA② Dep.6/29確認済み (NAHA①=OMIT)",
+    "updated_at": "2026-06-18 23:23"
   },
   "SNKO040260600786": {
     "actual_etd": "2026-06-24",
