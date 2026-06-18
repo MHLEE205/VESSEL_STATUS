@@ -253,7 +253,7 @@ def match_jinjiang(bookings, all_vessels, actual_map, now):
             'scheduled_etd': existing.get('scheduled_etd') or bkg.get('etd', etd),
             'confirmed': True,
             'voyage': matched['voyage'],
-            'note': f"jinjiangshipping.jp 自動確認済み{' (ETD変更)' if changed else ''}",
+            'note': f"jinjiangshipping.jp auto-confirmed{' (ETD changed)' if changed else ''}",
             'updated_at': now,
         }
         status = f"⚠ ETD変更 {existing.get('actual_etd')}→{etd}" if changed else f"✅ {etd}"
