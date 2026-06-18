@@ -699,7 +699,7 @@ async function triggerVssRefresh() {
   btn.disabled = true;
   btn.style.background = '#555';
 
-  const steps = ['COMPASSデータ取得中...','bookings同期中...','VSS ETD読込中...','JIN JIANG確認中...','画面更新中...'];
+  const steps = ['COMPASSデータ取得中...','bookings同期中...','VSS ETD読込中...','画面更新中...'];
   let step = 0;
   const tick = setInterval(() => { if (step < steps.length) btn.textContent = '⏳ ' + steps[step++]; }, 900);
 
@@ -711,19 +711,22 @@ async function triggerVssRefresh() {
     const fromDate = today.toISOString().slice(0,10);
 
     // ① COMPASS 부킹 전체 취득
-    const bkgRes = await fetch(`${DV_API}/cr49f_bookings?$filter=cr49f_etd ge ${fromDate}T00:00:00Z&$select=cr49f_booking_no,cr49f_main_ship_name,cr49f_etd,_cr49f_carrier_id_value,_cr49f_region_japan_id_value&$top=500&$orderby=cr49f_etd asc`,{headers:h});
+    const bkgRes = await fetch(`${DV_API}/cr49f_bookings?$filter=cr49f_etd ge ${fromDate}T00:00:00Z&$select=cr49f_booking_no,cr49f_main_ship_name,cr49f_etd,_cr49f_carrier_id_value,_cr49f_region_japan_id_value,_cr49f_region_id_value&$top=500&$orderby=cr49f_etd asc`,{headers:h});
     const allBkgs = (await bkgRes.json()).value || [];
 
     const cGuids = [...new Set(allBkgs.map(b=>b['_cr49f_carrier_id_value']).filter(Boolean))];
     const pGuids = [...new Set(allBkgs.map(b=>b['_cr49f_region_japan_id_value']).filter(Boolean))];
-    const cMap={}, pMap={};
+    const podGuids2 = [...new Set(allBkgs.map(b=>b['_cr49f_region_id_value']).filter(Boolean))];
+    const cMap={}, pMap={}, podMap2={};
     await Promise.all([
       ...cGuids.map(async g=>{try{const d=await(await fetch(`${DV_API}/crcf9_carriers(${g})?$select=crcf9_carrier`,{headers:h})).json();cMap[g]=d.crcf9_carrier||'';}catch(e){}}),
-      ...pGuids.map(async g=>{try{const d=await(await fetch(`${DV_API}/crcf9_region_japans(${g})?$select=crcf9_pol`,{headers:h})).json();pMap[g]=d.crcf9_pol||'';}catch(e){}})
+      ...pGuids.map(async g=>{try{const d=await(await fetch(`${DV_API}/crcf9_region_japans(${g})?$select=crcf9_pol`,{headers:h})).json();pMap[g]=d.crcf9_pol||'';}catch(e){}}),
+      ...podGuids2.map(async g=>{try{const d=await(await fetch(`${DV_API}/cr49f_regions(${g})?$select=cr49f_pod`,{headers:h})).json();podMap2[g]=d.cr49f_pod||'';}catch(e){}})
     ]);
     const bookingList = allBkgs.map(b=>({
       bkg_no:b.cr49f_booking_no, vessel_name:b.cr49f_main_ship_name,
       carrier:cMap[b['_cr49f_carrier_id_value']]||'', pol:pMap[b['_cr49f_region_japan_id_value']]||'',
+      pod:podMap2[b['_cr49f_region_id_value']]||'',
       etd:(b.cr49f_etd||'').slice(0,10)
     })).filter(b=>b.carrier&&b.pol&&b.vessel_name);
 
@@ -737,182 +740,6 @@ async function triggerVssRefresh() {
       method:'PUT', headers:{'Authorization':`token ${tok}`,'Content-Type':'application/json'},
       body:JSON.stringify({message:`Sync bookings ${new Date().toISOString().slice(0,16)} (${bookingList.length}件)`,content:enc2,sha:bvD.sha})
     });
-
-
-    // ③-JJ JIN JIANG VSS 자동 갱신 ──────────────────────────────────
-    try {
-      btn.textContent = '⏳ JIN JIANG確認中...';
-      const JJ_URLS = [
-        'https://www.jinjiangshipping.jp/vmi/daily2.php',
-        'https://www.jinjiangshipping.jp/vmi/daily_q2.php',
-        'https://www.jinjiangshipping.jp/vmi/dailysea2.php',
-      ];
-      const COL_IDX = {
-        'TOKYO':3,'YOKOHAMA':4,'NAGOYA':5,'SHIMIZU':6,
-        'OSAKA':7,'KOBE':8,'HAKATA':9,'MOJI':10,'NAHA':11
-      };
-      // 青島大連航路 컬럼 순서 (다름)
-      const COL_IDX_Q = {
-        'MOJI':3,'HAKATA':4,'OSAKA':5,'KOBE':6,'NAGOYA':7,'TOKYO':8,'YOKOHAMA':9
-      };
-      // 東南アジア航路: 항구가 행 단위로 나열됨 → 별도 파싱
-
-      function parseDep(cellText) {
-        const dates = cellText.split('\n').map(l=>l.trim())
-          .filter(l => /^\*?\d{1,2}\/\d{2}/.test(l));
-        if (!dates.length) return null;
-        const last = dates[dates.length-1].replace(/\*/g,'');
-        const m = last.match(/(\d{1,2})\/(\d{2})/);
-        return m ? `2026-${m[1].padStart(2,'0')}-${m[2]}` : null;
-      }
-
-      function parseShanghai(html) {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const vessels = [];
-        doc.querySelectorAll('tr').forEach(row => {
-          const cells = [...row.querySelectorAll('td,th')];
-          if (cells.length < 12) return;
-          const c0 = cells[0].innerText.trim();
-          if (!/\d{4}[EWNS]/.test(c0)) return;
-          const lines = c0.split('\n').map(l=>l.trim()).filter(l=>l);
-          const vesselName = lines[0]; const voyage = lines[1] || '';
-          const portDates = {};
-          Object.entries(COL_IDX).forEach(([p,i]) => {
-            const d = parseDep(cells[i]?.innerText || '');
-            if (d) portDates[p] = d;
-          });
-          if (vesselName) vessels.push({vesselName, voyage, portDates});
-        });
-        return vessels;
-      }
-
-      function parseQingdao(html) {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const vessels = [];
-        doc.querySelectorAll('tr').forEach(row => {
-          const cells = [...row.querySelectorAll('td,th')];
-          if (cells.length < 8) return;
-          const c0 = cells[0].innerText.trim();
-          if (!/\d{4}[EWNS]/.test(c0)) return;
-          const lines = c0.split('\n').map(l=>l.trim()).filter(l=>l);
-          const vesselName = lines[0]; const voyage = lines[1] || '';
-          const portDates = {};
-          Object.entries(COL_IDX_Q).forEach(([p,i]) => {
-            const d = parseDep(cells[i]?.innerText || '');
-            if (d) portDates[p] = d;
-          });
-          if (vesselName) vessels.push({vesselName, voyage, portDates});
-        });
-        return vessels;
-      }
-
-      function parseSEA(html) {
-        // 東南アジア航路: 행 단위 포트
-        // Vessel/Voyage 헤더행 다음에 각 항구 행 나열
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const vessels = [];
-        const rows = [...doc.querySelectorAll('tr')];
-        let current = null;
-        rows.forEach(row => {
-          const cells = [...row.querySelectorAll('td,th')];
-          if (!cells.length) return;
-          const c0 = cells[0].innerText.trim();
-          // 새 본선 블록 시작: VOYAGE 포함
-          if (cells.length >= 5 && /\d{4}[EWNS]/.test(c0)) {
-            const lines = c0.split('\n').map(l=>l.trim()).filter(l=>l);
-            current = {vesselName: lines[0], voyage: lines[1]||'', portDates:{}};
-            vessels.push(current);
-          } else if (current && cells.length >= 4) {
-            // 항구 행: PORT / Arrival / Berthing / Departure
-            const portCell = cells[0].innerText.trim().toUpperCase();
-            const depCell = cells[3] ? cells[3].innerText.trim() : '';
-            const JP_PORTS = ['TOKYO','YOKOHAMA','NAGOYA','OSAKA','KOBE','HAKATA','NAHA','SHIMIZU'];
-            const matched = JP_PORTS.find(p => portCell.includes(p));
-            if (matched && depCell && /\d{1,2}\/\d{2}/.test(depCell)) {
-              const d = parseDep(depCell);
-              if (d) current.portDates[matched] = d;
-            }
-          }
-        });
-        return vessels;
-      }
-
-      // 3페이지 fetch
-      const [html2, htmlQ, htmlS] = await Promise.all(
-        JJ_URLS.map(u => fetch(u).then(r=>r.ok?r.text():'').catch(()=>''))
-      );
-      const allVessels = [
-        ...parseShanghai(html2),
-        ...parseQingdao(htmlQ),
-        ...parseSEA(htmlS),
-      ];
-
-      // vessel_actual.json 현재값 읽기
-      const vaR = await fetch(`https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/vessel_actual.json`,
-        {headers:{'Authorization':`token ${tok}`}});
-      const vaD = await vaR.json();
-      const vaActual = JSON.parse(atob(vaD.content.replace(/\n/g,'')));
-      const vaSha = vaD.sha;
-
-      // JIN JIANG 부킹과 매칭
-      const jjBkgs = bookingList.filter(b => b.carrier === 'JIN JIANG');
-      const nowStr = new Date().toISOString().slice(0,16).replace('T',' ');
-      let jjUpdated = 0;
-
-      for (const bkg of jjBkgs) {
-        const vname = (bkg.vessel_name||'').toUpperCase();
-        // VOYAGE 추출 (예: GLORY SHENGDONG 2626W → 2626)
-        const vm = vname.match(/(\d{4})[EWNS]/);
-        if (!vm) continue;
-        const voyNum = vm[1];
-        const pol = (bkg.pol||'').toUpperCase();
-
-        // 매칭: VOYAGE 번호 일치 + 본선명 일치
-        const matched = allVessels.find(v => {
-          if (!v.voyage.includes(voyNum)) return false;
-          const vn = v.vesselName.toUpperCase();
-          // 본선명 앞 2단어로 비교
-          const bkgWords = vname.split(' ').slice(0,2).join(' ');
-          return vn.includes(bkgWords.split(' ')[0]) && (bkgWords.split(' ')[1] ? vn.includes(bkgWords.split(' ')[1]) : true);
-        });
-        if (!matched) continue;
-
-        const etd = matched.portDates[pol];
-        if (!etd) continue;
-
-        const existing = vaActual[bkg.bkg_no] || {};
-        const changed = existing.actual_etd !== etd;
-        vaActual[bkg.bkg_no] = {
-          ...existing,
-          actual_etd: etd,
-          vessel_name: bkg.vessel_name,
-          carrier: 'JIN JIANG',
-          pol: bkg.pol,
-          scheduled_etd: existing.scheduled_etd || bkg.etd || etd,
-          confirmed: true,
-          voyage: matched.voyage,
-          note: `jinjiangshipping.jp 自動確認済み${changed?' (ETD変更)':''}`,
-          updated_at: nowStr,
-        };
-        jjUpdated++;
-      }
-
-      if (jjUpdated > 0) {
-        const enc3 = btoa(unescape(encodeURIComponent(JSON.stringify(vaActual,null,2))));
-        await fetch('https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/vessel_actual.json',{
-          method:'PUT', headers:{'Authorization':`token ${tok}`,'Content-Type':'application/json'},
-          body:JSON.stringify({message:`JIN JIANG VSS auto-update ${nowStr} (${jjUpdated}件)`,content:enc3,sha:vaSha})
-        });
-        console.log(`✅ JIN JIANG ${jjUpdated}件更新`);
-      }
-    } catch(jjErr) {
-      console.warn('JIN JIANG VSS update skipped:', jjErr.message);
-    }
-    // ────────────────────────────────────────────────────────────────
-
 
     // ③ vessel_actual.json 재로드 + ④ 화면 갱신
     await loadActualData();
