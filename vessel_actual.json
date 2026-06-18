@@ -1,4 +1,45 @@
 {
+  "271264937": {
+    "actual_etd": "2026-06-29",
+    "vessel_name": "MAERSK NARVIK 626S",
+    "carrier": "MAERSK",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-06-29",
+    "confirmed": false,
+    "voyage": "624N/626S",
+    "updated_at": "2026-06-16 01:11"
+  },
+  "271796540": {
+    "actual_etd": "2026-06-28",
+    "vessel_name": "MAERSK NARVIK 626S",
+    "carrier": "MAERSK",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-06-28",
+    "confirmed": false,
+    "voyage": "624N/626S",
+    "updated_at": "2026-06-16 01:11"
+  },
+  "271907556": {
+    "actual_etd": "2026-06-29",
+    "vessel_name": "MAERSK NARVIK 626S",
+    "carrier": "MAERSK",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-06-29",
+    "confirmed": false,
+    "voyage": "624N/626S",
+    "updated_at": "2026-06-16 01:11"
+  },
+  "2330595010": {
+    "actual_etd": "2026-06-24",
+    "vessel_name": "IRENES RAINBOW 032S",
+    "carrier": "OOCL",
+    "pol": "TAKAMATSU",
+    "scheduled_etd": "2026-06-24",
+    "confirmed": false,
+    "voyage": "031N/032S",
+    "note": "vessel-schedule-service.com OOCL ç¢ºèª (KOBE 6/24 åºæ¸¯)",
+    "updated_at": "2026-06-16 05:07"
+  },
   "HASLJ01260500700": {
     "actual_etd": "2026-06-12",
     "vessel_name": "HONOR GLORY 2620W",
@@ -247,7 +288,7 @@
     "scheduled_etd": "2026-06-25",
     "confirmed": false,
     "voyage": "2621N",
-    "note": "要確認 toyoshingo.com/dongjin",
+    "note": "è¦ç¢ºèª toyoshingo.com/dongjin",
     "updated_at": "2026-06-18 22:39"
   },
   "NGJF2600111": {
@@ -660,36 +701,6 @@
     "confirmed": false,
     "updated_at": "2026-06-16 00:02"
   },
-  "271796540": {
-    "actual_etd": "2026-06-28",
-    "vessel_name": "MAERSK NARVIK 626S",
-    "carrier": "MAERSK",
-    "pol": "OSAKA",
-    "scheduled_etd": "2026-06-28",
-    "confirmed": false,
-    "voyage": "624N/626S",
-    "updated_at": "2026-06-16 01:11"
-  },
-  "271907556": {
-    "actual_etd": "2026-06-29",
-    "vessel_name": "MAERSK NARVIK 626S",
-    "carrier": "MAERSK",
-    "pol": "KOBE",
-    "scheduled_etd": "2026-06-29",
-    "confirmed": false,
-    "voyage": "624N/626S",
-    "updated_at": "2026-06-16 01:11"
-  },
-  "271264937": {
-    "actual_etd": "2026-06-29",
-    "vessel_name": "MAERSK NARVIK 626S",
-    "carrier": "MAERSK",
-    "pol": "KOBE",
-    "scheduled_etd": "2026-06-29",
-    "confirmed": false,
-    "voyage": "624N/626S",
-    "updated_at": "2026-06-16 01:11"
-  },
   "PCJTYO26055201": {
     "actual_etd": "2026-06-24",
     "vessel_name": "HONOR OCEAN 1061W",
@@ -698,7 +709,7 @@
     "scheduled_etd": "2026-06-24",
     "confirmed": false,
     "voyage": "1061E/1061W",
-    "note": "SINOKOR 사이트에서 확인 (공동운항)",
+    "note": "SINOKOR ì¬ì´í¸ìì íì¸ (ê³µëì´í­)",
     "updated_at": "2026-06-16 02:21"
   },
   "PCJTYO26065347": {
@@ -709,7 +720,7 @@
     "scheduled_etd": "2026-06-22",
     "confirmed": false,
     "voyage": "2623E/2623W",
-    "note": "SINOKOR 사이트에서 확인 (공동운항)",
+    "note": "SINOKOR ì¬ì´í¸ìì íì¸ (ê³µëì´í­)",
     "updated_at": "2026-06-16 02:21"
   },
   "OSJJ2600025": {
@@ -720,7 +731,7 @@
     "scheduled_etd": "2026-07-03",
     "confirmed": false,
     "voyage": "1063E/1063W",
-    "note": "NAMSUNG 사이트에서 확인 (공동운항 PAN)",
+    "note": "NAMSUNG ì¬ì´í¸ìì íì¸ (ê³µëì´í­ PAN)",
     "updated_at": "2026-06-16 02:25"
   },
   "JJCOSSGJNA66A16": {
@@ -731,8 +742,8 @@
     "scheduled_etd": "2026-06-12",
     "confirmed": true,
     "voyage": "2624E/2624W",
-    "note": "jinjiangshipping.com 確認済み",
-    "updated_at": "2026-06-16 02:54"
+    "note": "jinjiangshipping.jp 自動確認済み",
+    "updated_at": "2026-06-18 22:57"
   },
   "JJCOSSGJNA66A12": {
     "actual_etd": "2026-06-12",
@@ -742,8 +753,8 @@
     "scheduled_etd": "2026-06-12",
     "confirmed": true,
     "voyage": "2624E/2624W",
-    "note": "jinjiangshipping.com 確認済み",
-    "updated_at": "2026-06-16 02:54"
+    "note": "jinjiangshipping.jp 自動確認済み",
+    "updated_at": "2026-06-18 22:57"
   },
   "JJCNATALNA66A12": {
     "actual_etd": "2026-06-19",
@@ -753,7 +764,7 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": false,
     "voyage": "2624E/2624W",
-    "note": "要確認 (HDS搬入予定)",
+    "note": "è¦ç¢ºèª (HDSæ¬å¥äºå®)",
     "updated_at": "2026-06-16 02:54"
   },
   "JJCOSLCJNA66A06": {
@@ -762,9 +773,10 @@
     "carrier": "JIN JIANG",
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-19",
-    "confirmed": false,
+    "confirmed": true,
     "voyage": "2625E/2625W",
-    "updated_at": "2026-06-16 02:54"
+    "updated_at": "2026-06-18 22:57",
+    "note": "jinjiangshipping.jp 自動確認済み"
   },
   "JJCOSLCJNA66A09": {
     "actual_etd": "2026-06-19",
@@ -772,31 +784,21 @@
     "carrier": "JIN JIANG",
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-19",
-    "confirmed": false,
+    "confirmed": true,
     "voyage": "2625E/2625W",
-    "updated_at": "2026-06-16 02:54"
+    "updated_at": "2026-06-18 22:57",
+    "note": "jinjiangshipping.jp 自動確認済み"
   },
   "JJCHAHPJNA66A07": {
-    "actual_etd": "2026-06-27",
+    "actual_etd": "2026-06-28",
     "vessel_name": "GLORY GUANDONG 2625S",
     "carrier": "JIN JIANG",
     "pol": "HAKATA",
     "scheduled_etd": "2026-06-22",
     "confirmed": true,
     "voyage": "2625N/2625S",
-    "note": "jinjiangshipping.jp 上海航路 来週 HAKATA 6/27-6/29 Delay確認済み",
-    "updated_at": "2026-06-18 22:49"
-  },
-  "2330595010": {
-    "actual_etd": "2026-06-24",
-    "vessel_name": "IRENES RAINBOW 032S",
-    "carrier": "OOCL",
-    "pol": "TAKAMATSU",
-    "scheduled_etd": "2026-06-24",
-    "confirmed": false,
-    "voyage": "031N/032S",
-    "note": "vessel-schedule-service.com OOCL 確認 (KOBE 6/24 出港)",
-    "updated_at": "2026-06-16 05:07"
+    "note": "jinjiangshipping.jp 自動確認済み (ETD変更)",
+    "updated_at": "2026-06-18 22:57"
   },
   "ILN0052014948": {
     "actual_etd": "2026-06-11",
@@ -806,7 +808,7 @@
     "scheduled_etd": "2026-06-16",
     "confirmed": true,
     "voyage": "109N/110S",
-    "note": "ehime-ocean.co.jp Actual確認済み",
+    "note": "ehime-ocean.co.jp Actualç¢ºèªæ¸ã¿",
     "updated_at": "2026-06-16 05:07"
   },
   "ILN0052014949": {
@@ -817,7 +819,7 @@
     "scheduled_etd": "2026-06-22",
     "confirmed": false,
     "voyage": "265N/265S",
-    "note": "要確認 ehime-ocean.co.jp",
+    "note": "è¦ç¢ºèª ehime-ocean.co.jp",
     "updated_at": "2026-06-16 05:07"
   },
   "ILN0052015007": {
@@ -828,7 +830,7 @@
     "scheduled_etd": "2026-06-27",
     "confirmed": false,
     "voyage": "266N/266S",
-    "note": "要確認 ehime-ocean.co.jp",
+    "note": "è¦ç¢ºèª ehime-ocean.co.jp",
     "updated_at": "2026-06-16 05:07"
   },
   "ILN0052014950": {
@@ -839,7 +841,7 @@
     "scheduled_etd": "2026-06-29",
     "confirmed": false,
     "voyage": "111N/111S",
-    "note": "要確認 ehime-ocean.co.jp",
+    "note": "è¦ç¢ºèª ehime-ocean.co.jp",
     "updated_at": "2026-06-16 05:07"
   },
   "SNKO040260600786": {
@@ -860,8 +862,8 @@
     "scheduled_etd": "2026-06-26",
     "confirmed": true,
     "voyage": "2626E/2626W",
-    "note": "jinjiangshipping.jp 上海航路 来週 OSAKA 6/25-6/26確認済み",
-    "updated_at": "2026-06-18 22:49"
+    "note": "jinjiangshipping.jp 自動確認済み",
+    "updated_at": "2026-06-18 22:57"
   },
   "JJCOSLCJNA66A07": {
     "actual_etd": "2026-06-26",
@@ -871,8 +873,8 @@
     "scheduled_etd": "2026-06-26",
     "confirmed": true,
     "voyage": "2626E/2626W",
-    "note": "jinjiangshipping.jp 上海航路 来週 OSAKA 6/25-6/26確認済み",
-    "updated_at": "2026-06-18 22:49"
+    "note": "jinjiangshipping.jp 自動確認済み",
+    "updated_at": "2026-06-18 22:57"
   },
   "JJCNATALNA66A18": {
     "actual_etd": "2026-06-26",
@@ -882,7 +884,7 @@
     "scheduled_etd": "2026-06-26",
     "confirmed": true,
     "voyage": "2625E/2625W",
-    "note": "jinjiangshipping.jp 上海航路 来週 NAHA 6/26確認済み",
+    "note": "jinjiangshipping.jp ä¸æµ·èªè·¯ æ¥é± NAHA 6/26ç¢ºèªæ¸ã¿",
     "updated_at": "2026-06-18 22:49"
   },
   "JJCHALCJNA66A04": {
@@ -893,7 +895,7 @@
     "scheduled_etd": "2026-06-29",
     "confirmed": false,
     "voyage": "2626N/2626S",
-    "note": "上海航路・青島大連航路・東南アジア航路 全て未掲載 → 要確認",
+    "note": "ä¸æµ·èªè·¯ã»éå³¶å¤§é£èªè·¯ã»æ±åã¢ã¸ã¢èªè·¯ å¨ã¦æªæ²è¼ â è¦ç¢ºèª",
     "updated_at": "2026-06-18 22:49"
   },
   "JJCHAHPJNA66A08": {
@@ -904,7 +906,7 @@
     "scheduled_etd": "2026-06-29",
     "confirmed": false,
     "voyage": "2626N/2626S",
-    "note": "上海航路・青島大連航路・東南アジア航路 全て未掲載 → 要確認",
+    "note": "ä¸æµ·èªè·¯ã»éå³¶å¤§é£èªè·¯ã»æ±åã¢ã¸ã¢èªè·¯ å¨ã¦æªæ²è¼ â è¦ç¢ºèª",
     "updated_at": "2026-06-18 22:49"
   },
   "I272246077": {
@@ -915,7 +917,7 @@
     "scheduled_etd": "2026-06-28",
     "confirmed": false,
     "voyage": "343S",
-    "note": "要確認 toyoshingo.com/yangming",
+    "note": "è¦ç¢ºèª toyoshingo.com/yangming",
     "updated_at": "2026-06-18 22:39"
   },
   "TKJJ2600052": {
@@ -926,7 +928,18 @@
     "scheduled_etd": "2026-06-25",
     "confirmed": true,
     "voyage": "2614E/2614W",
-    "note": "toyoshingo.com Departure 2026-06-25 確認済み",
+    "note": "toyoshingo.com Departure 2026-06-25 ç¢ºèªæ¸ã¿",
     "updated_at": "2026-06-18 22:39"
+  },
+  "JJCOSSGJNA66A14": {
+    "actual_etd": "2026-06-26",
+    "vessel_name": "GLORY SHENGDONG 2626W",
+    "carrier": "JIN JIANG",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-06-26",
+    "confirmed": true,
+    "voyage": "2626E/2626W",
+    "note": "jinjiangshipping.jp 自動確認済み (ETD変更)",
+    "updated_at": "2026-06-18 22:57"
   }
 }
