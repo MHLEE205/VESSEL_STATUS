@@ -37,7 +37,7 @@
     "scheduled_etd": "2026-06-24",
     "confirmed": false,
     "voyage": "031N/032S",
-    "note": "vessel-schedule-service.com OOCL ç¢ºèª (KOBE 6/24 åºæ¸¯)",
+    "note": "vessel-schedule-service.com OOCL Ã§Â¢ÂºÃ¨ÂªÂ (KOBE 6/24 Ã¥ÂÂºÃ¦Â¸Â¯)",
     "updated_at": "2026-06-16 05:07"
   },
   "HASLJ01260500700": {
@@ -288,7 +288,7 @@
     "scheduled_etd": "2026-06-25",
     "confirmed": false,
     "voyage": "2621N",
-    "note": "è¦ç¢ºèª toyoshingo.com/dongjin",
+    "note": "Ã¨Â¦ÂÃ§Â¢ÂºÃ¨ÂªÂ toyoshingo.com/dongjin",
     "updated_at": "2026-06-18 22:39"
   },
   "NGJF2600111": {
@@ -709,7 +709,7 @@
     "scheduled_etd": "2026-06-24",
     "confirmed": false,
     "voyage": "1061E/1061W",
-    "note": "SINOKOR ì¬ì´í¸ìì íì¸ (ê³µëì´í­)",
+    "note": "SINOKOR Ã¬ÂÂ¬Ã¬ÂÂ´Ã­ÂÂ¸Ã¬ÂÂÃ¬ÂÂ Ã­ÂÂÃ¬ÂÂ¸ (ÃªÂ³ÂµÃ«ÂÂÃ¬ÂÂ´Ã­ÂÂ­)",
     "updated_at": "2026-06-16 02:21"
   },
   "PCJTYO26065347": {
@@ -720,7 +720,7 @@
     "scheduled_etd": "2026-06-22",
     "confirmed": false,
     "voyage": "2623E/2623W",
-    "note": "SINOKOR ì¬ì´í¸ìì íì¸ (ê³µëì´í­)",
+    "note": "SINOKOR Ã¬ÂÂ¬Ã¬ÂÂ´Ã­ÂÂ¸Ã¬ÂÂÃ¬ÂÂ Ã­ÂÂÃ¬ÂÂ¸ (ÃªÂ³ÂµÃ«ÂÂÃ¬ÂÂ´Ã­ÂÂ­)",
     "updated_at": "2026-06-16 02:21"
   },
   "OSJJ2600025": {
@@ -731,7 +731,7 @@
     "scheduled_etd": "2026-07-03",
     "confirmed": false,
     "voyage": "1063E/1063W",
-    "note": "NAMSUNG ì¬ì´í¸ìì íì¸ (ê³µëì´í­ PAN)",
+    "note": "NAMSUNG Ã¬ÂÂ¬Ã¬ÂÂ´Ã­ÂÂ¸Ã¬ÂÂÃ¬ÂÂ Ã­ÂÂÃ¬ÂÂ¸ (ÃªÂ³ÂµÃ«ÂÂÃ¬ÂÂ´Ã­ÂÂ­ PAN)",
     "updated_at": "2026-06-16 02:25"
   },
   "JJCOSSGJNA66A16": {
@@ -742,7 +742,7 @@
     "scheduled_etd": "2026-06-12",
     "confirmed": true,
     "voyage": "2624E/2624W",
-    "note": "jinjiangshipping.jp 自動確認済み",
+    "note": "jinjiangshipping.jp èªåç¢ºèªæ¸ã¿",
     "updated_at": "2026-06-18 22:57"
   },
   "JJCOSSGJNA66A12": {
@@ -753,7 +753,7 @@
     "scheduled_etd": "2026-06-12",
     "confirmed": true,
     "voyage": "2624E/2624W",
-    "note": "jinjiangshipping.jp 自動確認済み",
+    "note": "jinjiangshipping.jp èªåç¢ºèªæ¸ã¿",
     "updated_at": "2026-06-18 22:57"
   },
   "JJCNATALNA66A12": {
@@ -762,10 +762,10 @@
     "carrier": "JIN JIANG",
     "pol": "NAHA",
     "scheduled_etd": "2026-06-19",
-    "confirmed": false,
+    "confirmed": true,
     "voyage": "2624E/2624W",
-    "note": "è¦ç¢ºèª (HDSæ¬å¥äºå®)",
-    "updated_at": "2026-06-16 02:54"
+    "note": "jinjiangshipping.jp 自動確認済み",
+    "updated_at": "2026-06-18 22:59"
   },
   "JJCOSLCJNA66A06": {
     "actual_etd": "2026-06-19",
@@ -776,7 +776,7 @@
     "confirmed": true,
     "voyage": "2625E/2625W",
     "updated_at": "2026-06-18 22:57",
-    "note": "jinjiangshipping.jp 自動確認済み"
+    "note": "jinjiangshipping.jp èªåç¢ºèªæ¸ã¿"
   },
   "JJCOSLCJNA66A09": {
     "actual_etd": "2026-06-19",
@@ -787,7 +787,7 @@
     "confirmed": true,
     "voyage": "2625E/2625W",
     "updated_at": "2026-06-18 22:57",
-    "note": "jinjiangshipping.jp 自動確認済み"
+    "note": "jinjiangshipping.jp èªåç¢ºèªæ¸ã¿"
   },
   "JJCHAHPJNA66A07": {
     "actual_etd": "2026-06-28",
@@ -797,7 +797,7 @@
     "scheduled_etd": "2026-06-22",
     "confirmed": true,
     "voyage": "2625N/2625S",
-    "note": "jinjiangshipping.jp 自動確認済み (ETD変更)",
+    "note": "jinjiangshipping.jp èªåç¢ºèªæ¸ã¿ (ETDå¤æ´)",
     "updated_at": "2026-06-18 22:57"
   },
   "ILN0052014948": {
@@ -808,7 +808,7 @@
     "scheduled_etd": "2026-06-16",
     "confirmed": true,
     "voyage": "109N/110S",
-    "note": "ehime-ocean.co.jp Actualç¢ºèªæ¸ã¿",
+    "note": "ehime-ocean.co.jp ActualÃ§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿",
     "updated_at": "2026-06-16 05:07"
   },
   "ILN0052014949": {
@@ -819,7 +819,7 @@
     "scheduled_etd": "2026-06-22",
     "confirmed": false,
     "voyage": "265N/265S",
-    "note": "è¦ç¢ºèª ehime-ocean.co.jp",
+    "note": "Ã¨Â¦ÂÃ§Â¢ÂºÃ¨ÂªÂ ehime-ocean.co.jp",
     "updated_at": "2026-06-16 05:07"
   },
   "ILN0052015007": {
@@ -830,7 +830,7 @@
     "scheduled_etd": "2026-06-27",
     "confirmed": false,
     "voyage": "266N/266S",
-    "note": "è¦ç¢ºèª ehime-ocean.co.jp",
+    "note": "Ã¨Â¦ÂÃ§Â¢ÂºÃ¨ÂªÂ ehime-ocean.co.jp",
     "updated_at": "2026-06-16 05:07"
   },
   "ILN0052014950": {
@@ -841,7 +841,7 @@
     "scheduled_etd": "2026-06-29",
     "confirmed": false,
     "voyage": "111N/111S",
-    "note": "è¦ç¢ºèª ehime-ocean.co.jp",
+    "note": "Ã¨Â¦ÂÃ§Â¢ÂºÃ¨ÂªÂ ehime-ocean.co.jp",
     "updated_at": "2026-06-16 05:07"
   },
   "SNKO040260600786": {
@@ -862,7 +862,7 @@
     "scheduled_etd": "2026-06-26",
     "confirmed": true,
     "voyage": "2626E/2626W",
-    "note": "jinjiangshipping.jp 自動確認済み",
+    "note": "jinjiangshipping.jp èªåç¢ºèªæ¸ã¿",
     "updated_at": "2026-06-18 22:57"
   },
   "JJCOSLCJNA66A07": {
@@ -873,7 +873,7 @@
     "scheduled_etd": "2026-06-26",
     "confirmed": true,
     "voyage": "2626E/2626W",
-    "note": "jinjiangshipping.jp 自動確認済み",
+    "note": "jinjiangshipping.jp èªåç¢ºèªæ¸ã¿",
     "updated_at": "2026-06-18 22:57"
   },
   "JJCNATALNA66A18": {
@@ -884,8 +884,8 @@
     "scheduled_etd": "2026-06-26",
     "confirmed": true,
     "voyage": "2625E/2625W",
-    "note": "jinjiangshipping.jp ä¸æµ·èªè·¯ æ¥é± NAHA 6/26ç¢ºèªæ¸ã¿",
-    "updated_at": "2026-06-18 22:49"
+    "note": "jinjiangshipping.jp 自動確認済み",
+    "updated_at": "2026-06-18 22:59"
   },
   "JJCHALCJNA66A04": {
     "actual_etd": "2026-06-29",
@@ -895,7 +895,7 @@
     "scheduled_etd": "2026-06-29",
     "confirmed": false,
     "voyage": "2626N/2626S",
-    "note": "ä¸æµ·èªè·¯ã»éå³¶å¤§é£èªè·¯ã»æ±åã¢ã¸ã¢èªè·¯ å¨ã¦æªæ²è¼ â è¦ç¢ºèª",
+    "note": "Ã¤Â¸ÂÃ¦ÂµÂ·Ã¨ÂÂªÃ¨Â·Â¯Ã£ÂÂ»Ã©ÂÂÃ¥Â³Â¶Ã¥Â¤Â§Ã©ÂÂ£Ã¨ÂÂªÃ¨Â·Â¯Ã£ÂÂ»Ã¦ÂÂ±Ã¥ÂÂÃ£ÂÂ¢Ã£ÂÂ¸Ã£ÂÂ¢Ã¨ÂÂªÃ¨Â·Â¯ Ã¥ÂÂ¨Ã£ÂÂ¦Ã¦ÂÂªÃ¦ÂÂ²Ã¨Â¼Â Ã¢ÂÂ Ã¨Â¦ÂÃ§Â¢ÂºÃ¨ÂªÂ",
     "updated_at": "2026-06-18 22:49"
   },
   "JJCHAHPJNA66A08": {
@@ -906,7 +906,7 @@
     "scheduled_etd": "2026-06-29",
     "confirmed": false,
     "voyage": "2626N/2626S",
-    "note": "ä¸æµ·èªè·¯ã»éå³¶å¤§é£èªè·¯ã»æ±åã¢ã¸ã¢èªè·¯ å¨ã¦æªæ²è¼ â è¦ç¢ºèª",
+    "note": "Ã¤Â¸ÂÃ¦ÂµÂ·Ã¨ÂÂªÃ¨Â·Â¯Ã£ÂÂ»Ã©ÂÂÃ¥Â³Â¶Ã¥Â¤Â§Ã©ÂÂ£Ã¨ÂÂªÃ¨Â·Â¯Ã£ÂÂ»Ã¦ÂÂ±Ã¥ÂÂÃ£ÂÂ¢Ã£ÂÂ¸Ã£ÂÂ¢Ã¨ÂÂªÃ¨Â·Â¯ Ã¥ÂÂ¨Ã£ÂÂ¦Ã¦ÂÂªÃ¦ÂÂ²Ã¨Â¼Â Ã¢ÂÂ Ã¨Â¦ÂÃ§Â¢ÂºÃ¨ÂªÂ",
     "updated_at": "2026-06-18 22:49"
   },
   "I272246077": {
@@ -917,7 +917,7 @@
     "scheduled_etd": "2026-06-28",
     "confirmed": false,
     "voyage": "343S",
-    "note": "è¦ç¢ºèª toyoshingo.com/yangming",
+    "note": "Ã¨Â¦ÂÃ§Â¢ÂºÃ¨ÂªÂ toyoshingo.com/yangming",
     "updated_at": "2026-06-18 22:39"
   },
   "TKJJ2600052": {
@@ -928,7 +928,7 @@
     "scheduled_etd": "2026-06-25",
     "confirmed": true,
     "voyage": "2614E/2614W",
-    "note": "toyoshingo.com Departure 2026-06-25 ç¢ºèªæ¸ã¿",
+    "note": "toyoshingo.com Departure 2026-06-25 Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿",
     "updated_at": "2026-06-18 22:39"
   },
   "JJCOSSGJNA66A14": {
@@ -939,7 +939,7 @@
     "scheduled_etd": "2026-06-26",
     "confirmed": true,
     "voyage": "2626E/2626W",
-    "note": "jinjiangshipping.jp 自動確認済み (ETD変更)",
+    "note": "jinjiangshipping.jp èªåç¢ºèªæ¸ã¿ (ETDå¤æ´)",
     "updated_at": "2026-06-18 22:57"
   }
 }
