@@ -372,18 +372,12 @@ def match_ehime(bookings, ehime_data, actual_map, now):
 
         # POD 확인 (vessel_actual.json의 기존 데이터 또는 bookings에서)
         existing = actual_map.get(bkg['bkg_no'], {})
-        pod = existing.get('pod', '').upper()
-        # bookings_for_vss에 pod가 없으므로 기존 note나 vessel_actual에서 추론
-        # 일단 naha_idx로 판별: Naha① = PUSAN계, Naha② = TAICHUNG계
-        # POD 정보가 없으면 기존 confirmed 데이터 유지
+        # bookings_for_vss.json의 pod 필드 사용 (VSS 업데이트 버튼이 COMPASS에서 저장)
+        pod = bkg.get('pod', '').upper()
         if not pod:
-            # vessel_name의 S/N 방향으로 추정: S=남행(TAICHUNG), N=북행(PUSAN)
-            direction = 'S' if re.search(r'\d{3}S', vessel_name.upper()) else 'N'
-            # S항차 = TAICHUNG행 = Naha②, N항차는 스킵(출항전)
-            if direction == 'S':
-                pod = 'TAICHUNG'  # 기본값
-            else:
-                continue
+            # pod 없으면 스킵 (POD 불명확하면 오매칭 방지)
+            print(f"  ⚠ {bkg['bkg_no']} POD없음 → 스킵")
+            continue
 
         # Naha 인덱스 결정
         if any(p in pod for p in NAHA1_PODS):
