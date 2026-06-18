@@ -843,8 +843,8 @@
     "scheduled_etd": "2026-06-29",
     "confirmed": true,
     "voyage": "110N/111S",
-    "note": "ehime-ocean.co.jp 110N/111S NAHA② Dep.6/29確認済み (NAHA①=OMIT)",
-    "updated_at": "2026-06-18 23:23"
+    "note": "ehime-ocean.co.jp ITX EHIME 110N/111S NAHA② POD:TAICHUNG Departure 2026-06-29確認済み",
+    "updated_at": "2026-06-18 23:29"
   },
   "SNKO040260600786": {
     "actual_etd": "2026-06-24",
