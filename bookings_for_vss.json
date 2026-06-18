@@ -441,6 +441,13 @@
     "etd": "2026-06-25"
   },
   {
+    "bkg_no": "TKJJ2600052",
+    "vessel_name": "PEGASUS PETA 2614W",
+    "carrier": "DONG YOUNG",
+    "pol": "TOKYO",
+    "etd": "2026-06-25"
+  },
+  {
     "bkg_no": "JJCOSSGJNA66A14",
     "vessel_name": "GLORY SHENGDONG 2626W",
     "carrier": "JIN JIANG",
@@ -511,6 +518,20 @@
     "etd": "2026-06-26"
   },
   {
+    "bkg_no": "JP01213798",
+    "vessel_name": "SUNNY DAISY 2607W",
+    "carrier": "KMTC",
+    "pol": "ISHIKARI",
+    "etd": "2026-06-26"
+  },
+  {
+    "bkg_no": "TYOGC4337500",
+    "vessel_name": "MIYARABI II 2613W",
+    "carrier": "ONE",
+    "pol": "NAHA",
+    "etd": "2026-06-26"
+  },
+  {
     "bkg_no": "SNKO040260600370",
     "vessel_name": "HANSUNG WEIHAI 2634W",
     "carrier": "SINOKOR",
@@ -539,6 +560,13 @@
     "etd": "2026-06-27"
   },
   {
+    "bkg_no": "PCJTYO26065357",
+    "vessel_name": "STAR VOYAGER 2625W",
+    "carrier": "PAN OCEAN",
+    "pol": "TOKYO",
+    "etd": "2026-06-27"
+  },
+  {
     "bkg_no": "SGM26E00149",
     "vessel_name": "STAR CHASER 2607W",
     "carrier": "NAMSUNG",
@@ -557,6 +585,41 @@
     "vessel_name": "MAERSK NARVIK 626S",
     "carrier": "MAERSK",
     "pol": "OSAKA",
+    "etd": "2026-06-28"
+  },
+  {
+    "bkg_no": "I272244943",
+    "vessel_name": "IBN AL ABBAR 343S",
+    "carrier": "YANGMING",
+    "pol": "TOKYO",
+    "etd": "2026-06-28"
+  },
+  {
+    "bkg_no": "AMP0554427",
+    "vessel_name": "CNC SATURN 0CG7HS1NC",
+    "carrier": "CNC",
+    "pol": "TOKYO",
+    "etd": "2026-06-28"
+  },
+  {
+    "bkg_no": "JP01215063",
+    "vessel_name": "TY INCHEON 2616W",
+    "carrier": "KMTC",
+    "pol": "NAGOYA",
+    "etd": "2026-06-28"
+  },
+  {
+    "bkg_no": "JP01215110",
+    "vessel_name": "TY INCHEON 2616W",
+    "carrier": "KMTC",
+    "pol": "NAGOYA",
+    "etd": "2026-06-28"
+  },
+  {
+    "bkg_no": "A07GX13316",
+    "vessel_name": "WAN HAI 325 S060",
+    "carrier": "INTERASIA",
+    "pol": "TOKYO",
     "etd": "2026-06-28"
   },
   {
@@ -592,6 +655,27 @@
     "vessel_name": "MAERSK NARVIK 626S",
     "carrier": "MAERSK",
     "pol": "KOBE",
+    "etd": "2026-06-29"
+  },
+  {
+    "bkg_no": "AMP0551803",
+    "vessel_name": "CMA CGM FORT SAINT CHARLES 0IZOTS1NC",
+    "carrier": "CNC",
+    "pol": "YOKOHAMA",
+    "etd": "2026-06-29"
+  },
+  {
+    "bkg_no": "A07GX14139",
+    "vessel_name": "YM CERTAINTY S086",
+    "carrier": "INTERASIA",
+    "pol": "HAKATA",
+    "etd": "2026-06-29"
+  },
+  {
+    "bkg_no": "JJCHAHPJNA66A08",
+    "vessel_name": "GLORY ZHENDONG 2626S",
+    "carrier": "JIN JIANG",
+    "pol": "HAKATA",
     "etd": "2026-06-29"
   },
   {
