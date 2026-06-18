@@ -1,10 +1,10 @@
-name: Update Vessel Actual ETD
+name: Update Vessel Actual ETD v4.0
 
 on:
   schedule:
-    # 매일 오전 8시 (일본시간 = UTC 23:00 전날)
-    - cron: '0 23 * * *'
-  workflow_dispatch:  # 수동 실행도 가능
+    # 매일 오전 9시 JST (= UTC 00:00)
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -12,7 +12,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -22,7 +22,15 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Run VSS update script
+    - name: Install Playwright & dependencies
+      run: |
+        pip install playwright
+        playwright install chromium
+        playwright install-deps chromium
+
+    - name: Run VSS update script v4.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.VSS_PAT }}
       run: python .github/scripts/update_vessel_actual.py
 
     - name: Commit and push if changed
@@ -33,6 +41,6 @@ jobs:
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
-          git commit -m "Auto update vessel actual ETD - $(date '+%Y-%m-%d %H:%M')"
+          git commit -m "Auto update vessel actual ETD v4.0 - $(date '+%Y-%m-%d %H:%M')"
           git push
         fi
