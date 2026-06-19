@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-VESSEL STATUS - Actual ETD Auto Update v4.2
+VESSEL STATUS - Actual ETD Auto Update v4.3
 - toyoshingo.com: urllib 직접 스크래핑 (기존 방식)
 - jinjiangshipping.jp: Playwright 브라우저로 스크래핑 (신규)
 - VOYAGE 번호 기반 정확 매칭
@@ -434,6 +434,28 @@ VSS_SERVICE_CONFIG = {
             "KOBE": 41, "HAKATA": 66, "SHIMIZU": 33, "MOJI": 63,
         }
     },
+    "MAERSK": {
+        "base": "https://vessel-schedule-service.com/maersk/vessel-schedule",
+        "ports": {
+            "TOKYO": 16, "YOKOHAMA": 14, "NAGOYA": 37, "OSAKA": 40,
+            "KOBE": 41, "HAKATA": 66, "SHIMIZU": 33, "MOJI": 63,
+        }
+    },
+    "OOCL": {
+        "base": "https://vessel-schedule-service.com/oocl/vessel-schedule",
+        "ports": {
+            "TOKYO": 16, "YOKOHAMA": 14, "NAGOYA": 37, "OSAKA": 40,
+            "KOBE": 41, "HAKATA": 66, "SHIMIZU": 33, "MOJI": 63,
+        }
+    },
+    "ONE": {
+        "base": "https://vessel-schedule-service.com/one/vessel-schedule",
+        "ports": {
+            "TOKYO": 16, "YOKOHAMA": 14, "NAGOYA": 37, "OSAKA": 40,
+            "KOBE": 41, "HAKATA": 66, "SHIMIZU": 33, "MOJI": 63,
+            "NAHA": 53,
+        }
+    },
 }
 
 def fetch_vss_service_playwright(bookings):
@@ -477,73 +499,78 @@ def fetch_vss_service_playwright(bookings):
             events.append({'vessel': vessel, 'voyage': voyage, 'etd': etd})
         return events
 
-    # KMTC 부킹 대상 포트 목록
-    kmtc_bkgs = [b for b in bookings if b.get('carrier') == 'KMTC']
-    needed_ports = list(set(b.get('pol','').upper() for b in kmtc_bkgs))
-    needed_ports = [p for p in needed_ports if p in VSS_SERVICE_CONFIG['KMTC']['ports']]
+    # 대상 선사 목록 (vessel-schedule-service.com 공통)
+    target_carriers = list(VSS_SERVICE_CONFIG.keys())
+    target_bkgs = [b for b in bookings if b.get('carrier') in target_carriers]
 
-    if not needed_ports:
+    if not target_bkgs:
         return {}
 
-    all_events = []  # {vessel, voyage, etd}
-    print(f"  KMTC 대상 포트: {needed_ports}")
+    # 선사별 × 포트별 이벤트 수집
+    all_events_by_carrier = {c: [] for c in target_carriers}
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
 
-        for port in needed_ports:
-            port_id = VSS_SERVICE_CONFIG['KMTC']['ports'][port]
-            # 4주치 (current_index 0~3) 스크래핑
-            for idx in range(4):
-                url = (f"https://vessel-schedule-service.com/kmtc/vessel-schedule"
-                       f"?tab=2&port_id={port_id}&start_week=monday&view_type=WEEK&current_index={idx}")
-                try:
-                    page.goto(url, timeout=30000)
-                    page.wait_for_selector('.vessel-name', timeout=15000)
-                    # 주 날짜 범위에서 연월 추출
-                    body_text = page.inner_text('body')
-                    date_m = re.search(r'(\d{4})/(\d{2})/\d{2}', body_text)
-                    year_month = f"{date_m.group(1)}-{date_m.group(2)}" if date_m else '2026-06'
-                    events = parse_week_events(page, year_month)
-                    all_events.extend(events)
-                    print(f"  KMTC {port} week{idx}: {len(events)}건")
-                except Exception as e:
-                    print(f"  KMTC {port} week{idx} error: {e}")
-                import time
-                time.sleep(0.5)
+        for carrier, cfg in VSS_SERVICE_CONFIG.items():
+            carrier_bkgs = [b for b in target_bkgs if b.get('carrier') == carrier]
+            if not carrier_bkgs:
+                continue
+            needed_ports = list(set(b.get('pol','').upper() for b in carrier_bkgs))
+            needed_ports = [p for p in needed_ports if p in cfg['ports']]
+            print(f"  {carrier} 대상 포트: {needed_ports}")
+
+            for port in needed_ports:
+                port_id = cfg['ports'][port]
+                for idx in range(4):
+                    url = f"{cfg['base']}?tab=2&port_id={port_id}&start_week=monday&view_type=WEEK&current_index={idx}"
+                    try:
+                        page.goto(url, timeout=30000)
+                        page.wait_for_selector('.vessel-name', timeout=15000)
+                        body_text = page.inner_text('body')
+                        date_m = re.search(r'(\d{4})/(\d{2})/\d{2}', body_text)
+                        year_month = f"{date_m.group(1)}-{date_m.group(2)}" if date_m else '2026-06'
+                        events = parse_week_events(page, year_month)
+                        all_events_by_carrier[carrier].extend(events)
+                        print(f"  {carrier} {port} week{idx}: {len(events)}건")
+                    except Exception as e:
+                        print(f"  {carrier} {port} week{idx} error: {e}")
+                    import time
+                    time.sleep(0.5)
 
         browser.close()
 
     # bkg_no별 매핑
     results = {}
     now = datetime.now().strftime('%Y-%m-%d %H:%M')
-    for bkg in kmtc_bkgs:
+    for bkg in target_bkgs:
+        carrier = bkg.get('carrier', '')
         vname = re.sub(r'[^\x20-\x7E]', ' ', bkg.get('vessel_name','')).strip().upper()
         bkg_voyage = extract_voyage(vname)
         if not bkg_voyage: continue
         base_name = re.sub(r'\s*\d{4}[EWNS]\s*$', '', vname).strip()
         base_words = [w for w in base_name.split() if len(w) > 1]
-        
+
         matched = None
-        for ev in all_events:
+        for ev in all_events_by_carrier.get(carrier, []):
             if bkg_voyage not in ev['voyage']: continue
             vn = ev['vessel'].upper()
             if all(w in vn for w in base_words):
                 matched = ev; break
-        
+
         if not matched: continue
         existing = {}
         changed = existing.get('actual_etd') != matched['etd']
         results[bkg['bkg_no']] = {
             'actual_etd': matched['etd'], 'vessel_name': bkg.get('vessel_name',''),
-            'carrier': 'KMTC', 'pol': bkg.get('pol',''),
+            'carrier': carrier, 'pol': bkg.get('pol',''),
             'scheduled_etd': bkg.get('etd', matched['etd']),
             'confirmed': False, 'voyage': matched['voyage'],
-            'note': f"vessel-schedule-service.com KMTC auto-confirmed{' (ETD changed)' if changed else ''}",
+            'note': f"vessel-schedule-service.com {carrier} auto-confirmed{' (ETD changed)' if changed else ''}",
             'updated_at': now,
         }
-        print(f"  {bkg['bkg_no']:<25} {matched['vessel'][:20]} {matched['voyage']} ETD:{matched['etd']}")
+        print(f"  {bkg['bkg_no']:<25} {carrier} {matched['vessel'][:18]} ETD:{matched['etd']}")
 
     return results
 
@@ -653,10 +680,10 @@ def main():
     ehime_results = match_ehime(bookings, ehime_data, actual_map, now) if ehime_data else {}
     print(f"EHIME OCEAN 매칭: {len(ehime_results)}건")
 
-    # ── KMTC vessel-schedule-service.com 스크래핑 ──
-    print("\n[4/4] KMTC vessel-schedule-service.com 스크래핑...")
+    # ── vessel-schedule-service.com (KMTC/MAERSK/OOCL/ONE) 스크래핑 ──
+    print("\n[4/4] vessel-schedule-service.com 스크래핑 (KMTC/MAERSK/OOCL/ONE)...")
     kmtc_results = fetch_vss_service_playwright(bookings)
-    print(f"KMTC 매칭: {len(kmtc_results)}건")
+    print(f"VSS-Service 매칭: {len(kmtc_results)}건")
 
     # 병합 후 저장
     actual_map.update(tyo_results)
