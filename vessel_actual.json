@@ -745,7 +745,7 @@
     "confirmed": true,
     "voyage": "2624E/2624W",
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-06-19 02:57"
+    "updated_at": "2026-06-20 02:29"
   },
   "JJCOSSGJNA66A12": {
     "actual_etd": "2026-06-12",
@@ -756,7 +756,7 @@
     "confirmed": true,
     "voyage": "2624E/2624W",
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-06-19 02:57"
+    "updated_at": "2026-06-20 02:29"
   },
   "JJCNATALNA66A12": {
     "actual_etd": "2026-06-19",
@@ -767,7 +767,7 @@
     "confirmed": true,
     "voyage": "2624E/2624W",
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-06-19 02:57"
+    "updated_at": "2026-06-20 02:29"
   },
   "JJCOSLCJNA66A06": {
     "actual_etd": "2026-06-19",
@@ -777,7 +777,7 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "voyage": "2625E/2625W",
-    "updated_at": "2026-06-19 02:57",
+    "updated_at": "2026-06-20 02:29",
     "note": "jinjiangshipping.jp auto-confirmed"
   },
   "JJCOSLCJNA66A09": {
@@ -788,7 +788,7 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "voyage": "2625E/2625W",
-    "updated_at": "2026-06-19 02:57",
+    "updated_at": "2026-06-20 02:29",
     "note": "jinjiangshipping.jp auto-confirmed"
   },
   "JJCHAHPJNA66A07": {
@@ -800,7 +800,7 @@
     "confirmed": true,
     "voyage": "2625N/2625S",
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-06-19 02:57"
+    "updated_at": "2026-06-20 02:29"
   },
   "ILN0052014948": {
     "actual_etd": "2026-06-30",
@@ -865,7 +865,7 @@
     "confirmed": true,
     "voyage": "2626E/2626W",
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-06-19 02:57"
+    "updated_at": "2026-06-20 02:29"
   },
   "JJCOSLCJNA66A07": {
     "actual_etd": "2026-06-26",
@@ -876,7 +876,7 @@
     "confirmed": true,
     "voyage": "2626E/2626W",
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-06-19 02:57"
+    "updated_at": "2026-06-20 02:29"
   },
   "JJCNATALNA66A18": {
     "actual_etd": "2026-06-26",
@@ -887,7 +887,7 @@
     "confirmed": true,
     "voyage": "2625E/2625W",
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-06-19 02:57"
+    "updated_at": "2026-06-20 02:29"
   },
   "JJCHALCJNA66A04": {
     "actual_etd": "2026-06-29",
@@ -942,6 +942,6 @@
     "confirmed": true,
     "voyage": "2626E/2626W",
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-06-19 02:57"
+    "updated_at": "2026-06-20 02:29"
   }
 }
