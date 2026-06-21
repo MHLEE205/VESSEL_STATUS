@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-VESSEL STATUS - Actual ETD Auto Update v4.4
+VESSEL STATUS - Actual ETD Auto Update v4.5
 - toyoshingo.com: urllib 직접 스크래핑 (기존 방식)
 - jinjiangshipping.jp: Playwright 브라우저로 스크래핑 (신규)
 - VOYAGE 번호 기반 정확 매칭
@@ -432,7 +432,7 @@ VSS_SERVICE_CONFIG = {
         "ports": {
             "TOKYO": 16, "YOKOHAMA": 14, "NAGOYA": 37, "OSAKA": 40,
             "KOBE": 41, "HAKATA": 66, "SHIMIZU": 33, "MOJI": 63,
-            "ISHIKARI": 92, "SENDAI": 19,
+            "ISHIKARI": 92, "SENDAI": 6,
         }
     },
     "MAERSK": {
