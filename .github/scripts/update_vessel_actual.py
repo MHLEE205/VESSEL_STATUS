@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-VESSEL STATUS - Actual ETD Auto Update v4.5
+VESSEL STATUS - Actual ETD Auto Update v4.6
 - toyoshingo.com: urllib 직접 스크래핑 (기존 방식)
 - jinjiangshipping.jp: Playwright 브라우저로 스크래핑 (신규)
 - VOYAGE 번호 기반 정확 매칭
@@ -24,11 +24,11 @@ VSS_CONFIG = {
     },
     "HEUNG A": {
         "base": "https://www.toyoshingo.com/heunga/index.php",
-        "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41, "SENDAI":19, "AKITA":17, "YOKOHAMA":13, "ISHIKARI":7}
+        "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41, "SENDAI":19, "AKITA":17, "YOKOHAMA":13, "ISHIKARI":7, "KOBE":41}
     },
     "HEUNG-A": {
         "base": "https://www.toyoshingo.com/heunga/index.php",
-        "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41, "SENDAI":19, "AKITA":17, "YOKOHAMA":13, "ISHIKARI":7}
+        "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41, "SENDAI":19, "AKITA":17, "YOKOHAMA":13, "ISHIKARI":7, "KOBE":41}
     },
     "NAMSUNG": {
         "base": "https://www.toyoshingo.com/namsung/index.php",
@@ -56,7 +56,7 @@ VSS_CONFIG = {
     },
     "CNC": {
         "base": "https://www.toyoshingo.com/cmacgm/index.php",
-        "ports": {"TOKYO":13, "YOKOHAMA":11, "NAGOYA":35, "KOBE":41}
+        "ports": {"TOKYO":13, "YOKOHAMA":11, "NAGOYA":35, "KOBE":41, "OSAKA":11}
     },
 }
 
@@ -433,6 +433,13 @@ VSS_SERVICE_CONFIG = {
             "TOKYO": 16, "YOKOHAMA": 14, "NAGOYA": 37, "OSAKA": 40,
             "KOBE": 41, "HAKATA": 66, "SHIMIZU": 33, "MOJI": 63,
             "ISHIKARI": 92, "SENDAI": 6,
+        }
+    },
+    "INTERASIA": {
+        "base": "https://vessel-schedule-service.com/interasia/vessel-schedule",
+        "ports": {
+            "TOKYO": 16, "YOKOHAMA": 14, "NAGOYA": 37, "OSAKA": 40,
+            "KOBE": 41, "HAKATA": 66, "SHIMIZU": 33,
         }
     },
     "MAERSK": {
