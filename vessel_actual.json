@@ -55,8 +55,10 @@
     "carrier": "HEUNG A",
     "pol": "OSAKA",
     "scheduled_etd": "2026-07-01",
-    "confirmed": false,
-    "updated_at": "2026-06-15 23:45"
+    "confirmed": true,
+    "updated_at": "2026-06-21 23:33",
+    "voyage": "2624E/2624W",
+    "note": "toyoshingo.com/heunga KOBE Sailing:2026-07-01"
   },
   "I272244680": {
     "actual_etd": "2026-06-12",
@@ -124,7 +126,9 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-30",
     "confirmed": false,
-    "updated_at": "2026-06-15 23:45"
+    "updated_at": "2026-06-21 23:33",
+    "voyage": "428S",
+    "note": "COMPASS ETD:2026-06-30 VSS未確認"
   },
   "I272245627": {
     "actual_etd": "2026-06-22",
@@ -197,7 +201,9 @@
     "pol": "HAKATA",
     "scheduled_etd": "2026-06-26",
     "confirmed": false,
-    "updated_at": "2026-06-15 23:45"
+    "updated_at": "2026-06-21 23:33",
+    "voyage": "N085/S086",
+    "note": "vessel-schedule-service.com/interasia VSS確認 HAKATA未登載 COMPASS ETD:2026-07-02"
   },
   "A07GX11309": {
     "actual_etd": "2026-07-02",
@@ -206,7 +212,9 @@
     "pol": "HAKATA",
     "scheduled_etd": "2026-06-26",
     "confirmed": false,
-    "updated_at": "2026-06-15 23:45"
+    "updated_at": "2026-06-21 23:33",
+    "voyage": "N085/S086",
+    "note": "vessel-schedule-service.com/interasia VSS確認 HAKATA未登載 COMPASS ETD:2026-07-02"
   },
   "A07GX12781": {
     "actual_etd": "2026-06-17",
@@ -607,13 +615,15 @@
     "updated_at": "2026-06-15 23:57"
   },
   "AMP0552330": {
-    "actual_etd": "2026-06-28",
+    "actual_etd": "2026-06-26",
     "vessel_name": "CNC SATURN 0CG7HS1NC",
     "carrier": "CNC",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-26",
     "confirmed": false,
-    "updated_at": "2026-06-15 23:57"
+    "updated_at": "2026-06-21 23:33",
+    "voyage": "0CG7HS1NC",
+    "note": "toyoshingo.com/cmacgm 未登載 COMPASS ETD:2026-06-26"
   },
   "AMP0551760": {
     "actual_etd": "2026-06-29",
@@ -622,7 +632,9 @@
     "pol": "YOKOHAMA",
     "scheduled_etd": "2026-06-29",
     "confirmed": false,
-    "updated_at": "2026-06-15 23:57"
+    "updated_at": "2026-06-21 23:33",
+    "voyage": "0IZOTS1NC",
+    "note": "toyoshingo.com/cmacgm 未登載 COMPASS ETD:2026-06-29"
   },
   "AMP0550427": {
     "actual_etd": "2026-06-30",
@@ -916,15 +928,15 @@
     "updated_at": "2026-06-21 22:59"
   },
   "I272246077": {
-    "actual_etd": "2026-06-28",
+    "actual_etd": "2026-06-29",
     "vessel_name": "IBN AL ABBAR 343S",
     "carrier": "YANGMING",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-28",
-    "confirmed": false,
-    "voyage": "343S",
-    "note": "Ã¨Â¦ÂÃ§Â¢ÂºÃ¨ÂªÂ toyoshingo.com/yangming",
-    "updated_at": "2026-06-18 22:39"
+    "confirmed": true,
+    "voyage": "------/342S",
+    "note": "toyoshingo.com/yangming TOKYO Sailing:2026-06-29",
+    "updated_at": "2026-06-21 23:33"
   },
   "TKJJ2600052": {
     "actual_etd": "2026-06-25",
@@ -980,5 +992,82 @@
     "voyage": "2616W",
     "note": "COMPASS ETD:2026-06-28 VSS未確認",
     "updated_at": "2026-06-21 23:15"
+  },
+  "I272244943": {
+    "actual_etd": "2026-06-29",
+    "vessel_name": "IBN AL ABBAR 343S",
+    "carrier": "YANGMING",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-28",
+    "confirmed": true,
+    "voyage": "------/342S",
+    "note": "toyoshingo.com/yangming TOKYO Sailing:2026-06-29",
+    "updated_at": "2026-06-21 23:33"
+  },
+  "A07GX14139": {
+    "actual_etd": "2026-06-29",
+    "vessel_name": "YM CERTAINTY S086",
+    "carrier": "INTERASIA",
+    "pol": "HAKATA",
+    "scheduled_etd": "2026-06-29",
+    "confirmed": false,
+    "voyage": "N085/S086",
+    "note": "vessel-schedule-service.com/interasia VSS確認 HAKATA未登載 COMPASS ETD:2026-06-29",
+    "updated_at": "2026-06-21 23:33"
+  },
+  "A07GX13316": {
+    "actual_etd": "2026-06-28",
+    "vessel_name": "WAN HAI 325 S060",
+    "carrier": "INTERASIA",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-28",
+    "confirmed": false,
+    "voyage": "S060",
+    "note": "vessel-schedule-service.com/interasia VSS確認 TOKYO未登載 COMPASS ETD:2026-06-28",
+    "updated_at": "2026-06-21 23:33"
+  },
+  "AMP0554427": {
+    "actual_etd": "2026-06-28",
+    "vessel_name": "CNC SATURN 0CG7HS1NC",
+    "carrier": "CNC",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-28",
+    "confirmed": false,
+    "voyage": "0CG7HS1NC",
+    "note": "toyoshingo.com/cmacgm 未登載 COMPASS ETD:2026-06-28",
+    "updated_at": "2026-06-21 23:33"
+  },
+  "AMP0551803": {
+    "actual_etd": "2026-06-29",
+    "vessel_name": "CMA CGM FORT SAINT CHARLES 0IZOTS1NC",
+    "carrier": "CNC",
+    "pol": "YOKOHAMA",
+    "scheduled_etd": "2026-06-29",
+    "confirmed": false,
+    "voyage": "0IZOTS1NC",
+    "note": "toyoshingo.com/cmacgm 未登載 COMPASS ETD:2026-06-29",
+    "updated_at": "2026-06-21 23:33"
+  },
+  "TYOGC4337500": {
+    "actual_etd": "2026-06-26",
+    "vessel_name": "MIYARABI II 2613W",
+    "carrier": "ONE",
+    "pol": "NAHA",
+    "scheduled_etd": "2026-06-26",
+    "confirmed": false,
+    "voyage": "2613W",
+    "note": "toyoshingo.com/one 未登載 COMPASS ETD:2026-06-26",
+    "updated_at": "2026-06-21 23:33"
+  },
+  "PCJTYO26065357": {
+    "actual_etd": "2026-06-27",
+    "vessel_name": "STAR VOYAGER 2625W",
+    "carrier": "PAN OCEAN",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-27",
+    "confirmed": false,
+    "voyage": "2625W",
+    "note": "COMPASS ETD:2026-06-27 VSS未確認(公同運航)",
+    "updated_at": "2026-06-21 23:33"
   }
 }
