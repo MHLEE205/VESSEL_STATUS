@@ -943,5 +943,16 @@
     "voyage": "2626E/2626W",
     "note": "jinjiangshipping.jp auto-confirmed",
     "updated_at": "2026-06-21 02:44"
+  },
+  "JP01213798": {
+    "actual_etd": "2026-06-28",
+    "vessel_name": "SUNNY DAISY 2607W",
+    "carrier": "KMTC",
+    "pol": "ISHIKARI",
+    "scheduled_etd": "2026-06-26",
+    "confirmed": true,
+    "voyage": "2607E/2607W NTP",
+    "note": "vessel-schedule-service.com KMTC ISHIKARI(92) 2026-06-28確認済み",
+    "updated_at": "2026-06-21 22:55"
   }
 }
