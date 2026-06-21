@@ -366,9 +366,10 @@
     "carrier": "SINOKOR",
     "pol": "MIZUSHIMA",
     "scheduled_etd": "2026-06-27",
-    "confirmed": false,
+    "confirmed": true,
     "voyage": "2634E/2634W",
-    "updated_at": "2026-06-16 00:57"
+    "updated_at": "2026-06-21 23:15",
+    "note": "toyoshingo.com/sinokor MIZUSHIMA Sailing:2026-06-27"
   },
   "SNKO040260600395": {
     "actual_etd": "2026-06-23",
@@ -389,34 +390,37 @@
     "updated_at": "2026-06-15 23:45"
   },
   "SGM26E00148": {
-    "actual_etd": "2026-06-27",
+    "actual_etd": "2026-06-28",
     "vessel_name": "SUNNY VIOLET 2607W",
     "carrier": "NAMSUNG",
     "pol": "SENDAI",
     "scheduled_etd": "2026-06-24",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:45",
-    "voyage": "2607E/2607W"
+    "confirmed": true,
+    "updated_at": "2026-06-21 23:15",
+    "voyage": "2607E/2607W",
+    "note": "toyoshingo.com/namsung SENDAI Sailing:2026-06-28"
   },
   "SGM26E00149": {
-    "actual_etd": "2026-07-01",
-    "vessel_name": "STAR CHASER 2607W",
+    "actual_etd": "2026-07-04",
+    "vessel_name": "STAR EXPRESS 2608W",
     "carrier": "NAMSUNG",
     "pol": "SENDAI",
     "scheduled_etd": "2026-06-28",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:45",
-    "voyage": "2607E/2607W"
+    "confirmed": true,
+    "updated_at": "2026-06-21 23:15",
+    "voyage": "2608E/2608W",
+    "note": "toyoshingo.com/namsung SENDAI Sailing:2026-07-04 (COMPASS vessel_name修正要)"
   },
   "JP01214379": {
-    "actual_etd": "2026-07-01",
-    "vessel_name": "STAR CHASER 2607W",
+    "actual_etd": "2026-06-28",
+    "vessel_name": "SUNNY CAMELLIA 2608W",
     "carrier": "KMTC",
     "pol": "SENDAI",
     "scheduled_etd": "2026-07-01",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:45",
-    "voyage": "2607E/2607W"
+    "confirmed": true,
+    "updated_at": "2026-06-21 23:15",
+    "voyage": "2608E/2608W",
+    "note": "toyoshingo.com/kmtc NAGOYA Sailing:2026-06-28 (COMPASS vessel_name修正要:SUNNY CAMELLIA)"
   },
   "NMG2606-05": {
     "actual_etd": "2026-06-19",
@@ -954,5 +958,27 @@
     "voyage": "2607E/2607W NTP",
     "note": "vessel-schedule-service.com KMTC ISHIKARI(92) 2026-06-28確認済み",
     "updated_at": "2026-06-21 22:55"
+  },
+  "JP01215063": {
+    "actual_etd": "2026-06-28",
+    "vessel_name": "TY INCHEON 2616W",
+    "carrier": "KMTC",
+    "pol": "NAGOYA",
+    "scheduled_etd": "2026-06-28",
+    "confirmed": false,
+    "voyage": "2616W",
+    "note": "COMPASS ETD:2026-06-28 VSS未確認",
+    "updated_at": "2026-06-21 23:15"
+  },
+  "JP01215110": {
+    "actual_etd": "2026-06-28",
+    "vessel_name": "TY INCHEON 2616W",
+    "carrier": "KMTC",
+    "pol": "NAGOYA",
+    "scheduled_etd": "2026-06-28",
+    "confirmed": false,
+    "voyage": "2616W",
+    "note": "COMPASS ETD:2026-06-28 VSS未確認",
+    "updated_at": "2026-06-21 23:15"
   }
 }
