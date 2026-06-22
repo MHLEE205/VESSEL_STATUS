@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-VESSEL STATUS - Actual ETD Auto Update v4.8
+VESSEL STATUS - Actual ETD Auto Update v4.9
 - toyoshingo.com: urllib 직접 스크래핑 (기존 방식)
 - jinjiangshipping.jp: Playwright 브라우저로 스크래핑 (신규)
 - VOYAGE 번호 기반 정확 매칭
 """
-import json, re, sys, time, urllib.request, os, base64
+import json
+import os, re, sys, time, urllib.request, os, base64
 from datetime import datetime
 
 GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN', '')
@@ -677,12 +678,97 @@ def github_put(path, content_str, message, sha=None):
     with urllib.request.urlopen(req, timeout=15) as res:
         return json.load(res)
 
+def fetch_compass_bookings():
+    """
+    COMPASS(Dataverse) API에서 직접 최신 부킹 목록을 취득
+    환경변수 COMPASS_TOKEN이 있으면 사용, 없으면 bookings_for_vss.json 폴백
+    """
+    token = os.environ.get('COMPASS_TOKEN', '')
+    if not token:
+        print("COMPASS_TOKEN 없음 → bookings_for_vss.json 사용")
+        return None
+
+    dv_api = "https://orgde512c6f.crm7.dynamics.com/api/data/v9.2"
+    today = datetime.now()
+    from_date = (today - timedelta(days=30)).strftime('%Y-%m-%d')
+
+    headers = {
+        'Authorization': f'Bearer {token}',
+        'OData-MaxVersion': '4.0',
+        'OData-Version': '4.0',
+        'Accept': 'application/json',
+    }
+
+    # 부킹 취득
+    url = (f"{dv_api}/cr49f_bookings"
+           f"?$filter=cr49f_etd ge {from_date}T00:00:00Z"
+           f"&$select=cr49f_booking_no,cr49f_main_ship_name,cr49f_etd,"
+           f"_cr49f_carrier_id_value,_cr49f_region_japan_id_value,_cr49f_region_id_value"
+           f"&$top=500&$orderby=cr49f_etd asc")
+
+    try:
+        import urllib.request as urlreq
+        req = urlreq.Request(url, headers=headers)
+        with urlreq.urlopen(req, timeout=30) as r:
+            data = json.loads(r.read().decode('utf-8'))
+        bkgs_raw = data.get('value', [])
+    except Exception as e:
+        print(f"COMPASS API 오류: {e}")
+        return None
+
+    # 마스터 GUID 일괄 조회
+    c_guids  = list(set(b.get('_cr49f_carrier_id_value','') for b in bkgs_raw if b.get('_cr49f_carrier_id_value')))
+    p_guids  = list(set(b.get('_cr49f_region_japan_id_value','') for b in bkgs_raw if b.get('_cr49f_region_japan_id_value')))
+    pod_guids= list(set(b.get('_cr49f_region_id_value','') for b in bkgs_raw if b.get('_cr49f_region_id_value')))
+
+    def fetch_master(entity_set, guid, field):
+        try:
+            u = f"{dv_api}/{entity_set}({guid})?$select={field}"
+            req = urlreq.Request(u, headers=headers)
+            with urlreq.urlopen(req, timeout=10) as r:
+                return json.loads(r.read().decode('utf-8')).get(field,'')
+        except:
+            return ''
+
+    c_map   = {g: fetch_master('crcf9_carriers',g,'crcf9_carrier') for g in c_guids}
+    p_map   = {g: fetch_master('crcf9_region_japans',g,'crcf9_pol') for g in p_guids}
+    pod_map = {g: fetch_master('cr49f_regions',g,'cr49f_pod') for g in pod_guids}
+
+    bookings = []
+    for b in bkgs_raw:
+        carrier = c_map.get(b.get('_cr49f_carrier_id_value',''),'')
+        pol     = p_map.get(b.get('_cr49f_region_japan_id_value',''),'')
+        pod     = pod_map.get(b.get('_cr49f_region_id_value',''),'')
+        vessel  = b.get('cr49f_main_ship_name','')
+        etd     = (b.get('cr49f_etd','') or '')[:10]
+        bkg_no  = b.get('cr49f_booking_no','')
+        if carrier and pol and vessel and bkg_no:
+            bookings.append({'bkg_no':bkg_no,'vessel_name':vessel,'carrier':carrier,'pol':pol,'pod':pod,'etd':etd})
+
+    print(f"COMPASS API 취득: {len(bookings)}건")
+    return bookings
+
+
 def main():
     now = datetime.now().strftime('%Y-%m-%d %H:%M')
-    print(f"=== Vessel Actual ETD Update v4.0 - {now} ===")
+    print(f"=== Vessel Actual ETD Auto Update v4.9 - {now} ===")
 
-    bkg_data = github_get('bookings_for_vss.json')
-    bookings = json.loads(base64.b64decode(bkg_data['content']).decode('utf-8'))
+    # ── COMPASS 직접 조회 (COMPASS_TOKEN 있으면) / 없으면 bookings_for_vss.json ──
+    bookings = fetch_compass_bookings()
+    if bookings is None:
+        bkg_data = github_get('bookings_for_vss.json')
+        bookings = json.loads(base64.b64decode(bkg_data['content']).decode('utf-8'))
+        print(f"bookings_for_vss.json 사용: {len(bookings)}건")
+    else:
+        # COMPASS에서 취득한 최신 부킹을 bookings_for_vss.json에도 저장
+        try:
+            bv_data = github_get('bookings_for_vss.json')
+            bv_sha  = bv_data['sha']
+            bv_enc  = base64.b64encode(json.dumps(bookings, ensure_ascii=False, indent=2).encode()).decode()
+            github_put('bookings_for_vss.json', bv_enc, bv_sha, f'Auto sync bookings {now}')
+            print(f"bookings_for_vss.json 更新: {len(bookings)}건")
+        except Exception as e:
+            print(f"bookings_for_vss.json 更新 스킵: {e}")
     print(f"부킹 목록: {len(bookings)}건")
 
     actual_data = github_get('vessel_actual.json')
