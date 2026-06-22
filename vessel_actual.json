@@ -5,9 +5,10 @@
     "carrier": "MAERSK",
     "pol": "KOBE",
     "scheduled_etd": "2026-06-29",
-    "confirmed": false,
-    "voyage": "624N/626S",
-    "updated_at": "2026-06-16 01:11"
+    "confirmed": true,
+    "voyage": "624N/626S I88",
+    "updated_at": "2026-06-22 00:48",
+    "note": "vessel-schedule-service.com/maersk KOBE 6/29確認済み"
   },
   "271796540": {
     "actual_etd": "2026-06-28",
@@ -15,9 +16,10 @@
     "carrier": "MAERSK",
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-28",
-    "confirmed": false,
-    "voyage": "624N/626S",
-    "updated_at": "2026-06-16 01:11"
+    "confirmed": true,
+    "voyage": "624N/626S I88",
+    "updated_at": "2026-06-22 00:48",
+    "note": "vessel-schedule-service.com/maersk OSAKA 6/28確認済み"
   },
   "271907556": {
     "actual_etd": "2026-06-29",
@@ -25,9 +27,10 @@
     "carrier": "MAERSK",
     "pol": "KOBE",
     "scheduled_etd": "2026-06-29",
-    "confirmed": false,
-    "voyage": "624N/626S",
-    "updated_at": "2026-06-16 01:11"
+    "confirmed": true,
+    "voyage": "624N/626S I88",
+    "updated_at": "2026-06-22 00:48",
+    "note": "vessel-schedule-service.com/maersk KOBE 6/29確認済み"
   },
   "2330595010": {
     "actual_etd": "2026-06-24",
@@ -1069,5 +1072,16 @@
     "voyage": "2625W",
     "note": "COMPASS ETD:2026-06-27 VSS未確認(公同運航)",
     "updated_at": "2026-06-21 23:33"
+  },
+  "271855762": {
+    "actual_etd": "2026-06-28",
+    "vessel_name": "MAERSK NARVIK 626S",
+    "carrier": "MAERSK",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-06-28",
+    "confirmed": true,
+    "voyage": "624N/626S I88",
+    "note": "vessel-schedule-service.com/maersk OSAKA 6/28確認済み",
+    "updated_at": "2026-06-22 00:48"
   }
 }
