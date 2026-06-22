@@ -209,15 +209,15 @@
     "note": "vessel-schedule-service.com/interasia VSS確認 HAKATA未登載 COMPASS ETD:2026-07-02"
   },
   "A07GX11309": {
-    "actual_etd": "2026-07-02",
-    "vessel_name": "YM CERTAINTY S086",
+    "actual_etd": "2026-07-08",
+    "vessel_name": "TS GUANGZHOU S610",
     "carrier": "INTERASIA",
     "pol": "HAKATA",
     "scheduled_etd": "2026-06-26",
-    "confirmed": false,
-    "updated_at": "2026-06-21 23:33",
-    "voyage": "N085/S086",
-    "note": "vessel-schedule-service.com/interasia VSS確認 HAKATA未登載 COMPASS ETD:2026-07-02"
+    "confirmed": true,
+    "voyage": "N609/S610 PAS",
+    "note": "vessel-schedule-service.com/interasia HAKATA ETD:2026-07-08確認済み",
+    "updated_at": "2026-06-22 06:46"
   },
   "A07GX12781": {
     "actual_etd": "2026-06-17",
@@ -1012,15 +1012,15 @@
     "updated_at": "2026-06-21 23:33"
   },
   "A07GX14139": {
-    "actual_etd": "2026-06-29",
-    "vessel_name": "YM CERTAINTY S086",
+    "actual_etd": "2026-07-08",
+    "vessel_name": "TS GUANGZHOU S610",
     "carrier": "INTERASIA",
     "pol": "HAKATA",
     "scheduled_etd": "2026-06-29",
-    "confirmed": false,
-    "voyage": "N085/S086",
-    "note": "vessel-schedule-service.com/interasia VSS確認 HAKATA未登載 COMPASS ETD:2026-06-29",
-    "updated_at": "2026-06-21 23:33"
+    "confirmed": true,
+    "voyage": "N609/S610 PAS",
+    "note": "vessel-schedule-service.com/interasia HAKATA ETD:2026-07-08確認済み",
+    "updated_at": "2026-06-22 06:46"
   },
   "A07GX13316": {
     "actual_etd": "2026-06-28",
