@@ -90,22 +90,83 @@ def fetch_vss(url):
         return None
 
 def parse_vessels_with_voyage(html):
+    """
+    toyoshingo.com 달력 구조 파싱
+    구조: 날짜 헤더 행 → 각 날짜 칸에 배치된 본선 정보
+    본선 칸 안의 <dl> Sailing은 이전 기항지 출항일일 수 있으므로
+    달력 칸 위치(날짜 헤더)와 actual 클래스 날짜를 우선 사용
+    """
     results = {}
     if not html: return results
-    pattern = re.compile(
-        r'Vessel\s*Name\s*\n\s*:\s*(.+?)\n.*?'
-        r'Voyage\s*\n\s*:\s*(.+?)\n.*?'
-        r'Sailing\s*\n\s*:\s*(.+?)(?:\n|$)',
-        re.DOTALL
-    )
-    for m in pattern.finditer(html):
-        vname   = re.sub(r'\s*\([^)]+\)\s*$', '', m.group(1).strip()).strip()
-        voyage  = m.group(2).strip()
-        sailing = m.group(3).strip()
-        omit    = '--OMIT--' in sailing
-        date    = sailing[:10].replace('/', '-') if re.match(r'\d{4}/\d{2}/\d{2}', sailing) else ''
-        key     = f"{vname.upper()}__{voyage}"
-        results[key] = {'vessel': vname, 'voyage': voyage, 'sailing': date, 'omit': omit}
+
+    from bs4 import BeautifulSoup
+    try:
+        soup = BeautifulSoup(html, 'html.parser')
+    except Exception:
+        # BeautifulSoup 없으면 기존 방식 fallback
+        pattern = re.compile(
+            r'Vessel\s*Name\s*[\n:]+\s*(.+?)\n.*?'
+            r'Voyage\s*[\n:]+\s*(.+?)\n.*?'
+            r'Sailing\s*[\n:]+\s*(.+?)(?:\n|$)',
+            re.DOTALL
+        )
+        for m in pattern.finditer(html):
+            vname   = re.sub(r'\s*\([^)]+\)\s*$', '', m.group(1).strip()).strip()
+            voyage  = m.group(2).strip()
+            sailing = m.group(3).strip()
+            omit    = '--OMIT--' in sailing
+            date    = sailing[:10].replace('/', '-') if re.match(r'\d{4}/\d{2}/\d{2}', sailing) else ''
+            key     = f"{vname.upper()}__{voyage}"
+            if key not in results or (date and date > results[key].get('sailing','')):
+                results[key] = {'vessel': vname, 'voyage': voyage, 'sailing': date, 'omit': omit}
+        return results
+
+    # td 단위로 날짜 파악
+    # 각 td에서 dl 안의 vessel 정보와 actual/예정 날짜 추출
+    for td in soup.find_all('td'):
+        # actual 날짜 (실적)
+        actual_span = td.find('span', class_='actual')
+        actual_date = actual_span.get_text(strip=True).replace('/', '-')[:10] if actual_span else None
+
+        # td 안의 모든 dl (본선 정보)
+        for dl in td.find_all('dl'):
+            vname_dd = dl.find('dt', string=re.compile(r'Vessel.*Name', re.I))
+            voyage_dd = dl.find('dt', string=re.compile(r'Voyage', re.I))
+            sailing_dd = dl.find('dt', string=re.compile(r'Sailing', re.I))
+            if not vname_dd or not voyage_dd: continue
+
+            def get_dd(dt_el):
+                dd = dt_el.find_next_sibling('dd')
+                return dd.get_text(strip=True).lstrip(':').strip() if dd else ''
+
+            vname = re.sub(r'\s*\([^)]+\)\s*$', '', get_dd(vname_dd)).strip()
+            voyage = get_dd(voyage_dd)
+            sailing_raw = get_dd(sailing_dd) if sailing_dd else ''
+            omit = '--OMIT--' in sailing_raw
+
+            # 실제 출항일 결정: actual > dl의 Sailing
+            if actual_date and re.match(r'\d{4}-\d{2}-\d{2}', actual_date):
+                sailing_date = actual_date
+                is_actual = True
+            elif re.match(r'\d{4}/\d{2}/\d{2}', sailing_raw):
+                sailing_date = sailing_raw[:10].replace('/', '-')
+                is_actual = False
+            else:
+                sailing_date = ''
+                is_actual = False
+
+            if not vname: continue
+            key = f"{vname.upper()}__{voyage}"
+
+            if key not in results:
+                results[key] = {'vessel': vname, 'voyage': voyage, 'sailing': sailing_date, 'omit': omit, 'is_actual': is_actual}
+            else:
+                existing = results[key]
+                # 우선순위: actual > 더 미래 예정일
+                if is_actual and not existing.get('is_actual'):
+                    results[key] = {'vessel': vname, 'voyage': voyage, 'sailing': sailing_date, 'omit': omit, 'is_actual': True}
+                elif not omit and sailing_date and sailing_date > existing.get('sailing', ''):
+                    results[key] = {'vessel': vname, 'voyage': voyage, 'sailing': sailing_date, 'omit': omit, 'is_actual': is_actual}
     return results
 
 # ── JIN JIANG Playwright 스크래핑 ──
