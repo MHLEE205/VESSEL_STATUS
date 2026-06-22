@@ -915,11 +915,37 @@ async function triggerVssRefresh() {
       body:JSON.stringify({message:`Sync bookings ${new Date().toISOString().slice(0,16)} (${bookingList.length}件)`,content:enc2,sha:bvD.sha})
     });
 
-    // ③ 새 부킹에 대해 toyoshingo/VSS 실시간 조회 + vessel_actual.json 업데이트
-    btn.textContent = '⏳ VSS ETD照会中...';
-    await updateNewBookingsVSS(bookingList, tok);
+    // ③ GitHub Actions 트리거 → toyoshingo/VSS 스크래핑 실행
+    btn.textContent = '⏳ VSS照会中(~1分)...';
+    const actRes = await fetch(
+      'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/workflows/update_vessel_actual.yml/dispatches',
+      {method:'POST', headers:{'Authorization':`token ${tok}`,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},
+       body:JSON.stringify({ref:'main'})}
+    );
+    if(!actRes.ok && actRes.status !== 204) throw new Error(`Actions트리거 실패: ${actRes.status}`);
 
-    // ④ vessel_actual.json 최신버전 로드 (GitHub API経由) + 화면 갱신
+    // ④ Actions 완료 대기 (최대 3분 polling)
+    btn.textContent = '⏳ VSS更新待機中...';
+    let actComplete = false;
+    for(let i=0;i<18;i++){
+      await new Promise(r=>setTimeout(r,10000)); // 10초 간격
+      try{
+        const runRes = await fetch(
+          'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/runs?per_page=1',
+          {headers:{'Authorization':`token ${tok}`,'Accept':'application/vnd.github.v3+json'}}
+        );
+        const runData = await runRes.json();
+        const run = runData.workflow_runs?.[0];
+        if(run && run.status==='completed'){
+          actComplete = true;
+          break;
+        }
+        const elapsed = (i+1)*10;
+        btn.textContent = `⏳ VSS更新待機中(${elapsed}s)...`;
+      }catch(e){}
+    }
+
+    // ⑤ vessel_actual.json 최신버전 로드 (GitHub API経由) + 화면 갱신
     await loadActualData();
     applyClientFilter();
 
