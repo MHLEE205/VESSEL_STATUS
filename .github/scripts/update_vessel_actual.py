@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-VESSEL STATUS - Actual ETD Auto Update v4.6
+VESSEL STATUS - Actual ETD Auto Update v4.8
 - toyoshingo.com: urllib 직접 스크래핑 (기존 방식)
 - jinjiangshipping.jp: Playwright 브라우저로 스크래핑 (신규)
 - VOYAGE 번호 기반 정확 매칭
@@ -32,11 +32,11 @@ VSS_CONFIG = {
     },
     "NAMSUNG": {
         "base": "https://www.toyoshingo.com/namsung/index.php",
-        "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "SENDAI":19, "YOKOHAMA":13}
+        "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "SENDAI":19, "YOKOHAMA":13, "NIIGATA":24}
     },
     "KMTC": {
         "base": "https://www.toyoshingo.com/kmtc/index.php",
-        "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41, "SENDAI":19, "YOKOHAMA":13}
+        "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41, "SENDAI":19, "YOKOHAMA":13, "NIIGATA":24}
     },
     "DONG YOUNG": {
         "base": "https://www.toyoshingo.com/dongjin/index.php",
@@ -149,8 +149,25 @@ def parse_vessels_with_voyage(html):
                 sailing_date = actual_date
                 is_actual = True
             elif re.match(r'\d{4}/\d{2}/\d{2}', sailing_raw):
-                sailing_date = sailing_raw[:10].replace('/', '-')
-                is_actual = False
+                sail_candidate = sailing_raw[:10].replace('/', '-')
+                # dl Sailing이 실제 이 td가 속한 주 범위 내에 있는지 확인
+                # td가 있는 경우 td의 날짜와 비교하여 범위 밖이면 td 날짜 사용
+                td_date = ''
+                if td.parent:
+                    # 형제 td들에서 날짜 헤더 찾기
+                    for sib in td.parent.find_all('td'):
+                        sib_text = sib.get_text()
+                        dm = re.search(r'(\d{4}/\d{2}/\d{2})', sib_text)
+                        if dm:
+                            td_date = dm.group(1).replace('/', '-')
+                            break
+                if td_date and sail_candidate < td_date:
+                    # dl Sailing이 이 주보다 이전 → td 날짜 사용
+                    sailing_date = td_date
+                    is_actual = False
+                else:
+                    sailing_date = sail_candidate
+                    is_actual = False
             else:
                 sailing_date = ''
                 is_actual = False
@@ -493,7 +510,7 @@ VSS_SERVICE_CONFIG = {
         "ports": {
             "TOKYO": 16, "YOKOHAMA": 14, "NAGOYA": 37, "OSAKA": 40,
             "KOBE": 41, "HAKATA": 66, "SHIMIZU": 33, "MOJI": 63,
-            "ISHIKARI": 92, "SENDAI": 6,
+            "ISHIKARI": 92, "SENDAI": 6, "NIIGATA": 24,
         }
     },
     "INTERASIA": {
