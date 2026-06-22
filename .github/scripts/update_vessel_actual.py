@@ -1111,8 +1111,28 @@ def main():
     for bkg_no, data in {**maersk_results, **yangming_results, **one_results}.items():
         actual_map[bkg_no] = data
     cnt_track = len(maersk_results) + len(yangming_results) + len(one_results)
-    total = cnt_tyo + cnt_jj + cnt_ehime + cnt_kmtc + cnt_track
-    print(f"\n✅ 전체 갱신: {total}건 (tyo:{cnt_tyo}, jj:{cnt_jj}, ehime:{cnt_ehime}, kmtc:{cnt_kmtc}, tracking:{cnt_track})")
+
+    # ── 미등록 부킹 보장: VSS 미확인이어도 COMPASS ETD로 반드시 등록 ──
+    cnt_fallback = 0
+    for bkg in bookings:
+        bkg_no = bkg.get('bkg_no','')
+        if not bkg_no or not bkg.get('etd'): continue
+        if bkg_no not in actual_map:
+            actual_map[bkg_no] = {
+                'actual_etd':    bkg.get('etd',''),
+                'vessel_name':   bkg.get('vessel_name',''),
+                'carrier':       bkg.get('carrier',''),
+                'pol':           bkg.get('pol',''),
+                'pod':           bkg.get('pod',''),
+                'scheduled_etd': bkg.get('etd',''),
+                'confirmed':     False,
+                'note':          'COMPASS ETD基準(VSS未確認)',
+                'updated_at':    now,
+            }
+            cnt_fallback += 1
+
+    total = cnt_tyo + cnt_jj + cnt_ehime + cnt_kmtc + cnt_track + cnt_fallback
+    print(f"\n✅ 전체 갱신: {total}건 (tyo:{cnt_tyo}, jj:{cnt_jj}, ehime:{cnt_ehime}, kmtc:{cnt_kmtc}, tracking:{cnt_track}, fallback:{cnt_fallback})")
 
     content = json.dumps(actual_map, ensure_ascii=False, indent=2)
     r = github_put('vessel_actual.json', content,
