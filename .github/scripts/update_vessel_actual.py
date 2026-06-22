@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-VESSEL STATUS - Actual ETD Auto Update v5.0
+VESSEL STATUS - Actual ETD Auto Update v5.1
 - toyoshingo.com: urllib 직접 스크래핑 (기존 방식)
 - jinjiangshipping.jp: Playwright 브라우저로 스크래핑 (신규)
 - VOYAGE 번호 기반 정확 매칭
@@ -755,12 +755,85 @@ def fetch_compass_bookings():
 # 우선순위: 트래킹 사이트 > toyoshingo/VSS
 # ════════════════════════════════════════════════════════════════
 
-def fetch_yangming_tracking(bookings, actual_map, now):
-    """YANGMING 화물 트래킹 - www.yangming.com/en/esolution/tracking/cargo_tracking"""
-    target = [b for b in bookings if b.get('carrier','').upper() in ('YANGMING','YANG MING')]
+
+# ════════════════════════════════════════════════════════════════
+# 선사 공식 화물 트래킹 (ETD/ETA) - Playwright 기반
+# 우선순위: 트래킹 사이트 결과 > toyoshingo/VSS 결과
+# ════════════════════════════════════════════════════════════════
+
+def parse_date_str(s):
+    """'28 Jun 2026' → '2026-06-28', '2026/06/28' → '2026-06-28'"""
+    if not s: return None
+    s = s.strip()
+    import re as _re
+    # 이미 ISO 형식
+    m = _re.match(r'(\d{4})[-\/](\d{2})[-\/](\d{2})', s)
+    if m: return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+    # "28 Jun 2026"
+    months = {'jan':'01','feb':'02','mar':'03','apr':'04','may':'05','jun':'06',
+              'jul':'07','aug':'08','sep':'09','oct':'10','nov':'11','dec':'12'}
+    m2 = _re.match(r'(\d{1,2})\s+(\w{3})\s+(\d{4})', s, _re.I)
+    if m2:
+        mon = months.get(m2.group(2).lower())
+        if mon: return f"{m2.group(3)}-{mon}-{m2.group(1).zfill(2)}"
+    return None
+
+
+def fetch_maersk_tracking(bookings, actual_map, now):
+    """MAERSK - www.maersk.com/tracking/{BKG_NO} 직접 URL 조회"""
+    target = [b for b in bookings if 'MAERSK' in b.get('carrier','').upper()]
     if not target:
         return {}
+    results = {}
+    print(f"  MAERSK 트래킹 대상: {len(target)}건")
 
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page(user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36')
+
+        for bkg in target:
+            bkg_no = bkg['bkg_no']
+            try:
+                url = f'https://www.maersk.com/tracking/{bkg_no}'
+                page.goto(url, timeout=30000)
+                page.wait_for_timeout(7000)
+                body = page.inner_text('body')
+
+                etd_raw = re.search(r'Departure\s*\n?\s*([^\n]+)', body, re.I)
+                eta_raw = re.search(r'Arrival\s*\n?\s*([^\n]+\d{4})', body, re.I)
+
+                etd = parse_date_str(etd_raw.group(1).strip()) if etd_raw else None
+                eta = parse_date_str(eta_raw.group(1).strip()) if eta_raw else None
+
+                if etd or eta:
+                    existing = actual_map.get(bkg_no, {})
+                    old_etd = existing.get('actual_etd','')
+                    changed = etd and etd != old_etd
+                    results[bkg_no] = {
+                        'actual_etd': etd or bkg.get('etd',''),
+                        'actual_eta': eta or '',
+                        'vessel_name': bkg.get('vessel_name',''),
+                        'carrier': 'MAERSK', 'pol': bkg.get('pol',''),
+                        'scheduled_etd': bkg.get('etd',''),
+                        'confirmed': True,
+                        'note': f'maersk.com tracking ETD:{etd} ETA:{eta}{"(changed)" if changed else ""}',
+                        'updated_at': now,
+                    }
+                    print(f"    {bkg_no:<25} ETD:{etd} ETA:{eta} {'⚠ ETD변경' if changed else '✅'}")
+                else:
+                    print(f"    {bkg_no:<25} 데이터 없음")
+            except Exception as e:
+                print(f"    {bkg_no:<25} 오류: {e}")
+
+        browser.close()
+    return results
+
+
+def fetch_yangming_tracking(bookings, actual_map, now):
+    """YANGMING - www.yangming.com 부킹번호 조회"""
+    target = [b for b in bookings if 'YANGMING' in b.get('carrier','').upper() or 'YANG MING' in b.get('carrier','').upper()]
+    if not target:
+        return {}
     results = {}
     print(f"  YANGMING 트래킹 대상: {len(target)}건")
 
@@ -773,8 +846,7 @@ def fetch_yangming_tracking(bookings, actual_map, now):
             try:
                 page.goto('https://www.yangming.com/en/esolution/tracking/cargo_tracking', timeout=30000)
                 page.wait_for_selector('input[type="text"]', timeout=15000)
-
-                # 입력 (React 네이티브 setter)
+                # React 네이티브 입력
                 inp = page.query_selector('input[type="text"]')
                 page.evaluate("""(el, val) => {
                     const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
@@ -782,14 +854,11 @@ def fetch_yangming_tracking(bookings, actual_map, now):
                     el.dispatchEvent(new Event('input', {bubbles:true}));
                     el.dispatchEvent(new Event('change', {bubbles:true}));
                 }""", inp, bkg_no)
-
-                # Search 버튼
                 page.click('button:has-text("Search")')
-                page.wait_for_timeout(4000)
-
+                page.wait_for_timeout(5000)
                 body = page.inner_text('body')
 
-                # ETD: On Board Date 또는 실제 출항일
+                # ETD: On Board Date
                 etd = None
                 m = re.search(r'On Board Date\s*[:\s]+(\d{4}[\/\-]\d{2}[\/\-]\d{2})', body, re.I)
                 if m: etd = m.group(1).replace('/', '-')
@@ -798,10 +867,6 @@ def fetch_yangming_tracking(bookings, actual_map, now):
                 eta = None
                 m2 = re.search(r'ETA[\s\S]{0,30}?(\d{4}[\/\-]\d{2}[\/\-]\d{2})', body, re.I)
                 if m2: eta = m2.group(1).replace('/', '-')
-
-                # Vessel/Voyage
-                vessel_m = re.search(r'Vessel Voy No\.\s*:\s*(.+?)\n', body)
-                vessel_info = vessel_m.group(1).strip() if vessel_m else ''
 
                 if etd or eta:
                     existing = actual_map.get(bkg_no, {})
@@ -817,11 +882,9 @@ def fetch_yangming_tracking(bookings, actual_map, now):
                         'note': f'yangming.com tracking ETD:{etd} ETA:{eta}{"(changed)" if changed else ""}',
                         'updated_at': now,
                     }
-                    status = f'{"⚠ ETD변경:"+old_etd+"→"+etd if changed else "✅ "+etd}'
-                    print(f"    {bkg_no:<25} ETD:{etd} ETA:{eta} {status}")
+                    print(f"    {bkg_no:<25} ETD:{etd} ETA:{eta} {'⚠ ETD변경' if changed else '✅'}")
                 else:
                     print(f"    {bkg_no:<25} 데이터 없음")
-
             except Exception as e:
                 print(f"    {bkg_no:<25} 오류: {e}")
 
@@ -830,11 +893,10 @@ def fetch_yangming_tracking(bookings, actual_map, now):
 
 
 def fetch_one_tracking(bookings, actual_map, now):
-    """ONE LINE 화물 트래킹 - ecomm.one-line.com"""
-    target = [b for b in bookings if b.get('carrier','').upper() in ('ONE','ONE LINE')]
+    """ONE LINE - ecomm.one-line.com 부킹번호 직접 URL 조회"""
+    target = [b for b in bookings if b.get('carrier','').upper() in ('ONE', 'ONE LINE', 'ONE LINE (OCEAN NETWORK EXPRESS)')]
     if not target:
         return {}
-
     results = {}
     print(f"  ONE LINE 트래킹 대상: {len(target)}건")
 
@@ -845,35 +907,28 @@ def fetch_one_tracking(bookings, actual_map, now):
         for bkg in target:
             bkg_no = bkg['bkg_no']
             try:
-                # 직접 트래킹 URL로 이동
                 url = f'https://ecomm.one-line.com/one-ecom/manage-shipment/cargo-tracking?trakNoParam={bkg_no}'
                 page = context.new_page()
                 page.goto(url, timeout=30000)
-                page.wait_for_timeout(5000)
-
+                page.wait_for_timeout(6000)
                 body = page.inner_text('body')
+                page.close()
 
-                # ETD: On Board Date 또는 Departure
+                # ETD: Departure / On Board
                 etd = None
-                for pat in [
-                    r'Departure[\s\S]{0,30}?(\d{4}-\d{2}-\d{2})',
-                    r'ETD[\s\S]{0,30}?(\d{4}-\d{2}-\d{2})',
-                    r'On Board[\s\S]{0,30}?(\d{4}-\d{2}-\d{2})',
-                ]:
+                for pat in [r'On Board Date[\s\S]{0,20}?(\d{4}-\d{2}-\d{2})',
+                            r'Departure[\s\S]{0,20}?(\d{4}-\d{2}-\d{2})',
+                            r'ETD[\s\S]{0,20}?(\d{4}-\d{2}-\d{2})']:
                     m = re.search(pat, body, re.I)
                     if m: etd = m.group(1); break
 
-                # ETA: Vessel Arrival
+                # ETA: POD/Vessel Arrival
                 eta = None
-                for pat in [
-                    r'Vessel Arrival[\s\S]{0,30}?(\d{4}-\d{2}-\d{2})',
-                    r'ETA[\s\S]{0,30}?(\d{4}-\d{2}-\d{2})',
-                    r'Arrival[\s\S]{0,30}?(\d{4}-\d{2}-\d{2})',
-                ]:
+                for pat in [r'POD.*?Vessel Arrival[\s\S]{0,30}?(\d{4}-\d{2}-\d{2})',
+                            r'Vessel Arrival[\s\S]{0,30}?(\d{4}-\d{2}-\d{2})',
+                            r'ETA[\s\S]{0,20}?(\d{4}-\d{2}-\d{2})']:
                     m2 = re.search(pat, body, re.I)
                     if m2: eta = m2.group(1); break
-
-                page.close()
 
                 if etd or eta:
                     existing = actual_map.get(bkg_no, {})
@@ -889,10 +944,9 @@ def fetch_one_tracking(bookings, actual_map, now):
                         'note': f'one-line.com tracking ETD:{etd} ETA:{eta}{"(changed)" if changed else ""}',
                         'updated_at': now,
                     }
-                    print(f"    {bkg_no:<25} ETD:{etd} ETA:{eta}")
+                    print(f"    {bkg_no:<25} ETD:{etd} ETA:{eta} {'⚠ ETD변경' if changed else '✅'}")
                 else:
-                    print(f"    {bkg_no:<25} 데이터 없음 (완료건 제외)")
-
+                    print(f"    {bkg_no:<25} 데이터 없음 (미출항 or 완료건)")
             except Exception as e:
                 print(f"    {bkg_no:<25} 오류: {e}")
 
@@ -901,9 +955,10 @@ def fetch_one_tracking(bookings, actual_map, now):
     return results
 
 
+
 def main():
     now = datetime.now().strftime('%Y-%m-%d %H:%M')
-    print(f"=== Vessel Actual ETD Auto Update v5.0 - {now} ===")
+    print(f"=== Vessel Actual ETD Auto Update v5.1 - {now} ===")
 
     # ── COMPASS 직접 조회 (COMPASS_TOKEN 있으면) / 없으면 bookings_for_vss.json ──
     bookings = fetch_compass_bookings()
@@ -1009,8 +1064,10 @@ def main():
     kmtc_results = fetch_vss_service_playwright(bookings)
     print(f"VSS-Service 매칭: {len(kmtc_results)}건")
 
-    # ── 선사 화물 트래킹 (ETD/ETA) ──
-    print("\n[5/5] 선사 화물 트래킹 (YANGMING/ONE)...")
+    # ── 선사 공식 화물 트래킹 (ETD/ETA) ──
+    print("\n[5/5] 선사 공식 화물 트래킹 (MAERSK/YANGMING/ONE)...")
+    maersk_results  = fetch_maersk_tracking(bookings, actual_map, now)
+    print(f"MAERSK 트래킹: {len(maersk_results)}건")
     yangming_results = fetch_yangming_tracking(bookings, actual_map, now)
     print(f"YANGMING 트래킹: {len(yangming_results)}건")
     one_results = fetch_one_tracking(bookings, actual_map, now)
@@ -1048,9 +1105,9 @@ def main():
     cnt_ehime = smart_merge(actual_map, ehime_results,   'ehime')
     cnt_kmtc  = smart_merge(actual_map, kmtc_results,    'vss-service')
     # 트래킹 결과는 항상 최우선 (confirmed:True 덮어씀)
-    for bkg_no, data in {**yangming_results, **one_results}.items():
+    for bkg_no, data in {**maersk_results, **yangming_results, **one_results}.items():
         actual_map[bkg_no] = data
-    cnt_track = len(yangming_results) + len(one_results)
+    cnt_track = len(maersk_results) + len(yangming_results) + len(one_results)
     total = cnt_tyo + cnt_jj + cnt_ehime + cnt_kmtc + cnt_track
     print(f"\n✅ 전체 갱신: {total}건 (tyo:{cnt_tyo}, jj:{cnt_jj}, ehime:{cnt_ehime}, kmtc:{cnt_kmtc}, tracking:{cnt_track})")
 
