@@ -1536,6 +1536,14 @@
     "etd": "2026-06-29"
   },
   {
+    "bkg_no": "TYOG81764400",
+    "vessel_name": "MOL EARNEST 0116W",
+    "carrier": "国内転売",
+    "pol": "TOKYO",
+    "pod": "国内転売",
+    "etd": "2026-06-29"
+  },
+  {
     "bkg_no": "AMP0550427",
     "vessel_name": "SHUN LONG 0QIOHS1NC",
     "carrier": "CNC",
@@ -1592,6 +1600,22 @@
     "etd": "2026-07-02"
   },
   {
+    "bkg_no": "TYOGA8300400",
+    "vessel_name": "ONE ALTAIR 074W",
+    "carrier": "ONE",
+    "pol": "TOKYO",
+    "pod": "CAI MEP",
+    "etd": "2026-07-02"
+  },
+  {
+    "bkg_no": "TYOG88069900",
+    "vessel_name": "ONE ALTAIR 074W",
+    "carrier": "ONE",
+    "pol": "TOKYO",
+    "pod": "LAT KRABANG",
+    "etd": "2026-07-02"
+  },
+  {
     "bkg_no": "A07GX14139",
     "vessel_name": "TS GUANGZHOU S610",
     "carrier": "INTERASIA",
@@ -1605,6 +1629,14 @@
     "carrier": "DONG YOUNG",
     "pol": "OSAKA",
     "pod": "INCHEON",
+    "etd": "2026-07-03"
+  },
+  {
+    "bkg_no": "I272246590",
+    "vessel_name": "CAPE FELTON 003S",
+    "carrier": "YANGMING",
+    "pol": "TOKYO",
+    "pod": "CAT LAI",
     "etd": "2026-07-03"
   },
   {
@@ -1664,12 +1696,28 @@
     "etd": "2026-07-06"
   },
   {
+    "bkg_no": "JJCHASGJNA67A01",
+    "vessel_name": "GLORY GUANDONG 2627S",
+    "carrier": "JIN JIANG",
+    "pol": "HAKATA",
+    "pod": "CAT LAI",
+    "etd": "2026-07-06"
+  },
+  {
     "bkg_no": "SGM26E00149",
     "vessel_name": "STAR EXPRESS 2608W",
     "carrier": "NAMSUNG",
     "pol": "SENDAI",
     "pod": "INCHEON",
     "etd": "2026-07-08"
+  },
+  {
+    "bkg_no": "JJCHASGJNA67A03",
+    "vessel_name": "XIU HONG　2628W",
+    "carrier": "JIN JIANG",
+    "pol": "HAKATA",
+    "pod": "CAT LAI",
+    "etd": "2026-07-09"
   },
   {
     "bkg_no": "HASLJ01260600190",
@@ -1694,5 +1742,13 @@
     "pol": "NIIGATA",
     "pod": "KWANGYANG",
     "etd": "2026-07-11"
+  },
+  {
+    "bkg_no": "TYOGC5005500",
+    "vessel_name": "NYK DAEDALUS 104S",
+    "carrier": "ONE",
+    "pol": "SENDAI",
+    "pod": "JAKARTA",
+    "etd": "2026-07-17"
   }
 ]
