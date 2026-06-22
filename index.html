@@ -917,12 +917,11 @@ async function triggerVssRefresh() {
 
     // ③ GitHub Actions 트리거 → toyoshingo/VSS 스크래핑 실행
     btn.textContent = '⏳ VSS照会中(~1分)...';
-    // COMPASS access token을 Actions에 전달 → Actions가 직접 COMPASS 조회
-    const compassToken = S.accessToken || '';
+    // bookings_for_vss.json 저장 완료 후 Actions 트리거
     const actRes = await fetch(
       'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/workflows/update_vessel_actual.yml/dispatches',
       {method:'POST', headers:{'Authorization':`token ${tok}`,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},
-       body:JSON.stringify({ref:'main', inputs:{compass_token: compassToken}})}
+       body:JSON.stringify({ref:'main'})}
     );
     if(!actRes.ok && actRes.status !== 204) throw new Error(`Actions트리거 실패: ${actRes.status}`);
 
