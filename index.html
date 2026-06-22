@@ -743,7 +743,7 @@ async function triggerVssRefresh() {
 
     // ③ vessel_actual.json 재로드 + ④ 화면 갱신 (doSearch 재실행で最新VSS ETDを反映)
     await loadActualData();
-    doSearch();
+    applyClientFilter();
 
     clearInterval(tick);
     btn.textContent = `✅ 更新完了！(${bookingList.length}件)`;
