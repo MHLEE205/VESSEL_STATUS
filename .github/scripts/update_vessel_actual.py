@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-VESSEL STATUS - Actual ETD Auto Update v4.9
+VESSEL STATUS - Actual ETD Auto Update v5.0
 - toyoshingo.com: urllib 직접 스크래핑 (기존 방식)
 - jinjiangshipping.jp: Playwright 브라우저로 스크래핑 (신규)
 - VOYAGE 번호 기반 정확 매칭
@@ -749,9 +749,161 @@ def fetch_compass_bookings():
     return bookings
 
 
+
+# ════════════════════════════════════════════════════════════════
+# 선사 화물 트래킹 (ETD/ETA 취득) - Playwright 기반
+# 우선순위: 트래킹 사이트 > toyoshingo/VSS
+# ════════════════════════════════════════════════════════════════
+
+def fetch_yangming_tracking(bookings, actual_map, now):
+    """YANGMING 화물 트래킹 - www.yangming.com/en/esolution/tracking/cargo_tracking"""
+    target = [b for b in bookings if b.get('carrier','').upper() in ('YANGMING','YANG MING')]
+    if not target:
+        return {}
+
+    results = {}
+    print(f"  YANGMING 트래킹 대상: {len(target)}건")
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page(user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36')
+
+        for bkg in target:
+            bkg_no = bkg['bkg_no']
+            try:
+                page.goto('https://www.yangming.com/en/esolution/tracking/cargo_tracking', timeout=30000)
+                page.wait_for_selector('input[type="text"]', timeout=15000)
+
+                # 입력 (React 네이티브 setter)
+                inp = page.query_selector('input[type="text"]')
+                page.evaluate("""(el, val) => {
+                    const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+                    setter.call(el, val);
+                    el.dispatchEvent(new Event('input', {bubbles:true}));
+                    el.dispatchEvent(new Event('change', {bubbles:true}));
+                }""", inp, bkg_no)
+
+                # Search 버튼
+                page.click('button:has-text("Search")')
+                page.wait_for_timeout(4000)
+
+                body = page.inner_text('body')
+
+                # ETD: On Board Date 또는 실제 출항일
+                etd = None
+                m = re.search(r'On Board Date\s*[:\s]+(\d{4}[\/\-]\d{2}[\/\-]\d{2})', body, re.I)
+                if m: etd = m.group(1).replace('/', '-')
+
+                # ETA
+                eta = None
+                m2 = re.search(r'ETA[\s\S]{0,30}?(\d{4}[\/\-]\d{2}[\/\-]\d{2})', body, re.I)
+                if m2: eta = m2.group(1).replace('/', '-')
+
+                # Vessel/Voyage
+                vessel_m = re.search(r'Vessel Voy No\.\s*:\s*(.+?)\n', body)
+                vessel_info = vessel_m.group(1).strip() if vessel_m else ''
+
+                if etd or eta:
+                    existing = actual_map.get(bkg_no, {})
+                    old_etd = existing.get('actual_etd','')
+                    changed = etd and etd != old_etd
+                    results[bkg_no] = {
+                        'actual_etd': etd or bkg.get('etd',''),
+                        'actual_eta': eta or '',
+                        'vessel_name': bkg.get('vessel_name',''),
+                        'carrier': 'YANGMING', 'pol': bkg.get('pol',''),
+                        'scheduled_etd': bkg.get('etd',''),
+                        'confirmed': True,
+                        'note': f'yangming.com tracking ETD:{etd} ETA:{eta}{"(changed)" if changed else ""}',
+                        'updated_at': now,
+                    }
+                    status = f'{"⚠ ETD변경:"+old_etd+"→"+etd if changed else "✅ "+etd}'
+                    print(f"    {bkg_no:<25} ETD:{etd} ETA:{eta} {status}")
+                else:
+                    print(f"    {bkg_no:<25} 데이터 없음")
+
+            except Exception as e:
+                print(f"    {bkg_no:<25} 오류: {e}")
+
+        browser.close()
+    return results
+
+
+def fetch_one_tracking(bookings, actual_map, now):
+    """ONE LINE 화물 트래킹 - ecomm.one-line.com"""
+    target = [b for b in bookings if b.get('carrier','').upper() in ('ONE','ONE LINE')]
+    if not target:
+        return {}
+
+    results = {}
+    print(f"  ONE LINE 트래킹 대상: {len(target)}건")
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        context = browser.new_context(user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36')
+
+        for bkg in target:
+            bkg_no = bkg['bkg_no']
+            try:
+                # 직접 트래킹 URL로 이동
+                url = f'https://ecomm.one-line.com/one-ecom/manage-shipment/cargo-tracking?trakNoParam={bkg_no}'
+                page = context.new_page()
+                page.goto(url, timeout=30000)
+                page.wait_for_timeout(5000)
+
+                body = page.inner_text('body')
+
+                # ETD: On Board Date 또는 Departure
+                etd = None
+                for pat in [
+                    r'Departure[\s\S]{0,30}?(\d{4}-\d{2}-\d{2})',
+                    r'ETD[\s\S]{0,30}?(\d{4}-\d{2}-\d{2})',
+                    r'On Board[\s\S]{0,30}?(\d{4}-\d{2}-\d{2})',
+                ]:
+                    m = re.search(pat, body, re.I)
+                    if m: etd = m.group(1); break
+
+                # ETA: Vessel Arrival
+                eta = None
+                for pat in [
+                    r'Vessel Arrival[\s\S]{0,30}?(\d{4}-\d{2}-\d{2})',
+                    r'ETA[\s\S]{0,30}?(\d{4}-\d{2}-\d{2})',
+                    r'Arrival[\s\S]{0,30}?(\d{4}-\d{2}-\d{2})',
+                ]:
+                    m2 = re.search(pat, body, re.I)
+                    if m2: eta = m2.group(1); break
+
+                page.close()
+
+                if etd or eta:
+                    existing = actual_map.get(bkg_no, {})
+                    old_etd = existing.get('actual_etd','')
+                    changed = etd and etd != old_etd
+                    results[bkg_no] = {
+                        'actual_etd': etd or bkg.get('etd',''),
+                        'actual_eta': eta or '',
+                        'vessel_name': bkg.get('vessel_name',''),
+                        'carrier': 'ONE', 'pol': bkg.get('pol',''),
+                        'scheduled_etd': bkg.get('etd',''),
+                        'confirmed': True,
+                        'note': f'one-line.com tracking ETD:{etd} ETA:{eta}{"(changed)" if changed else ""}',
+                        'updated_at': now,
+                    }
+                    print(f"    {bkg_no:<25} ETD:{etd} ETA:{eta}")
+                else:
+                    print(f"    {bkg_no:<25} 데이터 없음 (완료건 제외)")
+
+            except Exception as e:
+                print(f"    {bkg_no:<25} 오류: {e}")
+
+        context.close()
+        browser.close()
+    return results
+
+
 def main():
     now = datetime.now().strftime('%Y-%m-%d %H:%M')
-    print(f"=== Vessel Actual ETD Auto Update v4.9 - {now} ===")
+    print(f"=== Vessel Actual ETD Auto Update v5.0 - {now} ===")
 
     # ── COMPASS 직접 조회 (COMPASS_TOKEN 있으면) / 없으면 bookings_for_vss.json ──
     bookings = fetch_compass_bookings()
@@ -857,6 +1009,13 @@ def main():
     kmtc_results = fetch_vss_service_playwright(bookings)
     print(f"VSS-Service 매칭: {len(kmtc_results)}건")
 
+    # ── 선사 화물 트래킹 (ETD/ETA) ──
+    print("\n[5/5] 선사 화물 트래킹 (YANGMING/ONE)...")
+    yangming_results = fetch_yangming_tracking(bookings, actual_map, now)
+    print(f"YANGMING 트래킹: {len(yangming_results)}건")
+    one_results = fetch_one_tracking(bookings, actual_map, now)
+    print(f"ONE 트래킹: {len(one_results)}건")
+
     # ── 스마트 병합: 본선명 변경 감지 + confirmed:True 보호 ──
     def smart_merge(actual_map, new_results, source_name):
         """
@@ -884,12 +1043,16 @@ def main():
                 updated += 1
         return updated
 
-    cnt_tyo   = smart_merge(actual_map, tyo_results,   'toyoshingo')
-    cnt_jj    = smart_merge(actual_map, jj_results,    'jinjiang')
-    cnt_ehime = smart_merge(actual_map, ehime_results, 'ehime')
-    cnt_kmtc  = smart_merge(actual_map, kmtc_results,  'vss-service')
-    total = cnt_tyo + cnt_jj + cnt_ehime + cnt_kmtc
-    print(f"\n✅ 전체 갱신: {total}건 (tyo:{cnt_tyo}, jj:{cnt_jj}, ehime:{cnt_ehime}, kmtc:{cnt_kmtc})")
+    cnt_tyo   = smart_merge(actual_map, tyo_results,     'toyoshingo')
+    cnt_jj    = smart_merge(actual_map, jj_results,      'jinjiang')
+    cnt_ehime = smart_merge(actual_map, ehime_results,   'ehime')
+    cnt_kmtc  = smart_merge(actual_map, kmtc_results,    'vss-service')
+    # 트래킹 결과는 항상 최우선 (confirmed:True 덮어씀)
+    for bkg_no, data in {**yangming_results, **one_results}.items():
+        actual_map[bkg_no] = data
+    cnt_track = len(yangming_results) + len(one_results)
+    total = cnt_tyo + cnt_jj + cnt_ehime + cnt_kmtc + cnt_track
+    print(f"\n✅ 전체 갱신: {total}건 (tyo:{cnt_tyo}, jj:{cnt_jj}, ehime:{cnt_ehime}, kmtc:{cnt_kmtc}, tracking:{cnt_track})")
 
     content = json.dumps(actual_map, ensure_ascii=False, indent=2)
     r = github_put('vessel_actual.json', content,
