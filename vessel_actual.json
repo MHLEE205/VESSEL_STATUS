@@ -646,7 +646,9 @@
     "pol": "NAGOYA",
     "scheduled_etd": "2026-06-30",
     "confirmed": false,
-    "updated_at": "2026-06-15 23:57"
+    "updated_at": "2026-06-22 01:06",
+    "voyage": "0QIOHS1NC",
+    "note": "COMPASS ETD:2026-06-30 toyoshingo/cmacgm 未登載"
   },
   "AMP0550432": {
     "actual_etd": "2026-06-30",
@@ -655,7 +657,9 @@
     "pol": "NAGOYA",
     "scheduled_etd": "2026-06-30",
     "confirmed": false,
-    "updated_at": "2026-06-15 23:57"
+    "updated_at": "2026-06-22 01:06",
+    "voyage": "0PL4OS1NC",
+    "note": "COMPASS ETD:2026-06-30 toyoshingo/cmacgm 未登載"
   },
   "TYOGA3120600": {
     "actual_etd": "2026-06-12",
@@ -751,9 +755,9 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-07-03",
     "confirmed": false,
-    "voyage": "1063E/1063W",
-    "note": "NAMSUNG Ã¬ÂÂ¬Ã¬ÂÂ´Ã­ÂÂ¸Ã¬ÂÂÃ¬ÂÂ Ã­ÂÂÃ¬ÂÂ¸ (ÃªÂ³ÂµÃ«ÂÂÃ¬ÂÂ´Ã­ÂÂ­ PAN)",
-    "updated_at": "2026-06-16 02:25"
+    "voyage": "1063W",
+    "note": "COMPASS ETD:2026-07-03 toyoshingo/dongjin 未登載",
+    "updated_at": "2026-06-22 01:06"
   },
   "JJCOSSGJNA66A16": {
     "actual_etd": "2026-06-12",
@@ -1083,5 +1087,82 @@
     "voyage": "624N/626S I88",
     "note": "vessel-schedule-service.com/maersk OSAKA 6/28確認済み",
     "updated_at": "2026-06-22 00:48"
+  },
+  "SNKO040260600375": {
+    "actual_etd": "2026-07-10",
+    "vessel_name": "HEUNG-A HAIPHONG 2626W",
+    "carrier": "SINOKOR",
+    "pol": "ISHIKARI",
+    "scheduled_etd": "2026-07-06",
+    "confirmed": true,
+    "voyage": "2626E/2626W",
+    "note": "toyoshingo.com/sinokor ISHIKARI Sailing:2026-07-10",
+    "updated_at": "2026-06-22 01:06"
+  },
+  "272314411": {
+    "actual_etd": "2026-07-06",
+    "vessel_name": "NORDAGER MAERSK 627S",
+    "carrier": "MAERSK",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-07-06",
+    "confirmed": true,
+    "voyage": "625N/627S I88",
+    "note": "vessel-schedule-service.com/maersk KOBE Departure:2026-07-06確認済み",
+    "updated_at": "2026-06-22 01:06"
+  },
+  "AMP0549397": {
+    "actual_etd": "2026-06-29",
+    "vessel_name": "CMA CGM FORT SAINT CHARLES 0IZOTS1NC",
+    "carrier": "CNC",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-06-29",
+    "confirmed": false,
+    "voyage": "0IZOTS1NC",
+    "note": "COMPASS ETD:2026-06-29 toyoshingo/cmacgm 未登載",
+    "updated_at": "2026-06-22 01:06"
+  },
+  "PCJTYO26065620": {
+    "actual_etd": "2026-07-01",
+    "vessel_name": "HONOR GLORY 2624W",
+    "carrier": "PAN OCEAN",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-07-01",
+    "confirmed": false,
+    "voyage": "2624W",
+    "note": "COMPASS ETD:2026-07-01 VSS未確認(公同運航)",
+    "updated_at": "2026-06-22 01:06"
+  },
+  "AMP0552226": {
+    "actual_etd": "2026-07-02",
+    "vessel_name": "CNC SERVAL 0IZOVS1NC",
+    "carrier": "CNC",
+    "pol": "KOBE",
+    "scheduled_etd": "2026-07-02",
+    "confirmed": false,
+    "voyage": "0IZOVS1NC",
+    "note": "COMPASS ETD:2026-07-02 toyoshingo/cmacgm 未登載",
+    "updated_at": "2026-06-22 01:06"
+  },
+  "A07GX13746": {
+    "actual_etd": "2026-07-06",
+    "vessel_name": "WAN HAI 290 S086",
+    "carrier": "INTERASIA",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-07-06",
+    "confirmed": false,
+    "voyage": "S086",
+    "note": "COMPASS ETD:2026-07-06 vessel-schedule-service.com/interasia OSAKA 未確認",
+    "updated_at": "2026-06-22 01:06"
+  },
+  "SNKO040260600168": {
+    "actual_etd": "2026-07-06",
+    "vessel_name": "HONOR GLORY 2625W",
+    "carrier": "SINOKOR",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-07-06",
+    "confirmed": false,
+    "voyage": "2625W",
+    "note": "COMPASS ETD:2026-07-06 toyoshingo/sinokor OSAKA 未確認",
+    "updated_at": "2026-06-22 01:06"
   }
 }
