@@ -795,9 +795,11 @@ def fetch_maersk_tracking(bookings, actual_map, now):
             bkg_no = bkg['bkg_no']
             try:
                 url = f'https://www.maersk.com/tracking/{bkg_no}'
+                print(f"    → URL: {url}")
                 page.goto(url, timeout=30000)
                 page.wait_for_timeout(7000)
                 body = page.inner_text('body')
+                print(f"    → body 길이: {len(body)}, 첫100자: {body[:100].replace(chr(10),' ')}")
 
                 etd_raw = re.search(r'Departure\s*\n?\s*([^\n]+)', body, re.I)
                 eta_raw = re.search(r'Arrival\s*\n?\s*([^\n]+\d{4})', body, re.I)
@@ -857,6 +859,7 @@ def fetch_yangming_tracking(bookings, actual_map, now):
                 page.click('button:has-text("Search")')
                 page.wait_for_timeout(5000)
                 body = page.inner_text('body')
+                print(f"    → YANGMING body 길이: {len(body)}, 첫100자: {body[:100].replace(chr(10),' ')}")
 
                 # ETD: On Board Date
                 etd = None
