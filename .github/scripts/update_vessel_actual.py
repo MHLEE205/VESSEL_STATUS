@@ -857,13 +857,39 @@ def main():
     kmtc_results = fetch_vss_service_playwright(bookings)
     print(f"VSS-Service 매칭: {len(kmtc_results)}건")
 
-    # 병합 후 저장
-    actual_map.update(tyo_results)
-    actual_map.update(jj_results)
-    actual_map.update(ehime_results)
-    actual_map.update(kmtc_results)
-    total = len(tyo_results) + len(jj_results) + len(ehime_results) + len(kmtc_results)
-    print(f"\n✅ 전체 갱신: {total}건 (tyo:{len(tyo_results)}, jj:{len(jj_results)}, ehime:{len(ehime_results)}, kmtc:{len(kmtc_results)})")
+    # ── 스마트 병합: 본선명 변경 감지 + confirmed:True 보호 ──
+    def smart_merge(actual_map, new_results, source_name):
+        """
+        병합 규칙:
+        1. 본선명(vessel_name)이 변경된 경우 → 무조건 덮어씀 (재매칭 결과 반영)
+        2. confirmed:True이고 본선명 같으면 → 스킵 (수동 수정 보호)
+        3. 미등록 또는 confirmed:False → 덮어씀
+        """
+        updated = 0
+        for bkg_no, new_data in new_results.items():
+            existing = actual_map.get(bkg_no, {})
+            new_vessel = new_data.get('vessel_name','').strip().upper()
+            old_vessel = existing.get('vessel_name','').strip().upper()
+            vessel_changed = old_vessel and old_vessel != new_vessel
+
+            if vessel_changed:
+                print(f"  ⚠️ [{source_name}] 本船名変更: {bkg_no} | {existing.get('vessel_name','')} → {new_data.get('vessel_name','')}")
+                actual_map[bkg_no] = new_data
+                updated += 1
+            elif existing.get('confirmed') == True:
+                # confirmed:True는 스킵 (수동 수정 건 보호)
+                pass
+            else:
+                actual_map[bkg_no] = new_data
+                updated += 1
+        return updated
+
+    cnt_tyo   = smart_merge(actual_map, tyo_results,   'toyoshingo')
+    cnt_jj    = smart_merge(actual_map, jj_results,    'jinjiang')
+    cnt_ehime = smart_merge(actual_map, ehime_results, 'ehime')
+    cnt_kmtc  = smart_merge(actual_map, kmtc_results,  'vss-service')
+    total = cnt_tyo + cnt_jj + cnt_ehime + cnt_kmtc
+    print(f"\n✅ 전체 갱신: {total}건 (tyo:{cnt_tyo}, jj:{cnt_jj}, ehime:{cnt_ehime}, kmtc:{cnt_kmtc})")
 
     content = json.dumps(actual_map, ensure_ascii=False, indent=2)
     r = github_put('vessel_actual.json', content,
