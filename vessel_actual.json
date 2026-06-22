@@ -1209,5 +1209,27 @@
     "voyage": "2608E/2608W",
     "note": "toyoshingo.com/namsung NIIGATA Sailing:2026-07-11確認済み (公同運航)",
     "updated_at": "2026-06-22 02:40"
+  },
+  "JP01216051": {
+    "actual_etd": "2026-07-08",
+    "vessel_name": "WECAN 2624W",
+    "carrier": "KMTC",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-07-06",
+    "confirmed": true,
+    "voyage": "2624E/2624W JEH4",
+    "note": "vessel-schedule-service.com/kmtc OSAKA ETD:2026-07-08確認済み",
+    "updated_at": "2026-06-22 06:49"
+  },
+  "HASLJ01260600190": {
+    "actual_etd": "2026-07-10",
+    "vessel_name": "HONOR GLORY 2626W",
+    "carrier": "HEUNG A",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-07-10",
+    "confirmed": true,
+    "voyage": "2626E/2626W",
+    "note": "toyoshingo.com/heunga KOBE Sailing:2026-07-10確認済み",
+    "updated_at": "2026-06-22 06:49"
   }
 }
