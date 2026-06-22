@@ -514,6 +514,8 @@ async function loadData() {
 }
 
 // 클라이언트 사이드 필터링
+// doSearch는 applyClientFilter의 alias (이전 버전 호환)
+function doSearch() { applyClientFilter(); }
 function applyClientFilter() {
   const carrier   = document.getElementById('f-carrier').value;
   const pol       = document.getElementById('f-pol').value;
