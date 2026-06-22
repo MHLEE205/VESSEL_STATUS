@@ -925,28 +925,8 @@ async function triggerVssRefresh() {
     );
     if(!actRes.ok && actRes.status !== 204) throw new Error(`Actions트리거 실패: ${actRes.status}`);
 
-    // ④ Actions 완료 대기 (최대 3분 polling)
-    btn.textContent = '⏳ VSS更新待機中...';
-    let actComplete = false;
-    for(let i=0;i<18;i++){
-      await new Promise(r=>setTimeout(r,10000)); // 10초 간격
-      try{
-        const runRes = await fetch(
-          'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/runs?per_page=1',
-          {headers:{'Authorization':`token ${tok}`,'Accept':'application/vnd.github.v3+json'}}
-        );
-        const runData = await runRes.json();
-        const run = runData.workflow_runs?.[0];
-        if(run && run.status==='completed'){
-          actComplete = true;
-          break;
-        }
-        const elapsed = (i+1)*10;
-        btn.textContent = `⏳ VSS更新待機中(${elapsed}s)...`;
-      }catch(e){}
-    }
-
-    // ⑤ vessel_actual.json 최신버전 로드 (GitHub API経由) + 화면 갱신
+    // ④ 즉시 현재 vessel_actual.json 로드 + 화면 갱신
+    // Actions는 백그라운드で実行中 (~1分後に自動完了)
     await loadActualData();
     applyClientFilter();
 
