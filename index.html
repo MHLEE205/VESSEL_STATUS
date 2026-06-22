@@ -576,13 +576,29 @@ function buildDropdown(id, values) {
 // ── GitHub vessel_actual.json 읽기 ──
 async function loadActualData() {
   try {
-    // GitHub Pages에서 vessel_actual.json 읽기 (캐시 방지)
-    const res = await fetch(
-      `https://mhlee205.github.io/VESSEL_STATUS/vessel_actual.json?t=${Date.now()}`,
-      { cache: 'no-store' }
-    );
-    if (!res.ok) return;
-    const data = await res.json();
+    // GitHub API経由で読み込み (CDNキャッシュを完全回避)
+    const tok = window.GH_TOK || '';
+    let data;
+    if (tok) {
+      // GitHub API: 常に最新版を取得
+      const apiRes = await fetch(
+        'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/vessel_actual.json',
+        {headers:{'Authorization':`token ${tok}`,'Accept':'application/vnd.github.v3+json'}}
+      );
+      if (apiRes.ok) {
+        const apiData = await apiRes.json();
+        data = JSON.parse(atob(apiData.content.replace(/\n/g,'')));
+      }
+    }
+    if (!data) {
+      // フォールバック: raw GitHubから取得
+      const res = await fetch(
+        `https://raw.githubusercontent.com/MHLEE205/VESSEL_STATUS/main/vessel_actual.json?t=${Date.now()}`,
+        { cache: 'no-store' }
+      );
+      if (!res.ok) return;
+      data = await res.json();
+    }
     actualMapG = data;
     console.log('✅ Actual data loaded:', Object.keys(actualMapG).length, '件');
   } catch(e) {
@@ -695,6 +711,161 @@ function fmtDate(val) {
 
 
 
+// ── 새 부킹에 대해 toyoshingo/VSS 실시간 조회 ──
+async function updateNewBookingsVSS(bookingList, tok) {
+  try {
+    // 현재 vessel_actual.json 읽기 (GitHub API)
+    const apiRes = await fetch(
+      'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/vessel_actual.json',
+      {headers:{'Authorization':`token ${tok}`,'Accept':'application/vnd.github.v3+json'}}
+    );
+    if (!apiRes.ok) return;
+    const apiData = await apiRes.json();
+    const actualMap = JSON.parse(atob(apiData.content.replace(/\n/g,'')));
+    const actualSha = apiData.sha;
+
+    // vessel_actual.json에 없는 신규 부킹만 대상
+    const newBkgs = bookingList.filter(b => !actualMap[b.bkg_no] && b.carrier && b.pol && b.vessel_name);
+    if (!newBkgs.length) { console.log('新規ブッキングなし'); return; }
+    console.log(`新規ブッキング ${newBkgs.length}件 VSS照会中...`);
+
+    const now = new Date().toISOString().slice(0,16).replace('T',' ');
+    let updated = 0;
+
+    // toyoshingo.com 포트 매핑
+    const TOYO_CONFIG = {
+      'SINOKOR': {base:'https://www.toyoshingo.com/sinokor/index.php', ports:{'TOKYO':13,'OSAKA':11,'NAGOYA':30,'HAKATA':41,'SENDAI':19,'ISHIKARI':7,'MIZUSHIMA':50,'YOKOHAMA':13,'KOBE':41}},
+      'HEUNG A': {base:'https://www.toyoshingo.com/heunga/index.php',  ports:{'TOKYO':13,'OSAKA':11,'NAGOYA':30,'HAKATA':41,'KOBE':41,'SENDAI':19,'ISHIKARI':7}},
+      'HEUNG-A': {base:'https://www.toyoshingo.com/heunga/index.php',  ports:{'TOKYO':13,'OSAKA':11,'NAGOYA':30,'HAKATA':41,'KOBE':41,'SENDAI':19,'ISHIKARI':7}},
+      'NAMSUNG':  {base:'https://www.toyoshingo.com/namsung/index.php', ports:{'TOKYO':13,'OSAKA':11,'NAGOYA':30,'SENDAI':19}},
+      'DONG YOUNG':{base:'https://www.toyoshingo.com/dongjin/index.php',ports:{'TOKYO':13,'OSAKA':11,'NAGOYA':35,'HAKATA':41}},
+      'YANGMING': {base:'https://www.toyoshingo.com/yangming/index.php',ports:{'TOKYO':13,'OSAKA':11,'NAGOYA':30,'HAKATA':41,'KOBE':41}},
+      'PAN OCEAN': {base:'https://www.toyoshingo.com/sinokor/index.php',ports:{'TOKYO':13,'OSAKA':11,'NAGOYA':30,'HAKATA':41,'SENDAI':19,'ISHIKARI':7}},
+      'CNC': {base:'https://www.toyoshingo.com/cmacgm/index.php',       ports:{'TOKYO':13,'OSAKA':11,'YOKOHAMA':11,'KOBE':41,'NAGOYA':35}},
+    };
+    // vessel-schedule-service.com 포트 매핑
+    const VSS_CONFIG = {
+      'KMTC':     {base:'https://vessel-schedule-service.com/kmtc/vessel-schedule',     ports:{'TOKYO':16,'YOKOHAMA':14,'NAGOYA':37,'OSAKA':40,'KOBE':41,'HAKATA':66,'ISHIKARI':92,'SENDAI':6}},
+      'MAERSK':   {base:'https://vessel-schedule-service.com/maersk/vessel-schedule',   ports:{'TOKYO':16,'YOKOHAMA':14,'NAGOYA':37,'OSAKA':40,'KOBE':41,'HAKATA':66}},
+      'OOCL':     {base:'https://vessel-schedule-service.com/oocl/vessel-schedule',     ports:{'TOKYO':16,'YOKOHAMA':14,'NAGOYA':37,'OSAKA':40,'KOBE':41,'HAKATA':66}},
+      'ONE':      {base:'https://vessel-schedule-service.com/one/vessel-schedule',      ports:{'TOKYO':16,'YOKOHAMA':14,'NAGOYA':37,'OSAKA':40,'KOBE':41,'HAKATA':66,'NAHA':53}},
+      'INTERASIA':{base:'https://vessel-schedule-service.com/interasia/vessel-schedule',ports:{'TOKYO':16,'YOKOHAMA':14,'NAGOYA':37,'OSAKA':40,'KOBE':41,'HAKATA':66}},
+    };
+
+    function extractVoy(vname) {
+      let m = vname.match(/(\d{4})[EWNS]/i); if(m) return m[1];
+      m = vname.match(/[SN](\d{3})/i); if(m) return m[1].replace(/^0+/,'');
+      return null;
+    }
+
+    // toyoshingo.com 파싱
+    async function fetchToyoshingo(carrier, pol, vesselName) {
+      const cfg = TOYO_CONFIG[carrier]; if(!cfg) return null;
+      const portCode = cfg.ports[pol]; if(!portCode) return null;
+      const voyage = extractVoy(vesselName); if(!voyage) return null;
+      const baseName = vesselName.replace(/\s*\d{4}[EWNS]\s*$/i,'').trim().toUpperCase();
+      for(const w of [1,2,3,4]) {
+        try {
+          const r = await fetch(`${cfg.base}?port=${portCode}&week=${w}`);
+          const h = await r.text();
+          const doc = new DOMParser().parseFromString(h,'text/html');
+          for(const el of doc.querySelectorAll('a[title]')) {
+            const raw = el.outerHTML.match(/title="([^"]+)"/)?.[1]||'';
+            const t = raw.replace(/&#(\d+);/g,(_,c)=>String.fromCharCode(c)).replace(/&lt;/g,'<').replace(/&gt;/g,'>');
+            if(!t.includes('Vessel Name')||!t.includes('Sailing')) continue;
+            const vn = t.match(/Vessel Name.*?:\s*([^\n<]+)/i)?.[1]?.trim().toUpperCase()||'';
+            const voy = t.match(/Voyage.*?:\s*([^\n<]+)/i)?.[1]?.trim()||'';
+            const sail = t.match(/Sailing.*?<span[^>]*>([\d\/]+)/i)?.[1]?.replace(/\//g,'-');
+            const omit = t.includes('OMIT');
+            if(!voy.includes(voyage)) continue;
+            const baseWords = baseName.split(' ').filter(w=>w.length>1);
+            if(!baseWords.every(w=>vn.includes(w))) continue;
+            return {etd:sail||null, omit, voyage:voy};
+          }
+        } catch(e) {}
+      }
+      return null;
+    }
+
+    // vessel-schedule-service.com 파싱
+    async function fetchVSSService(carrier, pol, vesselName) {
+      const cfg = VSS_CONFIG[carrier]; if(!cfg) return null;
+      const portId = cfg.ports[pol]; if(!portId) return null;
+      const voyage = extractVoy(vesselName); if(!voyage) return null;
+      const baseName = vesselName.replace(/\s*\d{4}[EWNS]\s*$/i,'').trim().toUpperCase();
+      for(const idx of [1,2,3,4]) {
+        const url = `${cfg.base}?tab=2&port_id=${portId}&start_week=monday&view_type=WEEK&current_index=${idx}`;
+        try {
+          // vessel-schedule-service.com은 React SPA → iframeで開く必要あり
+          // 直接fetchでデータ取得不可なのでスキップ
+          // (GitHub Actionsで処理済みのため)
+        } catch(e) {}
+      }
+      return null;
+    }
+
+    // 각 신규 부킹 VSS 조회
+    for(const bkg of newBkgs) {
+      const carrier = bkg.carrier;
+      const pol = bkg.pol.toUpperCase();
+      const vessel = bkg.vessel_name;
+
+      let found = null;
+      if(TOYO_CONFIG[carrier]) {
+        found = await fetchToyoshingo(carrier, pol, vessel);
+      }
+      // VSS_CONFIG는 SPA이므로 브라우저에서 fetch 불가 → COMPASS ETD 기준으로 등록
+
+      if(found?.etd) {
+        actualMap[bkg.bkg_no] = {
+          actual_etd: found.etd, vessel_name: vessel,
+          carrier, pol: bkg.pol,
+          scheduled_etd: bkg.etd || found.etd,
+          confirmed: true, voyage: found.voyage,
+          note: 'toyoshingo.com リアルタイム確認',
+          updated_at: now,
+        };
+        updated++;
+      } else if(found?.omit) {
+        actualMap[bkg.bkg_no] = {
+          actual_etd: bkg.etd, vessel_name: vessel,
+          carrier, pol: bkg.pol,
+          scheduled_etd: bkg.etd,
+          confirmed: false, voyage: found.voyage,
+          note: 'OMIT',
+          updated_at: now,
+        };
+        updated++;
+      } else {
+        // VSS未確認 → COMPASS ETD基準で仮登録
+        actualMap[bkg.bkg_no] = {
+          actual_etd: bkg.etd, vessel_name: vessel,
+          carrier, pol: bkg.pol,
+          scheduled_etd: bkg.etd,
+          confirmed: false,
+          note: 'COMPASS ETD基準(VSS未確認)',
+          updated_at: now,
+        };
+        updated++;
+      }
+    }
+
+    if(updated > 0) {
+      // vessel_actual.json 更新
+      const enc = btoa(unescape(encodeURIComponent(JSON.stringify(actualMap,null,2))));
+      await fetch('https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/vessel_actual.json',{
+        method:'PUT',
+        headers:{'Authorization':`token ${tok}`,'Content-Type':'application/json'},
+        body:JSON.stringify({message:`VSS refresh: add ${updated} new bookings ${now}`,content:enc,sha:actualSha})
+      });
+      console.log(`✅ 新規ブッキング ${updated}件 vessel_actual更新`);
+    }
+  } catch(e) {
+    console.warn('updateNewBookingsVSS error:', e.message);
+  }
+}
+
+
 // ── VSS 更新ボタン ──
 async function triggerVssRefresh() {
   const btn = document.getElementById('btn-vss-refresh');
@@ -743,7 +914,11 @@ async function triggerVssRefresh() {
       body:JSON.stringify({message:`Sync bookings ${new Date().toISOString().slice(0,16)} (${bookingList.length}件)`,content:enc2,sha:bvD.sha})
     });
 
-    // ③ vessel_actual.json 재로드 + ④ 화면 갱신 (doSearch 재실행で最新VSS ETDを反映)
+    // ③ 새 부킹에 대해 toyoshingo/VSS 실시간 조회 + vessel_actual.json 업데이트
+    btn.textContent = '⏳ VSS ETD照会中...';
+    await updateNewBookingsVSS(bookingList, tok);
+
+    // ④ vessel_actual.json 최신버전 로드 (GitHub API経由) + 화면 갱신
     await loadActualData();
     applyClientFilter();
 
