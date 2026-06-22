@@ -741,9 +741,9 @@ async function triggerVssRefresh() {
       body:JSON.stringify({message:`Sync bookings ${new Date().toISOString().slice(0,16)} (${bookingList.length}件)`,content:enc2,sha:bvD.sha})
     });
 
-    // ③ vessel_actual.json 재로드 + ④ 화면 갱신
+    // ③ vessel_actual.json 재로드 + ④ 화면 갱신 (doSearch 재실행で最新VSS ETDを反映)
     await loadActualData();
-    if (window._lastData && window._lastData.length > 0) renderTable(window._lastData);
+    doSearch();
 
     clearInterval(tick);
     btn.textContent = `✅ 更新完了！(${bookingList.length}件)`;
