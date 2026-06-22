@@ -1176,5 +1176,38 @@
     "voyage": "0IZOTS1NC",
     "note": "COMPASS ETD:2026-06-29 AMP0549397と同一本船",
     "updated_at": "2026-06-22 02:03"
+  },
+  "SNKO040260600369": {
+    "actual_etd": "2026-07-04",
+    "vessel_name": "MOJI EXPRESS 2640W",
+    "carrier": "SINOKOR",
+    "pol": "MIZUSHIMA",
+    "scheduled_etd": "2026-07-04",
+    "confirmed": false,
+    "voyage": "2640E/2640W",
+    "note": "COMPASS ETD:2026-07-04 toyoshingo/sinokor MIZUSHIMA 07/06週確認待ち",
+    "updated_at": "2026-06-22 02:40"
+  },
+  "NIH26F00060": {
+    "actual_etd": "2026-07-11",
+    "vessel_name": "SUNNY CANNA 2608W",
+    "carrier": "NAMSUNG",
+    "pol": "NIIGATA",
+    "scheduled_etd": "2026-07-11",
+    "confirmed": true,
+    "voyage": "2608E/2608W",
+    "note": "toyoshingo.com/namsung NIIGATA Sailing:2026-07-11確認済み",
+    "updated_at": "2026-06-22 02:40"
+  },
+  "JP01211101": {
+    "actual_etd": "2026-07-11",
+    "vessel_name": "SUNNY CANNA 2608W",
+    "carrier": "KMTC",
+    "pol": "NIIGATA",
+    "scheduled_etd": "2026-07-11",
+    "confirmed": true,
+    "voyage": "2608E/2608W",
+    "note": "toyoshingo.com/namsung NIIGATA Sailing:2026-07-11確認済み (公同運航)",
+    "updated_at": "2026-06-22 02:40"
   }
 }
