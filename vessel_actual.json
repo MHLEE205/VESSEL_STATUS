@@ -783,14 +783,14 @@
   },
   "JJCNATALNA66A12": {
     "actual_etd": "2026-06-19",
-    "vessel_name": "MILD SONATA 2624W",
+    "vessel_name": "MILD  SONATA　2624W",
     "carrier": "JIN JIANG",
     "pol": "NAHA",
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "voyage": "2624E/2624W",
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-06-22 05:05"
+    "updated_at": "2026-06-22 07:06"
   },
   "JJCOSLCJNA66A06": {
     "actual_etd": "2026-06-19",
@@ -903,14 +903,14 @@
   },
   "JJCNATALNA66A18": {
     "actual_etd": "2026-06-26",
-    "vessel_name": "MILD SONATA 2625W",
+    "vessel_name": "MILD  SONATA　2625W",
     "carrier": "JIN JIANG",
     "pol": "NAHA",
     "scheduled_etd": "2026-06-26",
     "confirmed": true,
     "voyage": "2625E/2625W",
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-06-22 05:05"
+    "updated_at": "2026-06-22 07:06"
   },
   "JJCHALCJNA66A04": {
     "actual_etd": "2026-06-29",
@@ -925,14 +925,14 @@
   },
   "JJCHAHPJNA66A08": {
     "actual_etd": "2026-06-29",
-    "vessel_name": "GLORY ZHENDONG 2626S",
+    "vessel_name": "GLORY ZHENDONG  2626S",
     "carrier": "JIN JIANG",
     "pol": "HAKATA",
     "scheduled_etd": "2026-06-29",
     "confirmed": true,
     "voyage": "2626N/2626S",
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-06-22 05:05"
+    "updated_at": "2026-06-22 07:06"
   },
   "I272246077": {
     "actual_etd": "2026-06-29",
