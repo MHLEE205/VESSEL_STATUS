@@ -412,15 +412,15 @@
     "note": "toyoshingo.com/namsung SENDAI Sailing:2026-06-28"
   },
   "SGM26E00149": {
-    "actual_etd": "2026-07-04",
+    "actual_etd": "2026-07-08",
     "vessel_name": "STAR EXPRESS 2608W",
     "carrier": "NAMSUNG",
     "pol": "SENDAI",
     "scheduled_etd": "2026-06-28",
     "confirmed": true,
-    "updated_at": "2026-06-21 23:15",
+    "updated_at": "2026-06-22 02:03",
     "voyage": "2608E/2608W",
-    "note": "toyoshingo.com/namsung SENDAI Sailing:2026-07-04 (COMPASS vessel_name修正要)"
+    "note": "toyoshingo.com/namsung SENDAI Departure:2026-07-08確認済み"
   },
   "JP01214379": {
     "actual_etd": "2026-06-28",
@@ -1164,5 +1164,17 @@
     "voyage": "2625W",
     "note": "COMPASS ETD:2026-07-06 toyoshingo/sinokor OSAKA 未確認",
     "updated_at": "2026-06-22 01:06"
+  },
+  "AMP0551764": {
+    "actual_etd": "2026-06-29",
+    "vessel_name": "CMA CGM FORT SAINT CHARLES 0IZOTS1NC",
+    "carrier": "CNC",
+    "pol": "TOKYO",
+    "pod": "SURABAYA",
+    "scheduled_etd": "2026-06-29",
+    "confirmed": false,
+    "voyage": "0IZOTS1NC",
+    "note": "COMPASS ETD:2026-06-29 AMP0549397と同一本船",
+    "updated_at": "2026-06-22 02:03"
   }
 }
