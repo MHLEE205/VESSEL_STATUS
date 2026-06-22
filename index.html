@@ -880,10 +880,11 @@ async function triggerVssRefresh() {
     if (!S.accessToken || Date.now() > S.tokenExpiry) throw new Error('再ログインが必要です。');
 
     const h = {'Authorization':`Bearer ${S.accessToken}`,'OData-MaxVersion':'4.0','OData-Version':'4.0','Accept':'application/json'};
-    const today = new Date(); today.setDate(today.getDate() - 3);
+    // ETD範囲: 過去30日 ～ 未来 (漏れ防止)
+    const today = new Date(); today.setDate(today.getDate() - 30);
     const fromDate = today.toISOString().slice(0,10);
 
-    // ① COMPASS 부킹 전체 취득
+    // ① COMPASS 부킹 전체 취득 (過去30日以降)
     const bkgRes = await fetch(`${DV_API}/cr49f_bookings?$filter=cr49f_etd ge ${fromDate}T00:00:00Z&$select=cr49f_booking_no,cr49f_main_ship_name,cr49f_etd,_cr49f_carrier_id_value,_cr49f_region_japan_id_value,_cr49f_region_id_value&$top=500&$orderby=cr49f_etd asc`,{headers:h});
     const allBkgs = (await bkgRes.json()).value || [];
 
