@@ -1,4 +1,4 @@
-name: Update Vessel Actual ETD v4.0
+name: Update Vessel Actual ETD v4.7
 
 on:
   schedule:
@@ -22,13 +22,13 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Install Playwright & dependencies
+    - name: Install dependencies
       run: |
-        pip install playwright
+        pip install playwright beautifulsoup4
         playwright install chromium
         playwright install-deps chromium
 
-    - name: Run VSS update script v4.0
+    - name: Run VSS update script v4.7
       env:
         GITHUB_TOKEN: ${{ secrets.VSS_PAT }}
       run: python .github/scripts/update_vessel_actual.py
@@ -41,6 +41,6 @@ jobs:
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
-          git commit -m "Auto update vessel actual ETD v4.0 - $(date '+%Y-%m-%d %H:%M')"
+          git commit -m "Auto update vessel actual ETD v4.7 - $(date '+%Y-%m-%d %H:%M')"
           git push
         fi
