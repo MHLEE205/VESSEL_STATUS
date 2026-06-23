@@ -1560,6 +1560,14 @@
     "etd": "2026-07-01"
   },
   {
+    "bkg_no": "PCJTYO26065358",
+    "vessel_name": "POS YOKOHAMA 1591W",
+    "carrier": "PAN OCEAN",
+    "pol": "TOKYO",
+    "pod": "KWANGYANG",
+    "etd": "2026-07-01"
+  },
+  {
     "bkg_no": "PCJTYO26065620",
     "vessel_name": "HONOR GLORY 2624W",
     "carrier": "PAN OCEAN",
