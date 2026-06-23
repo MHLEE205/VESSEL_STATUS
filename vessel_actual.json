@@ -2397,5 +2397,38 @@
     "voyage": "2628W",
     "note": "COMPASS ETD:2026-07-10 jinjiangshipping.jp 未登載 次回自動更新で確認",
     "updated_at": "2026-06-23 06:45"
+  },
+  "PCJTYO26065358": {
+    "actual_etd": "2026-07-01",
+    "vessel_name": "POS YOKOHAMA 1591W",
+    "carrier": "PAN OCEAN",
+    "pol": "TOKYO",
+    "pod": "KWANGYANG",
+    "scheduled_etd": "2026-07-01",
+    "confirmed": false,
+    "note": "COMPASS ETD基準(VSS未確認) - PAN OCEAN POS YOKOHAMA 1591W",
+    "updated_at": "2026-06-23 22:41"
+  },
+  "AMP0555039": {
+    "actual_etd": "2026-07-06",
+    "vessel_name": "CNC SERVAL 0IZOVS1NC",
+    "carrier": "CNC",
+    "pol": "TOKYO",
+    "pod": "SURABAYA",
+    "scheduled_etd": "2026-07-06",
+    "confirmed": false,
+    "note": "COMPASS ETD基準(VSS未確認) - CNC CNC SERVAL 0IZOVS1NC",
+    "updated_at": "2026-06-23 22:41"
+  },
+  "AMP0555036": {
+    "actual_etd": "2026-07-06",
+    "vessel_name": "LI DA WANG 0QIOJS1NC",
+    "carrier": "CNC",
+    "pol": "YOKOHAMA",
+    "pod": "JAKARTA",
+    "scheduled_etd": "2026-07-06",
+    "confirmed": false,
+    "note": "COMPASS ETD基準(VSS未確認) - CNC LI DA WANG 0QIOJS1NC",
+    "updated_at": "2026-06-23 22:41"
   }
 }
