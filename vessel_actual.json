@@ -2364,5 +2364,38 @@
     "confirmed": false,
     "note": "COMPASS ETD基準(VSS未確認)",
     "updated_at": "2026-06-22 23:32"
+  },
+  "TYOGC6457300": {
+    "actual_etd": "2026-07-07",
+    "vessel_name": "SPIL KARTINI 017S",
+    "carrier": "ONE",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-07-07",
+    "confirmed": true,
+    "voyage": "016N/017S JID",
+    "note": "vessel-schedule-service.com/one TOKYO ETD:2026-07-07確認済み",
+    "updated_at": "2026-06-23 06:45"
+  },
+  "PCJTYO26065359": {
+    "actual_etd": "2026-07-08",
+    "vessel_name": "POS YOKOHAMA 1592W",
+    "carrier": "PAN OCEAN",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-07-08",
+    "confirmed": true,
+    "voyage": "1592E/1592W",
+    "note": "toyoshingo.com/sinokor TOKYO ETD:2026-07-08確認済み(公同運航)",
+    "updated_at": "2026-06-23 06:45"
+  },
+  "JJCOSSGJNA67A01": {
+    "actual_etd": "2026-07-10",
+    "vessel_name": "GLORY SHENGDONG 2628W",
+    "carrier": "JIN JIANG",
+    "pol": "OSAKA",
+    "scheduled_etd": "2026-07-10",
+    "confirmed": false,
+    "voyage": "2628W",
+    "note": "COMPASS ETD:2026-07-10 jinjiangshipping.jp 未登載 次回自動更新で確認",
+    "updated_at": "2026-06-23 06:45"
   }
 }
