@@ -925,13 +925,46 @@ async function triggerVssRefresh() {
     );
     if(!actRes.ok && actRes.status !== 204) throw new Error(`Actions트리거 실패: ${actRes.status}`);
 
-    // ④ 즉시 현재 vessel_actual.json 로드 + 화면 갱신
-    // Actions는 백그라운드で実行中 (~1分後に自動完了)
+    // ④ run ID 취득 (트리거 후 5초 대기)
+    await new Promise(r=>setTimeout(r,5000));
+    let runId = null;
+    try {
+      const runRes = await fetch(
+        'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/runs?per_page=1',
+        {headers:{'Authorization':`token ${tok}`,'Accept':'application/vnd.github.v3+json'}}
+      );
+      const rd = await runRes.json();
+      runId = rd.workflow_runs?.[0]?.id;
+    } catch(e){}
+
+    // ⑤ Actions 완료 polling (최대 5분, 10초 간격)
+    let elapsed = 0;
+    let completed = false;
+    while(elapsed < 300) {
+      await new Promise(r=>setTimeout(r,10000));
+      elapsed += 10;
+      // 진행 바 표시
+      const pct = Math.min(95, Math.round(elapsed/300*100));
+      const bar = '█'.repeat(Math.floor(pct/10))+'░'.repeat(10-Math.floor(pct/10));
+      btn.textContent = `⏳ VSS照会中 [${bar}] ${elapsed}s`;
+      try {
+        const url = runId
+          ? `https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/runs/${runId}`
+          : `https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/runs?per_page=1`;
+        const cr = await fetch(url,{headers:{'Authorization':`token ${tok}`,'Accept':'application/vnd.github.v3+json'}});
+        const cd = await cr.json();
+        const run = runId ? cd : cd.workflow_runs?.[0];
+        if(run?.status==='completed'){ completed=true; break; }
+      } catch(e){}
+    }
+
+    // ⑥ 최신 vessel_actual.json 로드 + 화면 갱신
+    btn.textContent = '⏳ データ読込中...';
     await loadActualData();
     applyClientFilter();
 
     clearInterval(tick);
-    btn.textContent = `✅ 更新完了！(${bookingList.length}件)`;
+    btn.textContent = completed ? `✅ 更新完了！(${bookingList.length}件)` : `✅ 同期完了(${bookingList.length}件)`;
     btn.style.background = '#2ea043';
     const t = document.createElement('div');
     t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#2ea043;color:#fff;padding:14px 32px;border-radius:8px;font-size:0.95rem;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.3);';
