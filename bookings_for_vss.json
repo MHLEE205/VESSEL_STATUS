@@ -1680,12 +1680,28 @@
     "etd": "2026-07-06"
   },
   {
+    "bkg_no": "AMP0555036",
+    "vessel_name": "LI DA WANG 0QIOJS1NC",
+    "carrier": "CNC",
+    "pol": "YOKOHAMA",
+    "pod": "JAKARTA",
+    "etd": "2026-07-06"
+  },
+  {
     "bkg_no": "JJCHASGJNA67A01",
     "vessel_name": "GLORY GUANDONG 2627S",
     "carrier": "JIN JIANG",
     "pol": "HAKATA",
     "pod": "CAT LAI",
     "etd": "2026-07-06"
+  },
+  {
+    "bkg_no": "TYOGC6457300",
+    "vessel_name": "SPIL KARTINI 017S",
+    "carrier": "ONE",
+    "pol": "TOKYO",
+    "pod": "JAKARTA",
+    "etd": "2026-07-07"
   },
   {
     "bkg_no": "SGM26E00149",
@@ -1709,6 +1725,14 @@
     "carrier": "JIN JIANG",
     "pol": "HAKATA",
     "pod": "CAT LAI",
+    "etd": "2026-07-09"
+  },
+  {
+    "bkg_no": "AMP0552226",
+    "vessel_name": "PALU BAY 0IZOXS1NC",
+    "carrier": "CNC",
+    "pol": "KOBE",
+    "pod": "SURABAYA",
     "etd": "2026-07-09"
   },
   {
