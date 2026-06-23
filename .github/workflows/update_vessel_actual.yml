@@ -1,15 +1,10 @@
-name: Update Vessel Actual ETD v4.9
+name: Update Vessel Actual ETD v5.2
 
 on:
   schedule:
-    # 매일 오전 9시 JST (= UTC 00:00)
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * *'   # 09:00 JST
+    - cron: '0 4 * * *'   # 13:00 JST
   workflow_dispatch:
-    inputs:
-      compass_token:
-        description: 'COMPASS Access Token (optional)'
-        required: false
-        default: ''
 
 permissions:
   contents: write
@@ -17,7 +12,6 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -33,10 +27,9 @@ jobs:
         playwright install chromium
         playwright install-deps chromium
 
-    - name: Run VSS update script v4.9
+    - name: Run VSS update script
       env:
         GITHUB_TOKEN: ${{ secrets.VSS_PAT }}
-        COMPASS_TOKEN: ${{ github.event.inputs.compass_token }}
       run: python .github/scripts/update_vessel_actual.py
 
     - name: Commit and push if changed
@@ -47,6 +40,6 @@ jobs:
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
-          git commit -m "Auto update vessel actual ETD v4.9 - $(date '+%Y-%m-%d %H:%M')"
+          git commit -m "Auto update vessel actual ETD - $(date '+%Y-%m-%d %H:%M')"
           git push
         fi
