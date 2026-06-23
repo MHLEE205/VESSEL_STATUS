@@ -867,6 +867,156 @@ async function updateNewBookingsVSS(bookingList, tok) {
 
 
 // ── VSS 更新ボタン ──
+
+// ════════════════════════════════════════════════════════
+// CNC ETD 조회 - toyoshingo.com/cmacgm (ブラウザから直接)
+// GitHub Actionsでは403のためVSS更新ボタン押下時にブラウザで実行
+// ════════════════════════════════════════════════════════
+async function fetchCncFromToyoshingo(bookingList, tok) {
+  const CNC_PORTS = {
+    'TOKYO':9, 'YOKOHAMA':10, 'NAGOYA':4, 'KOBE':7, 'OSAKA':6,
+    'HAKATA':14, 'SENDAI':2
+  };
+  const cncBkgs = bookingList.filter(b => b.carrier === 'CNC');
+  if (!cncBkgs.length) return 0;
+
+  // 必要なPOL一覧
+  const pols = [...new Set(cncBkgs.map(b => b.pol.toUpperCase()))].filter(p => CNC_PORTS[p]);
+  const allVessels = {}; // vessel_key → {vessel, voyage, etd}
+
+  // toyoshingo/cmacgm 스크래핑 (4주분)
+  for (const pol of pols) {
+    const portcode = CNC_PORTS[pol];
+    for (let w = 1; w <= 5; w++) {
+      try {
+        const url = `https://www.toyoshingo.com/cmacgm/index.php?port=${portcode}&week=${w}`;
+        const res = await fetch(url, {credentials:'omit'});
+        if (!res.ok) continue;
+        const text = await res.text();
+        // title= 속성 파싱
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        for (const a of doc.querySelectorAll('a[title]')) {
+          const raw = a.getAttribute('title') || '';
+          const t = raw.replace(/&#(\d+);/g, (_,c)=>String.fromCharCode(Number(c)));
+          if (!t.includes('Vessel Name') || !t.includes('Sailing')) continue;
+          const vn  = t.match(/Vessel Name[^:]*:\s*([^
+<]+)/i)?.[1]?.trim() || '';
+          const voy = t.match(/Voyage[^:]*:\s*([^
+<]+)/i)?.[1]?.trim() || '';
+          const sail= t.match(/Sailing[^:]*<span[^>]*>([\d\/]+)/i)?.[1]?.replace(/\//g,'-') || '';
+          const omit= t.includes('OMIT');
+          if (!vn || !voy) continue;
+          const key = `${vn.toUpperCase()}__${voy}__${pol}`;
+          if (!allVessels[key] || (sail && sail > (allVessels[key].etd||''))) {
+            allVessels[key] = {vessel:vn, voyage:voy, etd:sail, pol, omit};
+          }
+        }
+        // certificate.php 링크에서 出港時間 파싱
+        for (const a of doc.querySelectorAll('a[href*="certificate.php"]')) {
+          const href = a.href || a.getAttribute('href') || '';
+          try {
+            const cr = await fetch(`https://www.toyoshingo.com${href.startsWith('/')?'':'/cmacgm/'}${href}`, {credentials:'omit'});
+            if (!cr.ok) continue;
+            const ct = await cr.text();
+            const cd = parser.parseFromString(ct, 'text/html');
+            const rows = [...cd.querySelectorAll('tr')];
+            let vesselName='', voyageNo='', depTime='';
+            for (const row of rows) {
+              const cells = row.querySelectorAll('td');
+              if (cells.length < 2) continue;
+              const label = cells[0].innerText || cells[0].textContent;
+              const val   = cells[1].innerText || cells[1].textContent;
+              if (/vessel/i.test(label)) vesselName = val.trim();
+              else if (/voyage/i.test(label)) voyageNo = val.trim();
+              else if (/出港|departure/i.test(label)) {
+                const dm = val.match(/(\d{4})\/(\d{2})\/(\d{2})/);
+                if (dm) depTime = `${dm[1]}-${dm[2]}-${dm[3]}`;
+              }
+            }
+            if (vesselName && depTime) {
+              const key2 = `${vesselName.toUpperCase()}__${voyageNo}__${pol}`;
+              allVessels[key2] = {vessel:vesselName, voyage:voyageNo, etd:depTime, pol, omit:false, confirmed:true};
+            }
+          } catch(e2){}
+        }
+      } catch(e) {}
+    }
+  }
+
+  // 부킹 매칭
+  const updates = {};
+  function extractVoy(vessel) {
+    const m = vessel.toUpperCase().match(/0([A-Z0-9]{4,6})/);
+    return m ? m[1] : '';
+  }
+  function voyPartialMatch(bkgVoy, vssVoy) {
+    if (!bkgVoy || !vssVoy) return false;
+    if (bkgVoy.includes(vssVoy) || vssVoy.includes(bkgVoy)) return true;
+    for (let i=0; i<=bkgVoy.length-4; i++) {
+      if (vssVoy.toUpperCase().includes(bkgVoy.slice(i,i+4))) return true;
+    }
+    return false;
+  }
+
+  for (const bkg of cncBkgs) {
+    const pol = bkg.pol.toUpperCase();
+    const bkgVoy = extractVoy(bkg.vessel_name);
+    const baseVessel = bkg.vessel_name.toUpperCase().replace(/\s*0[A-Z0-9]{4,8}\S*/g,'').trim();
+    const baseWords = baseVessel.split(/\s+/).filter(w=>w.length>1);
+
+    let best = null;
+    for (const [key, ev] of Object.entries(allVessels)) {
+      if (ev.pol !== pol) continue;
+      const evVessel = ev.vessel.toUpperCase();
+      const nameOk = baseWords.every(w => evVessel.includes(w));
+      const voyOk  = voyPartialMatch(bkgVoy, ev.voyage);
+      if (nameOk && (voyOk || !bkgVoy)) {
+        if (!best || ev.etd > (best.etd||'')) best = ev;
+      }
+    }
+
+    if (best && best.etd) {
+      updates[bkg.bkg_no] = {
+        actual_etd:    best.etd,
+        vessel_name:   bkg.vessel_name,
+        carrier:       'CNC',
+        pol:           bkg.pol,
+        scheduled_etd: bkg.etd,
+        confirmed:     !!(best.confirmed || best.etd),
+        voyage:        best.voyage,
+        note:          `toyoshingo.com/cmacgm ${pol} ETD:${best.etd} (browser)`,
+        updated_at:    new Date().toISOString().slice(0,16),
+      };
+    }
+  }
+
+  if (!Object.keys(updates).length) return 0;
+
+  // vessel_actual.json 업데이트
+  try {
+    const vaR = await fetch('https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/vessel_actual.json',
+      {headers:{'Authorization':`token ${tok}`,'Accept':'application/vnd.github.v3+json'}});
+    const vaD = await vaR.json();
+    const current = JSON.parse(atob(vaD.content.replace(/\n/g,'')));
+    Object.assign(current, updates);
+    const enc = btoa(unescape(encodeURIComponent(JSON.stringify(current,null,2))));
+    await fetch('https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/vessel_actual.json',{
+      method:'PUT',
+      headers:{'Authorization':`token ${tok}`,'Content-Type':'application/json'},
+      body:JSON.stringify({
+        message:`CNC ETD update (browser) ${new Date().toISOString().slice(0,16)} (${Object.keys(updates).length}件)`,
+        content:enc, sha:vaD.sha
+      })
+    });
+    console.log(`CNC ETD ${Object.keys(updates).length}건 업데이트:`, updates);
+  } catch(e) {
+    console.error('CNC vessel_actual 저장 오류:', e);
+  }
+
+  return Object.keys(updates).length;
+}
+
 async function triggerVssRefresh() {
   const btn = document.getElementById('btn-vss-refresh');
   btn.disabled = true;
@@ -933,8 +1083,15 @@ async function triggerVssRefresh() {
       }
     );
 
-    // ③ GitHub Actions 트리거
-    btn.textContent = '⏳ ③ VSS照会起動中...';
+    // ③ CNC toyoshingo/cmacgm 직접 조회 (GitHub Actionsでは403のためブラウザで実行)
+    btn.textContent = '⏳ ③ CNC ETD照会中...';
+    const cncUpdated = await fetchCncFromToyoshingo(bookingList, tok);
+    if (cncUpdated > 0) {
+      btn.textContent = `⏳ ③ CNC ${cncUpdated}件更新...`;
+    }
+
+    // ④ GitHub Actions 트리거
+    btn.textContent = '⏳ ④ VSS照会起動中...';
     const actRes = await fetch(
       'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/workflows/update_vessel_actual.yml/dispatches',
       {
