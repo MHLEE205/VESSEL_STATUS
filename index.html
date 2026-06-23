@@ -872,113 +872,136 @@ async function triggerVssRefresh() {
   btn.disabled = true;
   btn.style.background = '#555';
 
-  const steps = ['COMPASSデータ取得中...','bookings同期中...','VSS ETD読込中...','画面更新中...'];
-  let step = 0;
-  const tick = setInterval(() => { if (step < steps.length) btn.textContent = '⏳ ' + steps[step++]; }, 900);
-
   try {
-    if (!S.accessToken || Date.now() > S.tokenExpiry) throw new Error('再ログインが必要です。');
+    if (!S.accessToken || Date.now() > S.tokenExpiry)
+      throw new Error('再ログインが必要です。');
 
-    const h = {'Authorization':`Bearer ${S.accessToken}`,'OData-MaxVersion':'4.0','OData-Version':'4.0','Accept':'application/json'};
-    // ETD範囲: 過去30日 ～ 未来 (漏れ防止)
+    const h = {
+      'Authorization': `Bearer ${S.accessToken}`,
+      'OData-MaxVersion': '4.0', 'OData-Version': '4.0', 'Accept': 'application/json'
+    };
+
+    // ① COMPASS 부킹 취득 (과거 30일~)
+    btn.textContent = '⏳ ① COMPASS取得中...';
     const today = new Date(); today.setDate(today.getDate() - 30);
-    const fromDate = today.toISOString().slice(0,10);
-
-    // ① COMPASS 부킹 전체 취득 (過去30日以降)
-    const bkgRes = await fetch(`${DV_API}/cr49f_bookings?$filter=cr49f_etd ge ${fromDate}T00:00:00Z&$select=cr49f_booking_no,cr49f_main_ship_name,cr49f_etd,_cr49f_carrier_id_value,_cr49f_region_japan_id_value,_cr49f_region_id_value&$top=500&$orderby=cr49f_etd asc`,{headers:h});
+    const fromDate = today.toISOString().slice(0, 10);
+    const bkgRes = await fetch(
+      `${DV_API}/cr49f_bookings?$filter=cr49f_etd ge ${fromDate}T00:00:00Z` +
+      `&$select=cr49f_booking_no,cr49f_main_ship_name,cr49f_etd,` +
+      `_cr49f_carrier_id_value,_cr49f_region_japan_id_value,_cr49f_region_id_value` +
+      `&$top=500&$orderby=cr49f_etd asc`, { headers: h }
+    );
     const allBkgs = (await bkgRes.json()).value || [];
 
-    const cGuids = [...new Set(allBkgs.map(b=>b['_cr49f_carrier_id_value']).filter(Boolean))];
-    const pGuids = [...new Set(allBkgs.map(b=>b['_cr49f_region_japan_id_value']).filter(Boolean))];
-    const podGuids2 = [...new Set(allBkgs.map(b=>b['_cr49f_region_id_value']).filter(Boolean))];
-    const cMap={}, pMap={}, podMap2={};
+    const cG = [...new Set(allBkgs.map(b => b['_cr49f_carrier_id_value']).filter(Boolean))];
+    const pG = [...new Set(allBkgs.map(b => b['_cr49f_region_japan_id_value']).filter(Boolean))];
+    const podG = [...new Set(allBkgs.map(b => b['_cr49f_region_id_value']).filter(Boolean))];
+    const cM = {}, pM = {}, podM = {};
     await Promise.all([
-      ...cGuids.map(async g=>{try{const d=await(await fetch(`${DV_API}/crcf9_carriers(${g})?$select=crcf9_carrier`,{headers:h})).json();cMap[g]=d.crcf9_carrier||'';}catch(e){}}),
-      ...pGuids.map(async g=>{try{const d=await(await fetch(`${DV_API}/crcf9_region_japans(${g})?$select=crcf9_pol`,{headers:h})).json();pMap[g]=d.crcf9_pol||'';}catch(e){}}),
-      ...podGuids2.map(async g=>{try{const d=await(await fetch(`${DV_API}/cr49f_regions(${g})?$select=cr49f_pod`,{headers:h})).json();podMap2[g]=d.cr49f_pod||'';}catch(e){}})
+      ...cG.map(async g => { try { const d = await (await fetch(`${DV_API}/crcf9_carriers(${g})?$select=crcf9_carrier`, { headers: h })).json(); cM[g] = d.crcf9_carrier || ''; } catch (e) {} }),
+      ...pG.map(async g => { try { const d = await (await fetch(`${DV_API}/crcf9_region_japans(${g})?$select=crcf9_pol`, { headers: h })).json(); pM[g] = d.crcf9_pol || ''; } catch (e) {} }),
+      ...podG.map(async g => { try { const d = await (await fetch(`${DV_API}/cr49f_regions(${g})?$select=cr49f_pod`, { headers: h })).json(); podM[g] = d.cr49f_pod || ''; } catch (e) {} })
     ]);
-    const bookingList = allBkgs.map(b=>({
-      bkg_no:b.cr49f_booking_no, vessel_name:b.cr49f_main_ship_name,
-      carrier:cMap[b['_cr49f_carrier_id_value']]||'', pol:pMap[b['_cr49f_region_japan_id_value']]||'',
-      pod:podMap2[b['_cr49f_region_id_value']]||'',
-      etd:(b.cr49f_etd||'').slice(0,10)
-    })).filter(b=>b.carrier&&b.pol&&b.vessel_name);
+    const bookingList = allBkgs.map(b => ({
+      bkg_no: b.cr49f_booking_no,
+      vessel_name: b.cr49f_main_ship_name,
+      carrier: cM[b['_cr49f_carrier_id_value']] || '',
+      pol: pM[b['_cr49f_region_japan_id_value']] || '',
+      pod: podM[b['_cr49f_region_id_value']] || '',
+      etd: (b.cr49f_etd || '').slice(0, 10)
+    })).filter(b => b.carrier && b.pol && b.vessel_name);
 
-    // ② bookings_for_vss.json 동기화 (GH_TOK 상수 사용)
+    // ② bookings_for_vss.json 저장
+    btn.textContent = `⏳ ② bookings同期中... (${bookingList.length}件)`;
     const tok = window.GH_TOK || '';
-    if (!tok) throw new Error('GH_TOKが未設定です。管理者にお問い合わせください。');
-    const bvR = await fetch('https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/bookings_for_vss.json',{headers:{'Authorization':`token ${tok}`}});
+    if (!tok) throw new Error('GH_TOKが未設定。管理者にお問い合わせください。');
+    const bvR = await fetch(
+      'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/bookings_for_vss.json',
+      { headers: { 'Authorization': `token ${tok}`, 'Accept': 'application/vnd.github.v3+json' } }
+    );
     const bvD = await bvR.json();
-    const enc2 = btoa(unescape(encodeURIComponent(JSON.stringify(bookingList,null,2))));
-    await fetch('https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/bookings_for_vss.json',{
-      method:'PUT', headers:{'Authorization':`token ${tok}`,'Content-Type':'application/json'},
-      body:JSON.stringify({message:`Sync bookings ${new Date().toISOString().slice(0,16)} (${bookingList.length}件)`,content:enc2,sha:bvD.sha})
-    });
+    const enc = btoa(unescape(encodeURIComponent(JSON.stringify(bookingList, null, 2))));
+    await fetch(
+      'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/bookings_for_vss.json',
+      {
+        method: 'PUT',
+        headers: { 'Authorization': `token ${tok}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: `Sync ${new Date().toISOString().slice(0, 16)} (${bookingList.length}件)`,
+          content: enc, sha: bvD.sha
+        })
+      }
+    );
 
-    // ③ GitHub Actions 트리거 → toyoshingo/VSS 스크래핑 실행
-    btn.textContent = '⏳ VSS照会中(~1分)...';
-    // bookings_for_vss.json 저장 완료 후 Actions 트리거
+    // ③ GitHub Actions 트리거
+    btn.textContent = '⏳ ③ VSS照会起動中...';
     const actRes = await fetch(
       'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/workflows/update_vessel_actual.yml/dispatches',
-      {method:'POST', headers:{'Authorization':`token ${tok}`,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},
-       body:JSON.stringify({ref:'main'})}
+      {
+        method: 'POST',
+        headers: { 'Authorization': `token ${tok}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
+        body: JSON.stringify({ ref: 'main' })
+      }
     );
-    if(!actRes.ok && actRes.status !== 204) throw new Error(`Actions트리거 실패: ${actRes.status}`);
+    if (!actRes.ok && actRes.status !== 204)
+      throw new Error(`Actions起動失敗: ${actRes.status}`);
 
-    // ④ run ID 취득 (트리거 후 5초 대기)
-    await new Promise(r=>setTimeout(r,5000));
+    // ④ run ID 취득 (5초 대기 후)
+    await new Promise(r => setTimeout(r, 5000));
     let runId = null;
     try {
-      const runRes = await fetch(
+      const rr = await fetch(
         'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/runs?per_page=1',
-        {headers:{'Authorization':`token ${tok}`,'Accept':'application/vnd.github.v3+json'}}
+        { headers: { 'Authorization': `token ${tok}`, 'Accept': 'application/vnd.github.v3+json' } }
       );
-      const rd = await runRes.json();
-      runId = rd.workflow_runs?.[0]?.id;
-    } catch(e){}
+      runId = (await rr.json()).workflow_runs?.[0]?.id;
+    } catch (e) {}
 
     // ⑤ Actions 완료 polling (최대 5분, 10초 간격)
-    let elapsed = 0;
-    let completed = false;
-    while(elapsed < 300) {
-      await new Promise(r=>setTimeout(r,10000));
+    let elapsed = 0, completed = false;
+    while (elapsed < 300) {
+      await new Promise(r => setTimeout(r, 10000));
       elapsed += 10;
-      // 진행 바 표시
-      const pct = Math.min(95, Math.round(elapsed/300*100));
-      const bar = '█'.repeat(Math.floor(pct/10))+'░'.repeat(10-Math.floor(pct/10));
-      btn.textContent = `⏳ VSS照会中 [${bar}] ${elapsed}s`;
+      const pct = Math.min(95, Math.round(elapsed / 300 * 100));
+      const bar = '█'.repeat(Math.floor(pct / 10)) + '░'.repeat(10 - Math.floor(pct / 10));
+      btn.textContent = `⏳ ④ VSS照会中 [${bar}] ${elapsed}s`;
       try {
         const url = runId
           ? `https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/runs/${runId}`
           : `https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/runs?per_page=1`;
-        const cr = await fetch(url,{headers:{'Authorization':`token ${tok}`,'Accept':'application/vnd.github.v3+json'}});
+        const cr = await fetch(url, { headers: { 'Authorization': `token ${tok}`, 'Accept': 'application/vnd.github.v3+json' } });
         const cd = await cr.json();
         const run = runId ? cd : cd.workflow_runs?.[0];
-        if(run?.status==='completed'){ completed=true; break; }
-      } catch(e){}
+        if (run?.status === 'completed') { completed = true; break; }
+      } catch (e) {}
     }
 
-    // ⑥ 최신 vessel_actual.json 로드 + 화면 갱신
-    btn.textContent = '⏳ データ読込中...';
+    // ⑥ 최신 vessel_actual.json 로드 + 화면 즉시 갱신
+    btn.textContent = '⏳ ⑤ データ読込・画面更新中...';
     await loadActualData();
     applyClientFilter();
 
-    clearInterval(tick);
-    btn.textContent = completed ? `✅ 更新完了！(${bookingList.length}件)` : `✅ 同期完了(${bookingList.length}件)`;
+    btn.disabled = false;
     btn.style.background = '#2ea043';
-    const t = document.createElement('div');
-    t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#2ea043;color:#fff;padding:14px 32px;border-radius:8px;font-size:0.95rem;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.3);';
-    t.textContent = `✅ COMPASS ${bookingList.length}件を同期・VSS ETDを最新に更新しました！`;
-    document.body.appendChild(t); setTimeout(()=>t.remove(),5000);
+    btn.textContent = completed
+      ? `✅ 更新完了！(${bookingList.length}件)`
+      : `✅ 同期完了(${bookingList.length}件)`;
+    setTimeout(() => {
+      btn.textContent = '🔄 VSS 更新';
+      btn.style.background = '#1a6bc4';
+    }, 6000);
 
-  } catch(e) {
-    clearInterval(tick);
-    btn.textContent = '❌ ' + e.message.slice(0,25);
+  } catch (e) {
+    btn.disabled = false;
     btn.style.background = '#c0392b';
-  } finally {
-    setTimeout(()=>{btn.textContent='🔄 VSS 更新';btn.style.background='#1a6bc4';btn.disabled=false;},5000);
+    btn.textContent = `❌ ${e.message}`;
+    setTimeout(() => {
+      btn.textContent = '🔄 VSS 更新';
+      btn.style.background = '#1a6bc4';
+    }, 5000);
   }
 }
+
 
 // Today 버튼 - ETD 오늘 이후 안건 표시
 function loadToday() {
