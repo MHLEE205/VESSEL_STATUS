@@ -101,6 +101,29 @@ def parse_vessels_with_voyage(html):
     if not html: return results
 
     from bs4 import BeautifulSoup
+    # a[title] 방식으로도 파싱 (dl 태그 외 케이스 대비)
+    import re as _re
+    for link_m in _re.finditer(r'title="([^"]+)"', html):
+        raw = link_m.group(1)
+        t = raw.replace('&#', '').replace(';','')
+        # HTML entity 디코딩
+        import html as _html
+        t = _html.unescape(raw)
+        if 'Vessel Name' not in t or 'Sailing' not in t: continue
+        vn_m = _re.search(r'Vessel Name[^:]*:\s*(.+)', t, _re.I)
+        voy_m = _re.search(r'Voyage[^:]*:\s*(.+)', t, _re.I)
+        sail_m = _re.search(r'Sailing.*?<span[^>]*>([\d/]+)', t, _re.I)
+        if not vn_m or not voy_m: continue
+        vname = _re.sub(r'\s*\([^)]+\)\s*$', '', vn_m.group(1).strip()).strip()
+        voyage = voy_m.group(1).strip()
+        sailing = sail_m.group(1).replace('/', '-') if sail_m else ''
+        omit = '--OMIT--' in t
+        key = f"{vname.upper()}__{voyage}"
+        if key not in results:
+            results[key] = {'vessel': vname, 'voyage': voyage, 'sailing': sailing, 'omit': omit, 'is_actual': False}
+        elif sailing and sailing > results[key].get('sailing', ''):
+            results[key] = {'vessel': vname, 'voyage': voyage, 'sailing': sailing, 'omit': omit, 'is_actual': False}
+
     try:
         soup = BeautifulSoup(html, 'html.parser')
     except Exception:
@@ -1050,10 +1073,11 @@ def main():
             tyo_results[bkg_no] = {
                 "actual_etd": actual, "vessel_name": vessel,
                 "carrier": carrier, "pol": pol,
-                "scheduled_etd": etd, "confirmed": False,
+                "scheduled_etd": etd,
+                "confirmed": not best.get('omit', False),  # OMIT이 아니면 confirmed:True
                 "updated_at": now, "voyage": best['voyage'],
+                "note": "OMIT" if best.get('omit') else f"toyoshingo.com confirmed",
             }
-            if best['omit']: tyo_results[bkg_no]["note"] = "OMIT"
 
     # ── JIN JIANG Playwright 스크래핑 ──
     print("\n[2/3] JIN JIANG jinjiangshipping.jp 스크래핑...")
