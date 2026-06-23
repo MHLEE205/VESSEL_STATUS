@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-VESSEL STATUS - Actual ETD Auto Update v5.3
+VESSEL STATUS - Actual ETD Auto Update v5.4
 - toyoshingo.com: urllib 직접 스크래핑 (기존 방식)
 - jinjiangshipping.jp: Playwright 브라우저로 스크래핑 (신규)
 - VOYAGE 번호 기반 정확 매칭
@@ -1010,7 +1010,7 @@ def fetch_one_tracking(bookings, actual_map, now):
 
 def main():
     now = datetime.now().strftime('%Y-%m-%d %H:%M')
-    print(f"=== Vessel Actual ETD Auto Update v5.3 - {now} ===")
+    print(f"=== Vessel Actual ETD Auto Update v5.4 - {now} ===")
 
     # ── COMPASS 직접 조회 (COMPASS_TOKEN 있으면) / 없으면 bookings_for_vss.json ──
     bookings = fetch_compass_bookings()
@@ -1034,6 +1034,52 @@ def main():
     actual_map  = json.loads(base64.b64decode(actual_data['content']).decode('utf-8'))
     actual_sha  = actual_data['sha']
     print(f"기존 actual: {len(actual_map)}건")
+
+    # ── 사전 검사: 본선명 변경 / ETD 역전 감지 → confirmed 리셋 ──
+    today_str = datetime.now().strftime('%Y-%m-%d')
+    bkg_map_pre = {b['bkg_no']: b for b in bookings}
+    pre_reset = 0
+    for bkg_no, va in list(actual_map.items()):
+        b = bkg_map_pre.get(bkg_no, {})
+        if not b: continue
+        compass_etd    = b.get('etd','')
+        compass_vessel = re.sub(r'[\s　]+', ' ', b.get('vessel_name','')).strip().upper()
+        actual_vessel  = re.sub(r'[\s　]+', ' ', va.get('vessel_name','')).strip().upper()
+        vss_etd        = va.get('actual_etd','')
+
+        # 미래 부킹만 체크 (이미 출항 완료 건 제외)
+        if compass_etd and compass_etd < today_str:
+            continue
+
+        # ① 본선명 변경 감지 (공백 정규화 후 비교)
+        if compass_vessel and actual_vessel and compass_vessel != actual_vessel:
+            print(f"  🔄 [사전검사] 本船名変更: {bkg_no} | {actual_vessel} → {compass_vessel} | COMPASS ETD:{compass_etd}")
+            actual_map[bkg_no] = {
+                **va,
+                'actual_etd':  compass_etd,
+                'vessel_name': b.get('vessel_name',''),
+                'confirmed':   False,
+                'note':        f'本船名変更 {actual_vessel}→{compass_vessel} COMPASS ETD:{compass_etd}',
+                'updated_at':  now,
+            }
+            pre_reset += 1
+
+        # ② ETD 역전 감지 (VSS ETD < COMPASS ETD, 미래 건만)
+        elif vss_etd and compass_etd and vss_etd < compass_etd and va.get('confirmed'):
+            print(f"  ⚠️ [사전검사] ETD逆転: {bkg_no} | VSS:{vss_etd} < COMPASS:{compass_etd} | {compass_vessel[:25]}")
+            actual_map[bkg_no] = {
+                **va,
+                'actual_etd': compass_etd,
+                'confirmed':  False,
+                'note':       f'ETD逆転疑い(VSS:{vss_etd}<COMPASS:{compass_etd}) 再確認',
+                'updated_at': now,
+            }
+            pre_reset += 1
+
+    if pre_reset:
+        print(f"  → 사전 리셋: {pre_reset}건 (재확인 대기)")
+    else:
+        print(f"  → 사전 검사 이상 없음")
 
     # ── toyoshingo.com 스크래핑 (기존) ──
     print("\n[1/2] toyoshingo.com 스크래핑...")
@@ -1129,36 +1175,74 @@ def main():
     print(f"ONE 트래킹: {len(one_results)}건")
 
     # ── 스마트 병합: 본선명 변경 감지 + confirmed:True 보호 ──
-    def smart_merge(actual_map, new_results, source_name):
+    def smart_merge(actual_map, new_results, source_name, bookings_map=None):
         """
         병합 규칙:
-        1. 본선명(vessel_name)이 변경된 경우 → 무조건 덮어씀 (재매칭 결과 반영)
-        2. confirmed:True이고 본선명 같으면 → 스킵 (수동 수정 보호)
-        3. 미등록 또는 confirmed:False → 덮어씀
+        1. 본선명(vessel_name)이 변경된 경우 → 무조건 덮어씀 + 재매칭 필요 알림
+        2. VSS ETD < COMPASS scheduled_etd (ETD 역전) → 의심 → confirmed:False로 리셋
+        3. confirmed:True이고 본선명 동일 + ETD 정상 → 스킵 (수동 수정 보호)
+        4. 미등록 또는 confirmed:False → 덮어씀
         """
         updated = 0
         for bkg_no, new_data in new_results.items():
             existing = actual_map.get(bkg_no, {})
-            new_vessel = new_data.get('vessel_name','').strip().upper()
-            old_vessel = existing.get('vessel_name','').strip().upper()
+            # 공백/전각 공백 정규화 후 비교
+            import re as _re
+            new_vessel = _re.sub(r'[\s\u3000]+', ' ', new_data.get('vessel_name','')).strip().upper()
+            old_vessel = _re.sub(r'[\s\u3000]+', ' ', existing.get('vessel_name','')).strip().upper()
             vessel_changed = old_vessel and old_vessel != new_vessel
+
+            # COMPASS scheduled_etd 취득 (bookings_map 또는 existing)
+            compass_etd = ''
+            if bookings_map and bkg_no in bookings_map:
+                compass_etd = bookings_map[bkg_no].get('etd','')
+            if not compass_etd:
+                compass_etd = existing.get('scheduled_etd','') or new_data.get('scheduled_etd','')
+
+            # ETD 역전 체크: VSS ETD < COMPASS ETD → 의심 (미래 건만, 이미 출항 완료 건 제외)
+            vss_etd = new_data.get('actual_etd','')
+            today_str = datetime.now().strftime('%Y-%m-%d')
+            etd_reversed = (
+                vss_etd and compass_etd
+                and vss_etd < compass_etd
+                and compass_etd >= today_str  # 미래 건만 체크
+            )
 
             if vessel_changed:
                 print(f"  ⚠️ [{source_name}] 本船名変更: {bkg_no} | {existing.get('vessel_name','')} → {new_data.get('vessel_name','')}")
-                actual_map[bkg_no] = new_data
+                # 본선명 변경: COMPASS ETD로 리셋, 재확인 대기
+                actual_map[bkg_no] = {
+                    **new_data,
+                    'actual_etd': compass_etd or new_data.get('actual_etd',''),
+                    'confirmed': False,
+                    'note': f'本船名変更検出 {existing.get("vessel_name","")}→{new_data.get("vessel_name","")} COMPASS ETD:{compass_etd}',
+                }
+                updated += 1
+            elif etd_reversed and new_data.get('confirmed'):
+                # ETD 역전 의심: confirmed → False로 강등, 재확인 대기
+                print(f"  ⚠️ [{source_name}] ETD逆転疑い: {bkg_no} | VSS:{vss_etd} < COMPASS:{compass_etd} | {new_data.get('vessel_name','')[:25]}")
+                actual_map[bkg_no] = {
+                    **new_data,
+                    'actual_etd': compass_etd,  # COMPASS ETD로 복원
+                    'confirmed': False,
+                    'note': f'ETD逆転疑い(VSS:{vss_etd}<COMPASS:{compass_etd}) 再確認待ち',
+                }
                 updated += 1
             elif existing.get('confirmed') == True:
-                # confirmed:True는 스킵 (수동 수정 건 보호)
+                # confirmed:True + 정상 → 스킵
                 pass
             else:
                 actual_map[bkg_no] = new_data
                 updated += 1
         return updated
 
-    cnt_tyo   = smart_merge(actual_map, tyo_results,     'toyoshingo')
-    cnt_jj    = smart_merge(actual_map, jj_results,      'jinjiang')
-    cnt_ehime = smart_merge(actual_map, ehime_results,   'ehime')
-    cnt_kmtc  = smart_merge(actual_map, kmtc_results,    'vss-service')
+    # bookings_map 생성 (smart_merge에 전달용)
+    bookings_map = {b['bkg_no']: b for b in bookings}
+
+    cnt_tyo   = smart_merge(actual_map, tyo_results,     'toyoshingo', bookings_map)
+    cnt_jj    = smart_merge(actual_map, jj_results,      'jinjiang',   bookings_map)
+    cnt_ehime = smart_merge(actual_map, ehime_results,   'ehime',      bookings_map)
+    cnt_kmtc  = smart_merge(actual_map, kmtc_results,    'vss-service',bookings_map)
     # 트래킹 결과는 항상 최우선 (confirmed:True 덮어씀)
     for bkg_no, data in {**maersk_results, **yangming_results, **one_results}.items():
         actual_map[bkg_no] = data
