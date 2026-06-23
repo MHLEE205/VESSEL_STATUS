@@ -902,15 +902,15 @@
     "updated_at": "2026-06-22 05:05"
   },
   "JJCNATALNA66A18": {
-    "actual_etd": "2026-06-26",
-    "vessel_name": "MILD  SONATA　2625W",
+    "actual_etd": "2026-07-03",
+    "vessel_name": "MILD SONATA 2626W",
     "carrier": "JIN JIANG",
     "pol": "NAHA",
-    "scheduled_etd": "2026-06-26",
-    "confirmed": true,
-    "voyage": "2625E/2625W",
-    "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-06-22 07:06"
+    "pod": "TAICHUNG",
+    "scheduled_etd": "2026-07-03",
+    "confirmed": false,
+    "note": "COMPASS항차変更: 2625W→2626W ETD:2026-07-03 再確認待ち",
+    "updated_at": "2026-06-23 22:59"
   },
   "JJCHALCJNA66A04": {
     "actual_etd": "2026-06-29",
@@ -1133,15 +1133,15 @@
     "updated_at": "2026-06-22 01:06"
   },
   "AMP0552226": {
-    "actual_etd": "2026-07-02",
-    "vessel_name": "CNC SERVAL 0IZOVS1NC",
+    "actual_etd": "2026-07-09",
+    "vessel_name": "PALU BAY 0IZOXS1NC",
     "carrier": "CNC",
     "pol": "KOBE",
-    "scheduled_etd": "2026-07-02",
+    "pod": "SURABAYA",
+    "scheduled_etd": "2026-07-09",
     "confirmed": false,
-    "voyage": "0IZOVS1NC",
-    "note": "COMPASS ETD:2026-07-02 toyoshingo/cmacgm 未登載",
-    "updated_at": "2026-06-22 01:06"
+    "note": "COMPASS本船変更: CNC SERVAL→PALU BAY ETD:2026-07-09 VSS未確認",
+    "updated_at": "2026-06-23 22:59"
   },
   "A07GX13746": {
     "actual_etd": "2026-07-07",
