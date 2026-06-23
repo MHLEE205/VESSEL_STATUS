@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-VESSEL STATUS - Actual ETD Auto Update v5.1
+VESSEL STATUS - Actual ETD Auto Update v5.3
 - toyoshingo.com: urllib 직접 스크래핑 (기존 방식)
 - jinjiangshipping.jp: Playwright 브라우저로 스크래핑 (신규)
 - VOYAGE 번호 기반 정확 매칭
@@ -47,13 +47,22 @@ VSS_CONFIG = {
         "base": "https://www.toyoshingo.com/yangming/index.php",
         "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41, "YOKOHAMA":11, "KOBE":41}
     },
+    # PAN OCEAN: 공동운항이 많아 여러 선사 사이트에서 검색
     "PAN OCEAN": {
         "base": "https://www.toyoshingo.com/sinokor/index.php",
-        "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41, "SENDAI":19, "AKITA":17, "YOKOHAMA":13, "ISHIKARI":7, "KOBE":41, "MIZUSHIMA":50}
+        "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41, "SENDAI":19, "AKITA":17, "YOKOHAMA":13, "ISHIKARI":7, "KOBE":41, "MIZUSHIMA":50, "NIIGATA":24}
     },
     "PAN OCEAN_NAMSUNG": {
         "base": "https://www.toyoshingo.com/namsung/index.php",
-        "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41, "SENDAI":19, "YOKOHAMA":13, "KOBE":11}
+        "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41, "SENDAI":19, "YOKOHAMA":13, "KOBE":41, "NIIGATA":24}
+    },
+    "PAN OCEAN_HEUNGA": {
+        "base": "https://www.toyoshingo.com/heunga/index.php",
+        "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41, "KOBE":41}
+    },
+    "PAN OCEAN_KMTC": {
+        "base": "https://www.toyoshingo.com/kmtc/index.php",
+        "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41, "SENDAI":19, "YOKOHAMA":13, "NIIGATA":24}
     },
     "CNC": {
         "base": "https://www.toyoshingo.com/cmacgm/index.php",
@@ -71,9 +80,21 @@ def extract_voyage(vessel_name):
     if m: return m.group(1)
     m = re.search(r'[SN](\d{3})', vessel_name.upper())
     if m: return m.group(1).lstrip('0') or '0'
-    m = re.search(r'0([A-Z]{4,6})\b', vessel_name.upper())
+    # CNC voyage: 0IZOVS1NC, 0QIOJS1NC 형태 → 핵심 알파벳 4~6자 추출
+    m = re.search(r'0([A-Z]{4,6})', vessel_name.upper())
     if m: return m.group(1)
     return None
+
+def voyage_partial_match(bkg_voyage, vss_voyage):
+    """CNC 등 voyage 부분 일치 허용 (4자 이상 공통 부분 있으면 매칭)"""
+    if not bkg_voyage or not vss_voyage: return False
+    if bkg_voyage in vss_voyage: return True
+    # 4자 이상 공통 부분 확인
+    if len(bkg_voyage) >= 4:
+        for i in range(len(bkg_voyage)-3):
+            chunk = bkg_voyage[i:i+4]
+            if chunk in vss_voyage: return True
+    return False
 
 def voyage_matches(bkg_voyage, vss_voyage):
     if not bkg_voyage or not vss_voyage: return False
@@ -989,7 +1010,7 @@ def fetch_one_tracking(bookings, actual_map, now):
 
 def main():
     now = datetime.now().strftime('%Y-%m-%d %H:%M')
-    print(f"=== Vessel Actual ETD Auto Update v5.1 - {now} ===")
+    print(f"=== Vessel Actual ETD Auto Update v5.3 - {now} ===")
 
     # ── COMPASS 직접 조회 (COMPASS_TOKEN 있으면) / 없으면 bookings_for_vss.json ──
     bookings = fetch_compass_bookings()
@@ -1062,7 +1083,9 @@ def main():
             v   = data['vessel'].upper()
             voy = data['voyage']
             name_ok = (vessel_base[:10] in v or v[:10] in vessel_base or vessel_base == v)
-            if name_ok and bkg_voyage and voyage_matches(bkg_voyage, voy):
+            # CNC/PAN OCEAN 등은 voyage 부분 일치 허용
+            voy_ok = voyage_partial_match(bkg_voyage, voy) if carrier.upper() in ('CNC','PAN OCEAN','PAN OCEAN_NAMSUNG','PAN OCEAN_HEUNGA','PAN OCEAN_KMTC') else voyage_matches(bkg_voyage, voy)
+            if name_ok and bkg_voyage and voy_ok:
                 best = data; break
         if best and (best['sailing'] or best['omit']):
             actual = best['sailing'] if not best['omit'] else etd
@@ -1141,7 +1164,8 @@ def main():
         actual_map[bkg_no] = data
     cnt_track = len(maersk_results) + len(yangming_results) + len(one_results)
 
-    # ── 미등록 부킹 보장: VSS 미확인이어도 COMPASS ETD로 반드시 등록 ──
+    # ── 미등록 부킹 완전 보장: VSS 미확인이어도 COMPASS ETD로 반드시 등록 ──
+    # (신규 부킹이 들어와도 갱신 버튼 1회로 즉시 반영)
     cnt_fallback = 0
     for bkg in bookings:
         bkg_no = bkg.get('bkg_no','')
@@ -1155,10 +1179,11 @@ def main():
                 'pod':           bkg.get('pod',''),
                 'scheduled_etd': bkg.get('etd',''),
                 'confirmed':     False,
-                'note':          'COMPASS ETD基準(VSS未確認)',
+                'note':          f'COMPASS ETD基準(VSS未確認) {bkg.get("carrier","")}',
                 'updated_at':    now,
             }
             cnt_fallback += 1
+            print(f"  ⚠ fallback: {bkg_no:<25} {bkg.get('carrier',''):12} {bkg.get('vessel_name','')[:25]}")
 
     total = cnt_tyo + cnt_jj + cnt_ehime + cnt_kmtc + cnt_track + cnt_fallback
     print(f"\n✅ 전체 갱신: {total}건 (tyo:{cnt_tyo}, jj:{cnt_jj}, ehime:{cnt_ehime}, kmtc:{cnt_kmtc}, tracking:{cnt_track}, fallback:{cnt_fallback})")
