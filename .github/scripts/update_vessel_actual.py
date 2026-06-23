@@ -564,10 +564,15 @@ def fetch_vss_service_playwright(bookings):
             time_el = el.query_selector('.vessel-time')
             if not time_el: continue
             time_text = time_el.inner_text().strip()
-            # "19/07:40 - 19/18:00" → departure day=19
+            # "19/07:40 - 19/18:00" 또는 "07 - 07" (입항일 - 출항일) 형식 모두 대응
             m = re.match(r'(\d{1,2})/\d{2}:\d{2}\s*-\s*(\d{1,2})/(\d{2}:\d{2})', time_text)
-            if not m: continue
-            dep_day = m.group(2).zfill(2)
+            if m:
+                dep_day = m.group(2).zfill(2)
+            else:
+                # "07 - 07" 형식
+                m2 = re.match(r'(\d{1,2})\s*-\s*(\d{1,2})', time_text)
+                if not m2: continue
+                dep_day = m2.group(2).zfill(2)
             # 날짜 조합: year_month + dep_day
             # 주 경계 처리: dep_day < 현재월 시작일이면 다음달
             try:
