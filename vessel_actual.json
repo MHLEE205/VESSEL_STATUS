@@ -1144,15 +1144,15 @@
     "updated_at": "2026-06-22 01:06"
   },
   "A07GX13746": {
-    "actual_etd": "2026-07-06",
+    "actual_etd": "2026-07-07",
     "vessel_name": "WAN HAI 290 S086",
     "carrier": "INTERASIA",
     "pol": "OSAKA",
     "scheduled_etd": "2026-07-06",
-    "confirmed": false,
-    "voyage": "S086",
-    "note": "COMPASS ETD:2026-07-06 vessel-schedule-service.com/interasia OSAKA 未確認",
-    "updated_at": "2026-06-22 01:06"
+    "confirmed": true,
+    "voyage": "N086/S086 JSV",
+    "note": "vessel-schedule-service.com/interasia OSAKA ETD:2026-07-07確認済み",
+    "updated_at": "2026-06-23 01:08"
   },
   "SNKO040260600168": {
     "actual_etd": "2026-07-06",
