@@ -1,37 +1,5 @@
 [
   {
-    "bkg_no": "ILN0052014829",
-    "vessel_name": "ITX EHIME 109S",
-    "carrier": "EHIME OCEAN",
-    "pol": "NAHA",
-    "pod": "PUSAN",
-    "etd": "2026-05-24"
-  },
-  {
-    "bkg_no": "HASLJ01260401752",
-    "vessel_name": "TOYAMA TRADER 2618W",
-    "carrier": "HEUNG A",
-    "pol": "SENDAI",
-    "pod": "PUSAN",
-    "etd": "2026-05-24"
-  },
-  {
-    "bkg_no": "TYOG65386600",
-    "vessel_name": "ONE HAMBURG 084W",
-    "carrier": "ONE",
-    "pol": "KOBE",
-    "pod": "SURABAYA",
-    "etd": "2026-05-24"
-  },
-  {
-    "bkg_no": "A07GX10928",
-    "vessel_name": "WAN HAI 325 S059",
-    "carrier": "INTERASIA",
-    "pol": "TOKYO",
-    "pod": "KWANGYANG",
-    "etd": "2026-05-24"
-  },
-  {
     "bkg_no": "A07GX09818",
     "vessel_name": "TS GUANGZHOU S608",
     "carrier": "INTERASIA",
