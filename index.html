@@ -646,7 +646,8 @@ function renderTable(bookings, carrierMap, polMap, podMap) {
         const act = actual.actual_etd;
         const note = actual.note || '';
         if (note.includes('OMIT')) return '<span class="badge-actual-omit">OMIT→' + act + '</span>';
-        const nodata = note.includes('未掲載') || note.includes('未登載') || note.includes('VSS未確認') || note.includes('COMPASS ETD基準');
+        // 'toyoshingo/cmacgm'(점없음)=未掲載 garbled, 'toyoshingo.com/cmacgm'(점있음)=CNC 검색 성공
+        const nodata = note.includes('未掲載') || note.includes('未登載') || note.includes('VSS未確認') || note.includes('COMPASS ETD基準') || (note.includes('toyoshingo/cmacgm') && !note.includes('toyoshingo.com/cmacgm'));
         if (nodata) return '<span class="badge-actual-nodata">?' + act + '</span>';
         if (act === sched) return '<span class="badge-actual-same">' + act + '</span>';
         return '<span class="badge-actual-changed">⚠ ' + act + '</span>';
