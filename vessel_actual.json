@@ -140,7 +140,7 @@
     "scheduled_etd": "2026-06-12",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-12 ETA:None",
-    "updated_at": "2026-06-24 05:03"
+    "updated_at": "2026-06-24 05:40"
   },
   "I272245289": {
     "actual_etd": "2026-06-19",
@@ -150,8 +150,8 @@
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
-    "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-06-26(changed)",
-    "updated_at": "2026-06-24 05:03"
+    "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-06-26",
+    "updated_at": "2026-06-24 05:40"
   },
   "I272245291": {
     "actual_etd": "2026-06-19",
@@ -172,8 +172,8 @@
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
-    "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-06-26(changed)",
-    "updated_at": "2026-06-24 05:03"
+    "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-06-26",
+    "updated_at": "2026-06-24 05:40"
   },
   "I272244407": {
     "actual_etd": "2026-06-19",
@@ -183,8 +183,8 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-17",
     "confirmed": true,
-    "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-06-25(changed)",
-    "updated_at": "2026-06-24 05:03"
+    "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-06-25",
+    "updated_at": "2026-06-24 05:40"
   },
   "I272244409": {
     "actual_etd": "2026-06-23",
@@ -194,8 +194,8 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-23",
     "confirmed": true,
-    "note": "yangming.com tracking ETD:2026-06-23 ETA:2026-06-29(changed)",
-    "updated_at": "2026-06-24 05:03"
+    "note": "yangming.com tracking ETD:2026-06-23 ETA:2026-06-29",
+    "updated_at": "2026-06-24 05:40"
   },
   "I272244404": {
     "actual_etd": "2026-07-03",
@@ -216,8 +216,8 @@
     "pol": "HAKATA",
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
-    "note": "yangming.com tracking ETD:2026-06-24 ETA:None(changed)",
-    "updated_at": "2026-06-24 05:03"
+    "note": "yangming.com tracking ETD:2026-06-24 ETA:None",
+    "updated_at": "2026-06-24 05:40"
   },
   "I272245891": {
     "actual_etd": "2026-06-24",
@@ -502,7 +502,7 @@
     "pol": "SENDAI",
     "scheduled_etd": "2026-07-08",
     "confirmed": false,
-    "updated_at": "2026-06-24 05:03",
+    "updated_at": "2026-06-24 05:40",
     "voyage": "2608E/2608W</dd><dt>Arrival</dt><dd>: <span>2026/07/04 </span></dd><dt>Berthing</dt><dd>: <span>2026/07/04 </span></dd><dt>Sailing</dt><dd>: <span>2026/07/04 </span></dd><dt>Berth Name</dt><dd>: 外港-13M2号岸壁</dd><dt>Rate</dt><dd>: </dd><dt>B/L発行</dt><dd>: </dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
     "note": "ETD逆転疑い(VSS:2026-07-04<COMPASS:2026-07-08) 再確認待ち"
   },
@@ -1547,8 +1547,8 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-05-26",
     "confirmed": true,
-    "note": "yangming.com tracking ETD:2026-05-28 ETA:None(changed)",
-    "updated_at": "2026-06-24 05:03"
+    "note": "yangming.com tracking ETD:2026-05-28 ETA:None",
+    "updated_at": "2026-06-24 05:40"
   },
   "A07GX09309": {
     "actual_etd": "2026-05-26",
@@ -1712,8 +1712,8 @@
     "pol": "HAKATA",
     "scheduled_etd": "2026-05-29",
     "confirmed": true,
-    "note": "yangming.com tracking ETD:2026-06-09 ETA:None(changed)",
-    "updated_at": "2026-06-24 05:03"
+    "note": "yangming.com tracking ETD:2026-06-09 ETA:None",
+    "updated_at": "2026-06-24 05:40"
   },
   "TYOG65507800": {
     "actual_etd": "2026-05-29",
@@ -1910,8 +1910,8 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-02",
     "confirmed": true,
-    "note": "yangming.com tracking ETD:2026-06-02 ETA:2026-06-29(changed)",
-    "updated_at": "2026-06-24 05:03"
+    "note": "yangming.com tracking ETD:2026-06-02 ETA:2026-06-29",
+    "updated_at": "2026-06-24 05:40"
   },
   "HASLJ01260500182": {
     "actual_etd": "2026-06-11",
@@ -1932,8 +1932,8 @@
     "pol": "KOBE",
     "scheduled_etd": "2026-06-03",
     "confirmed": true,
-    "note": "yangming.com tracking ETD:2026-06-03 ETA:2026-06-29(changed)",
-    "updated_at": "2026-06-24 05:03"
+    "note": "yangming.com tracking ETD:2026-06-03 ETA:2026-06-29",
+    "updated_at": "2026-06-24 05:40"
   },
   "TYOG86534400": {
     "actual_etd": "2026-06-03",
@@ -2218,8 +2218,8 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-09",
     "confirmed": true,
-    "note": "yangming.com tracking ETD:2026-06-09 ETA:2026-06-30(changed)",
-    "updated_at": "2026-06-24 05:03"
+    "note": "yangming.com tracking ETD:2026-06-09 ETA:2026-06-30",
+    "updated_at": "2026-06-24 05:40"
   },
   "SNKO040260501116": {
     "actual_etd": "2026-06-09",
