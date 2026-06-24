@@ -790,7 +790,7 @@ def fetch_compass_bookings():
         vessel  = b.get('cr49f_main_ship_name','')
         etd     = (b.get('cr49f_etd','') or '')[:10]
         bkg_no  = b.get('cr49f_booking_no','')
-        if carrier and pol and vessel and bkg_no:
+        if bkg_no and etd:
             bookings.append({'bkg_no':bkg_no,'vessel_name':vessel,'carrier':carrier,'pol':pol,'pod':pod,'etd':etd})
 
     print(f"COMPASS API 취득: {len(bookings)}건")

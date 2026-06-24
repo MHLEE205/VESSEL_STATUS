@@ -1074,12 +1074,12 @@ async function triggerVssRefresh() {
     ]);
     const bookingList = allBkgs.map(b => ({
       bkg_no: b.cr49f_booking_no,
-      vessel_name: b.cr49f_main_ship_name,
+      vessel_name: b.cr49f_main_ship_name || '',
       carrier: cM[b['_cr49f_carrier_id_value']] || '',
       pol: pM[b['_cr49f_region_japan_id_value']] || '',
       pod: podM[b['_cr49f_region_id_value']] || '',
       etd: (b.cr49f_etd || '').slice(0, 10)
-    })).filter(b => b.carrier && b.pol && b.vessel_name);
+    })).filter(b => b.bkg_no && b.etd);
 
     // ② bookings_for_vss.json 저장
     btn.textContent = `⏳ ② bookings同期中... (${bookingList.length}件)`;
