@@ -679,7 +679,7 @@ def fetch_vss_service_playwright(bookings):
                     except Exception as e:
                         print(f"  {carrier} {port} week{idx} error: {e}")
                     import time
-                    time.sleep(0.5)
+                    time.sleep(0.2)
 
         browser.close()
 
@@ -902,8 +902,7 @@ def fetch_cnc_playwright(bookings, actual_map, now):
                        f"?tab=2&port_id={port_id}&start_week=monday&view_type=WEEK&current_index={idx}")
                 try:
                     page.goto(url, timeout=25000)
-                    page.wait_for_timeout(2500)
-                    body = page.inner_text('body')
+                    body = smart_wait_body(page, r'\d{4}/\d{2}/\d{2}', max_ms=5000)
                     # year_month 추출
                     ym_m = re.search(r'(\d{4})/(\d{2})/\d{2}', body)
                     if not ym_m:
@@ -1008,9 +1007,37 @@ def parse_date_str(s):
     return None
 
 
+def is_fresh_confirmed(bkg_no, bkg_etd, actual_map, max_hours=4):
+    """최근 max_hours 내에 confirmed된 건은 재스캔 불필요. ETD 변경 시엔 재스캔."""
+    va = actual_map.get(bkg_no, {})
+    if not va.get('confirmed'): return False
+    updated = va.get('updated_at', '')
+    if not updated: return False
+    try:
+        dt = datetime.strptime(updated[:16], '%Y-%m-%d %H:%M')
+        if datetime.now() - dt > timedelta(hours=max_hours): return False
+    except Exception:
+        return False
+    if va.get('scheduled_etd') and va.get('scheduled_etd') != bkg_etd:
+        return False
+    return True
+
+def smart_wait_body(page, pattern, max_ms=10000, interval_ms=500):
+    """고정 sleep 대신 body에서 pattern 감지 즉시 리턴 (최대 max_ms)"""
+    waited = 0
+    while waited < max_ms:
+        body = page.inner_text('body')
+        if re.search(pattern, body, re.I):
+            return body
+        page.wait_for_timeout(interval_ms)
+        waited += interval_ms
+    return page.inner_text('body')
+
+
 def fetch_maersk_tracking(bookings, actual_map, now):
     """MAERSK - www.maersk.com/tracking/{BKG_NO} 직접 URL 조회"""
-    target = [b for b in bookings if 'MAERSK' in b.get('carrier','').upper()]
+    target = [b for b in bookings if 'MAERSK' in b.get('carrier','').upper()
+              and not is_fresh_confirmed(b['bkg_no'], b.get('etd',''), actual_map)]
     if not target:
         return {}
     results = {}
@@ -1032,8 +1059,7 @@ def fetch_maersk_tracking(bookings, actual_map, now):
                 url = f'https://www.maersk.com/tracking/{bkg_no}'
                 print(f"    → URL: {url}")
                 page.goto(url, timeout=30000)
-                page.wait_for_timeout(7000)
-                body = page.inner_text('body')
+                body = smart_wait_body(page, r'Departure|Arrival|\d{1,2}\s+[A-Z][a-z]{2}\s+\d{4}', max_ms=10000)
                 print(f"    → body 길이: {len(body)}, 첫100자: {body[:100].replace(chr(10),' ')}")
 
                 etd_raw = re.search(r'Departure\s*\n?\s*([^\n]+)', body, re.I)
@@ -1068,7 +1094,8 @@ def fetch_maersk_tracking(bookings, actual_map, now):
 
 def fetch_yangming_tracking(bookings, actual_map, now):
     """YANGMING - www.yangming.com 부킹번호 조회"""
-    target = [b for b in bookings if 'YANGMING' in b.get('carrier','').upper() or 'YANG MING' in b.get('carrier','').upper()]
+    target = [b for b in bookings if ('YANGMING' in b.get('carrier','').upper() or 'YANG MING' in b.get('carrier','').upper())
+              and not is_fresh_confirmed(b['bkg_no'], b.get('etd',''), actual_map)]
     if not target:
         return {}
     results = {}
@@ -1098,8 +1125,7 @@ def fetch_yangming_tracking(bookings, actual_map, now):
                     el.dispatchEvent(new Event('change', {bubbles:true}));
                 }""", inp, bkg_no)
                 page.click('button:has-text("Search")')
-                page.wait_for_timeout(5000)
-                body = page.inner_text('body')
+                body = smart_wait_body(page, r'On Board Date|ETA|\d{4}[-/]\d{2}[-/]\d{2}|No records', max_ms=8000)
                 print(f"    → YANGMING body 길이: {len(body)}, 첫100자: {body[:100].replace(chr(10),' ')}")
 
                 # ETD: On Board Date
@@ -1138,7 +1164,8 @@ def fetch_yangming_tracking(bookings, actual_map, now):
 
 def fetch_one_tracking(bookings, actual_map, now):
     """ONE LINE - ecomm.one-line.com 부킹번호 직접 URL 조회"""
-    target = [b for b in bookings if b.get('carrier','').upper() in ('ONE', 'ONE LINE', 'ONE LINE (OCEAN NETWORK EXPRESS)')]
+    target = [b for b in bookings if b.get('carrier','').upper() in ('ONE', 'ONE LINE', 'ONE LINE (OCEAN NETWORK EXPRESS)')
+              and not is_fresh_confirmed(b['bkg_no'], b.get('etd',''), actual_map)]
     if not target:
         return {}
     results = {}
@@ -1160,8 +1187,7 @@ def fetch_one_tracking(bookings, actual_map, now):
                 url = f'https://ecomm.one-line.com/one-ecom/manage-shipment/cargo-tracking?trakNoParam={bkg_no}'
                 page = context.new_page()
                 page.goto(url, timeout=30000)
-                page.wait_for_timeout(6000)
-                body = page.inner_text('body')
+                body = smart_wait_body(page, r'On Board Date|ETD|Departure|\d{4}-\d{2}-\d{2}', max_ms=10000)
                 page.close()
 
                 # ETD: Departure / On Board
@@ -1296,12 +1322,12 @@ def main():
             page_key = f"{cfg_key}__{pol}"
             if page_key in scraped_pages: continue
             scraped_pages.add(page_key)
-            for week in [1, 2, 3, 4]:
+            for week in [1, 2, 3]:
                 url  = f"{cfg['base']}?port={port_code}&week={week}"
                 html = fetch_vss(url)
                 if html:
                     all_vessel_map.update(parse_vessels_with_voyage(html))
-                time.sleep(0.4)
+                time.sleep(0.2)
 
     print(f"toyoshingo 수집: {len(all_vessel_map)}건")
 

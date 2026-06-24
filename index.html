@@ -1123,8 +1123,8 @@ async function triggerVssRefresh() {
     if (!actRes.ok && actRes.status !== 204)
       throw new Error(`Actions起動失敗: ${actRes.status}`);
 
-    // ④ run ID 취득 (5초 대기 후)
-    await new Promise(r => setTimeout(r, 5000));
+    // ④ run ID 취득 (2초 대기 후)
+    await new Promise(r => setTimeout(r, 2000));
     let runId = null;
     try {
       const rr = await fetch(
@@ -1134,11 +1134,11 @@ async function triggerVssRefresh() {
       runId = (await rr.json()).workflow_runs?.[0]?.id;
     } catch (e) {}
 
-    // ⑤ Actions 완료 polling (최대 5분, 10초 간격)
+    // ⑤ Actions 완료 polling (최대 5분, 5초 간격)
     let elapsed = 0, completed = false;
     while (elapsed < 300) {
-      await new Promise(r => setTimeout(r, 10000));
-      elapsed += 10;
+      await new Promise(r => setTimeout(r, 5000));
+      elapsed += 5;
       const pct = Math.min(95, Math.round(elapsed / 300 * 100));
       const bar = '█'.repeat(Math.floor(pct / 10)) + '░'.repeat(10 - Math.floor(pct / 10));
       btn.textContent = `⏳ ④ VSS照会中 [${bar}] ${elapsed}s`;
