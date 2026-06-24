@@ -633,13 +633,11 @@ def fetch_vss_service_playwright(bookings):
             m = re.match(r'(\d{1,2})/\d{2}:\d{2}\s*-\s*(\d{1,2})/(\d{2}:\d{2})', time_text)
             if m:
                 dep_day = m.group(2).zfill(2)
-                dep_confirmed = True   # 出港時間あり → confirmed
             else:
-                # "07 - 07" 형식 (시간 없음)
+                # "07 - 07" 형식 (날짜만)
                 m2 = re.match(r'(\d{1,2})\s*-\s*(\d{1,2})', time_text)
                 if not m2: continue
                 dep_day = m2.group(2).zfill(2)
-                dep_confirmed = False  # 日付のみ → not confirmed
             # 날짜 조합: year_month + dep_day
             # 주 경계 처리: dep_day < 현재월 시작일이면 다음달
             try:
@@ -655,7 +653,7 @@ def fetch_vss_service_playwright(bookings):
                 etd = f"{year_month}-{dep_day}"
 
             vessel = re.sub(r'\s*\([^)]+\)\s*$', '', vessel).strip()
-            events.append({'vessel': vessel, 'voyage': voyage, 'etd': etd, 'confirmed': dep_confirmed})
+            events.append({'vessel': vessel, 'voyage': voyage, 'etd': etd})
         return events
 
     # 대상 선사 목록 (vessel-schedule-service.com 공통)
@@ -721,13 +719,12 @@ def fetch_vss_service_playwright(bookings):
         if not matched: continue
         existing = {}
         changed = existing.get('actual_etd') != matched['etd']
-        dep_confirmed = matched.get('confirmed', False)
         results[bkg['bkg_no']] = {
             'actual_etd': matched['etd'], 'vessel_name': bkg.get('vessel_name',''),
             'carrier': carrier, 'pol': bkg.get('pol',''),
             'scheduled_etd': bkg.get('etd', matched['etd']),
-            'confirmed': dep_confirmed, 'voyage': matched['voyage'],
-            'note': f"vessel-schedule-service.com {carrier} 出港時間確認{' (ETD changed)' if changed else ''}" if dep_confirmed else f"vessel-schedule-service.com {carrier} 日付のみ",
+            'confirmed': True, 'voyage': matched['voyage'],
+            'note': f"vessel-schedule-service.com {carrier} ETD:{matched['etd']}{' (ETD changed)' if changed else ''}",
             'updated_at': now,
         }
         print(f"  {bkg['bkg_no']:<25} {carrier} {matched['vessel'][:18]} ETD:{matched['etd']}")
@@ -880,13 +877,11 @@ def fetch_cnc_playwright(bookings, actual_map, now):
             m2 = re.match(r'(\d{1,2})\s*-\s*(\d{1,2})', time_tx)
             if m1:
                 dep_day = m1.group(3).zfill(2)
-                dep_confirmed = True   # 出港時間あり → confirmed
             elif m2:
                 dep_day = m2.group(2).zfill(2)
-                dep_confirmed = False  # 日付のみ
             if dep_day:
                 events.append({'vessel': vessel, 'voyage': voyage,
-                               'etd': f"{year_month}-{dep_day}", 'confirmed': dep_confirmed})
+                               'etd': f"{year_month}-{dep_day}"})
         return events
 
     def extract_cnc_voyage(vessel_name):
@@ -983,9 +978,9 @@ def fetch_cnc_playwright(bookings, actual_map, now):
                 'pol':           bkg.get('pol',''),
                 'pod':           bkg.get('pod',''),
                 'scheduled_etd': bkg_etd,
-                'confirmed':     best.get('confirmed', False),
+                'confirmed':     True,
                 'voyage':        best['voyage'],
-                'note':          f"vessel-schedule-service.com/cnc {pol} 出港時間:{best_etd}{'(changed)' if changed else ''}" if best.get('confirmed') else f"vessel-schedule-service.com/cnc {pol} 日付:{best_etd}{'(changed)' if changed else ''}",
+                'note':          f"vessel-schedule-service.com/cnc {pol} ETD:{best_etd}{'(changed)' if changed else ''}",
                 'updated_at':    now,
             }
             status = f"⚠ ETD変更:{old_etd}→{best_etd}" if changed else f"✅ {best_etd}"
