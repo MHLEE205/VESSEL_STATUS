@@ -498,7 +498,7 @@
     "pol": "SENDAI",
     "scheduled_etd": "2026-07-08",
     "confirmed": false,
-    "updated_at": "2026-06-24 03:56",
+    "updated_at": "2026-06-24 04:31",
     "voyage": "2608E/2608W</dd><dt>Arrival</dt><dd>: <span>2026/07/04 </span></dd><dt>Berthing</dt><dd>: <span>2026/07/04 </span></dd><dt>Sailing</dt><dd>: <span>2026/07/04 </span></dd><dt>Berth Name</dt><dd>: 外港-13M2号岸壁</dd><dt>Rate</dt><dd>: </dd><dt>B/L発行</dt><dd>: </dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
     "note": "ETD逆転疑い(VSS:2026-07-04<COMPASS:2026-07-08) 再確認待ち"
   },
@@ -911,10 +911,10 @@
     "carrier": "JIN JIANG",
     "pol": "NAHA",
     "scheduled_etd": "2026-06-19",
-    "confirmed": false,
+    "confirmed": true,
     "voyage": "2624E/2624W",
-    "note": "本船名変更検出 MILD  SONATAÃ£ÂÂ2624W→MILD  SONATA　2624W COMPASS ETD:2026-06-19",
-    "updated_at": "2026-06-24 03:56"
+    "note": "jinjiangshipping.jp auto-confirmed",
+    "updated_at": "2026-06-24 04:31"
   },
   "JJCOSLCJNA66A06": {
     "actual_etd": "2026-06-19",
