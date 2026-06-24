@@ -1009,6 +1009,12 @@ def fetch_maersk_tracking(bookings, actual_map, now):
     results = {}
     print(f"  MAERSK 트래킹 대상: {len(target)}건")
 
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        print("  ⚠ Playwright 미설치 → MAERSK 트래킹 스킵")
+        return {}
+
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         page = browser.new_page(user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36')
@@ -1060,6 +1066,12 @@ def fetch_yangming_tracking(bookings, actual_map, now):
         return {}
     results = {}
     print(f"  YANGMING 트래킹 대상: {len(target)}건")
+
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        print("  ⚠ Playwright 미설치 → YANGMING 트래킹 스킵")
+        return {}
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
@@ -1124,6 +1136,12 @@ def fetch_one_tracking(bookings, actual_map, now):
         return {}
     results = {}
     print(f"  ONE LINE 트래킹 대상: {len(target)}건")
+
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        print("  ⚠ Playwright 미설치 → ONE LINE 트래킹 스킵")
+        return {}
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
