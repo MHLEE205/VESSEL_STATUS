@@ -100,6 +100,7 @@
   .badge-actual-same { background:#1a472a; color:#4caf50; border-radius:4px; padding:2px 8px; font-size:.85em; }
   .badge-actual-changed { background:#5c2900; color:#f0a500; border-radius:4px; padding:2px 8px; font-size:.85em; font-weight:bold; }
   .badge-actual-omit { background:#5c0000; color:#ff5555; border-radius:4px; padding:2px 8px; font-size:.85em; font-weight:bold; }
+  .badge-actual-nodata { background:#2a2a3a; color:#8b8baa; border-radius:4px; padding:2px 8px; font-size:.85em; }
   th {
     padding: 11px 14px; text-align: left; font-weight: 600;
     color: #8b949e; font-size: 0.78rem; text-transform: uppercase;
@@ -645,6 +646,8 @@ function renderTable(bookings, carrierMap, polMap, podMap) {
         const act = actual.actual_etd;
         const note = actual.note || '';
         if (note.includes('OMIT')) return '<span class="badge-actual-omit">OMIT→' + act + '</span>';
+        const nodata = note.includes('未掲載') || note.includes('VSS未確認') || note.includes('COMPASS ETD基準');
+        if (nodata) return '<span class="badge-actual-nodata">?' + act + '</span>';
         if (act === sched) return '<span class="badge-actual-same">' + act + '</span>';
         return '<span class="badge-actual-changed">⚠ ' + act + '</span>';
       })()}</td>
