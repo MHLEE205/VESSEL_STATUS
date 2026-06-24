@@ -140,7 +140,7 @@
     "scheduled_etd": "2026-06-12",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-12 ETA:None",
-    "updated_at": "2026-06-24 22:21"
+    "updated_at": "2026-06-24 23:33"
   },
   "I272245289": {
     "actual_etd": "2026-06-19",
@@ -151,7 +151,7 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-06-26",
-    "updated_at": "2026-06-24 23:29"
+    "updated_at": "2026-06-24 23:33"
   },
   "I272245291": {
     "actual_etd": "2026-06-19",
@@ -162,7 +162,7 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-06-26",
-    "updated_at": "2026-06-24 23:29"
+    "updated_at": "2026-06-24 23:33"
   },
   "I272245659": {
     "actual_etd": "2026-06-19",
@@ -173,7 +173,7 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-06-26",
-    "updated_at": "2026-06-24 23:29"
+    "updated_at": "2026-06-24 23:17"
   },
   "I272244407": {
     "actual_etd": "2026-06-19",
@@ -184,7 +184,7 @@
     "scheduled_etd": "2026-06-17",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-06-24",
-    "updated_at": "2026-06-24 23:29"
+    "updated_at": "2026-06-24 23:33"
   },
   "I272244409": {
     "actual_etd": "2026-06-23",
@@ -195,7 +195,7 @@
     "scheduled_etd": "2026-06-23",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-23 ETA:2026-06-29",
-    "updated_at": "2026-06-24 23:29"
+    "updated_at": "2026-06-24 23:17"
   },
   "I272244404": {
     "actual_etd": "2026-07-03",
@@ -217,7 +217,7 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-24 ETA:2026-06-29",
-    "updated_at": "2026-06-24 23:29"
+    "updated_at": "2026-06-24 23:17"
   },
   "I272245891": {
     "actual_etd": "2026-06-24",
@@ -228,7 +228,7 @@
     "scheduled_etd": "2026-06-24",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-24 ETA:2026-06-29",
-    "updated_at": "2026-06-24 22:21"
+    "updated_at": "2026-06-24 23:33"
   },
   "A07GX12706": {
     "actual_etd": "2026-06-24",
@@ -502,7 +502,7 @@
     "pol": "SENDAI",
     "scheduled_etd": "2026-07-08",
     "confirmed": false,
-    "updated_at": "2026-06-24 23:29",
+    "updated_at": "2026-06-24 23:33",
     "voyage": "2608E/2608W",
     "note": "ETD逆転疑い(VSS:2026-07-03<COMPASS:2026-07-08) 再確認待ち"
   },
@@ -850,7 +850,7 @@
     "pol": "NAHA",
     "scheduled_etd": "2026-06-27",
     "confirmed": true,
-    "updated_at": "2026-06-24 23:29",
+    "updated_at": "2026-06-24 23:33",
     "voyage": "265N/266S",
     "note": "ehime-ocean.co.jp ITX HIGO 265N/266S NAHA1 auto-confirmed"
   },
@@ -973,7 +973,7 @@
     "confirmed": true,
     "voyage": "265N/266S",
     "note": "ehime-ocean.co.jp ITX HIGO 265N/266S NAHA2 auto-confirmed",
-    "updated_at": "2026-06-24 23:29"
+    "updated_at": "2026-06-24 23:33"
   },
   "ILN0052015007": {
     "actual_etd": "2026-06-27",
@@ -984,7 +984,7 @@
     "confirmed": true,
     "voyage": "265N/266S",
     "note": "ehime-ocean.co.jp ITX HIGO 265N/266S NAHA1 auto-confirmed",
-    "updated_at": "2026-06-24 23:29"
+    "updated_at": "2026-06-24 23:33"
   },
   "ILN0052014950": {
     "actual_etd": "2026-06-30",
@@ -1073,7 +1073,7 @@
     "scheduled_etd": "2026-06-28",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-30 ETA:None",
-    "updated_at": "2026-06-24 22:21"
+    "updated_at": "2026-06-24 23:33"
   },
   "TKJJ2600052": {
     "actual_etd": "2026-06-25",
@@ -1139,7 +1139,7 @@
     "scheduled_etd": "2026-06-28",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-30 ETA:None",
-    "updated_at": "2026-06-24 22:21"
+    "updated_at": "2026-06-24 23:33"
   },
   "A07GX14139": {
     "actual_etd": "2026-07-08",
@@ -1713,7 +1713,7 @@
     "scheduled_etd": "2026-05-29",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-09 ETA:None",
-    "updated_at": "2026-06-24 23:29"
+    "updated_at": "2026-06-24 23:33"
   },
   "TYOG65507800": {
     "actual_etd": "2026-05-29",
@@ -1911,7 +1911,7 @@
     "scheduled_etd": "2026-06-02",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-02 ETA:2026-06-29",
-    "updated_at": "2026-06-24 23:29"
+    "updated_at": "2026-06-24 23:33"
   },
   "HASLJ01260500182": {
     "actual_etd": "2026-06-11",
@@ -1933,7 +1933,7 @@
     "scheduled_etd": "2026-06-03",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-03 ETA:2026-06-29",
-    "updated_at": "2026-06-24 23:29"
+    "updated_at": "2026-06-24 23:33"
   },
   "TYOG86534400": {
     "actual_etd": "2026-06-03",
@@ -2219,7 +2219,7 @@
     "scheduled_etd": "2026-06-09",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-09 ETA:2026-06-30",
-    "updated_at": "2026-06-24 22:21"
+    "updated_at": "2026-06-24 23:17"
   },
   "SNKO040260501116": {
     "actual_etd": "2026-06-09",
