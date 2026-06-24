@@ -140,7 +140,7 @@
     "scheduled_etd": "2026-06-12",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-12 ETA:None",
-    "updated_at": "2026-06-24 05:49"
+    "updated_at": "2026-06-24 06:13"
   },
   "I272245289": {
     "actual_etd": "2026-06-19",
@@ -184,7 +184,7 @@
     "scheduled_etd": "2026-06-17",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-06-25",
-    "updated_at": "2026-06-24 05:49"
+    "updated_at": "2026-06-24 06:13"
   },
   "I272244409": {
     "actual_etd": "2026-06-23",
@@ -194,8 +194,8 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-23",
     "confirmed": true,
-    "note": "yangming.com tracking ETD:2026-06-23 ETA:2026-06-29(changed)",
-    "updated_at": "2026-06-24 05:03"
+    "note": "yangming.com tracking ETD:2026-06-23 ETA:2026-06-29",
+    "updated_at": "2026-06-24 06:13"
   },
   "I272244404": {
     "actual_etd": "2026-07-03",
@@ -228,7 +228,7 @@
     "scheduled_etd": "2026-06-24",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-24 ETA:2026-06-29",
-    "updated_at": "2026-06-24 05:03"
+    "updated_at": "2026-06-24 06:13"
   },
   "A07GX12706": {
     "actual_etd": "2026-06-24",
@@ -502,9 +502,9 @@
     "pol": "SENDAI",
     "scheduled_etd": "2026-07-08",
     "confirmed": false,
-    "updated_at": "2026-06-24 05:49",
+    "updated_at": "2026-06-24 06:13",
     "voyage": "2608E/2608W",
-    "note": "ETD逆転疑い(VSS:2026-07-04<COMPASS:2026-07-08) 再確認待ち"
+    "note": "ETD逆転疑い(VSS:2026-07-02<COMPASS:2026-07-08) 再確認待ち"
   },
   "JP01214379": {
     "actual_etd": "2026-07-03",
@@ -808,34 +808,31 @@
     "updated_at": "2026-06-16 00:02"
   },
   "TYOG86209300": {
-    "actual_etd": "2026-06-23",
+    "actual_etd": "2026-06-22",
     "vessel_name": "NYK FUJI 0138W",
     "carrier": "ONE",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-22",
-    "confirmed": true,
-    "updated_at": "2026-06-24 14:00",
-    "note": "ONE TOKYO NYK FUJI 0138W 出港時間 2026/06/23 17:45 (vessel-schedule-service.com 実績)"
+    "confirmed": false,
+    "updated_at": "2026-06-16 00:02"
   },
   "TYOGB7230600": {
-    "actual_etd": "2026-06-23",
+    "actual_etd": "2026-06-22",
     "vessel_name": "NYK FUJI 0138W",
     "carrier": "ONE",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-22",
-    "confirmed": true,
-    "updated_at": "2026-06-24 14:00",
-    "note": "ONE TOKYO NYK FUJI 0138W 出港時間 2026/06/23 17:45 (vessel-schedule-service.com 実績)"
+    "confirmed": false,
+    "updated_at": "2026-06-16 00:02"
   },
   "TYOG86204500": {
-    "actual_etd": "2026-06-23",
+    "actual_etd": "2026-06-22",
     "vessel_name": "NYK FUJI 0138W",
     "carrier": "ONE",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-22",
-    "confirmed": true,
-    "updated_at": "2026-06-24 14:00",
-    "note": "ONE TOKYO NYK FUJI 0138W 出港時間 2026/06/23 17:45 (vessel-schedule-service.com 実績)"
+    "confirmed": false,
+    "updated_at": "2026-06-16 00:02"
   },
   "TYOGB6296300": {
     "actual_etd": "2026-06-26",
@@ -1141,8 +1138,8 @@
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-28",
     "confirmed": true,
-    "note": "yangming.com tracking ETD:2026-06-30 ETA:None(changed)",
-    "updated_at": "2026-06-24 05:03"
+    "note": "yangming.com tracking ETD:2026-06-30 ETA:None",
+    "updated_at": "2026-06-24 06:13"
   },
   "A07GX14139": {
     "actual_etd": "2026-07-08",
@@ -1551,7 +1548,7 @@
     "scheduled_etd": "2026-05-26",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-05-28 ETA:None",
-    "updated_at": "2026-06-24 05:49"
+    "updated_at": "2026-06-24 06:13"
   },
   "A07GX09309": {
     "actual_etd": "2026-05-26",
@@ -1716,7 +1713,7 @@
     "scheduled_etd": "2026-05-29",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-09 ETA:None",
-    "updated_at": "2026-06-24 05:49"
+    "updated_at": "2026-06-24 06:13"
   },
   "TYOG65507800": {
     "actual_etd": "2026-05-29",
@@ -1914,7 +1911,7 @@
     "scheduled_etd": "2026-06-02",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-02 ETA:2026-06-29",
-    "updated_at": "2026-06-24 05:49"
+    "updated_at": "2026-06-24 06:13"
   },
   "HASLJ01260500182": {
     "actual_etd": "2026-06-11",
@@ -1936,7 +1933,7 @@
     "scheduled_etd": "2026-06-03",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-03 ETA:2026-06-29",
-    "updated_at": "2026-06-24 05:49"
+    "updated_at": "2026-06-24 06:13"
   },
   "TYOG86534400": {
     "actual_etd": "2026-06-03",
