@@ -976,15 +976,15 @@
     "updated_at": "2026-06-18 23:32"
   },
   "ILN0052015007": {
-    "actual_etd": "2026-07-06",
+    "actual_etd": "2026-06-27",
     "vessel_name": "ITX HIGO 266S",
     "carrier": "EHIME OCEAN",
     "pol": "NAHA",
     "scheduled_etd": "2026-06-27",
     "confirmed": true,
     "voyage": "265N/266S",
-    "note": "ehime-ocean.co.jp ITX HIGO 265N/266S NAHA2 auto-confirmed",
-    "updated_at": "2026-06-18 23:32"
+    "note": "ehime-ocean.co.jp 265N/266S NAHA1 Actual confirmed (POD:PUSAN)",
+    "updated_at": "2026-06-24 15:00"
   },
   "ILN0052014950": {
     "actual_etd": "2026-06-30",

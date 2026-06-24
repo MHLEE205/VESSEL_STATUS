@@ -417,6 +417,11 @@ def fetch_ehime_playwright():
                 voyage_text = m.group(1).replace(' ', '')
                 break
 
+        def _last_date(cell):
+            """셀에서 가장 마지막 날짜 추출 (departure = 마지막 시각의 날짜)"""
+            dates = re.findall(r'(\d{4}-\d{2}-\d{2})', cell.inner_text())
+            return dates[-1] if dates else None
+
         # 테이블 행 파싱
         naha_idx = 0
         rows = page.query_selector_all('tr')
@@ -427,24 +432,33 @@ def fetch_ehime_playwright():
             if port != 'Naha': continue
             naha_idx += 1
 
-            # Departure Date 셀(index 3) - OMIT 또는 날짜
-            if len(cells) < 4: continue
-            dep_cell = cells[3].inner_text().strip()
-            is_omit = 'OMIT' in dep_cell
+            all_text = ' '.join(c.inner_text() for c in cells)
+            is_omit = 'OMIT' in all_text
 
             if is_omit:
                 results.append({
                     'vessel': vessel_name, 'voyage': voyage_text,
                     'naha_idx': naha_idx, 'omit': True, 'etd': None
                 })
+                continue
+
+            # テーブル列数に応じて Actual出港日 > Estimated出港日 > Original出港日 の優先順で取得
+            # 7列構造: Port(0)|OrigArr(1)|OrigDep(2)|EstArr(3)|EstDep(4)|ActArr(5)|ActDep(6)
+            # 4列構造: Port(0)|Original(1)|Estimated(2)|Actual(3) ― 各セルにArrival+Departure両方含む
+            n = len(cells)
+            if n >= 7:
+                etd = _last_date(cells[6]) or _last_date(cells[4]) or _last_date(cells[2])
+            elif n >= 4:
+                etd = _last_date(cells[3]) or _last_date(cells[2]) or _last_date(cells[1])
+            elif n >= 2:
+                etd = _last_date(cells[1])
             else:
-                # 날짜 추출: Estimated(2번째) 우선, 없으면 Original(1번째)
-                dates = re.findall(r'(\d{4}-\d{2}-\d{2})', dep_cell)
-                etd = dates[1] if len(dates) >= 2 else (dates[0] if dates else None)
-                results.append({
-                    'vessel': vessel_name, 'voyage': voyage_text,
-                    'naha_idx': naha_idx, 'omit': False, 'etd': etd
-                })
+                etd = None
+
+            results.append({
+                'vessel': vessel_name, 'voyage': voyage_text,
+                'naha_idx': naha_idx, 'omit': False, 'etd': etd
+            })
         return results
 
     all_results = {}  # vessel_value → [naha_schedule]
@@ -1406,12 +1420,12 @@ def main():
     print(f"CNC 확인: {len(cnc_results)}건")
 
     # ── 스마트 병합: 본선명 변경 감지 + confirmed:True 보호 ──
-    def smart_merge(actual_map, new_results, source_name, bookings_map=None):
+    def smart_merge(actual_map, new_results, source_name, bookings_map=None, protect_confirmed=True):
         """
         병합 규칙:
         1. 본선명(vessel_name)이 변경된 경우 → 무조건 덮어씀 + 재매칭 필요 알림
         2. VSS ETD < COMPASS scheduled_etd (ETD 역전) → 의심 → confirmed:False로 리셋
-        3. confirmed:True이고 본선명 동일 + ETD 정상 → 스킵 (수동 수정 보호)
+        3. confirmed:True이고 본선명 동일 + ETD 정상 → 스킵 (수동 수정 보호) ← protect_confirmed=True 시만
         4. 미등록 또는 confirmed:False → 덮어씀
         """
         updated = 0
@@ -1459,8 +1473,8 @@ def main():
                     'note': f'ETD逆転疑い(VSS:{vss_etd}<COMPASS:{compass_etd}) 再確認待ち',
                 }
                 updated += 1
-            elif existing.get('confirmed') == True:
-                # confirmed:True + 정상 → 스킵
+            elif existing.get('confirmed') == True and protect_confirmed:
+                # confirmed:True + 정상 → 스킵 (수동 수정 보호)
                 pass
             else:
                 actual_map[bkg_no] = new_data
@@ -1472,7 +1486,7 @@ def main():
 
     cnt_tyo   = smart_merge(actual_map, tyo_results,     'toyoshingo', bookings_map)
     cnt_jj    = smart_merge(actual_map, jj_results,      'jinjiang',   bookings_map)
-    cnt_ehime = smart_merge(actual_map, ehime_results,   'ehime',      bookings_map)
+    cnt_ehime = smart_merge(actual_map, ehime_results,   'ehime',      bookings_map, protect_confirmed=False)
     cnt_kmtc  = smart_merge(actual_map, kmtc_results,    'vss-service',bookings_map)
     # 트래킹 결과는 항상 최우선 (confirmed:True 덮어씀)
     for bkg_no, data in {**maersk_results, **yangming_results, **one_results, **cnc_results}.items():
