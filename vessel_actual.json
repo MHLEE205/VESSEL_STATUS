@@ -133,67 +133,69 @@
   },
   "I272244680": {
     "actual_etd": "2026-06-12",
+    "actual_eta": "",
     "vessel_name": "YM INITIATIVE 354S",
     "carrier": "YANGMING",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-12",
     "confirmed": true,
-    "updated_at": "2026-06-15 23:45"
+    "note": "yangming.com tracking ETD:2026-06-12 ETA:None",
+    "updated_at": "2026-06-24 04:55"
   },
   "I272245289": {
-    "actual_etd": "2026-06-20",
+    "actual_etd": "2026-06-19",
+    "actual_eta": "2026-06-26",
     "vessel_name": "YM INCREMENT 329S",
     "carrier": "YANGMING",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
-    "updated_at": "2026-06-24 03:56",
-    "voyage": "328N/329S</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/19 17:55</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/19 18:40</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/20 03:45</span></dd><dt>Terminal Name</dt><dd>: 本牧埠頭D-1</dd><dt>輸入換算レート</dt><dd>: 2026/06/12  ¥164.487892</dd><dt>輸出換算レート</dt><dd>: 2026/06/13  ¥164.487892</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
-    "note": "toyoshingo.com confirmed"
+    "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-06-26(changed)",
+    "updated_at": "2026-06-24 04:55"
   },
   "I272245291": {
-    "actual_etd": "2026-06-20",
+    "actual_etd": "2026-06-19",
+    "actual_eta": "2026-06-26",
     "vessel_name": "YM INCREMENT 329S",
     "carrier": "YANGMING",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
-    "updated_at": "2026-06-24 03:56",
-    "voyage": "328N/329S</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/19 17:55</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/19 18:40</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/20 03:45</span></dd><dt>Terminal Name</dt><dd>: 本牧埠頭D-1</dd><dt>輸入換算レート</dt><dd>: 2026/06/12  ¥164.487892</dd><dt>輸出換算レート</dt><dd>: 2026/06/13  ¥164.487892</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
-    "note": "toyoshingo.com confirmed"
+    "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-06-26(changed)",
+    "updated_at": "2026-06-24 04:55"
   },
   "I272245659": {
-    "actual_etd": "2026-06-20",
+    "actual_etd": "2026-06-19",
+    "actual_eta": "2026-06-26",
     "vessel_name": "YM INCREMENT 329S",
     "carrier": "YANGMING",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
-    "updated_at": "2026-06-24 03:56",
-    "voyage": "328N/329S</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/19 17:55</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/19 18:40</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/20 03:45</span></dd><dt>Terminal Name</dt><dd>: 本牧埠頭D-1</dd><dt>輸入換算レート</dt><dd>: 2026/06/12  ¥164.487892</dd><dt>輸出換算レート</dt><dd>: 2026/06/13  ¥164.487892</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
-    "note": "toyoshingo.com confirmed"
+    "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-06-26(changed)",
+    "updated_at": "2026-06-24 04:55"
   },
   "I272244407": {
-    "actual_etd": "2026-06-20",
+    "actual_etd": "2026-06-19",
+    "actual_eta": "2026-06-25",
     "vessel_name": "INTERASIA RESILIENCE S081",
     "carrier": "YANGMING",
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-17",
     "confirmed": true,
-    "updated_at": "2026-06-24 03:56",
-    "voyage": "N080/S081</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/19 20:10</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/19 21:02</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/20 13:42</span></dd><dt>Terminal Name</dt><dd>: 六甲アイランド RC-1 / 2</dd><dt>輸入換算レート</dt><dd>: 2026/06/09  ¥164.327794</dd><dt>輸出換算レート</dt><dd>: 2026/06/10  ¥164.504351</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
-    "note": "toyoshingo.com confirmed"
+    "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-06-25(changed)",
+    "updated_at": "2026-06-24 04:55"
   },
   "I272244409": {
-    "actual_etd": "2026-06-24",
+    "actual_etd": "2026-06-23",
+    "actual_eta": "2026-06-29",
     "vessel_name": "TS LIANYUNGANG 2613S",
     "carrier": "YANGMING",
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-23",
     "confirmed": true,
-    "updated_at": "2026-06-24 03:56",
-    "voyage": "2612N/2613S</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/23 14:40</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/23 15:22</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/24 01:51</span></dd><dt>Terminal Name</dt><dd>: ポートアイランド PC-18</dd><dt>輸入換算レート</dt><dd>: 2026/06/16  ¥164.413187</dd><dt>輸出換算レート</dt><dd>: 2026/06/17  ¥164.554797</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
-    "note": "toyoshingo.com confirmed"
+    "note": "yangming.com tracking ETD:2026-06-23 ETA:2026-06-29(changed)",
+    "updated_at": "2026-06-24 04:55"
   },
   "I272244404": {
     "actual_etd": "2026-07-03",
@@ -207,24 +209,26 @@
     "note": "toyoshingo.com confirmed"
   },
   "I272245627": {
-    "actual_etd": "2026-06-22",
-    "vessel_name": "TS GUANGZHOU 2609S",
+    "actual_etd": "2026-06-24",
+    "actual_eta": "",
+    "vessel_name": "TS GUANGZHOU 2609S ",
     "carrier": "YANGMING",
     "pol": "HAKATA",
     "scheduled_etd": "2026-06-19",
-    "confirmed": false,
-    "updated_at": "2026-06-15 23:45"
+    "confirmed": true,
+    "note": "yangming.com tracking ETD:2026-06-24 ETA:None(changed)",
+    "updated_at": "2026-06-24 04:55"
   },
   "I272245891": {
     "actual_etd": "2026-06-24",
+    "actual_eta": "2026-06-29",
     "vessel_name": "TS LIANYUNGANG 2613S",
     "carrier": "YANGMING",
     "pol": "KOBE",
     "scheduled_etd": "2026-06-24",
     "confirmed": true,
-    "updated_at": "2026-06-24 03:56",
-    "voyage": "2612N/2613S</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/23 14:40</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/23 15:22</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/24 01:51</span></dd><dt>Terminal Name</dt><dd>: ポートアイランド PC-18</dd><dt>輸入換算レート</dt><dd>: 2026/06/16  ¥164.413187</dd><dt>輸出換算レート</dt><dd>: 2026/06/17  ¥164.554797</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
-    "note": "toyoshingo.com confirmed"
+    "note": "yangming.com tracking ETD:2026-06-24 ETA:2026-06-29",
+    "updated_at": "2026-06-24 04:55"
   },
   "A07GX12706": {
     "actual_etd": "2026-06-24",
@@ -498,7 +502,7 @@
     "pol": "SENDAI",
     "scheduled_etd": "2026-07-08",
     "confirmed": false,
-    "updated_at": "2026-06-24 04:31",
+    "updated_at": "2026-06-24 04:55",
     "voyage": "2608E/2608W</dd><dt>Arrival</dt><dd>: <span>2026/07/04 </span></dd><dt>Berthing</dt><dd>: <span>2026/07/04 </span></dd><dt>Sailing</dt><dd>: <span>2026/07/04 </span></dd><dt>Berth Name</dt><dd>: 外港-13M2号岸壁</dd><dt>Rate</dt><dd>: </dd><dt>B/L発行</dt><dd>: </dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
     "note": "ETD逆転疑い(VSS:2026-07-04<COMPASS:2026-07-08) 再確認待ち"
   },
@@ -1127,15 +1131,15 @@
     "updated_at": "2026-06-21 23:15"
   },
   "I272244943": {
-    "actual_etd": "2026-06-29",
+    "actual_etd": "2026-06-30",
+    "actual_eta": "",
     "vessel_name": "IBN AL ABBAR 343S",
     "carrier": "YANGMING",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-28",
     "confirmed": true,
-    "voyage": "------/342S",
-    "note": "toyoshingo.com/yangming TOKYO Sailing:2026-06-29",
-    "updated_at": "2026-06-21 23:33"
+    "note": "yangming.com tracking ETD:2026-06-30 ETA:None(changed)",
+    "updated_at": "2026-06-24 04:55"
   },
   "A07GX14139": {
     "actual_etd": "2026-07-08",
@@ -1701,15 +1705,15 @@
     "updated_at": "2026-06-22 23:32"
   },
   "I272243384": {
-    "actual_etd": "2026-05-29",
+    "actual_etd": "2026-06-09",
+    "actual_eta": "",
     "vessel_name": "YM CERTAINTY 085S",
     "carrier": "YANGMING",
     "pol": "HAKATA",
-    "pod": "CAT LAI",
     "scheduled_etd": "2026-05-29",
-    "confirmed": false,
-    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
-    "updated_at": "2026-06-22 23:32"
+    "confirmed": true,
+    "note": "yangming.com tracking ETD:2026-06-09 ETA:None(changed)",
+    "updated_at": "2026-06-24 04:55"
   },
   "TYOG65507800": {
     "actual_etd": "2026-05-29",
@@ -1899,15 +1903,15 @@
     "updated_at": "2026-06-22 23:32"
   },
   "I272243519": {
-    "actual_etd": "2026-06-24",
+    "actual_etd": "2026-06-02",
+    "actual_eta": "2026-06-29",
     "vessel_name": "TS LIANYUNGANG 2612S",
     "carrier": "YANGMING",
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-02",
     "confirmed": true,
-    "updated_at": "2026-06-24 03:56",
-    "voyage": "2612N/2613S</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/23 14:40</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/23 15:22</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/24 01:51</span></dd><dt>Terminal Name</dt><dd>: ポートアイランド PC-18</dd><dt>輸入換算レート</dt><dd>: 2026/06/16  ¥164.413187</dd><dt>輸出換算レート</dt><dd>: 2026/06/17  ¥164.554797</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
-    "note": "toyoshingo.com confirmed"
+    "note": "yangming.com tracking ETD:2026-06-02 ETA:2026-06-29(changed)",
+    "updated_at": "2026-06-24 04:55"
   },
   "HASLJ01260500182": {
     "actual_etd": "2026-06-11",
@@ -1921,15 +1925,15 @@
     "note": "toyoshingo.com confirmed"
   },
   "I272243940": {
-    "actual_etd": "2026-06-24",
+    "actual_etd": "2026-06-03",
+    "actual_eta": "2026-06-29",
     "vessel_name": "TS LIANYUNGANG 2612S ",
     "carrier": "YANGMING",
     "pol": "KOBE",
     "scheduled_etd": "2026-06-03",
     "confirmed": true,
-    "updated_at": "2026-06-24 03:56",
-    "voyage": "2612N/2613S</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/23 14:40</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/23 15:22</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/24 01:51</span></dd><dt>Terminal Name</dt><dd>: ポートアイランド PC-18</dd><dt>輸入換算レート</dt><dd>: 2026/06/16  ¥164.413187</dd><dt>輸出換算レート</dt><dd>: 2026/06/17  ¥164.554797</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
-    "note": "toyoshingo.com confirmed"
+    "note": "yangming.com tracking ETD:2026-06-03 ETA:2026-06-29(changed)",
+    "updated_at": "2026-06-24 04:55"
   },
   "TYOG86534400": {
     "actual_etd": "2026-06-03",
@@ -2207,15 +2211,15 @@
     "updated_at": "2026-06-22 23:32"
   },
   "I272244387": {
-    "actual_etd": "2026-06-10",
+    "actual_etd": "2026-06-09",
+    "actual_eta": "2026-06-30",
     "vessel_name": "TAICHUNG 427S",
     "carrier": "YANGMING",
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-09",
     "confirmed": true,
-    "updated_at": "2026-06-24 03:56",
-    "voyage": "426N/427S</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/09 21:10</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/09 22:09</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/10 14:24</span></dd><dt>Terminal Name</dt><dd>: 六甲アイランド RC-1 / 2</dd><dt>輸入換算レート</dt><dd>: 2026/06/02  ¥163.816718</dd><dt>輸出換算レート</dt><dd>: 2026/06/03  ¥164.045858</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
-    "note": "toyoshingo.com confirmed"
+    "note": "yangming.com tracking ETD:2026-06-09 ETA:2026-06-30(changed)",
+    "updated_at": "2026-06-24 04:55"
   },
   "SNKO040260501116": {
     "actual_etd": "2026-06-09",
