@@ -501,10 +501,10 @@
     "carrier": "NAMSUNG",
     "pol": "SENDAI",
     "scheduled_etd": "2026-07-08",
-    "confirmed": false,
-    "updated_at": "2026-06-24 06:13",
+    "confirmed": true,
+    "updated_at": "2026-06-24 14:30",
     "voyage": "2608E/2608W",
-    "note": "ETD逆転疑い(VSS:2026-07-02<COMPASS:2026-07-08) 再確認待ち"
+    "note": "toyoshingo.com/namsung certificate confirmed ETD:2026-07-08"
   },
   "JP01214379": {
     "actual_etd": "2026-07-03",
