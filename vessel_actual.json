@@ -808,31 +808,34 @@
     "updated_at": "2026-06-16 00:02"
   },
   "TYOG86209300": {
-    "actual_etd": "2026-06-22",
+    "actual_etd": "2026-06-23",
     "vessel_name": "NYK FUJI 0138W",
     "carrier": "ONE",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-22",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:02"
+    "confirmed": true,
+    "updated_at": "2026-06-24 14:00",
+    "note": "ONE TOKYO NYK FUJI 0138W 出港時間 2026/06/23 17:45 (vessel-schedule-service.com 実績)"
   },
   "TYOGB7230600": {
-    "actual_etd": "2026-06-22",
+    "actual_etd": "2026-06-23",
     "vessel_name": "NYK FUJI 0138W",
     "carrier": "ONE",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-22",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:02"
+    "confirmed": true,
+    "updated_at": "2026-06-24 14:00",
+    "note": "ONE TOKYO NYK FUJI 0138W 出港時間 2026/06/23 17:45 (vessel-schedule-service.com 実績)"
   },
   "TYOG86204500": {
-    "actual_etd": "2026-06-22",
+    "actual_etd": "2026-06-23",
     "vessel_name": "NYK FUJI 0138W",
     "carrier": "ONE",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-22",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:02"
+    "confirmed": true,
+    "updated_at": "2026-06-24 14:00",
+    "note": "ONE TOKYO NYK FUJI 0138W 出港時間 2026/06/23 17:45 (vessel-schedule-service.com 実績)"
   },
   "TYOGB6296300": {
     "actual_etd": "2026-06-26",
