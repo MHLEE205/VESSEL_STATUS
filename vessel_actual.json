@@ -110,13 +110,15 @@
     "updated_at": "2026-06-16 05:07"
   },
   "HASLJ01260500700": {
-    "actual_etd": "2026-06-12",
+    "actual_etd": "2026-06-13",
     "vessel_name": "HONOR GLORY 2620W",
     "carrier": "HEUNG A",
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-12",
-    "confirmed": false,
-    "updated_at": "2026-06-15 23:45"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2620E/2620W</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/13 15:50</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/13 16:31</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/13 23:00</span></dd><dt>Berth Name</dt><dd>: ﾎﾟｰﾄｱｲﾗﾝﾄﾞｺﾝﾃﾅ埠頭15E</dd><dt>Rate</dt><dd>: 2026/06/10  ¥161.45</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "HASLJ01260500702": {
     "actual_etd": "2026-07-01",
@@ -139,34 +141,37 @@
     "updated_at": "2026-06-15 23:45"
   },
   "I272245289": {
-    "actual_etd": "2026-06-19",
+    "actual_etd": "2026-06-20",
     "vessel_name": "YM INCREMENT 329S",
     "carrier": "YANGMING",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-19",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:45",
-    "voyage": "328N/329S"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "328N/329S</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/19 17:55</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/19 18:40</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/20 03:45</span></dd><dt>Terminal Name</dt><dd>: 本牧埠頭D-1</dd><dt>輸入換算レート</dt><dd>: 2026/06/12  ¥164.487892</dd><dt>輸出換算レート</dt><dd>: 2026/06/13  ¥164.487892</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "I272245291": {
-    "actual_etd": "2026-06-19",
+    "actual_etd": "2026-06-20",
     "vessel_name": "YM INCREMENT 329S",
     "carrier": "YANGMING",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-19",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:45",
-    "voyage": "328N/329S"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "328N/329S</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/19 17:55</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/19 18:40</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/20 03:45</span></dd><dt>Terminal Name</dt><dd>: 本牧埠頭D-1</dd><dt>輸入換算レート</dt><dd>: 2026/06/12  ¥164.487892</dd><dt>輸出換算レート</dt><dd>: 2026/06/13  ¥164.487892</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "I272245659": {
-    "actual_etd": "2026-06-19",
+    "actual_etd": "2026-06-20",
     "vessel_name": "YM INCREMENT 329S",
     "carrier": "YANGMING",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-19",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:45",
-    "voyage": "328N/329S"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "328N/329S</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/19 17:55</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/19 18:40</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/20 03:45</span></dd><dt>Terminal Name</dt><dd>: 本牧埠頭D-1</dd><dt>輸入換算レート</dt><dd>: 2026/06/12  ¥164.487892</dd><dt>輸出換算レート</dt><dd>: 2026/06/13  ¥164.487892</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "I272244407": {
     "actual_etd": "2026-06-20",
@@ -174,9 +179,10 @@
     "carrier": "YANGMING",
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-17",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:45",
-    "voyage": "N080/S081"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "N080/S081</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/19 20:10</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/19 21:02</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/20 13:42</span></dd><dt>Terminal Name</dt><dd>: 六甲アイランド RC-1 / 2</dd><dt>輸入換算レート</dt><dd>: 2026/06/09  ¥164.327794</dd><dt>輸出換算レート</dt><dd>: 2026/06/10  ¥164.504351</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "I272244409": {
     "actual_etd": "2026-06-24",
@@ -184,20 +190,21 @@
     "carrier": "YANGMING",
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-23",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:45",
-    "voyage": "2612N/2613S"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2612N/2613S</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/23 14:40</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/23 15:22</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/24 01:51</span></dd><dt>Terminal Name</dt><dd>: ポートアイランド PC-18</dd><dt>輸入換算レート</dt><dd>: 2026/06/16  ¥164.413187</dd><dt>輸出換算レート</dt><dd>: 2026/06/17  ¥164.554797</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "I272244404": {
-    "actual_etd": "2026-06-30",
-    "vessel_name": "TAICHUNG 428S",
+    "actual_etd": "2026-07-03",
+    "vessel_name": "TAICHUNG 428S ",
     "carrier": "YANGMING",
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-30",
-    "confirmed": false,
-    "updated_at": "2026-06-21 23:33",
-    "voyage": "428S",
-    "note": "COMPASS ETD:2026-06-30 VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "427N/428S</dd><dt>Arrival</dt><dd>: <span>2026/07/02 </span></dd><dt>Berthing</dt><dd>: <span>2026/07/02 </span></dd><dt>Sailing</dt><dd>: <span>2026/07/03 </span></dd><dt>Terminal Name</dt><dd>: 六甲アイランド RC-1 / 2</dd><dt>輸入換算レート</dt><dd>: 2026/06/23  ¥165.845418</dd><dt>輸出換算レート</dt><dd>: </dd><dt>B/L発行</dt><dd>: </dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "I272245627": {
     "actual_etd": "2026-06-22",
@@ -214,9 +221,10 @@
     "carrier": "YANGMING",
     "pol": "KOBE",
     "scheduled_etd": "2026-06-24",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:45",
-    "voyage": "2612N/2613S"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2612N/2613S</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/23 14:40</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/23 15:22</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/24 01:51</span></dd><dt>Terminal Name</dt><dd>: ポートアイランド PC-18</dd><dt>輸入換算レート</dt><dd>: 2026/06/16  ¥164.413187</dd><dt>輸出換算レート</dt><dd>: 2026/06/17  ¥164.554797</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "A07GX12706": {
     "actual_etd": "2026-06-24",
@@ -358,15 +366,15 @@
     "updated_at": "2026-06-15 23:45"
   },
   "NGJF2600100": {
-    "actual_etd": "2026-06-25",
+    "actual_etd": "2026-06-17",
     "vessel_name": "HEUNG-A AKITA 2621N",
     "carrier": "DONG YOUNG",
     "pol": "NAGOYA",
-    "scheduled_etd": "2026-06-25",
-    "confirmed": false,
-    "voyage": "2621N",
-    "note": "ÃÂÃÂ¨ÃÂÃÂ¦ÃÂÃÂÃÂÃÂ§ÃÂÃÂ¢ÃÂÃÂºÃÂÃÂ¨ÃÂÃÂªÃÂÃÂ toyoshingo.com/dongjin",
-    "updated_at": "2026-06-18 22:39"
+    "scheduled_etd": "2026-06-16",
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2621S/2621N</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/17 06:20</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/17 07:00</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/17 14:45</span></dd><dt>Berth Name</dt><dd>: 本牧埠頭C8</dd><dt>Rate</dt><dd>: 2026/06/11  ¥161.61</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "NGJF2600111": {
     "actual_etd": "2026-06-26",
@@ -374,19 +382,21 @@
     "carrier": "DONG YOUNG",
     "pol": "NAGOYA",
     "scheduled_etd": "2026-06-25",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:45",
-    "voyage": "2614E/2614W"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2614E/2614W</dd><dt>Arrival</dt><dd>: <span>2026/06/26 </span></dd><dt>Berthing</dt><dd>: <span>2026/06/26 </span></dd><dt>Sailing</dt><dd>: <span>2026/06/26 </span></dd><dt>Berth Name</dt><dd>: </dd><dt>Rate</dt><dd>: 2026/06/19  ¥162.17</dd><dt>B/L発行</dt><dd>: </dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "SNKO040260600193": {
-    "actual_etd": "2026-06-22",
+    "actual_etd": "2026-06-24",
     "vessel_name": "HEUNG-A HAIPHONG 2623W",
     "carrier": "SINOKOR",
     "pol": "ISHIKARI",
-    "scheduled_etd": "2026-06-17",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:45",
-    "voyage": "2623E/2623W"
+    "scheduled_etd": "2026-06-19",
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2623E/2623W</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/24 08:53</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/24 09:30</span></dd><dt>Sailing</dt><dd>: <span>2026/06/24 19:00</span></dd><dt>Berth Name</dt><dd>: 外港-13M2号岸壁</dd><dt>Rate</dt><dd>: 2026/06/10  ¥161.45</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "SNKO040260500145": {
     "actual_etd": "2026-06-19",
@@ -394,18 +404,21 @@
     "carrier": "SINOKOR",
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-19",
-    "confirmed": false,
-    "updated_at": "2026-06-15 23:45"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "1060E/1060W</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/19 15:20</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/19 16:21</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/19 21:23</span></dd><dt>Berth Name</dt><dd>: ﾎﾟｰﾄｱｲﾗﾝﾄﾞｺﾝﾃﾅ埠頭14E</dd><dt>Rate</dt><dd>: 2026/06/17  ¥161.46</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "SNKO040260600357": {
-    "actual_etd": "2026-06-28",
+    "actual_etd": "2026-07-04",
     "vessel_name": "HEUNG-A HAIPHONG 2624W",
     "carrier": "SINOKOR",
     "pol": "ISHIKARI",
     "scheduled_etd": "2026-06-25",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:45",
-    "voyage": "2624E/2624W"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2624E/2624W</dd><dt>Arrival</dt><dd>: <span>2026/07/04 </span></dd><dt>Berthing</dt><dd>: <span>2026/07/04 </span></dd><dt>Sailing</dt><dd>: <span>2026/07/04 </span></dd><dt>Berth Name</dt><dd>: 外港-13M2号岸壁</dd><dt>Rate</dt><dd>: 2026/06/17  ¥161.46</dd><dt>B/L発行</dt><dd>: </dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "SNKO040260600372": {
     "actual_etd": "2026-06-26",
@@ -433,9 +446,10 @@
     "carrier": "SINOKOR",
     "pol": "MIZUSHIMA",
     "scheduled_etd": "2026-06-20",
-    "confirmed": false,
-    "voyage": "2637E/2637W",
-    "updated_at": "2026-06-16 00:57"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2637E/2637W</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/19 21:42</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/20 08:00</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/20 12:00</span></dd><dt>Berth Name</dt><dd>: KCT3</dd><dt>Rate</dt><dd>: 2026/06/18  ¥161.81</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "SNKO040260600370": {
     "actual_etd": "2026-06-27",
@@ -467,37 +481,37 @@
     "updated_at": "2026-06-15 23:45"
   },
   "SGM26E00148": {
-    "actual_etd": "2026-06-28",
-    "vessel_name": "SUNNY VIOLET 2607W",
+    "actual_etd": "2026-06-27",
+    "vessel_name": "STAR RANGER 2608W",
     "carrier": "NAMSUNG",
     "pol": "SENDAI",
     "scheduled_etd": "2026-06-24",
-    "confirmed": true,
-    "updated_at": "2026-06-21 23:15",
+    "confirmed": false,
+    "updated_at": "2026-06-24 03:56",
     "voyage": "2607E/2607W",
-    "note": "toyoshingo.com/namsung SENDAI Sailing:2026-06-28"
+    "note": "本船名変更 SUNNY VIOLET 2607W→STAR RANGER 2608W COMPASS ETD:2026-06-27"
   },
   "SGM26E00149": {
     "actual_etd": "2026-07-08",
     "vessel_name": "STAR EXPRESS 2608W",
     "carrier": "NAMSUNG",
     "pol": "SENDAI",
-    "scheduled_etd": "2026-06-28",
-    "confirmed": true,
-    "updated_at": "2026-06-22 02:03",
-    "voyage": "2608E/2608W",
-    "note": "toyoshingo.com/namsung SENDAI Departure:2026-07-08Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿"
+    "scheduled_etd": "2026-07-08",
+    "confirmed": false,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2608E/2608W</dd><dt>Arrival</dt><dd>: <span>2026/07/04 </span></dd><dt>Berthing</dt><dd>: <span>2026/07/04 </span></dd><dt>Sailing</dt><dd>: <span>2026/07/04 </span></dd><dt>Berth Name</dt><dd>: 外港-13M2号岸壁</dd><dt>Rate</dt><dd>: </dd><dt>B/L発行</dt><dd>: </dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "ETD逆転疑い(VSS:2026-07-04<COMPASS:2026-07-08) 再確認待ち"
   },
   "JP01214379": {
-    "actual_etd": "2026-06-28",
+    "actual_etd": "2026-07-03",
     "vessel_name": "SUNNY CAMELLIA 2608W",
     "carrier": "KMTC",
     "pol": "SENDAI",
-    "scheduled_etd": "2026-07-01",
+    "scheduled_etd": "2026-06-30",
     "confirmed": true,
-    "updated_at": "2026-06-21 23:15",
-    "voyage": "2608E/2608W",
-    "note": "toyoshingo.com/kmtc NAGOYA Sailing:2026-06-28 (COMPASS vessel_nameÃ¤Â¿Â®Ã¦Â­Â£Ã¨Â¦Â:SUNNY CAMELLIA)"
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2608E/2608W</dd><dt>Arrival</dt><dd>: <span>2026/07/03 </span></dd><dt>Berthing</dt><dd>: <span>2026/07/03 </span></dd><dt>Sailing</dt><dd>: <span>2026/07/03 </span></dd><dt>Berth Name</dt><dd>: 西埠頭岸壁</dd><dt>Rate</dt><dd>: 2026/06/24  ¥162.66</dd><dt>B/L発行</dt><dd>: </dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "NMG2606-05": {
     "actual_etd": "2026-06-19",
@@ -837,26 +851,26 @@
     "note": "ehime-ocean.co.jp ITX HIGO 265N/266S NAHA2 auto-confirmed"
   },
   "PCJTYO26055201": {
-    "actual_etd": "2026-06-24",
+    "actual_etd": "2026-06-25",
     "vessel_name": "HONOR OCEAN 1061W",
     "carrier": "PAN OCEAN",
     "pol": "KOBE",
     "scheduled_etd": "2026-06-24",
-    "confirmed": false,
-    "voyage": "1061E/1061W",
-    "note": "SINOKOR ÃÂÃÂ¬ÃÂÃÂÃÂÃÂ¬ÃÂÃÂ¬ÃÂÃÂÃÂÃÂ´ÃÂÃÂ­ÃÂÃÂÃÂÃÂ¸ÃÂÃÂ¬ÃÂÃÂÃÂÃÂÃÂÃÂ¬ÃÂÃÂÃÂÃÂ ÃÂÃÂ­ÃÂÃÂÃÂÃÂÃÂÃÂ¬ÃÂÃÂÃÂÃÂ¸ (ÃÂÃÂªÃÂÃÂ³ÃÂÃÂµÃÂÃÂ«ÃÂÃÂÃÂÃÂÃÂÃÂ¬ÃÂÃÂÃÂÃÂ´ÃÂÃÂ­ÃÂÃÂÃÂÃÂ­)",
-    "updated_at": "2026-06-16 02:21"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "1061E/1061W</dd><dt>Arrival</dt><dd>: <span>2026/06/24 21:00</span></dd><dt>Berthing</dt><dd>: <span>2026/06/25 AM</span></dd><dt>Sailing</dt><dd>: <span>2026/06/25 PM</span></dd><dt>Berth Name</dt><dd>: ﾎﾟｰﾄｱｲﾗﾝﾄﾞｺﾝﾃﾅ埠頭16</dd><dt>Rate</dt><dd>: 2026/06/22  ¥162.60</dd><dt>B/L発行</dt><dd>: </dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "PCJTYO26065347": {
-    "actual_etd": "2026-06-22",
+    "actual_etd": "2026-06-23",
     "vessel_name": "AKITA TRADER 2623W",
     "carrier": "PAN OCEAN",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-22",
-    "confirmed": false,
-    "voyage": "2623E/2623W",
-    "note": "SINOKOR ÃÂÃÂ¬ÃÂÃÂÃÂÃÂ¬ÃÂÃÂ¬ÃÂÃÂÃÂÃÂ´ÃÂÃÂ­ÃÂÃÂÃÂÃÂ¸ÃÂÃÂ¬ÃÂÃÂÃÂÃÂÃÂÃÂ¬ÃÂÃÂÃÂÃÂ ÃÂÃÂ­ÃÂÃÂÃÂÃÂÃÂÃÂ¬ÃÂÃÂÃÂÃÂ¸ (ÃÂÃÂªÃÂÃÂ³ÃÂÃÂµÃÂÃÂ«ÃÂÃÂÃÂÃÂÃÂÃÂ¬ÃÂÃÂÃÂÃÂ´ÃÂÃÂ­ÃÂÃÂÃÂÃÂ­)",
-    "updated_at": "2026-06-16 02:21"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2623E/2623W</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/23 06:15</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/23 06:48</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/23 17:05</span></dd><dt>Berth Name</dt><dd>: 本牧埠頭C6</dd><dt>Rate</dt><dd>: 2026/06/18  ¥161.81</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "OSJJ2600025": {
     "actual_etd": "2026-07-03",
@@ -864,10 +878,10 @@
     "carrier": "DONG YOUNG",
     "pol": "OSAKA",
     "scheduled_etd": "2026-07-03",
-    "confirmed": false,
-    "voyage": "1063W",
-    "note": "COMPASS ETD:2026-07-03 toyoshingo/dongjin Ã¦ÂÂªÃ§ÂÂ»Ã¨Â¼Â",
-    "updated_at": "2026-06-22 01:06"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "1063E/1063W</dd><dt>Arrival</dt><dd>: <span>2026/07/03 </span></dd><dt>Berthing</dt><dd>: <span>2026/07/03 </span></dd><dt>Sailing</dt><dd>: <span>2026/07/03 </span></dd><dt>Berth Name</dt><dd>: </dd><dt>Rate</dt><dd>: </dd><dt>B/L発行</dt><dd>: </dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "JJCOSSGJNA66A16": {
     "actual_etd": "2026-06-12",
@@ -893,14 +907,14 @@
   },
   "JJCNATALNA66A12": {
     "actual_etd": "2026-06-19",
-    "vessel_name": "MILD  SONATAÃ£ÂÂ2624W",
+    "vessel_name": "MILD  SONATA　2624W",
     "carrier": "JIN JIANG",
     "pol": "NAHA",
     "scheduled_etd": "2026-06-19",
-    "confirmed": true,
+    "confirmed": false,
     "voyage": "2624E/2624W",
-    "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-06-22 07:06"
+    "note": "本船名変更検出 MILD  SONATAÃ£ÂÂ2624W→MILD  SONATA　2624W COMPASS ETD:2026-06-19",
+    "updated_at": "2026-06-24 03:56"
   },
   "JJCOSLCJNA66A06": {
     "actual_etd": "2026-06-19",
@@ -980,14 +994,15 @@
     "updated_at": "2026-06-18 23:32"
   },
   "SNKO040260600786": {
-    "actual_etd": "2026-06-24",
+    "actual_etd": "2026-06-25",
     "vessel_name": "HONOR OCEAN 1061W",
     "carrier": "SINOKOR",
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-24",
-    "confirmed": false,
-    "voyage": "1061E/1061W",
-    "updated_at": "2026-06-16 05:36"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "1061E/1061W</dd><dt>Arrival</dt><dd>: <span>2026/06/24 21:00</span></dd><dt>Berthing</dt><dd>: <span>2026/06/25 AM</span></dd><dt>Sailing</dt><dd>: <span>2026/06/25 PM</span></dd><dt>Berth Name</dt><dd>: ﾎﾟｰﾄｱｲﾗﾝﾄﾞｺﾝﾃﾅ埠頭16</dd><dt>Rate</dt><dd>: 2026/06/22  ¥162.60</dd><dt>B/L発行</dt><dd>: </dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "JJCOSSGJNA66A13": {
     "actual_etd": "2026-06-26",
@@ -1013,14 +1028,15 @@
   },
   "JJCNATALNA66A18": {
     "actual_etd": "2026-07-03",
-    "vessel_name": "MILD SONATA 2626W",
+    "vessel_name": "MILD  SONATA　2626W",
     "carrier": "JIN JIANG",
     "pol": "NAHA",
     "pod": "TAICHUNG",
     "scheduled_etd": "2026-07-03",
-    "confirmed": false,
-    "note": "COMPASSÃ­ÂÂ­Ã¬Â°Â¨Ã¥Â¤ÂÃ¦ÂÂ´: 2625WÃ¢ÂÂ2626W ETD:2026-07-03 Ã¥ÂÂÃ§Â¢ÂºÃ¨ÂªÂÃ¥Â¾ÂÃ£ÂÂ¡",
-    "updated_at": "2026-06-23 22:59"
+    "confirmed": true,
+    "note": "jinjiangshipping.jp auto-confirmed",
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2626E/2626W"
   },
   "JJCHALCJNA66A04": {
     "actual_etd": "2026-06-29",
@@ -1182,10 +1198,10 @@
     "carrier": "PAN OCEAN",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-27",
-    "confirmed": false,
-    "voyage": "2625W",
-    "note": "COMPASS ETD:2026-06-27 VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ(Ã¥ÂÂ¬Ã¥ÂÂÃ©ÂÂÃ¨ÂÂª)",
-    "updated_at": "2026-06-21 23:33"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2625E/2625W</dd><dt>Arrival</dt><dd>: <span>2026/06/27 </span></dd><dt>Berthing</dt><dd>: <span>2026/06/27 </span></dd><dt>Sailing</dt><dd>: <span>2026/06/27 </span></dd><dt>Berth Name</dt><dd>: </dd><dt>Rate</dt><dd>: 2026/06/24  ¥162.66</dd><dt>B/L発行</dt><dd>: </dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "SNKO040260600375": {
     "actual_etd": "2026-07-10",
@@ -1216,10 +1232,10 @@
     "carrier": "PAN OCEAN",
     "pol": "OSAKA",
     "scheduled_etd": "2026-07-01",
-    "confirmed": false,
-    "voyage": "2624W",
-    "note": "COMPASS ETD:2026-07-01 VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ(Ã¥ÂÂ¬Ã¥ÂÂÃ©ÂÂÃ¨ÂÂª)",
-    "updated_at": "2026-06-22 01:06"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2624E/2624W</dd><dt>Arrival</dt><dd>: <span>2026/07/01 </span></dd><dt>Berthing</dt><dd>: <span>2026/07/01 </span></dd><dt>Sailing</dt><dd>: <span>2026/07/01 </span></dd><dt>Berth Name</dt><dd>: </dd><dt>Rate</dt><dd>: </dd><dt>B/L発行</dt><dd>: </dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "AMP0552226": {
     "actual_etd": "2026-07-09",
@@ -1249,10 +1265,10 @@
     "carrier": "SINOKOR",
     "pol": "OSAKA",
     "scheduled_etd": "2026-07-06",
-    "confirmed": false,
-    "voyage": "2625W",
-    "note": "COMPASS ETD:2026-07-06 toyoshingo/sinokor OSAKA Ã¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ",
-    "updated_at": "2026-06-22 01:06"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2625E/2625W</dd><dt>Arrival</dt><dd>: <span>2026/07/06 </span></dd><dt>Berthing</dt><dd>: <span>2026/07/06 </span></dd><dt>Sailing</dt><dd>: <span>2026/07/06 </span></dd><dt>Berth Name</dt><dd>: </dd><dt>Rate</dt><dd>: </dd><dt>B/L発行</dt><dd>: </dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "AMP0551764": {
     "actual_etd": "2026-06-29",
@@ -1272,10 +1288,10 @@
     "carrier": "SINOKOR",
     "pol": "MIZUSHIMA",
     "scheduled_etd": "2026-07-04",
-    "confirmed": false,
-    "voyage": "2640E/2640W",
-    "note": "COMPASS ETD:2026-07-04 toyoshingo/sinokor MIZUSHIMA 07/06Ã©ÂÂ±Ã§Â¢ÂºÃ¨ÂªÂÃ¥Â¾ÂÃ£ÂÂ¡",
-    "updated_at": "2026-06-22 02:40"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2640E/2640W</dd><dt>Arrival</dt><dd>: <span>2026/07/04 </span></dd><dt>Berthing</dt><dd>: <span>2026/07/04 </span></dd><dt>Sailing</dt><dd>: <span>2026/07/04 </span></dd><dt>Berth Name</dt><dd>: </dd><dt>Rate</dt><dd>: </dd><dt>B/L発行</dt><dd>: </dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "NIH26F00060": {
     "actual_etd": "2026-07-11",
@@ -1520,15 +1536,15 @@
     "updated_at": "2026-06-22 23:32"
   },
   "I272242816": {
-    "actual_etd": "2026-05-26",
+    "actual_etd": "2026-06-20",
     "vessel_name": "INTERASIA RESILIENCE S080 ",
     "carrier": "YANGMING",
     "pol": "OSAKA",
-    "pod": "PORT KLANG",
     "scheduled_etd": "2026-05-26",
-    "confirmed": false,
-    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
-    "updated_at": "2026-06-22 23:32"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "N080/S081</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/19 20:10</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/19 21:02</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/20 13:42</span></dd><dt>Terminal Name</dt><dd>: 六甲アイランド RC-1 / 2</dd><dt>輸入換算レート</dt><dd>: 2026/06/09  ¥164.327794</dd><dt>輸出換算レート</dt><dd>: 2026/06/10  ¥164.504351</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "A07GX09309": {
     "actual_etd": "2026-05-26",
@@ -1883,37 +1899,37 @@
     "updated_at": "2026-06-22 23:32"
   },
   "I272243519": {
-    "actual_etd": "2026-06-02",
+    "actual_etd": "2026-06-24",
     "vessel_name": "TS LIANYUNGANG 2612S",
     "carrier": "YANGMING",
     "pol": "OSAKA",
-    "pod": "PORT KLANG",
     "scheduled_etd": "2026-06-02",
-    "confirmed": false,
-    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
-    "updated_at": "2026-06-22 23:32"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2612N/2613S</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/23 14:40</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/23 15:22</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/24 01:51</span></dd><dt>Terminal Name</dt><dd>: ポートアイランド PC-18</dd><dt>輸入換算レート</dt><dd>: 2026/06/16  ¥164.413187</dd><dt>輸出換算レート</dt><dd>: 2026/06/17  ¥164.554797</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "HASLJ01260500182": {
-    "actual_etd": "2026-06-03",
+    "actual_etd": "2026-06-11",
     "vessel_name": "HEUNG-A HAIPHONG 2620W",
     "carrier": "HEUNG A",
     "pol": "ISHIKARI",
-    "pod": "KWANGYANG",
     "scheduled_etd": "2026-06-03",
-    "confirmed": false,
-    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
-    "updated_at": "2026-06-22 23:32"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2620E/2620W</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/11 06:45</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/11 07:30</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/11 14:35</span></dd><dt>Berth Name</dt><dd>: 外港-13M2号岸壁</dd><dt>Rate</dt><dd>: 2026/05/20  ¥160.04</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "I272243940": {
-    "actual_etd": "2026-06-03",
+    "actual_etd": "2026-06-24",
     "vessel_name": "TS LIANYUNGANG 2612S ",
     "carrier": "YANGMING",
     "pol": "KOBE",
-    "pod": "PORT KLANG",
     "scheduled_etd": "2026-06-03",
-    "confirmed": false,
-    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
-    "updated_at": "2026-06-22 23:32"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2612N/2613S</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/23 14:40</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/23 15:22</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/24 01:51</span></dd><dt>Terminal Name</dt><dd>: ポートアイランド PC-18</dd><dt>輸入換算レート</dt><dd>: 2026/06/16  ¥164.413187</dd><dt>輸出換算レート</dt><dd>: 2026/06/17  ¥164.554797</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "TYOG86534400": {
     "actual_etd": "2026-06-03",
@@ -2026,26 +2042,26 @@
     "updated_at": "2026-06-22 23:32"
   },
   "SNKO040260500184": {
-    "actual_etd": "2026-06-03",
+    "actual_etd": "2026-06-08",
     "vessel_name": "AKITA TRADER 2620W",
     "carrier": "SINOKOR",
     "pol": "NAGOYA",
-    "pod": "KWANGYANG",
     "scheduled_etd": "2026-06-03",
-    "confirmed": false,
-    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
-    "updated_at": "2026-06-22 23:32"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2620E/2620W</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/07 15:46</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/08 07:30</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/08 15:35</span></dd><dt>Berth Name</dt><dd>: 本牧埠頭C7</dd><dt>Rate</dt><dd>: 2026/05/28  ¥160.66</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "SNKO040260500918": {
-    "actual_etd": "2026-06-03",
+    "actual_etd": "2026-06-08",
     "vessel_name": "AKITA TRADER 2620W",
     "carrier": "SINOKOR",
     "pol": "YOKOHAMA",
-    "pod": "KWANGYANG",
     "scheduled_etd": "2026-06-03",
-    "confirmed": false,
-    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
-    "updated_at": "2026-06-22 23:32"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2620E/2620W</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/07 15:46</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/08 07:30</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/08 15:35</span></dd><dt>Berth Name</dt><dd>: 本牧埠頭C7</dd><dt>Rate</dt><dd>: 2026/05/28  ¥160.66</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "JP01208482": {
     "actual_etd": "2026-06-04",
@@ -2191,15 +2207,15 @@
     "updated_at": "2026-06-22 23:32"
   },
   "I272244387": {
-    "actual_etd": "2026-06-09",
+    "actual_etd": "2026-06-10",
     "vessel_name": "TAICHUNG 427S",
     "carrier": "YANGMING",
     "pol": "OSAKA",
-    "pod": "PORT KLANG",
     "scheduled_etd": "2026-06-09",
-    "confirmed": false,
-    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
-    "updated_at": "2026-06-22 23:32"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "426N/427S</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/09 21:10</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/09 22:09</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/10 14:24</span></dd><dt>Terminal Name</dt><dd>: 六甲アイランド RC-1 / 2</dd><dt>輸入換算レート</dt><dd>: 2026/06/02  ¥163.816718</dd><dt>輸出換算レート</dt><dd>: 2026/06/03  ¥164.045858</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>B/L発行窓口</dt><dd>:営業時間 9:45AM〜4:00PM<br />(※休業時間 12:00PM〜1:00PM)</dd><dt>CY OPEN/CUT</dt><dd>:陽明日本ホームページ内<br />『お客様情報-輸出』 よりご確認ください。</dd><dt>備考</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "SNKO040260501116": {
     "actual_etd": "2026-06-09",
@@ -2224,15 +2240,15 @@
     "updated_at": "2026-06-22 23:32"
   },
   "NIH26E00090": {
-    "actual_etd": "2026-06-10",
+    "actual_etd": "2026-06-14",
     "vessel_name": "SUNNY CAMELLIA 2607W",
     "carrier": "NAMSUNG",
     "pol": "NIIGATA",
-    "pod": "INCHEON",
     "scheduled_etd": "2026-06-10",
-    "confirmed": false,
-    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
-    "updated_at": "2026-06-22 23:32"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2607E/2607W</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/14 06:51</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/14 07:50</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/14 16:30</span></dd><dt>Berth Name</dt><dd>: 西埠頭岸壁</dd><dt>Rate</dt><dd>: 2026/06/03  ¥160.99</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>Remark</dt><dd class='notesdd'> 前航海から遅延<br /></dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "AMP0548997": {
     "actual_etd": "2026-06-10",
@@ -2283,11 +2299,11 @@
     "vessel_name": "HEUNG-A XIAMEN 2623N",
     "carrier": "SINOKOR",
     "pol": "NAGOYA",
-    "pod": "KWANGYANG",
     "scheduled_etd": "2026-06-11",
-    "confirmed": false,
-    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
-    "updated_at": "2026-06-22 23:32"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2623S/2623N</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/11 06:20</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/11 06:48</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/11 16:10</span></dd><dt>Berth Name</dt><dd>: 本牧埠頭C7</dd><dt>Rate</dt><dd>: 2026/06/04  ¥160.99</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "A07GX12093": {
     "actual_etd": "2026-06-11",
@@ -2301,26 +2317,26 @@
     "updated_at": "2026-06-22 23:32"
   },
   "NGJF2600078": {
-    "actual_etd": "2026-06-11",
+    "actual_etd": "2026-06-16",
     "vessel_name": "PEGASUS TERA 2612W",
     "carrier": "DONG YOUNG",
     "pol": "NAGOYA",
-    "pod": "INCHEON",
     "scheduled_etd": "2026-06-11",
-    "confirmed": false,
-    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
-    "updated_at": "2026-06-22 23:32"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2612E/2612W</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/16 06:30</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/16 07:00</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/16 14:50</span></dd><dt>Berth Name</dt><dd>: 本牧埠頭C6</dd><dt>Rate</dt><dd>: 2026/06/12  ¥161.18</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "SNKO040260500895": {
-    "actual_etd": "2026-06-11",
+    "actual_etd": "2026-06-10",
     "vessel_name": "HONOR OCEAN 1058W",
     "carrier": "SINOKOR",
     "pol": "KOBE",
-    "pod": "NHAVA SHEVA",
     "scheduled_etd": "2026-06-11",
-    "confirmed": false,
-    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
-    "updated_at": "2026-06-22 23:32"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "1058E/1058W</dd><dt>Arrival</dt><dd>: <span class='actual'>2026/06/10 16:15</span></dd><dt>Berthing</dt><dd>: <span class='actual'>2026/06/10 17:35</span></dd><dt>Sailing</dt><dd>: <span class='actual'>2026/06/10 21:46</span></dd><dt>Berth Name</dt><dd>: ﾎﾟｰﾄｱｲﾗﾝﾄﾞｺﾝﾃﾅ埠頭16S</dd><dt>Rate</dt><dd>: 2026/06/08  ¥161.38</dd><dt>B/L発行</dt><dd>: 発行可</dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "008GX41311": {
     "actual_etd": "2026-06-12",
@@ -2390,14 +2406,14 @@
   },
   "JJCHASGJNA67A03": {
     "actual_etd": "2026-07-09",
-    "vessel_name": "XIU HONGÃ£ÂÂ2628W",
+    "vessel_name": "XIU HONG　2628W",
     "carrier": "JIN JIANG",
     "pol": "HAKATA",
     "pod": "CAT LAI",
     "scheduled_etd": "2026-07-09",
     "confirmed": false,
-    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
-    "updated_at": "2026-06-22 23:32"
+    "note": "本船名変更 XIU HONGÃ£ÂÂ2628W→XIU HONG 2628W COMPASS ETD:2026-07-09",
+    "updated_at": "2026-06-24 03:56"
   },
   "TYOGC5005500": {
     "actual_etd": "2026-07-17",
@@ -2444,15 +2460,15 @@
     "updated_at": "2026-06-23 06:45"
   },
   "PCJTYO26065358": {
-    "actual_etd": "2026-07-01",
+    "actual_etd": "2026-07-03",
     "vessel_name": "POS YOKOHAMA 1591W",
     "carrier": "PAN OCEAN",
     "pol": "TOKYO",
-    "pod": "KWANGYANG",
     "scheduled_etd": "2026-07-01",
-    "confirmed": false,
-    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ) - PAN OCEAN POS YOKOHAMA 1591W",
-    "updated_at": "2026-06-23 22:41"
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "1591E/1591W</dd><dt>Arrival</dt><dd>: <span>2026/07/02 </span></dd><dt>Berthing</dt><dd>: <span>2026/07/02 </span></dd><dt>Sailing</dt><dd>: <span>2026/07/03 </span></dd><dt>Berth Name</dt><dd>: </dd><dt>Rate</dt><dd>: </dd><dt>B/L発行</dt><dd>: </dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
   },
   "AMP0555039": {
     "actual_etd": "2026-07-06",
@@ -2475,5 +2491,27 @@
     "voyage": "0QIOCN/0QIOJS",
     "note": "toyoshingo.com/cmacgm YOKOHAMA ETD:2026-07-11(browser)",
     "updated_at": "2026-06-24T02:15"
+  },
+  "PCJTYO26065696": {
+    "actual_etd": "2026-07-04",
+    "vessel_name": "STAR VOYAGER 2626W",
+    "carrier": "PAN OCEAN",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-07-04",
+    "confirmed": true,
+    "updated_at": "2026-06-24 03:56",
+    "voyage": "2626E/2626W</dd><dt>Arrival</dt><dd>: <span>2026/07/03 </span></dd><dt>Berthing</dt><dd>: <span>2026/07/04 </span></dd><dt>Sailing</dt><dd>: <span>2026/07/04 </span></dd><dt>Berth Name</dt><dd>: </dd><dt>Rate</dt><dd>: </dd><dt>B/L発行</dt><dd>: </dd><dt>Remark</dt><dd class='notesdd'> </dd></dl>",
+    "note": "toyoshingo.com confirmed"
+  },
+  "JJCHASGJNA67A12": {
+    "actual_etd": "2026-07-06",
+    "vessel_name": "GLORY GUANDONG 2627S",
+    "carrier": "JIN JIANG",
+    "pol": "HAKATA",
+    "pod": "CAT LAI",
+    "scheduled_etd": "2026-07-06",
+    "confirmed": false,
+    "note": "COMPASS ETD基準(VSS未確認) JIN JIANG",
+    "updated_at": "2026-06-24 03:56"
   }
 }
