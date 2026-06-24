@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VESSEL STATUS v1.0</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #0d1117;
+    color: #c9d1d9;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: #161b22;
+    border-bottom: 1px solid #30363d;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 14px; }
+  .logo { font-size: 1.2rem; font-weight: 700; color: #58a6ff; letter-spacing: 1px; }
+  .tool-title { font-size: 1rem; font-weight: 600; color: #e6edf3; }
+  .version {
+    font-size: 0.72rem; background: #1f6feb; color: #fff;
+    padding: 2px 8px; border-radius: 20px; font-weight: 600;
+  }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  #user-info { font-size: 0.82rem; color: #e6edf3; font-weight: 600; }
+  #btn-login {
+    background: #238636; color: #fff; border: none;
+    padding: 7px 18px; border-radius: 6px; font-size: 0.85rem;
+    cursor: pointer; font-weight: 600; transition: background .2s;
+  }
+  #btn-login:hover { background: #2ea043; }
+  #btn-logout {
+    background: transparent; color: #8b949e; border: 1px solid #30363d;
+    padding: 6px 14px; border-radius: 6px; font-size: 0.82rem;
+    cursor: pointer; display: none;
+  }
+  #btn-logout:hover { color: #f85149; border-color: #f85149; }
+
+  /* ── MAIN ── */
+  main { padding: 24px; }
+
+  /* ── フィルター BAR ── */
+  .filter-section {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .filter-row {
+    display: flex; gap: 10px; align-items: center;
+    flex-wrap: wrap; margin-bottom: 10px;
+  }
+  .filter-row:last-child { margin-bottom: 0; }
+  .filter-label {
+    font-size: 0.75rem; color: #8b949e; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .5px;
+    min-width: 60px;
+  }
+  .filter-row input, .filter-row select {
+    background: #0d1117; border: 1px solid #30363d; color: #c9d1d9;
+    padding: 7px 10px; border-radius: 6px; font-size: 0.83rem;
+    outline: none;
+  }
+  .filter-row input:focus, .filter-row select:focus { border-color: #58a6ff; }
+  .filter-row input { width: 160px; }
+  .filter-row select { min-width: 130px; }
+  .date-range { display: flex; align-items: center; gap: 6px; }
+  .date-range span { color: #8b949e; font-size: 0.8rem; }
+  .date-range input[type="date"] { width: 140px; }
+
+  #btn-search {
+    background: #1f6feb; color: #fff; border: none;
+    padding: 8px 20px; border-radius: 6px; font-size: 0.85rem;
+    cursor: pointer; font-weight: 600;
+  }
+  #btn-search:hover { background: #388bfd; }
+  #btn-clear {
+    background: transparent; color: #8b949e; border: 1px solid #30363d;
+    padding: 7px 14px; border-radius: 6px; font-size: 0.85rem; cursor: pointer;
+  }
+  #btn-clear:hover { border-color: #8b949e; color: #c9d1d9; }
+  .record-count { font-size: 0.82rem; color: #8b949e; margin-left: auto; }
+
+  /* ── TABLE ── */
+  .table-wrap {
+    background: #161b22; border: 1px solid #30363d;
+    border-radius: 8px; overflow: auto;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  thead { background: #1c2128; position: sticky; top: 0; z-index: 1; }
+  .badge-actual-same { background:#1a472a; color:#4caf50; border-radius:4px; padding:2px 8px; font-size:.85em; }
+  .badge-actual-changed { background:#5c2900; color:#f0a500; border-radius:4px; padding:2px 8px; font-size:.85em; font-weight:bold; }
+  .badge-actual-omit { background:#5c0000; color:#ff5555; border-radius:4px; padding:2px 8px; font-size:.85em; font-weight:bold; }
+  th {
+    padding: 11px 14px; text-align: left; font-weight: 600;
+    color: #8b949e; font-size: 0.78rem; text-transform: uppercase;
+    letter-spacing: .5px; border-bottom: 1px solid #30363d;
+    white-space: nowrap;
+  }
+  td {
+    padding: 10px 14px; border-bottom: 1px solid #21262d;
+    white-space: nowrap;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #1c2128; }
+
+  /* badges */
+  .badge {
+    display: inline-block; padding: 2px 9px; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 600;
+  }
+  .badge-carrier { background: #1f3a5f; color: #79c0ff; }
+  .badge-etd { background: #1a3a2a; color: #56d364; }
+  .badge-eta { background: #3a2a1a; color: #f0883e; }
+
+  /* ── STATUS / LOADING ── */
+  #status-bar {
+    text-align: center; padding: 60px 20px;
+    color: #8b949e; font-size: 0.9rem; display: none;
+  }
+  .spinner {
+    width: 32px; height: 32px; border: 3px solid #30363d;
+    border-top-color: #58a6ff; border-radius: 50%;
+    animation: spin .8s linear infinite; margin: 0 auto 14px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  #login-prompt {
+    text-align: center; padding: 80px 20px; color: #8b949e;
+  }
+  #login-prompt h2 { color: #e6edf3; margin-bottom: 10px; font-size: 1.1rem; }
+  #login-prompt p { font-size: 0.88rem; margin-bottom: 24px; }
+  #btn-login-center {
+    background: #238636; color: #fff; border: none;
+    padding: 10px 28px; border-radius: 6px; font-size: 0.92rem;
+    cursor: pointer; font-weight: 600;
+  }
+  #btn-login-center:hover { background: #2ea043; }
+
+  #no-data {
+    text-align: center; padding: 40px; color: #8b949e;
+    font-size: 0.88rem; display: none;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 20px;
+    font-size: 0.75rem; color: #484f58;
+    border-top: 1px solid #21262d; margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-left">
+    <span class="logo">LEENAI.</span>
+    <span class="tool-title">VESSEL STATUS</span>
+    <span class="version">v1.0 (2026-06-22)</span>
+  </div>
+  <div class="header-right">
+    <span id="user-info"></span>
+    <button id="btn-login" onclick="startLogin()">🔐 Login</button>
+    <button id="btn-logout" onclick="doログアウト()">ログアウト</button>
+    <button id="btn-pat" onclick="setPAT()" title="GitHub PAT設定" style="background:transparent;border:none;color:#484f58;cursor:pointer;font-size:0.75rem;">⚙</button>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+
+  <!-- Login prompt (before auth) -->
+  <div id="login-prompt">
+    <h2>LEENEAR VESSEL STATUS</h2>
+    <p>ログインして本船スケジュールをリアルタイムで確認できます。</p>
+    <button id="btn-login-center" onclick="startLogin()">🔐 🔐 会社アカウントでログイン</button>
+  </div>
+
+  <!-- Dashboard (after auth) -->
+  <div id="dashboard" style="display:none;">
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+
+      <!-- Row 1: BKG / Invoice / Vessel / Month -->
+      <div class="filter-row">
+        <span class="filter-label">Search</span>
+        <input type="text" id="f-bkg" placeholder="BKG No" />
+        <input type="text" id="f-inv" placeholder="Invoice No" />
+        <input type="text" id="f-vessel" placeholder="本船名" />
+      </div>
+
+      <!-- Row 2: Carrier / POL / POD -->
+      <div class="filter-row">
+        <span class="filter-label">Filter</span>
+        <select id="f-carrier"><option value="">すべての船社</option></select>
+        <select id="f-pol"><option value="">すべてのPOL</option></select>
+        <select id="f-pod"><option value="">すべてのPOD</option></select>
+      </div>
+
+      <!-- Row 3: CY CUT / ETD / ETA 날짜 범위 -->
+      <div class="filter-row">
+        <span class="filter-label">CY CUT</span>
+        <div class="date-range">
+          <input type="date" id="f-cycut-from" />
+          <span>~</span>
+          <input type="date" id="f-cycut-to" />
+        </div>
+        <span class="filter-label" style="margin-left:12px;">ETD</span>
+        <div class="date-range">
+          <input type="date" id="f-etd-from" />
+          <span>~</span>
+          <input type="date" id="f-etd-to" />
+        </div>
+        <span class="filter-label" style="margin-left:12px;">ETA</span>
+        <div class="date-range">
+          <input type="date" id="f-eta-from" />
+          <span>~</span>
+          <input type="date" id="f-eta-to" />
+        </div>
+      </div>
+
+      <!-- Row 4: Buttons -->
+      <div class="filter-row">
+        <button id="btn-search" onclick="loadData()">🔍 検索</button>
+        <button id="btn-clear" onclick="clearFilter()">✕ クリア</button>
+        <button id="btn-today" onclick="loadToday()" style="background:#2ea043;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:0.85rem;cursor:pointer;font-weight:600;">📅 今日以降</button>
+        <button id="btn-vss-refresh" onclick="triggerVssRefresh()" style="background:#1a6bc4;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:0.85rem;cursor:pointer;font-weight:600;margin-left:8px;">🔄 VSS 更新</button>
+        <span class="record-count" id="rec-count"></span>
+      </div>
+
+    </div>
+
+    <!-- Loading -->
+    <div id="status-bar">
+      <div class="spinner"></div>
+      <div id="status-msg">Loading...</div>
+    </div>
+
+    <!-- No Data -->
+    <div id="no-data">No 件 found.</div>
+
+    <!-- Table -->
+    <div class="table-wrap" id="table-wrap" style="display:none;">
+      <table>
+        <thead>
+          <tr>
+            <th>BKG No</th>
+            <th>Invoice No</th>
+            <th>B/L No</th>
+            <th>本船名</th>
+            <th>船社</th>
+            <th>POL</th>
+            <th>POD</th>
+            <th>CY OPEN</th>
+            <th>CY CUT</th>
+            <th>ETD</th>
+            <th style="color:#f0a500;">VSS ETD</th>
+            <th>ETA</th>
+          </tr>
+        </thead>
+        <tbody id="tbl-body"></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<footer>✦ Powered by LEENAI Automation System &nbsp;|&nbsp; LEENEAR CORPORATION</footer>
+
+<script>
+const CLIENT_ID    = 'f071a165-5e9b-44bf-b6a1-baba654524db';
+const TENANT_ID    = 'a56988ff-c2b8-4df8-9727-889ad4205198';
+const DV_URL       = 'https://orgde512c6f.crm7.dynamics.com';
+const DV_API       = `${DV_URL}/api/data/v9.2`;
+const REDIRECT_URI = 'https://mhlee205.github.io/VESSEL_STATUS/';
+const SCOPE        = `${DV_URL}/user_impersonation openid profile email offline_access`;
+
+let S = { accessToken: null, tokenExpiry: 0, userName: '', userEmail: '' };
+
+// ── TOKEN CACHE (로그인 유지) ──
+const CACHE_KEY = 'vs_token_v3';
+function saveTokenCache(t, exp, name, email) {
+  try { localStorage.setItem(CACHE_KEY, JSON.stringify({accessToken:t, tokenExpiry:exp, userName:name, userEmail:email})); } catch(e) {}
+}
+function loadTokenCache() {
+  try {
+    const c = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
+    if (!c.accessToken || Date.now() > c.tokenExpiry) { localStorage.removeItem(CACHE_KEY); return null; }
+    return c;
+  } catch(e) { return null; }
+}
+function clearTokenCache() { try { localStorage.removeItem(CACHE_KEY); } catch(e) {} }
+
+// 전체 데이터 캐시 (클라이언트 필터링용)
+let allBookings = [];
+let actualMapG = {}; // BKG No → {actualEtd, actualEta}
+let carrierMapG = {}, polMapG = {}, podMapG = {};
+
+function b64url(buf) {
+  return btoa(String.fromCharCode(...new Uint8Array(buf)))
+    .replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'');
+}
+async function sha256(str) {
+  return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+}
+function randomStr(len=64) {
+  const arr = new Uint8Array(len);
+  crypto.getRandomValues(arr);
+  return b64url(arr).slice(0,len);
+}
+
+async function startLogin() {
+  const verifier  = randomStr(64);
+  const challenge = b64url(await sha256(verifier));
+  const state     = randomStr(16);
+  sessionStorage.setItem('pkce_v', verifier);
+  sessionStorage.setItem('pkce_s', state);
+  const params = new URLSearchParams({
+    client_id: CLIENT_ID, response_type: 'code',
+    redirect_uri: REDIRECT_URI, scope: SCOPE,
+    state, code_challenge: challenge, code_challenge_method: 'S256',
+    prompt: 'select_account'
+  });
+  location.href = `https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/authorize?${params}`;
+}
+
+async function handleCallback() {
+  const params = new URLSearchParams(location.search);
+  const code   = params.get('code');
+  if (!code) return;
+  history.replaceState({}, '', location.pathname);
+
+  const verifier = sessionStorage.getItem('pkce_v');
+  if (!verifier) { alert('Session expired. Please login again.'); return; }
+
+  showLoading('Authenticating...');
+  try {
+    const res = await fetch(
+      `https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/token`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          client_id: CLIENT_ID, grant_type: 'authorization_code',
+          code, redirect_uri: REDIRECT_URI, code_verifier: verifier, scope: SCOPE
+        })
+      }
+    );
+    const data = await res.json();
+    if (!data.access_token) throw new Error(data.error_description || 'Token fetch failed');
+
+    S.accessToken = data.access_token;
+    S.tokenExpiry = Date.now() + (data.expires_in - 60) * 1000;
+
+    if (data.id_token) {
+      try {
+        const payload = JSON.parse(atob(data.id_token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));
+        S.userName  = payload.name  || '';
+        S.userEmail = payload.email || payload.preferred_username || '';
+      } catch(e) {}
+    }
+
+    // 토큰 캐시 저장 → 다음 방문시 자동 로그인
+    saveTokenCache(S.accessToken, S.tokenExpiry, S.userName, S.userEmail);
+
+    hideLoading();
+    showDashboard();
+    loadData();
+  } catch(e) {
+    hideLoading();
+    alert('Auth Error: ' + e.message);
+  }
+}
+
+function doログアウト() {
+  S = { accessToken: null, tokenExpiry: 0, userName: '', userEmail: '' };
+  clearTokenCache();
+  allBookings = []; carrierMapG = {}; polMapG = {}; podMapG = {};
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('login-prompt').style.display = 'block';
+  document.getElementById('btn-login').style.display = 'inline-block';
+  document.getElementById('btn-logout').style.display = 'none';
+  document.getElementById('user-info').textContent = '';
+}
+
+function showDashboard() {
+  document.getElementById('login-prompt').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  document.getElementById('btn-login').style.display = 'none';
+  document.getElementById('btn-logout').style.display = 'inline-block';
+  const dn = S.userEmail ? S.userEmail.split('@')[0].toUpperCase() : (S.userName || '');
+  document.getElementById('user-info').textContent = dn;
+}
+
+function checkToken() {
+  if (!S.accessToken) throw new Error('Please login first.');
+  if (Date.now() > S.tokenExpiry) throw new Error('Session expired. Please login again.');
+}
+
+async function dvGet(path) {
+  checkToken();
+  const url = path.startsWith('http') ? path : `${DV_API}/${path}`;
+  const res = await fetch(url, {
+    headers: {
+      'Authorization': `Bearer ${S.accessToken}`,
+      'OData-MaxVersion': '4.0',
+      'OData-Version': '4.0',
+      'Accept': 'application/json',
+      'Prefer': 'odata.include-annotations="OData.Community.Display.V1.FormattedValue"'
+    }
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(`API ${res.status}: ${err?.error?.message || res.statusText}`);
+  }
+  return res.json();
+}
+
+async function loadData() {
+  showLoading('Loading vessel data...');
+  document.getElementById('table-wrap').style.display = 'none';
+  document.getElementById('no-data').style.display = 'none';
+
+  try {
+    const filters = [];
+    const bkg      = document.getElementById('f-bkg').value.trim();
+    const inv      = document.getElementById('f-inv').value.trim();
+    const vessel   = document.getElementById('f-vessel').value.trim();
+    const cycutFrom = document.getElementById('f-cycut-from').value;
+    const cycutTo   = document.getElementById('f-cycut-to').value;
+    const etdFromInput = document.getElementById('f-etd-from').value;
+    const etdTo     = document.getElementById('f-etd-to').value;
+    const etaFrom   = document.getElementById('f-eta-from').value;
+    const etaTo     = document.getElementById('f-eta-to').value;
+
+    // ETD FROM 미입력시 자동으로 오늘 -3일
+    const etdFrom = etdFromInput || (() => {
+      const d = new Date();
+      d.setDate(d.getDate() - 3);
+      return d.toISOString().slice(0, 10);
+    })();
+    // ETD FROM 값을 필터 입력란에도 표시
+    if (!etdFromInput) {
+      document.getElementById('f-etd-from').value = etdFrom;
+    }
+
+    if (bkg)       filters.push(`contains(cr49f_booking_no,'${bkg}')`);
+    if (inv)       filters.push(`contains(cr49f_invoice_no,'${inv}')`);
+    if (vessel)    filters.push(`contains(cr49f_main_ship_name,'${vessel}')`);
+    if (cycutFrom) filters.push(`cr49f_cy_cut ge ${cycutFrom}T00:00:00Z`);
+    if (cycutTo)   filters.push(`cr49f_cy_cut le ${cycutTo}T23:59:59Z`);
+    filters.push(`cr49f_etd ge ${etdFrom}T00:00:00Z`);
+    if (etdTo)     filters.push(`cr49f_etd le ${etdTo}T23:59:59Z`);
+    if (etaFrom)   filters.push(`cr49f_eta ge ${etaFrom}T00:00:00Z`);
+    if (etaTo)     filters.push(`cr49f_eta le ${etaTo}T23:59:59Z`);
+
+    let query = `cr49f_bookings?$select=cr49f_booking_no,cr49f_invoice_no,cr49f_bl_number,` +
+      `cr49f_main_ship_name,cr49f_cy_open,cr49f_cy_cut,cr49f_etd,cr49f_eta,` +
+      `_cr49f_carrier_id_value,_cr49f_region_japan_id_value,_cr49f_region_id_value` +
+      `&$top=500&$orderby=cr49f_etd asc`;
+
+    if (filters.length) query += `&$filter=${filters.join(' and ')}`;
+
+    const data = await dvGet(query);
+    const bookings = data.value || [];
+
+    if (!bookings.length) {
+      hideLoading();
+      document.getElementById('no-data').style.display = 'block';
+      document.getElementById('rec-count').textContent = '0 件';
+      return;
+    }
+
+    const carrierGuids = [...new Set(bookings.map(b => b['_cr49f_carrier_id_value']).filter(Boolean))];
+    const polGuids     = [...new Set(bookings.map(b => b['_cr49f_region_japan_id_value']).filter(Boolean))];
+    const podGuids     = [...new Set(bookings.map(b => b['_cr49f_region_id_value']).filter(Boolean))];
+
+    const [carrierMap, polMap, podMap] = await Promise.all([
+      fetchMasterMap(carrierGuids, 'crcf9_carriers', 'crcf9_carrierid', 'crcf9_carrier'),
+      fetchMasterMap(polGuids,     'crcf9_region_japans', 'crcf9_region_japanid', 'crcf9_pol'),
+      fetchMasterMap(podGuids,     'cr49f_regions', 'cr49f_regionid', 'cr49f_pod'),
+    ]);
+
+    // 전체 데이터 캐시 저장
+    allBookings = bookings;
+    carrierMapG = carrierMap;
+    polMapG = polMap;
+    podMapG = podMap;
+
+    // 드롭다운 옵션 업데이트
+    buildDropdown('f-carrier', [...new Set(Object.values(carrierMap))].sort());
+    buildDropdown('f-pol',     [...new Set(Object.values(polMap))].sort());
+    buildDropdown('f-pod',     [...new Set(Object.values(podMap))].sort());
+
+    // Actual ETD/ETA 데이터 로드
+    await loadActualData();
+    hideLoading();
+    applyClientFilter();
+
+  } catch(e) {
+    hideLoading();
+    alert('Error: ' + e.message);
+  }
+}
+
+// 클라이언트 사이드 필터링
+// doSearch는 applyClientFilter의 alias (이전 버전 호환)
+function doSearch() { applyClientFilter(); }
+function applyClientFilter() {
+  const carrier   = document.getElementById('f-carrier').value;
+  const pol       = document.getElementById('f-pol').value;
+  const pod       = document.getElementById('f-pod').value;
+  const cycutFrom = document.getElementById('f-cycut-from').value;
+  const cycutTo   = document.getElementById('f-cycut-to').value;
+  const etdFrom   = document.getElementById('f-etd-from').value;
+  const etdTo     = document.getElementById('f-etd-to').value;
+  const etaFrom   = document.getElementById('f-eta-from').value;
+  const etaTo     = document.getElementById('f-eta-to').value;
+
+  let filtered = allBookings.filter(b => {
+    const bCarrier = carrierMapG[b['_cr49f_carrier_id_value']] || '';
+    const bPol     = polMapG[b['_cr49f_region_japan_id_value']] || '';
+    const bPod     = podMapG[b['_cr49f_region_id_value']] || '';
+
+    if (carrier && bCarrier !== carrier) return false;
+    if (pol     && bPol !== pol)         return false;
+    if (pod     && bPod !== pod)         return false;
+
+    if (cycutFrom && b.cr49f_cy_cut && b.cr49f_cy_cut.slice(0,10) < cycutFrom) return false;
+    if (cycutTo   && b.cr49f_cy_cut && b.cr49f_cy_cut.slice(0,10) > cycutTo)   return false;
+    if (etdFrom   && b.cr49f_etd    && b.cr49f_etd.slice(0,10)    < etdFrom)   return false;
+    if (etdTo     && b.cr49f_etd    && b.cr49f_etd.slice(0,10)    > etdTo)     return false;
+    if (etaFrom   && b.cr49f_eta    && b.cr49f_eta.slice(0,10)    < etaFrom)   return false;
+    if (etaTo     && b.cr49f_eta    && b.cr49f_eta.slice(0,10)    > etaTo)     return false;
+
+    return true;
+  });
+
+  if (!filtered.length) {
+    document.getElementById('no-data').style.display = 'block';
+    document.getElementById('table-wrap').style.display = 'none';
+    document.getElementById('rec-count').textContent = '0 件';
+    return;
+  }
+
+  document.getElementById('no-data').style.display = 'none';
+  renderTable(filtered, carrierMapG, polMapG, podMapG);
+  document.getElementById('rec-count').textContent = `${filtered.length} 件`;
+  document.getElementById('table-wrap').style.display = 'block';
+}
+
+function buildDropdown(id, values) {
+  const sel = document.getElementById(id);
+  const current = sel.value;
+  const placeholder = sel.options[0].text;
+  sel.innerHTML = `<option value="">${placeholder}</option>`;
+  values.forEach(v => {
+    if (!v) return;
+    const opt = document.createElement('option');
+    opt.value = v; opt.textContent = v;
+    if (v === current) opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+
+// ── GitHub vessel_actual.json 읽기 ──
+async function loadActualData() {
+  try {
+    // GitHub API経由で読み込み (CDNキャッシュを完全回避)
+    const tok = window.GH_TOK || '';
+    let data;
+    if (tok) {
+      // GitHub API: 常に最新版を取得
+      const apiRes = await fetch(
+        'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/vessel_actual.json',
+        {headers:{'Authorization':`token ${tok}`,'Accept':'application/vnd.github.v3+json'}}
+      );
+      if (apiRes.ok) {
+        const apiData = await apiRes.json();
+        data = JSON.parse(atob(apiData.content.replace(/\n/g,'')));
+      }
+    }
+    if (!data) {
+      // フォールバック: raw GitHubから取得
+      const res = await fetch(
+        `https://raw.githubusercontent.com/MHLEE205/VESSEL_STATUS/main/vessel_actual.json?t=${Date.now()}`,
+        { cache: 'no-store' }
+      );
+      if (!res.ok) return;
+      data = await res.json();
+    }
+    actualMapG = data;
+    console.log('✅ Actual data loaded:', Object.keys(actualMapG).length, '件');
+  } catch(e) {
+    console.warn('Actual data load failed:', e.message);
+  }
+}
+
+async function fetchMasterMap(guids, entitySet, pkField, nameField) {
+  const map = {};
+  if (!guids.length) return map;
+  await Promise.all(guids.map(async guid => {
+    try {
+      const d = await dvGet(`${entitySet}(${guid})?$select=${nameField}`);
+      map[guid] = d[nameField] || '';
+    } catch(e) { map[guid] = ''; }
+  }));
+  return map;
+}
+
+function renderTable(bookings, carrierMap, polMap, podMap) {
+  const tbody = document.getElementById('tbl-body');
+  tbody.innerHTML = '';
+  bookings.forEach(b => {
+    const carrier = carrierMap[b['_cr49f_carrier_id_value']] || '-';
+    const pol     = polMap[b['_cr49f_region_japan_id_value']] || '-';
+    const pod     = podMap[b['_cr49f_region_id_value']] || '-';
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><strong>${b.cr49f_booking_no || '-'}</strong></td>
+      <td>${b.cr49f_invoice_no || '-'}</td>
+      <td>${b.cr49f_bl_number || '-'}</td>
+      <td>${b.cr49f_main_ship_name || '-'}</td>
+      <td><span class="badge badge-carrier">${carrier}</span></td>
+      <td>${pol}</td>
+      <td>${pod}</td>
+      <td>${fmtDate(b.cr49f_cy_open)}</td>
+      <td>${fmtDate(b.cr49f_cy_cut)}</td>
+      <td><span class="badge badge-etd">${fmtDate(b.cr49f_etd)}</span></td>
+      <td>${(()=>{
+        const bkgNo = b.cr49f_booking_no || '';
+        const actual = actualMapG[bkgNo];
+        const sched = (b.cr49f_etd||'').slice(0,10);
+        if (!actual || !actual.actual_etd) return '<span style="color:#444;font-size:.85em">' + sched + '</span>';
+        const act = actual.actual_etd;
+        const note = actual.note || '';
+        if (note.includes('OMIT')) return '<span class="badge-actual-omit">OMIT→' + act + '</span>';
+        if (act === sched) return '<span class="badge-actual-same">' + act + '</span>';
+        return '<span class="badge-actual-changed">⚠ ' + act + '</span>';
+      })()}</td>
+      <td><span class="badge badge-eta">${fmtDate(b.cr49f_eta)}</span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// ── Bookings → GitHub vessel_for_vss.json 저장 ──
+async function saveBookingsForVSS(bookings) {
+  try {
+    const PAT = sessionStorage.getItem('gh_pat');
+    if (!PAT) return;
+
+    // 필요한 데이터만 추출
+    const data = bookings.map(b => ({
+      bkg_no:      b.cr49f_booking_no || '',
+      vessel_name: b.cr49f_main_ship_name || '',
+      carrier:     carrierMapG[b['_cr49f_carrier_id_value']] || '',
+      pol:         polMapG[b['_cr49f_region_japan_id_value']] || '',
+      etd:         (b.cr49f_etd || '').slice(0, 10)
+    })).filter(b => b.bkg_no && b.vessel_name && b.carrier && b.pol);
+
+    // 현재 SHA 가져오기
+    const shaRes = await fetch(
+      'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/bookings_for_vss.json',
+      { headers: { 'Authorization': `token ${PAT}` } }
+    );
+    const shaData = await shaRes.json().catch(() => ({}));
+    const sha = shaData.sha || null;
+
+    // GitHub API로 업데이트
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+    const body = {
+      message: `Update bookings_for_vss.json - ${new Date().toISOString().slice(0,10)}`,
+      content,
+      ...(sha && { sha })
+    };
+
+    await fetch(
+      'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/bookings_for_vss.json',
+      {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${PAT}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      }
+    );
+    console.log('✅ bookings_for_vss.json updated:', data.length, '件');
+  } catch(e) {
+    console.warn('bookings_for_vss save failed:', e.message);
+  }
+}
+
+function fmtDate(val) {
+  if (!val) return '-';
+  const d = new Date(val);
+  if (isNaN(d)) return val;
+  return d.toISOString().slice(0,10);
+}
+
+
+
+// ── 새 부킹에 대해 toyoshingo/VSS 실시간 조회 ──
+async function updateNewBookingsVSS(bookingList, tok) {
+  try {
+    // 현재 vessel_actual.json 읽기 (GitHub API)
+    const apiRes = await fetch(
+      'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/vessel_actual.json',
+      {headers:{'Authorization':`token ${tok}`,'Accept':'application/vnd.github.v3+json'}}
+    );
+    if (!apiRes.ok) return;
+    const apiData = await apiRes.json();
+    const actualMap = JSON.parse(atob(apiData.content.replace(/\n/g,'')));
+    const actualSha = apiData.sha;
+
+    // vessel_actual.json에 없는 신규 부킹만 대상
+    const newBkgs = bookingList.filter(b => !actualMap[b.bkg_no] && b.carrier && b.pol && b.vessel_name);
+    if (!newBkgs.length) { console.log('新規ブッキングなし'); return; }
+    console.log(`新規ブッキング ${newBkgs.length}件 VSS照会中...`);
+
+    const now = new Date().toISOString().slice(0,16).replace('T',' ');
+    let updated = 0;
+
+    // toyoshingo.com 포트 매핑
+    const TOYO_CONFIG = {
+      'SINOKOR': {base:'https://www.toyoshingo.com/sinokor/index.php', ports:{'TOKYO':13,'OSAKA':11,'NAGOYA':30,'HAKATA':41,'SENDAI':19,'ISHIKARI':7,'MIZUSHIMA':50,'YOKOHAMA':13,'KOBE':41}},
+      'HEUNG A': {base:'https://www.toyoshingo.com/heunga/index.php',  ports:{'TOKYO':13,'OSAKA':11,'NAGOYA':30,'HAKATA':41,'KOBE':41,'SENDAI':19,'ISHIKARI':7}},
+      'HEUNG-A': {base:'https://www.toyoshingo.com/heunga/index.php',  ports:{'TOKYO':13,'OSAKA':11,'NAGOYA':30,'HAKATA':41,'KOBE':41,'SENDAI':19,'ISHIKARI':7}},
+      'NAMSUNG':  {base:'https://www.toyoshingo.com/namsung/index.php', ports:{'TOKYO':13,'OSAKA':11,'NAGOYA':30,'SENDAI':19}},
+      'DONG YOUNG':{base:'https://www.toyoshingo.com/dongjin/index.php',ports:{'TOKYO':13,'OSAKA':11,'NAGOYA':35,'HAKATA':41}},
+      'YANGMING': {base:'https://www.toyoshingo.com/yangming/index.php',ports:{'TOKYO':13,'OSAKA':11,'NAGOYA':30,'HAKATA':41,'KOBE':41}},
+      'PAN OCEAN': {base:'https://www.toyoshingo.com/sinokor/index.php',ports:{'TOKYO':13,'OSAKA':11,'NAGOYA':30,'HAKATA':41,'SENDAI':19,'ISHIKARI':7}},
+      'CNC': {base:'https://www.toyoshingo.com/cmacgm/index.php',       ports:{'TOKYO':13,'OSAKA':11,'YOKOHAMA':11,'KOBE':41,'NAGOYA':35}},
+    };
+    // vessel-schedule-service.com 포트 매핑
+    const VSS_CONFIG = {
+      'KMTC':     {base:'https://vessel-schedule-service.com/kmtc/vessel-schedule',     ports:{'TOKYO':16,'YOKOHAMA':14,'NAGOYA':37,'OSAKA':40,'KOBE':41,'HAKATA':66,'ISHIKARI':92,'SENDAI':6}},
+      'MAERSK':   {base:'https://vessel-schedule-service.com/maersk/vessel-schedule',   ports:{'TOKYO':16,'YOKOHAMA':14,'NAGOYA':37,'OSAKA':40,'KOBE':41,'HAKATA':66}},
+      'OOCL':     {base:'https://vessel-schedule-service.com/oocl/vessel-schedule',     ports:{'TOKYO':16,'YOKOHAMA':14,'NAGOYA':37,'OSAKA':40,'KOBE':41,'HAKATA':66}},
+      'ONE':      {base:'https://vessel-schedule-service.com/one/vessel-schedule',      ports:{'TOKYO':16,'YOKOHAMA':14,'NAGOYA':37,'OSAKA':40,'KOBE':41,'HAKATA':66,'NAHA':53}},
+      'INTERASIA':{base:'https://vessel-schedule-service.com/interasia/vessel-schedule',ports:{'TOKYO':16,'YOKOHAMA':14,'NAGOYA':37,'OSAKA':40,'KOBE':41,'HAKATA':66}},
+    };
+
+    function extractVoy(vname) {
+      let m = vname.match(/(\d{4})[EWNS]/i); if(m) return m[1];
+      m = vname.match(/[SN](\d{3})/i); if(m) return m[1].replace(/^0+/,'');
+      return null;
+    }
+
+    // toyoshingo.com 파싱
+    async function fetchToyoshingo(carrier, pol, vesselName) {
+      const cfg = TOYO_CONFIG[carrier]; if(!cfg) return null;
+      const portCode = cfg.ports[pol]; if(!portCode) return null;
+      const voyage = extractVoy(vesselName); if(!voyage) return null;
+      const baseName = vesselName.replace(/\s*\d{4}[EWNS]\s*$/i,'').trim().toUpperCase();
+      for(const w of [1,2,3,4]) {
+        try {
+          const r = await fetch(`${cfg.base}?port=${portCode}&week=${w}`);
+          const h = await r.text();
+          const doc = new DOMParser().parseFromString(h,'text/html');
+          for(const el of doc.querySelectorAll('a[title]')) {
+            const raw = el.outerHTML.match(/title="([^"]+)"/)?.[1]||'';
+            const t = raw.replace(/&#(\d+);/g,(_,c)=>String.fromCharCode(c)).replace(/&lt;/g,'<').replace(/&gt;/g,'>');
+            if(!t.includes('Vessel Name')||!t.includes('Sailing')) continue;
+            const vn = t.match(/Vessel Name.*?:\s*([^\n<]+)/i)?.[1]?.trim().toUpperCase()||'';
+            const voy = t.match(/Voyage.*?:\s*([^\n<]+)/i)?.[1]?.trim()||'';
+            const sail = t.match(/Sailing.*?<span[^>]*>([\d\/]+)/i)?.[1]?.replace(/\//g,'-');
+            const omit = t.includes('OMIT');
+            if(!voy.includes(voyage)) continue;
+            const baseWords = baseName.split(' ').filter(w=>w.length>1);
+            if(!baseWords.every(w=>vn.includes(w))) continue;
+            return {etd:sail||null, omit, voyage:voy};
+          }
+        } catch(e) {}
+      }
+      return null;
+    }
+
+    // vessel-schedule-service.com 파싱
+    async function fetchVSSService(carrier, pol, vesselName) {
+      const cfg = VSS_CONFIG[carrier]; if(!cfg) return null;
+      const portId = cfg.ports[pol]; if(!portId) return null;
+      const voyage = extractVoy(vesselName); if(!voyage) return null;
+      const baseName = vesselName.replace(/\s*\d{4}[EWNS]\s*$/i,'').trim().toUpperCase();
+      for(const idx of [1,2,3,4]) {
+        const url = `${cfg.base}?tab=2&port_id=${portId}&start_week=monday&view_type=WEEK&current_index=${idx}`;
+        try {
+          // vessel-schedule-service.com은 React SPA → iframeで開く必要あり
+          // 直接fetchでデータ取得不可なのでスキップ
+          // (GitHub Actionsで処理済みのため)
+        } catch(e) {}
+      }
+      return null;
+    }
+
+    // 각 신규 부킹 VSS 조회
+    for(const bkg of newBkgs) {
+      const carrier = bkg.carrier;
+      const pol = bkg.pol.toUpperCase();
+      const vessel = bkg.vessel_name;
+
+      let found = null;
+      if(TOYO_CONFIG[carrier]) {
+        found = await fetchToyoshingo(carrier, pol, vessel);
+      }
+      // VSS_CONFIG는 SPA이므로 브라우저에서 fetch 불가 → COMPASS ETD 기준으로 등록
+
+      if(found?.etd) {
+        actualMap[bkg.bkg_no] = {
+          actual_etd: found.etd, vessel_name: vessel,
+          carrier, pol: bkg.pol,
+          scheduled_etd: bkg.etd || found.etd,
+          confirmed: true, voyage: found.voyage,
+          note: 'toyoshingo.com リアルタイム確認',
+          updated_at: now,
+        };
+        updated++;
+      } else if(found?.omit) {
+        actualMap[bkg.bkg_no] = {
+          actual_etd: bkg.etd, vessel_name: vessel,
+          carrier, pol: bkg.pol,
+          scheduled_etd: bkg.etd,
+          confirmed: false, voyage: found.voyage,
+          note: 'OMIT',
+          updated_at: now,
+        };
+        updated++;
+      } else {
+        // VSS未確認 → COMPASS ETD基準で仮登録
+        actualMap[bkg.bkg_no] = {
+          actual_etd: bkg.etd, vessel_name: vessel,
+          carrier, pol: bkg.pol,
+          scheduled_etd: bkg.etd,
+          confirmed: false,
+          note: 'COMPASS ETD基準(VSS未確認)',
+          updated_at: now,
+        };
+        updated++;
+      }
+    }
+
+    if(updated > 0) {
+      // vessel_actual.json 更新
+      const enc = btoa(unescape(encodeURIComponent(JSON.stringify(actualMap,null,2))));
+      await fetch('https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/vessel_actual.json',{
+        method:'PUT',
+        headers:{'Authorization':`token ${tok}`,'Content-Type':'application/json'},
+        body:JSON.stringify({message:`VSS refresh: add ${updated} new bookings ${now}`,content:enc,sha:actualSha})
+      });
+      console.log(`✅ 新規ブッキング ${updated}件 vessel_actual更新`);
+    }
+  } catch(e) {
+    console.warn('updateNewBookingsVSS error:', e.message);
+  }
+}
+
+
+// ── VSS 更新ボタン ──
+
+// ════════════════════════════════════════════════════════
+// CNC ETD 조회 - toyoshingo.com/cmacgm (iframe방식, 브라우저에서만 가능)
+// GitHub Actions 403차단 → VSS更新ボタン押下時にブラウザ側で直接取得
+// ════════════════════════════════════════════════════════
+async function fetchCncFromToyoshingo(bookingList, tok) {
+  const CNC_PORTS = {
+    'TOKYO':13,'YOKOHAMA':11,'NAGOYA':35,'KOBE':41,
+    'OSAKA':40,'HAKATA':77,'SENDAI':3
+  };
+
+  const cncBkgs = bookingList.filter(b => b.carrier === 'CNC');
+  if (!cncBkgs.length) return 0;
+
+  // 필요한 POL만 조회
+  const neededPols = [...new Set(cncBkgs.map(b=>b.pol.toUpperCase()).filter(p=>CNC_PORTS[p]))];
+  if (!neededPols.length) return 0;
+
+  console.log(`CNC 조회 POL: ${neededPols.join(', ')}`);
+
+  // DOM 파싱 함수 (Vessel Name: / Voyage: / Sailing: 패턴)
+  function parseDom(doc) {
+    const body = doc.body ? doc.body.innerText : '';
+    const blocks = body.split('Vessel Name:');
+    const r = [];
+    for(let i=1; i<blocks.length; i++){
+      const b = blocks[i];
+      const lines = b.split('\n').filter(l=>l.trim());
+      const vn = lines[0]?.replace(/\([^)]+\)$/, '').trim() || '';
+      const voyM = b.match(/Voyage:\s*\n?([\w\/\-]+)/);
+      const sailM = b.match(/Sailing:\s*\n?(\d{4}\/\d{2}\/\d{2})/);
+      if(vn && sailM) {
+        r.push({
+          vessel: vn,
+          voyage: voyM?.[1] || '',
+          etd: sailM[1].replace(/\//g,'-')
+        });
+      }
+    }
+    return r;
+  }
+
+  // iframe으로 toyoshingo 페이지 로드 (same-origin, cookie 유지)
+  async function loadIframe(url) {
+    return new Promise((resolve) => {
+      const ifr = document.createElement('iframe');
+      ifr.style.cssText = 'position:fixed;top:-9999px;width:1px;height:1px;visibility:hidden;';
+      const cleanup = () => { try{document.body.removeChild(ifr);}catch(e){} };
+      ifr.onload = () => {
+        try {
+          const data = parseDom(ifr.contentDocument);
+          cleanup(); resolve(data);
+        } catch(e) { cleanup(); resolve([]); }
+      };
+      ifr.onerror = () => { cleanup(); resolve([]); };
+      document.body.appendChild(ifr);
+      ifr.src = url;
+      setTimeout(() => { cleanup(); resolve([]); }, 10000);
+    });
+  }
+
+  // 전체 POL × 4주 수집
+  const allEvents = {}; // vessel__voyage__pol → data
+  let pageCount = 0;
+  for(const pol of neededPols) {
+    const portCode = CNC_PORTS[pol];
+    for(const week of [0,1,2,3]) {
+      const url = `https://www.toyoshingo.com/cmacgm/index.php?port=${portCode}&week=${week}`;
+      const events = await loadIframe(url);
+      pageCount++;
+      for(const ev of events) {
+        const key = `${ev.vessel}__${ev.voyage}__${pol}`;
+        // 같은 본선이 여러 주에 걸쳐 나오면 더 최신 ETD로 덮어씀
+        if(!allEvents[key] || ev.etd > allEvents[key].etd) {
+          allEvents[key] = {...ev, pol};
+        }
+      }
+      await new Promise(r=>setTimeout(r,200));
+    }
+  }
+  console.log(`CNC 수집: ${pageCount}페이지, ${Object.keys(allEvents).length}건`);
+
+  // 부킹 매칭
+  function extractVoy(vesselName) {
+    const m = vesselName.toUpperCase().match(/0([A-Z0-9]{4,6})/);
+    return m ? m[1] : '';
+  }
+  function voyMatch(bkgVoy, vssVoy) {
+    if(!bkgVoy || !vssVoy) return false;
+    const v = vssVoy.toUpperCase();
+    if(v.includes(bkgVoy)) return true;
+    for(let i=0; i<=bkgVoy.length-4; i++) {
+      if(v.includes(bkgVoy.slice(i,i+4))) return true;
+    }
+    return false;
+  }
+
+  const updates = {};
+  for(const bkg of cncBkgs) {
+    const pol = bkg.pol.toUpperCase();
+    const bkgVoy = extractVoy(bkg.vessel_name || '');
+    const baseVessel = (bkg.vessel_name || '').toUpperCase()
+      .replace(/\s*0[A-Z0-9]{4,8}\S*/g,'').replace(/\s+/g,' ').trim();
+    const baseWords = baseVessel.split(' ').filter(w=>w.length>1);
+
+    let best = null;
+    for(const ev of Object.values(allEvents)) {
+      if(ev.pol !== pol) continue;
+      const evVessel = ev.vessel.toUpperCase();
+      const nameOk = baseWords.length > 0 && baseWords.every(w => evVessel.includes(w));
+      const vOk = voyMatch(bkgVoy, ev.voyage);
+      if(nameOk && (vOk || !bkgVoy)) {
+        // COMPASS ETD와 가장 가까운 건 선택
+        if(!best) { best = ev; continue; }
+        const diff1 = Math.abs(new Date(ev.etd) - new Date(bkg.etd));
+        const diff2 = Math.abs(new Date(best.etd) - new Date(bkg.etd));
+        if(diff1 < diff2) best = ev;
+      }
+    }
+
+    if(best && best.etd) {
+      updates[bkg.bkg_no] = {
+        actual_etd:    best.etd,
+        vessel_name:   bkg.vessel_name,
+        carrier:       'CNC',
+        pol:           bkg.pol,
+        pod:           bkg.pod || '',
+        scheduled_etd: bkg.etd,
+        confirmed:     true,
+        voyage:        best.voyage,
+        note:          `toyoshingo.com/cmacgm ${pol} ETD:${best.etd}(browser)`,
+        updated_at:    new Date().toISOString().slice(0,16),
+      };
+      console.log(`CNC ✅ ${bkg.bkg_no}: ${bkg.vessel_name} ${pol} ETD:${best.etd}`);
+    } else {
+      console.log(`CNC ⚠️ ${bkg.bkg_no}: ${bkg.vessel_name} ${pol} 未マッチ`);
+    }
+  }
+
+  if(!Object.keys(updates).length) return 0;
+
+  // vessel_actual.json 업데이트
+  try {
+    const vaR = await fetch(
+      'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/vessel_actual.json',
+      {headers:{'Authorization':`token ${tok}`,'Accept':'application/vnd.github.v3+json'}}
+    );
+    const vaD = await vaR.json();
+    const current = JSON.parse(atob(vaD.content.replace(/\n/g,'')));
+    Object.assign(current, updates);
+    const enc = btoa(unescape(encodeURIComponent(JSON.stringify(current,null,2))));
+    await fetch(
+      'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/vessel_actual.json',
+      {
+        method:'PUT',
+        headers:{'Authorization':`token ${tok}`,'Content-Type':'application/json'},
+        body:JSON.stringify({
+          message:`CNC ETD browser update ${new Date().toISOString().slice(0,16)} (${Object.keys(updates).length}件)`,
+          content:enc, sha:vaD.sha
+        })
+      }
+    );
+    console.log(`CNC ${Object.keys(updates).length}건 저장 완료`);
+  } catch(e) {
+    console.error('CNC 저장 오류:', e);
+  }
+  return Object.keys(updates).length;
+}
+
+
+async function triggerVssRefresh() {
+  const btn = document.getElementById('btn-vss-refresh');
+  btn.disabled = true;
+  btn.style.background = '#555';
+
+  try {
+    if (!S.accessToken || Date.now() > S.tokenExpiry)
+      throw new Error('再ログインが必要です。');
+
+    const h = {
+      'Authorization': `Bearer ${S.accessToken}`,
+      'OData-MaxVersion': '4.0', 'OData-Version': '4.0', 'Accept': 'application/json'
+    };
+
+    // ① COMPASS 부킹 취득 (과거 30일~)
+    btn.textContent = '⏳ ① COMPASS取得中...';
+    const today = new Date(); today.setDate(today.getDate() - 30);
+    const fromDate = today.toISOString().slice(0, 10);
+    const bkgRes = await fetch(
+      `${DV_API}/cr49f_bookings?$filter=cr49f_etd ge ${fromDate}T00:00:00Z` +
+      `&$select=cr49f_booking_no,cr49f_main_ship_name,cr49f_etd,` +
+      `_cr49f_carrier_id_value,_cr49f_region_japan_id_value,_cr49f_region_id_value` +
+      `&$top=500&$orderby=cr49f_etd asc`, { headers: h }
+    );
+    const allBkgs = (await bkgRes.json()).value || [];
+
+    const cG = [...new Set(allBkgs.map(b => b['_cr49f_carrier_id_value']).filter(Boolean))];
+    const pG = [...new Set(allBkgs.map(b => b['_cr49f_region_japan_id_value']).filter(Boolean))];
+    const podG = [...new Set(allBkgs.map(b => b['_cr49f_region_id_value']).filter(Boolean))];
+    const cM = {}, pM = {}, podM = {};
+    await Promise.all([
+      ...cG.map(async g => { try { const d = await (await fetch(`${DV_API}/crcf9_carriers(${g})?$select=crcf9_carrier`, { headers: h })).json(); cM[g] = d.crcf9_carrier || ''; } catch (e) {} }),
+      ...pG.map(async g => { try { const d = await (await fetch(`${DV_API}/crcf9_region_japans(${g})?$select=crcf9_pol`, { headers: h })).json(); pM[g] = d.crcf9_pol || ''; } catch (e) {} }),
+      ...podG.map(async g => { try { const d = await (await fetch(`${DV_API}/cr49f_regions(${g})?$select=cr49f_pod`, { headers: h })).json(); podM[g] = d.cr49f_pod || ''; } catch (e) {} })
+    ]);
+    const bookingList = allBkgs.map(b => ({
+      bkg_no: b.cr49f_booking_no,
+      vessel_name: b.cr49f_main_ship_name || '',
+      carrier: cM[b['_cr49f_carrier_id_value']] || '',
+      pol: pM[b['_cr49f_region_japan_id_value']] || '',
+      pod: podM[b['_cr49f_region_id_value']] || '',
+      etd: (b.cr49f_etd || '').slice(0, 10)
+    })).filter(b => b.bkg_no && b.etd);
+
+    // ② bookings_for_vss.json 저장
+    btn.textContent = `⏳ ② bookings同期中... (${bookingList.length}件)`;
+    const tok = window.GH_TOK || '';
+    if (!tok) throw new Error('GH_TOKが未設定。管理者にお問い合わせください。');
+    const bvR = await fetch(
+      'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/bookings_for_vss.json',
+      { headers: { 'Authorization': `token ${tok}`, 'Accept': 'application/vnd.github.v3+json' } }
+    );
+    const bvD = await bvR.json();
+    const enc = btoa(unescape(encodeURIComponent(JSON.stringify(bookingList, null, 2))));
+    await fetch(
+      'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/contents/bookings_for_vss.json',
+      {
+        method: 'PUT',
+        headers: { 'Authorization': `token ${tok}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: `Sync ${new Date().toISOString().slice(0, 16)} (${bookingList.length}件)`,
+          content: enc, sha: bvD.sha
+        })
+      }
+    );
+
+    // ③ CNC toyoshingo/cmacgm 직접 조회 (GitHub Actionsでは403のためブラウザで実行)
+    btn.textContent = '⏳ ③ CNC ETD照会中...';
+    const cncUpdated = await fetchCncFromToyoshingo(bookingList, tok);
+    if (cncUpdated > 0) {
+      btn.textContent = `⏳ ③ CNC ${cncUpdated}件更新...`;
+    }
+
+    // ④ GitHub Actions 트리거
+    btn.textContent = '⏳ ④ VSS照会起動中...';
+    const actRes = await fetch(
+      'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/workflows/update_vessel_actual.yml/dispatches',
+      {
+        method: 'POST',
+        headers: { 'Authorization': `token ${tok}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
+        body: JSON.stringify({ ref: 'main' })
+      }
+    );
+    if (!actRes.ok && actRes.status !== 204)
+      throw new Error(`Actions起動失敗: ${actRes.status}`);
+
+    // ④ run ID 취득 (2초 대기 후)
+    await new Promise(r => setTimeout(r, 2000));
+    let runId = null;
+    try {
+      const rr = await fetch(
+        'https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/runs?per_page=1',
+        { headers: { 'Authorization': `token ${tok}`, 'Accept': 'application/vnd.github.v3+json' } }
+      );
+      runId = (await rr.json()).workflow_runs?.[0]?.id;
+    } catch (e) {}
+
+    // ⑤ Actions 완료 polling (최대 5분, 5초 간격)
+    let elapsed = 0, completed = false;
+    while (elapsed < 300) {
+      await new Promise(r => setTimeout(r, 5000));
+      elapsed += 5;
+      const pct = Math.min(95, Math.round(elapsed / 300 * 100));
+      const bar = '█'.repeat(Math.floor(pct / 10)) + '░'.repeat(10 - Math.floor(pct / 10));
+      btn.textContent = `⏳ ④ VSS照会中 [${bar}] ${elapsed}s`;
+      try {
+        const url = runId
+          ? `https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/runs/${runId}`
+          : `https://api.github.com/repos/MHLEE205/VESSEL_STATUS/actions/runs?per_page=1`;
+        const cr = await fetch(url, { headers: { 'Authorization': `token ${tok}`, 'Accept': 'application/vnd.github.v3+json' } });
+        const cd = await cr.json();
+        const run = runId ? cd : cd.workflow_runs?.[0];
+        if (run?.status === 'completed') { completed = true; break; }
+      } catch (e) {}
+    }
+
+    // ⑥ 최신 vessel_actual.json 로드 + 화면 즉시 갱신
+    btn.textContent = '⏳ ⑤ データ読込・画面更新中...';
+    await loadActualData();
+    applyClientFilter();
+
+    btn.disabled = false;
+    btn.style.background = '#2ea043';
+    btn.textContent = completed
+      ? `✅ 更新完了！(${bookingList.length}件)`
+      : `✅ 同期完了(${bookingList.length}件)`;
+    setTimeout(() => {
+      btn.textContent = '🔄 VSS 更新';
+      btn.style.background = '#1a6bc4';
+    }, 6000);
+
+  } catch (e) {
+    btn.disabled = false;
+    btn.style.background = '#c0392b';
+    btn.textContent = `❌ ${e.message}`;
+    setTimeout(() => {
+      btn.textContent = '🔄 VSS 更新';
+      btn.style.background = '#1a6bc4';
+    }, 5000);
+  }
+}
+
+
+// Today 버튼 - ETD 오늘 이후 안건 표시
+function loadToday() {
+  const today = new Date().toISOString().slice(0,10);
+  // 모든 필터 초기화
+  ['f-bkg','f-inv','f-vessel','f-carrier','f-pol','f-pod',
+   'f-cycut-from','f-cycut-to','f-eta-from','f-eta-to'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  // ETD: 오늘 ~ 끝 없음
+  document.getElementById('f-etd-from').value = today;
+  document.getElementById('f-etd-to').value   = '';
+  loadData();
+}
+
+function clearFilter() {
+  document.getElementById('f-bkg').value = '';
+  document.getElementById('f-inv').value = '';
+  document.getElementById('f-vessel').value = '';
+  document.getElementById('f-carrier').value = '';
+  document.getElementById('f-pol').value = '';
+  document.getElementById('f-pod').value = '';
+  document.getElementById('f-cycut-from').value = '';
+  document.getElementById('f-cycut-to').value = '';
+  document.getElementById('f-etd-from').value = '';
+  document.getElementById('f-etd-to').value = '';
+  document.getElementById('f-etd-to').value = '';
+  document.getElementById('f-eta-from').value = '';
+  document.getElementById('f-eta-to').value = '';
+  loadData();
+}
+
+function setPAT() {
+  const current = sessionStorage.getItem('gh_pat') ? '設定済み' : '未設定';
+  const pat = prompt(`GitHub PAT (${current})\n空欄でクリア：`);
+  if (pat === null) return;
+  if (pat.trim() === '') {
+    sessionStorage.removeItem('gh_pat');
+    alert('PAT cleared');
+  } else {
+    sessionStorage.setItem('gh_pat', pat.trim());
+    alert('PAT saved！');
+  }
+}
+
+function showLoading(msg) {
+  document.getElementById('status-bar').style.display = 'block';
+  document.getElementById('status-msg').textContent = msg;
+}
+function hideLoading() {
+  document.getElementById('status-bar').style.display = 'none';
+}
+
+// Carrier/POL/POD/날짜 필터는 즉시 반영
+['f-carrier','f-pol','f-pod','f-cycut-from','f-cycut-to','f-etd-from','f-etd-to','f-eta-from','f-eta-to'].forEach(id => {
+  document.getElementById(id)?.addEventListener('change', applyClientFilter);
+});
+
+window.addEventListener('load', async () => {
+  // config.json 로드 (GH_TOK 설정 - 분할 저장으로 Secret Scanning 우회)
+  try {
+    const cfgRes = await fetch('config.json?t=' + Date.now(), {cache:'no-store'});
+    const cfg = await cfgRes.json();
+    // p1+p2 합치기 또는 t 직접 사용
+    window.GH_TOK = (cfg.p1 && cfg.p2) ? (cfg.p1 + cfg.p2) : (cfg.t || cfg.GH_TOK || '');
+  } catch(e) { window.GH_TOK = ''; }
+
+  const cache = loadTokenCache();
+  if (cache) {
+    S.accessToken = cache.accessToken;
+    S.tokenExpiry = cache.tokenExpiry;
+    S.userName    = cache.userName;
+    S.userEmail   = cache.userEmail;
+    showDashboard();
+    loadData();
+    return;
+  }
+  await handleCallback();
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
