@@ -7,7 +7,7 @@
     "pod": "CAT LAI",
     "scheduled_etd": "2026-06-08",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "271264937": {
@@ -19,7 +19,7 @@
     "confirmed": true,
     "voyage": "624N/626S I88",
     "updated_at": "2026-06-22 00:48",
-    "note": "vessel-schedule-service.com/maersk KOBE 6/29ç¢ºèªæ¸ã¿"
+    "note": "vessel-schedule-service.com/maersk KOBE 6/29Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿"
   },
   "271796540": {
     "actual_etd": "2026-06-28",
@@ -30,7 +30,7 @@
     "confirmed": true,
     "voyage": "624N/626S I88",
     "updated_at": "2026-06-22 00:48",
-    "note": "vessel-schedule-service.com/maersk OSAKA 6/28ç¢ºèªæ¸ã¿"
+    "note": "vessel-schedule-service.com/maersk OSAKA 6/28Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿"
   },
   "271855762": {
     "actual_etd": "2026-06-28",
@@ -40,7 +40,7 @@
     "scheduled_etd": "2026-06-28",
     "confirmed": true,
     "voyage": "624N/626S I88",
-    "note": "vessel-schedule-service.com/maersk OSAKA 6/28ç¢ºèªæ¸ã¿",
+    "note": "vessel-schedule-service.com/maersk OSAKA 6/28Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿",
     "updated_at": "2026-06-22 00:48"
   },
   "271907556": {
@@ -52,7 +52,7 @@
     "confirmed": true,
     "voyage": "624N/626S I88",
     "updated_at": "2026-06-22 00:48",
-    "note": "vessel-schedule-service.com/maersk KOBE 6/29ç¢ºèªæ¸ã¿"
+    "note": "vessel-schedule-service.com/maersk KOBE 6/29Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿"
   },
   "272314411": {
     "actual_etd": "2026-07-06",
@@ -62,29 +62,29 @@
     "scheduled_etd": "2026-07-06",
     "confirmed": true,
     "voyage": "625N/627S I88",
-    "note": "vessel-schedule-service.com/maersk KOBE Departure:2026-07-06ç¢ºèªæ¸ã¿",
+    "note": "vessel-schedule-service.com/maersk KOBE Departure:2026-07-06Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿",
     "updated_at": "2026-06-22 01:06"
   },
   "2326306350": {
     "actual_etd": "2026-05-31",
     "vessel_name": "FUTURE 053S",
-    "carrier": "å½åè»¢å£²",
+    "carrier": "Ã¥ÂÂ½Ã¥ÂÂÃ¨Â»Â¢Ã¥Â£Â²",
     "pol": "OSAKA",
-    "pod": "å½åè»¢å£²",
+    "pod": "Ã¥ÂÂ½Ã¥ÂÂÃ¨Â»Â¢Ã¥Â£Â²",
     "scheduled_etd": "2026-05-31",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "2327535270": {
     "actual_etd": "2026-05-30",
     "vessel_name": "BRIGHT TSUBAKI 031S",
-    "carrier": "å½åè»¢å£²",
+    "carrier": "Ã¥ÂÂ½Ã¥ÂÂÃ¨Â»Â¢Ã¥Â£Â²",
     "pol": "OSAKA",
-    "pod": "å½åè»¢å£²",
+    "pod": "Ã¥ÂÂ½Ã¥ÂÂÃ¨Â»Â¢Ã¥Â£Â²",
     "scheduled_etd": "2026-05-30",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "2327657510": {
@@ -95,7 +95,7 @@
     "pod": "JAKARTA",
     "scheduled_etd": "2026-06-05",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "2330595010": {
@@ -106,7 +106,7 @@
     "scheduled_etd": "2026-06-24",
     "confirmed": false,
     "voyage": "031N/032S",
-    "note": "vessel-schedule-service.com OOCL ÃÂ§ÃÂ¢ÃÂºÃÂ¨ÃÂªÃÂ (KOBE 6/24 ÃÂ¥ÃÂÃÂºÃÂ¦ÃÂ¸ÃÂ¯)",
+    "note": "vessel-schedule-service.com OOCL ÃÂÃÂ§ÃÂÃÂ¢ÃÂÃÂºÃÂÃÂ¨ÃÂÃÂªÃÂÃÂ (KOBE 6/24 ÃÂÃÂ¥ÃÂÃÂÃÂÃÂºÃÂÃÂ¦ÃÂÃÂ¸ÃÂÃÂ¯)",
     "updated_at": "2026-06-16 05:07"
   },
   "HASLJ01260500700": {
@@ -197,7 +197,7 @@
     "confirmed": false,
     "updated_at": "2026-06-21 23:33",
     "voyage": "428S",
-    "note": "COMPASS ETD:2026-06-30 VSSæªç¢ºèª"
+    "note": "COMPASS ETD:2026-06-30 VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ"
   },
   "I272245627": {
     "actual_etd": "2026-06-22",
@@ -272,7 +272,7 @@
     "confirmed": false,
     "updated_at": "2026-06-21 23:33",
     "voyage": "N085/S086",
-    "note": "vessel-schedule-service.com/interasia VSSç¢ºèª HAKATAæªç»è¼ COMPASS ETD:2026-07-02"
+    "note": "vessel-schedule-service.com/interasia VSSÃ§Â¢ÂºÃ¨ÂªÂ HAKATAÃ¦ÂÂªÃ§ÂÂ»Ã¨Â¼Â COMPASS ETD:2026-07-02"
   },
   "A07GX11309": {
     "actual_etd": "2026-07-08",
@@ -282,7 +282,7 @@
     "scheduled_etd": "2026-06-26",
     "confirmed": true,
     "voyage": "N609/S610 PAS",
-    "note": "vessel-schedule-service.com/interasia HAKATA ETD:2026-07-08ç¢ºèªæ¸ã¿",
+    "note": "vessel-schedule-service.com/interasia HAKATA ETD:2026-07-08Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿",
     "updated_at": "2026-06-22 06:46"
   },
   "A07GX12781": {
@@ -365,7 +365,7 @@
     "scheduled_etd": "2026-06-25",
     "confirmed": false,
     "voyage": "2621N",
-    "note": "ÃÂ¨ÃÂ¦ÃÂÃÂ§ÃÂ¢ÃÂºÃÂ¨ÃÂªÃÂ toyoshingo.com/dongjin",
+    "note": "ÃÂÃÂ¨ÃÂÃÂ¦ÃÂÃÂÃÂÃÂ§ÃÂÃÂ¢ÃÂÃÂºÃÂÃÂ¨ÃÂÃÂªÃÂÃÂ toyoshingo.com/dongjin",
     "updated_at": "2026-06-18 22:39"
   },
   "NGJF2600111": {
@@ -486,7 +486,7 @@
     "confirmed": true,
     "updated_at": "2026-06-22 02:03",
     "voyage": "2608E/2608W",
-    "note": "toyoshingo.com/namsung SENDAI Departure:2026-07-08ç¢ºèªæ¸ã¿"
+    "note": "toyoshingo.com/namsung SENDAI Departure:2026-07-08Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿"
   },
   "JP01214379": {
     "actual_etd": "2026-06-28",
@@ -497,7 +497,7 @@
     "confirmed": true,
     "updated_at": "2026-06-21 23:15",
     "voyage": "2608E/2608W",
-    "note": "toyoshingo.com/kmtc NAGOYA Sailing:2026-06-28 (COMPASS vessel_nameä¿®æ­£è¦:SUNNY CAMELLIA)"
+    "note": "toyoshingo.com/kmtc NAGOYA Sailing:2026-06-28 (COMPASS vessel_nameÃ¤Â¿Â®Ã¦Â­Â£Ã¨Â¦Â:SUNNY CAMELLIA)"
   },
   "NMG2606-05": {
     "actual_etd": "2026-06-19",
@@ -728,15 +728,15 @@
     "updated_at": "2026-06-24T02:13"
   },
   "AMP0552330": {
-    "actual_etd": "2026-06-26",
-    "vessel_name": "CNC SATURN 0CG7HS1NC",
+    "actual_etd": "2026-06-29",
+    "vessel_name": "CNC SATURN　0CG7HS1NC",
     "carrier": "CNC",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-26",
-    "confirmed": false,
-    "updated_at": "2026-06-21 23:33",
-    "voyage": "0CG7HS1NC",
-    "note": "toyoshingo.com/cmacgm æªç»è¼ COMPASS ETD:2026-06-26"
+    "confirmed": true,
+    "voyage": "0CG7AN/0CG7HS",
+    "note": "toyoshingo.com/cmacgm TOKYO ETD:2026-06-29(browser)",
+    "updated_at": "2026-06-24T02:15"
   },
   "AMP0551760": {
     "actual_etd": "2026-06-29",
@@ -744,21 +744,21 @@
     "carrier": "CNC",
     "pol": "YOKOHAMA",
     "scheduled_etd": "2026-06-29",
-    "confirmed": false,
-    "updated_at": "2026-06-21 23:33",
-    "voyage": "0IZOTS1NC",
-    "note": "toyoshingo.com/cmacgm æªç»è¼ COMPASS ETD:2026-06-29"
+    "confirmed": true,
+    "voyage": "0IZNZN/0IZOTS",
+    "note": "toyoshingo.com/cmacgm YOKOHAMA ETD:2026-06-29(browser)",
+    "updated_at": "2026-06-24T02:15"
   },
   "AMP0550427": {
-    "actual_etd": "2026-06-30",
+    "actual_etd": "2026-07-01",
     "vessel_name": "SHUN LONG 0QIOHS1NC",
     "carrier": "CNC",
     "pol": "NAGOYA",
     "scheduled_etd": "2026-06-30",
-    "confirmed": false,
-    "updated_at": "2026-06-22 01:06",
-    "voyage": "0QIOHS1NC",
-    "note": "COMPASS ETD:2026-06-30 toyoshingo/cmacgm æªç»è¼"
+    "confirmed": true,
+    "voyage": "0QIOAN/0QIOHS",
+    "note": "toyoshingo.com/cmacgm NAGOYA ETD:2026-07-01(browser)",
+    "updated_at": "2026-06-24T02:15"
   },
   "AMP0550432": {
     "actual_etd": "2026-06-30",
@@ -769,7 +769,7 @@
     "confirmed": false,
     "updated_at": "2026-06-22 01:06",
     "voyage": "0PL4OS1NC",
-    "note": "COMPASS ETD:2026-06-30 toyoshingo/cmacgm æªç»è¼"
+    "note": "COMPASS ETD:2026-06-30 toyoshingo/cmacgm Ã¦ÂÂªÃ§ÂÂ»Ã¨Â¼Â"
   },
   "TYOGA3120600": {
     "actual_etd": "2026-06-12",
@@ -844,7 +844,7 @@
     "scheduled_etd": "2026-06-24",
     "confirmed": false,
     "voyage": "1061E/1061W",
-    "note": "SINOKOR ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ¸ (ÃÂªÃÂ³ÃÂµÃÂ«ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ­)",
+    "note": "SINOKOR ÃÂÃÂ¬ÃÂÃÂÃÂÃÂ¬ÃÂÃÂ¬ÃÂÃÂÃÂÃÂ´ÃÂÃÂ­ÃÂÃÂÃÂÃÂ¸ÃÂÃÂ¬ÃÂÃÂÃÂÃÂÃÂÃÂ¬ÃÂÃÂÃÂÃÂ ÃÂÃÂ­ÃÂÃÂÃÂÃÂÃÂÃÂ¬ÃÂÃÂÃÂÃÂ¸ (ÃÂÃÂªÃÂÃÂ³ÃÂÃÂµÃÂÃÂ«ÃÂÃÂÃÂÃÂÃÂÃÂ¬ÃÂÃÂÃÂÃÂ´ÃÂÃÂ­ÃÂÃÂÃÂÃÂ­)",
     "updated_at": "2026-06-16 02:21"
   },
   "PCJTYO26065347": {
@@ -855,7 +855,7 @@
     "scheduled_etd": "2026-06-22",
     "confirmed": false,
     "voyage": "2623E/2623W",
-    "note": "SINOKOR ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ¸ (ÃÂªÃÂ³ÃÂµÃÂ«ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ­)",
+    "note": "SINOKOR ÃÂÃÂ¬ÃÂÃÂÃÂÃÂ¬ÃÂÃÂ¬ÃÂÃÂÃÂÃÂ´ÃÂÃÂ­ÃÂÃÂÃÂÃÂ¸ÃÂÃÂ¬ÃÂÃÂÃÂÃÂÃÂÃÂ¬ÃÂÃÂÃÂÃÂ ÃÂÃÂ­ÃÂÃÂÃÂÃÂÃÂÃÂ¬ÃÂÃÂÃÂÃÂ¸ (ÃÂÃÂªÃÂÃÂ³ÃÂÃÂµÃÂÃÂ«ÃÂÃÂÃÂÃÂÃÂÃÂ¬ÃÂÃÂÃÂÃÂ´ÃÂÃÂ­ÃÂÃÂÃÂÃÂ­)",
     "updated_at": "2026-06-16 02:21"
   },
   "OSJJ2600025": {
@@ -866,7 +866,7 @@
     "scheduled_etd": "2026-07-03",
     "confirmed": false,
     "voyage": "1063W",
-    "note": "COMPASS ETD:2026-07-03 toyoshingo/dongjin æªç»è¼",
+    "note": "COMPASS ETD:2026-07-03 toyoshingo/dongjin Ã¦ÂÂªÃ§ÂÂ»Ã¨Â¼Â",
     "updated_at": "2026-06-22 01:06"
   },
   "JJCOSSGJNA66A16": {
@@ -893,7 +893,7 @@
   },
   "JJCNATALNA66A12": {
     "actual_etd": "2026-06-19",
-    "vessel_name": "MILD  SONATAã2624W",
+    "vessel_name": "MILD  SONATAÃ£ÂÂ2624W",
     "carrier": "JIN JIANG",
     "pol": "NAHA",
     "scheduled_etd": "2026-06-19",
@@ -1019,7 +1019,7 @@
     "pod": "TAICHUNG",
     "scheduled_etd": "2026-07-03",
     "confirmed": false,
-    "note": "COMPASSí­ì°¨å¤æ´: 2625Wâ2626W ETD:2026-07-03 åç¢ºèªå¾ã¡",
+    "note": "COMPASSÃ­ÂÂ­Ã¬Â°Â¨Ã¥Â¤ÂÃ¦ÂÂ´: 2625WÃ¢ÂÂ2626W ETD:2026-07-03 Ã¥ÂÂÃ§Â¢ÂºÃ¨ÂªÂÃ¥Â¾ÂÃ£ÂÂ¡",
     "updated_at": "2026-06-23 22:59"
   },
   "JJCHALCJNA66A04": {
@@ -1063,7 +1063,7 @@
     "scheduled_etd": "2026-06-25",
     "confirmed": true,
     "voyage": "2614E/2614W",
-    "note": "toyoshingo.com Departure 2026-06-25 ÃÂ§ÃÂ¢ÃÂºÃÂ¨ÃÂªÃÂÃÂ¦ÃÂ¸ÃÂÃÂ£ÃÂÃÂ¿",
+    "note": "toyoshingo.com Departure 2026-06-25 ÃÂÃÂ§ÃÂÃÂ¢ÃÂÃÂºÃÂÃÂ¨ÃÂÃÂªÃÂÃÂÃÂÃÂ¦ÃÂÃÂ¸ÃÂÃÂÃÂÃÂ£ÃÂÃÂÃÂÃÂ¿",
     "updated_at": "2026-06-18 22:39"
   },
   "JJCOSSGJNA66A14": {
@@ -1085,7 +1085,7 @@
     "scheduled_etd": "2026-06-26",
     "confirmed": true,
     "voyage": "2607E/2607W NTP",
-    "note": "vessel-schedule-service.com KMTC ISHIKARI(92) 2026-06-28ç¢ºèªæ¸ã¿",
+    "note": "vessel-schedule-service.com KMTC ISHIKARI(92) 2026-06-28Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿",
     "updated_at": "2026-06-21 22:55"
   },
   "JP01215063": {
@@ -1096,7 +1096,7 @@
     "scheduled_etd": "2026-06-28",
     "confirmed": false,
     "voyage": "2616W",
-    "note": "COMPASS ETD:2026-06-28 VSSæªç¢ºèª",
+    "note": "COMPASS ETD:2026-06-28 VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ",
     "updated_at": "2026-06-21 23:15"
   },
   "JP01215110": {
@@ -1107,7 +1107,7 @@
     "scheduled_etd": "2026-06-28",
     "confirmed": false,
     "voyage": "2616W",
-    "note": "COMPASS ETD:2026-06-28 VSSæªç¢ºèª",
+    "note": "COMPASS ETD:2026-06-28 VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ",
     "updated_at": "2026-06-21 23:15"
   },
   "I272244943": {
@@ -1129,7 +1129,7 @@
     "scheduled_etd": "2026-06-29",
     "confirmed": true,
     "voyage": "N609/S610 PAS",
-    "note": "vessel-schedule-service.com/interasia HAKATA ETD:2026-07-08ç¢ºèªæ¸ã¿",
+    "note": "vessel-schedule-service.com/interasia HAKATA ETD:2026-07-08Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿",
     "updated_at": "2026-06-22 06:46"
   },
   "A07GX13316": {
@@ -1140,19 +1140,19 @@
     "scheduled_etd": "2026-06-28",
     "confirmed": false,
     "voyage": "S060",
-    "note": "vessel-schedule-service.com/interasia VSSç¢ºèª TOKYOæªç»è¼ COMPASS ETD:2026-06-28",
+    "note": "vessel-schedule-service.com/interasia VSSÃ§Â¢ÂºÃ¨ÂªÂ TOKYOÃ¦ÂÂªÃ§ÂÂ»Ã¨Â¼Â COMPASS ETD:2026-06-28",
     "updated_at": "2026-06-21 23:33"
   },
   "AMP0554427": {
-    "actual_etd": "2026-06-28",
+    "actual_etd": "2026-06-29",
     "vessel_name": "CNC SATURN 0CG7HS1NC",
     "carrier": "CNC",
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-28",
-    "confirmed": false,
-    "voyage": "0CG7HS1NC",
-    "note": "toyoshingo.com/cmacgm æªç»è¼ COMPASS ETD:2026-06-28",
-    "updated_at": "2026-06-21 23:33"
+    "confirmed": true,
+    "voyage": "0CG7AN/0CG7HS",
+    "note": "toyoshingo.com/cmacgm TOKYO ETD:2026-06-29(browser)",
+    "updated_at": "2026-06-24T02:15"
   },
   "AMP0551803": {
     "actual_etd": "2026-06-29",
@@ -1160,10 +1160,10 @@
     "carrier": "CNC",
     "pol": "YOKOHAMA",
     "scheduled_etd": "2026-06-29",
-    "confirmed": false,
-    "voyage": "0IZOTS1NC",
-    "note": "toyoshingo.com/cmacgm æªç»è¼ COMPASS ETD:2026-06-29",
-    "updated_at": "2026-06-21 23:33"
+    "confirmed": true,
+    "voyage": "0IZNZN/0IZOTS",
+    "note": "toyoshingo.com/cmacgm YOKOHAMA ETD:2026-06-29(browser)",
+    "updated_at": "2026-06-24T02:15"
   },
   "TYOGC4337500": {
     "actual_etd": "2026-06-26",
@@ -1173,7 +1173,7 @@
     "scheduled_etd": "2026-06-26",
     "confirmed": false,
     "voyage": "2613W",
-    "note": "toyoshingo.com/one æªç»è¼ COMPASS ETD:2026-06-26",
+    "note": "toyoshingo.com/one Ã¦ÂÂªÃ§ÂÂ»Ã¨Â¼Â COMPASS ETD:2026-06-26",
     "updated_at": "2026-06-21 23:33"
   },
   "PCJTYO26065357": {
@@ -1184,7 +1184,7 @@
     "scheduled_etd": "2026-06-27",
     "confirmed": false,
     "voyage": "2625W",
-    "note": "COMPASS ETD:2026-06-27 VSSæªç¢ºèª(å¬åéèª)",
+    "note": "COMPASS ETD:2026-06-27 VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ(Ã¥ÂÂ¬Ã¥ÂÂÃ©ÂÂÃ¨ÂÂª)",
     "updated_at": "2026-06-21 23:33"
   },
   "SNKO040260600375": {
@@ -1218,7 +1218,7 @@
     "scheduled_etd": "2026-07-01",
     "confirmed": false,
     "voyage": "2624W",
-    "note": "COMPASS ETD:2026-07-01 VSSæªç¢ºèª(å¬åéèª)",
+    "note": "COMPASS ETD:2026-07-01 VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ(Ã¥ÂÂ¬Ã¥ÂÂÃ©ÂÂÃ¨ÂÂª)",
     "updated_at": "2026-06-22 01:06"
   },
   "AMP0552226": {
@@ -1226,11 +1226,11 @@
     "vessel_name": "PALU BAY 0IZOXS1NC",
     "carrier": "CNC",
     "pol": "KOBE",
-    "pod": "SURABAYA",
     "scheduled_etd": "2026-07-09",
-    "confirmed": false,
-    "note": "COMPASSæ¬è¹å¤æ´: CNC SERVALâPALU BAY ETD:2026-07-09 VSSæªç¢ºèª",
-    "updated_at": "2026-06-23 22:59"
+    "confirmed": true,
+    "voyage": "0IZOON/0IZOXS",
+    "note": "toyoshingo.com/cmacgm KOBE ETD:2026-07-09(browser)",
+    "updated_at": "2026-06-24T02:15"
   },
   "A07GX13746": {
     "actual_etd": "2026-07-07",
@@ -1240,7 +1240,7 @@
     "scheduled_etd": "2026-07-06",
     "confirmed": true,
     "voyage": "N086/S086 JSV",
-    "note": "vessel-schedule-service.com/interasia OSAKA ETD:2026-07-07ç¢ºèªæ¸ã¿",
+    "note": "vessel-schedule-service.com/interasia OSAKA ETD:2026-07-07Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿",
     "updated_at": "2026-06-23 01:08"
   },
   "SNKO040260600168": {
@@ -1251,7 +1251,7 @@
     "scheduled_etd": "2026-07-06",
     "confirmed": false,
     "voyage": "2625W",
-    "note": "COMPASS ETD:2026-07-06 toyoshingo/sinokor OSAKA æªç¢ºèª",
+    "note": "COMPASS ETD:2026-07-06 toyoshingo/sinokor OSAKA Ã¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ",
     "updated_at": "2026-06-22 01:06"
   },
   "AMP0551764": {
@@ -1274,7 +1274,7 @@
     "scheduled_etd": "2026-07-04",
     "confirmed": false,
     "voyage": "2640E/2640W",
-    "note": "COMPASS ETD:2026-07-04 toyoshingo/sinokor MIZUSHIMA 07/06é±ç¢ºèªå¾ã¡",
+    "note": "COMPASS ETD:2026-07-04 toyoshingo/sinokor MIZUSHIMA 07/06Ã©ÂÂ±Ã§Â¢ÂºÃ¨ÂªÂÃ¥Â¾ÂÃ£ÂÂ¡",
     "updated_at": "2026-06-22 02:40"
   },
   "NIH26F00060": {
@@ -1285,7 +1285,7 @@
     "scheduled_etd": "2026-07-11",
     "confirmed": true,
     "voyage": "2608E/2608W",
-    "note": "toyoshingo.com/namsung NIIGATA Sailing:2026-07-11ç¢ºèªæ¸ã¿",
+    "note": "toyoshingo.com/namsung NIIGATA Sailing:2026-07-11Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿",
     "updated_at": "2026-06-22 02:40"
   },
   "JP01211101": {
@@ -1296,7 +1296,7 @@
     "scheduled_etd": "2026-07-11",
     "confirmed": true,
     "voyage": "2608E/2608W",
-    "note": "toyoshingo.com/namsung NIIGATA Sailing:2026-07-11ç¢ºèªæ¸ã¿ (å¬åéèª)",
+    "note": "toyoshingo.com/namsung NIIGATA Sailing:2026-07-11Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿ (Ã¥ÂÂ¬Ã¥ÂÂÃ©ÂÂÃ¨ÂÂª)",
     "updated_at": "2026-06-22 02:40"
   },
   "JP01216051": {
@@ -1307,7 +1307,7 @@
     "scheduled_etd": "2026-07-06",
     "confirmed": true,
     "voyage": "2624E/2624W JEH4",
-    "note": "vessel-schedule-service.com/kmtc OSAKA ETD:2026-07-08ç¢ºèªæ¸ã¿",
+    "note": "vessel-schedule-service.com/kmtc OSAKA ETD:2026-07-08Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿",
     "updated_at": "2026-06-22 06:49"
   },
   "HASLJ01260600190": {
@@ -1318,7 +1318,7 @@
     "scheduled_etd": "2026-07-10",
     "confirmed": true,
     "voyage": "2626E/2626W",
-    "note": "toyoshingo.com/heunga KOBE Sailing:2026-07-10ç¢ºèªæ¸ã¿",
+    "note": "toyoshingo.com/heunga KOBE Sailing:2026-07-10Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿",
     "updated_at": "2026-06-22 06:49"
   },
   "TYOG83605700": {
@@ -1329,7 +1329,7 @@
     "pod": "LAT KRABANG",
     "scheduled_etd": "2026-05-23",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "I272242543": {
@@ -1340,7 +1340,7 @@
     "pod": "PORT KLANG",
     "scheduled_etd": "2026-05-23",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "ISI26D00065": {
@@ -1351,7 +1351,7 @@
     "pod": "INCHEON",
     "scheduled_etd": "2026-05-23",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "ILN0052014829": {
@@ -1362,7 +1362,7 @@
     "pod": "PUSAN",
     "scheduled_etd": "2026-05-24",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "HASLJ01260401752": {
@@ -1373,7 +1373,7 @@
     "pod": "PUSAN",
     "scheduled_etd": "2026-05-24",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG65386600": {
@@ -1384,7 +1384,7 @@
     "pod": "SURABAYA",
     "scheduled_etd": "2026-05-24",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "A07GX10928": {
@@ -1395,7 +1395,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-05-24",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "A07GX09818": {
@@ -1406,7 +1406,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-05-25",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "A07GX10303": {
@@ -1417,7 +1417,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-05-25",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG77159700": {
@@ -1428,7 +1428,7 @@
     "pod": "LAT KRABANG",
     "scheduled_etd": "2026-05-25",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "ILN0052014857": {
@@ -1439,7 +1439,7 @@
     "pod": "TAICHUNG",
     "scheduled_etd": "2026-05-25",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "A07GX08753": {
@@ -1450,7 +1450,7 @@
     "pod": "HAIPHONG",
     "scheduled_etd": "2026-05-25",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG84600300": {
@@ -1461,7 +1461,7 @@
     "pod": "TAICHUNG",
     "scheduled_etd": "2026-05-25",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG73105800": {
@@ -1472,7 +1472,7 @@
     "pod": "PENANG",
     "scheduled_etd": "2026-05-25",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG67734500": {
@@ -1483,7 +1483,7 @@
     "pod": "CAI MEP",
     "scheduled_etd": "2026-05-25",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "JJCHAHPJNA65A10": {
@@ -1494,7 +1494,7 @@
     "pod": "HAIPHONG",
     "scheduled_etd": "2026-05-25",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "HASLJ01260500177": {
@@ -1505,7 +1505,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-05-25",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG94963900": {
@@ -1516,7 +1516,7 @@
     "pod": "LAT KRABANG",
     "scheduled_etd": "2026-05-25",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "I272242816": {
@@ -1527,7 +1527,7 @@
     "pod": "PORT KLANG",
     "scheduled_etd": "2026-05-26",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "A07GX09309": {
@@ -1538,7 +1538,7 @@
     "pod": "HAIPHONG",
     "scheduled_etd": "2026-05-26",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "AMP0549003": {
@@ -1549,7 +1549,7 @@
     "pod": "JAKARTA",
     "scheduled_etd": "2026-05-26",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "JJCTKHPJNA65A21": {
@@ -1560,7 +1560,7 @@
     "pod": "HAIPHONG",
     "scheduled_etd": "2026-05-26",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "AMP0548935": {
@@ -1571,7 +1571,7 @@
     "pod": "JAKARTA",
     "scheduled_etd": "2026-05-26",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "SGM26D00159": {
@@ -1582,7 +1582,7 @@
     "pod": "INCHEON",
     "scheduled_etd": "2026-05-27",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "SNKO040260500174": {
@@ -1593,7 +1593,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-05-28",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "HASLJ01260500311": {
@@ -1604,7 +1604,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-05-28",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG78918400": {
@@ -1615,7 +1615,7 @@
     "pod": "SURABAYA",
     "scheduled_etd": "2026-05-28",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "NGJF2600016": {
@@ -1626,7 +1626,7 @@
     "pod": "INCHEON",
     "scheduled_etd": "2026-05-28",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "HASLJ01260500175": {
@@ -1637,7 +1637,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-05-29",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "A07GX09819": {
@@ -1648,18 +1648,18 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-05-29",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "JJCNATALNA65A19": {
     "actual_etd": "2026-05-29",
-    "vessel_name": "MILD  SONATAã2621W",
+    "vessel_name": "MILD  SONATAÃ£ÂÂ2621W",
     "carrier": "JIN JIANG",
     "pol": "NAHA",
     "pod": "TAICHUNG",
     "scheduled_etd": "2026-05-29",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "JJCOSHPJNA65A11": {
@@ -1670,7 +1670,7 @@
     "pod": "HAIPHONG",
     "scheduled_etd": "2026-05-29",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "ISI26D00066": {
@@ -1681,7 +1681,7 @@
     "pod": "INCHEON",
     "scheduled_etd": "2026-05-29",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "I272243384": {
@@ -1692,7 +1692,7 @@
     "pod": "CAT LAI",
     "scheduled_etd": "2026-05-29",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG65507800": {
@@ -1703,7 +1703,7 @@
     "pod": "LAT KRABANG",
     "scheduled_etd": "2026-05-29",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG98157800  ": {
@@ -1714,7 +1714,7 @@
     "pod": "TAICHUNG",
     "scheduled_etd": "2026-05-29",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "A07GX09707": {
@@ -1725,18 +1725,18 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-05-30",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "AMP0548640": {
     "actual_etd": "2026-05-30",
     "vessel_name": "CNC SERVAL 0IZOLS1NC",
-    "carrier": "å½åè»¢å£²",
+    "carrier": "Ã¥ÂÂ½Ã¥ÂÂÃ¨Â»Â¢Ã¥Â£Â²",
     "pol": "NAGOYA",
-    "pod": "å½åè»¢å£²",
+    "pod": "Ã¥ÂÂ½Ã¥ÂÂÃ¨Â»Â¢Ã¥Â£Â²",
     "scheduled_etd": "2026-05-30",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "ILN0052014830": {
@@ -1747,7 +1747,7 @@
     "pod": "PUSAN",
     "scheduled_etd": "2026-05-30",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "HASLJ01260500432": {
@@ -1758,7 +1758,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-05-31",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG77167600": {
@@ -1769,7 +1769,7 @@
     "pod": "PENANG",
     "scheduled_etd": "2026-05-31",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "HASLJ01260500202": {
@@ -1780,7 +1780,7 @@
     "pod": "PUSAN",
     "scheduled_etd": "2026-05-31",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "A07GX10813": {
@@ -1791,7 +1791,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-05-31",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "HASLJ01260500952": {
@@ -1802,7 +1802,7 @@
     "pod": "JAKARTA",
     "scheduled_etd": "2026-05-31",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "A07GX10814": {
@@ -1813,7 +1813,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-05-31",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG98525700": {
@@ -1824,7 +1824,7 @@
     "pod": "PENANG",
     "scheduled_etd": "2026-05-31",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG84606900": {
@@ -1835,18 +1835,18 @@
     "pod": "TAICHUNG",
     "scheduled_etd": "2026-06-01",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG63077800": {
     "actual_etd": "2026-06-01",
     "vessel_name": "BROOKLYN BRIDGE 0183W",
-    "carrier": "å½åè»¢å£²",
+    "carrier": "Ã¥ÂÂ½Ã¥ÂÂÃ¨Â»Â¢Ã¥Â£Â²",
     "pol": "TOKYO",
-    "pod": "å½åè»¢å£²",
+    "pod": "Ã¥ÂÂ½Ã¥ÂÂÃ¨Â»Â¢Ã¥Â£Â²",
     "scheduled_etd": "2026-06-01",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG98506600": {
@@ -1857,7 +1857,7 @@
     "pod": "CAI MEP",
     "scheduled_etd": "2026-06-01",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG86156400": {
@@ -1868,7 +1868,7 @@
     "pod": "CAI MEP",
     "scheduled_etd": "2026-06-01",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "A07GX11657": {
@@ -1879,7 +1879,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-06-01",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "I272243519": {
@@ -1890,7 +1890,7 @@
     "pod": "PORT KLANG",
     "scheduled_etd": "2026-06-02",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "HASLJ01260500182": {
@@ -1901,7 +1901,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-06-03",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "I272243940": {
@@ -1912,7 +1912,7 @@
     "pod": "PORT KLANG",
     "scheduled_etd": "2026-06-03",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG86534400": {
@@ -1923,7 +1923,7 @@
     "pod": "LAT KRABANG",
     "scheduled_etd": "2026-06-03",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "AMP0549699": {
@@ -1934,7 +1934,7 @@
     "pod": "SURABAYA",
     "scheduled_etd": "2026-06-03",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "AMP0548986": {
@@ -1945,7 +1945,7 @@
     "pod": "SURABAYA",
     "scheduled_etd": "2026-06-03",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "AMP0549122": {
@@ -1956,7 +1956,7 @@
     "pod": "SURABAYA",
     "scheduled_etd": "2026-06-03",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG95250600": {
@@ -1967,7 +1967,7 @@
     "pod": "LAT KRABANG",
     "scheduled_etd": "2026-06-03",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "AMP0548994": {
@@ -1978,7 +1978,7 @@
     "pod": "SURABAYA",
     "scheduled_etd": "2026-06-03",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG98880400": {
@@ -1989,7 +1989,7 @@
     "pod": "LAT KRABANG",
     "scheduled_etd": "2026-06-03",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG78124700": {
@@ -2000,7 +2000,7 @@
     "pod": "LAT KRABANG",
     "scheduled_etd": "2026-06-03",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "AMP0549939": {
@@ -2011,18 +2011,18 @@
     "pod": "SURABAYA",
     "scheduled_etd": "2026-06-03",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG84902800": {
     "actual_etd": "2026-06-03",
     "vessel_name": "ONE OLYMPUS 080W",
-    "carrier": "å½åè»¢å£²",
+    "carrier": "Ã¥ÂÂ½Ã¥ÂÂÃ¨Â»Â¢Ã¥Â£Â²",
     "pol": "TOKYO",
-    "pod": "å½åè»¢å£²",
+    "pod": "Ã¥ÂÂ½Ã¥ÂÂÃ¨Â»Â¢Ã¥Â£Â²",
     "scheduled_etd": "2026-06-03",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "SNKO040260500184": {
@@ -2033,7 +2033,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-06-03",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "SNKO040260500918": {
@@ -2044,18 +2044,18 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-06-03",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "JP01208482": {
     "actual_etd": "2026-06-04",
     "vessel_name": "STAR CHALLENGER 2622W",
-    "carrier": "å½åè»¢å£²",
+    "carrier": "Ã¥ÂÂ½Ã¥ÂÂÃ¨Â»Â¢Ã¥Â£Â²",
     "pol": "HAKATA",
-    "pod": "å½åè»¢å£²",
+    "pod": "Ã¥ÂÂ½Ã¥ÂÂÃ¨Â»Â¢Ã¥Â£Â²",
     "scheduled_etd": "2026-06-04",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "HASLJ01260500272": {
@@ -2066,7 +2066,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-06-05",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "JJCOSSGJNA66A10": {
@@ -2077,18 +2077,18 @@
     "pod": "CAT LAI",
     "scheduled_etd": "2026-06-05",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "JJCNATALNA66A05": {
     "actual_etd": "2026-06-05",
-    "vessel_name": "MILD  SONATAã2622W",
+    "vessel_name": "MILD  SONATAÃ£ÂÂ2622W",
     "carrier": "JIN JIANG",
     "pol": "NAHA",
     "pod": "TAICHUNG",
     "scheduled_etd": "2026-06-05",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "JJCOSSGJNA66A11": {
@@ -2099,7 +2099,7 @@
     "pod": "CAT LAI",
     "scheduled_etd": "2026-06-05",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "SNKO040260500578": {
@@ -2110,7 +2110,7 @@
     "pod": "SURABAYA",
     "scheduled_etd": "2026-06-06",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG98798500": {
@@ -2121,7 +2121,7 @@
     "pod": "TAICHUNG",
     "scheduled_etd": "2026-06-06",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "ISI26D00067": {
@@ -2132,7 +2132,7 @@
     "pod": "INCHEON",
     "scheduled_etd": "2026-06-07",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "AMP0550515": {
@@ -2143,7 +2143,7 @@
     "pod": "JAKARTA",
     "scheduled_etd": "2026-06-08",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "AMP0550430": {
@@ -2154,7 +2154,7 @@
     "pod": "SURABAYA",
     "scheduled_etd": "2026-06-08",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG86164300": {
@@ -2165,7 +2165,7 @@
     "pod": "CAI MEP",
     "scheduled_etd": "2026-06-08",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG78123600": {
@@ -2176,7 +2176,7 @@
     "pod": "PENANG",
     "scheduled_etd": "2026-06-08",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "JP01211724": {
@@ -2187,7 +2187,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-06-09",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "I272244387": {
@@ -2198,7 +2198,7 @@
     "pod": "PORT KLANG",
     "scheduled_etd": "2026-06-09",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "SNKO040260501116": {
@@ -2209,7 +2209,7 @@
     "pod": "NHAVA SHEVA",
     "scheduled_etd": "2026-06-09",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "JJCHAHPJNA66A03": {
@@ -2220,7 +2220,7 @@
     "pod": "HAIPHONG",
     "scheduled_etd": "2026-06-09",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "NIH26E00090": {
@@ -2231,7 +2231,7 @@
     "pod": "INCHEON",
     "scheduled_etd": "2026-06-10",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "AMP0548997": {
@@ -2242,7 +2242,7 @@
     "pod": "SURABAYA",
     "scheduled_etd": "2026-06-10",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "AMP0550195B": {
@@ -2253,7 +2253,7 @@
     "pod": "JAKARTA",
     "scheduled_etd": "2026-06-10",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "AMP0550195A": {
@@ -2264,7 +2264,7 @@
     "pod": "JAKARTA",
     "scheduled_etd": "2026-06-10",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "JJCHASGJNA66A03": {
@@ -2275,7 +2275,7 @@
     "pod": "CAT LAI",
     "scheduled_etd": "2026-06-11",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "SNKO040260500173": {
@@ -2286,7 +2286,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-06-11",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "A07GX12093": {
@@ -2297,7 +2297,7 @@
     "pod": "PUSAN",
     "scheduled_etd": "2026-06-11",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "NGJF2600078": {
@@ -2308,7 +2308,7 @@
     "pod": "INCHEON",
     "scheduled_etd": "2026-06-11",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "SNKO040260500895": {
@@ -2319,7 +2319,7 @@
     "pod": "NHAVA SHEVA",
     "scheduled_etd": "2026-06-11",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "008GX41311": {
@@ -2330,18 +2330,18 @@
     "pod": "DA NANG",
     "scheduled_etd": "2026-06-12",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG81764400": {
     "actual_etd": "2026-06-29",
     "vessel_name": "MOL EARNEST 0116W",
-    "carrier": "å½åè»¢å£²",
+    "carrier": "Ã¥ÂÂ½Ã¥ÂÂÃ¨Â»Â¢Ã¥Â£Â²",
     "pol": "TOKYO",
-    "pod": "å½åè»¢å£²",
+    "pod": "Ã¥ÂÂ½Ã¥ÂÂÃ¨Â»Â¢Ã¥Â£Â²",
     "scheduled_etd": "2026-06-29",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOGA8300400": {
@@ -2352,7 +2352,7 @@
     "pod": "CAI MEP",
     "scheduled_etd": "2026-07-02",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOG88069900": {
@@ -2363,7 +2363,7 @@
     "pod": "LAT KRABANG",
     "scheduled_etd": "2026-07-02",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "I272246590": {
@@ -2374,7 +2374,7 @@
     "pod": "CAT LAI",
     "scheduled_etd": "2026-07-03",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "JJCHASGJNA67A01": {
@@ -2385,18 +2385,18 @@
     "pod": "CAT LAI",
     "scheduled_etd": "2026-07-06",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "JJCHASGJNA67A03": {
     "actual_etd": "2026-07-09",
-    "vessel_name": "XIU HONGã2628W",
+    "vessel_name": "XIU HONGÃ£ÂÂ2628W",
     "carrier": "JIN JIANG",
     "pol": "HAKATA",
     "pod": "CAT LAI",
     "scheduled_etd": "2026-07-09",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOGC5005500": {
@@ -2407,7 +2407,7 @@
     "pod": "JAKARTA",
     "scheduled_etd": "2026-07-17",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª)",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ)",
     "updated_at": "2026-06-22 23:32"
   },
   "TYOGC6457300": {
@@ -2418,7 +2418,7 @@
     "scheduled_etd": "2026-07-07",
     "confirmed": true,
     "voyage": "016N/017S JID",
-    "note": "vessel-schedule-service.com/one TOKYO ETD:2026-07-07ç¢ºèªæ¸ã¿",
+    "note": "vessel-schedule-service.com/one TOKYO ETD:2026-07-07Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿",
     "updated_at": "2026-06-23 06:45"
   },
   "PCJTYO26065359": {
@@ -2429,7 +2429,7 @@
     "scheduled_etd": "2026-07-08",
     "confirmed": true,
     "voyage": "1592E/1592W",
-    "note": "toyoshingo.com/sinokor TOKYO ETD:2026-07-08ç¢ºèªæ¸ã¿(å¬åéèª)",
+    "note": "toyoshingo.com/sinokor TOKYO ETD:2026-07-08Ã§Â¢ÂºÃ¨ÂªÂÃ¦Â¸ÂÃ£ÂÂ¿(Ã¥ÂÂ¬Ã¥ÂÂÃ©ÂÂÃ¨ÂÂª)",
     "updated_at": "2026-06-23 06:45"
   },
   "JJCOSSGJNA67A01": {
@@ -2440,7 +2440,7 @@
     "scheduled_etd": "2026-07-10",
     "confirmed": false,
     "voyage": "2628W",
-    "note": "COMPASS ETD:2026-07-10 jinjiangshipping.jp æªç»è¼ æ¬¡åèªåæ´æ°ã§ç¢ºèª",
+    "note": "COMPASS ETD:2026-07-10 jinjiangshipping.jp Ã¦ÂÂªÃ§ÂÂ»Ã¨Â¼Â Ã¦Â¬Â¡Ã¥ÂÂÃ¨ÂÂªÃ¥ÂÂÃ¦ÂÂ´Ã¦ÂÂ°Ã£ÂÂ§Ã§Â¢ÂºÃ¨ÂªÂ",
     "updated_at": "2026-06-23 06:45"
   },
   "PCJTYO26065358": {
@@ -2451,7 +2451,7 @@
     "pod": "KWANGYANG",
     "scheduled_etd": "2026-07-01",
     "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª) - PAN OCEAN POS YOKOHAMA 1591W",
+    "note": "COMPASS ETDÃ¥ÂÂºÃ¦ÂºÂ(VSSÃ¦ÂÂªÃ§Â¢ÂºÃ¨ÂªÂ) - PAN OCEAN POS YOKOHAMA 1591W",
     "updated_at": "2026-06-23 22:41"
   },
   "AMP0555039": {
@@ -2459,21 +2459,21 @@
     "vessel_name": "CNC SERVAL 0IZOVS1NC",
     "carrier": "CNC",
     "pol": "TOKYO",
-    "pod": "SURABAYA",
     "scheduled_etd": "2026-07-06",
-    "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª) - CNC CNC SERVAL 0IZOVS1NC",
-    "updated_at": "2026-06-23 22:41"
+    "confirmed": true,
+    "voyage": "0IZOMN/0IZOVS",
+    "note": "toyoshingo.com/cmacgm TOKYO ETD:2026-07-06(browser)",
+    "updated_at": "2026-06-24T02:15"
   },
   "AMP0555036": {
-    "actual_etd": "2026-07-06",
+    "actual_etd": "2026-07-11",
     "vessel_name": "LI DA WANG 0QIOJS1NC",
     "carrier": "CNC",
     "pol": "YOKOHAMA",
-    "pod": "JAKARTA",
     "scheduled_etd": "2026-07-06",
-    "confirmed": false,
-    "note": "COMPASS ETDåºæº(VSSæªç¢ºèª) - CNC LI DA WANG 0QIOJS1NC",
-    "updated_at": "2026-06-23 22:41"
+    "confirmed": true,
+    "voyage": "0QIOCN/0QIOJS",
+    "note": "toyoshingo.com/cmacgm YOKOHAMA ETD:2026-07-11(browser)",
+    "updated_at": "2026-06-24T02:15"
   }
 }
