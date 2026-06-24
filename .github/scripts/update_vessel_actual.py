@@ -130,8 +130,8 @@ def parse_vessels_with_voyage(html):
         import html as _html
         t = _html.unescape(raw)
         if 'Vessel Name' not in t or 'Sailing' not in t: continue
-        vn_m = _re.search(r'Vessel Name[^:]*:\s*(.+)', t, _re.I)
-        voy_m = _re.search(r'Voyage[^:]*:\s*(.+)', t, _re.I)
+        vn_m = _re.search(r'Vessel Name[^:]*:\s*([^<\n]+)', t, _re.I)
+        voy_m = _re.search(r'Voyage[^:]*:\s*([^<\n]+)', t, _re.I)
         sail_m = _re.search(r'Sailing.*?<span[^>]*>([\d/]+)', t, _re.I)
         if not vn_m or not voy_m: continue
         vname = _re.sub(r'\s*\([^)]+\)\s*$', '', vn_m.group(1).strip()).strip()
