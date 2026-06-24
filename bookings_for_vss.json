@@ -1608,25 +1608,9 @@
     "etd": "2026-07-04"
   },
   {
-    "bkg_no": "A07GX13746",
-    "vessel_name": "WAN HAI 290 S086",
-    "carrier": "INTERASIA",
-    "pol": "OSAKA",
-    "pod": "PUSAN",
-    "etd": "2026-07-06"
-  },
-  {
     "bkg_no": "SNKO040260600168",
     "vessel_name": "HONOR GLORY 2625W",
     "carrier": "SINOKOR",
-    "pol": "OSAKA",
-    "pod": "KWANGYANG",
-    "etd": "2026-07-06"
-  },
-  {
-    "bkg_no": "JP01216051",
-    "vessel_name": "WECAN 2624W",
-    "carrier": "KMTC",
     "pol": "OSAKA",
     "pod": "KWANGYANG",
     "etd": "2026-07-06"
@@ -1678,6 +1662,14 @@
     "pol": "HAKATA",
     "pod": "CAT LAI",
     "etd": "2026-07-06"
+  },
+  {
+    "bkg_no": "A07GX13746",
+    "vessel_name": "WAN HAI 290 S086",
+    "carrier": "INTERASIA",
+    "pol": "OSAKA",
+    "pod": "PUSAN",
+    "etd": "2026-07-07"
   },
   {
     "bkg_no": "TYOGC6457300",
