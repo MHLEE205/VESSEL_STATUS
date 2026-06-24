@@ -352,11 +352,18 @@ def match_jinjiang(bookings, all_vessels, actual_map, now):
         base_name = re.sub(r'\s*\d{4}[EWNS]\s*$', '', vname).strip()
         base_words = [w for w in base_name.split() if len(w) > 1]
 
+        def _word_in_vn(w, vn):
+            if w in vn: return True
+            # 앞 4글자 일치로 철자 변형 허용 (GUANDONG↔GUANGDONG 등)
+            if len(w) >= 5:
+                return any(w[:4] == vw[:4] for vw in vn.split())
+            return False
+
         matched = None
         for v in all_vessels:
             if bkg_voyage not in v['voyage']: continue
             vn = v['vesselName'].upper()
-            if all(w in vn for w in base_words):
+            if all(_word_in_vn(w, vn) for w in base_words):
                 matched = v
                 break
 
@@ -1279,23 +1286,22 @@ def main():
     for bkg in bookings:
         carrier = bkg.get('carrier', '').upper()
         pol     = bkg.get('pol', '').upper()
-        cfg_key = None
-        for key in VSS_CONFIG:
-            if key.upper() in carrier or carrier in key.upper():
-                cfg_key = key; break
-        if not cfg_key: continue
-        cfg       = VSS_CONFIG[cfg_key]
-        port_code = cfg['ports'].get(pol)
-        if not port_code: continue
-        page_key = f"{cfg_key}__{pol}"
-        if page_key in scraped_pages: continue
-        scraped_pages.add(page_key)
-        for week in [1, 2, 3, 4]:
-            url  = f"{cfg['base']}?port={port_code}&week={week}"
-            html = fetch_vss(url)
-            if html:
-                all_vessel_map.update(parse_vessels_with_voyage(html))
-            time.sleep(0.4)
+        # PAN OCEAN 등 공동운항 선사는 여러 서비스 페이지 전부 스캔
+        matching_keys = [key for key in VSS_CONFIG if key.upper() in carrier or carrier in key.upper()]
+        if not matching_keys: continue
+        for cfg_key in matching_keys:
+            cfg       = VSS_CONFIG[cfg_key]
+            port_code = cfg['ports'].get(pol)
+            if not port_code: continue
+            page_key = f"{cfg_key}__{pol}"
+            if page_key in scraped_pages: continue
+            scraped_pages.add(page_key)
+            for week in [1, 2, 3, 4]:
+                url  = f"{cfg['base']}?port={port_code}&week={week}"
+                html = fetch_vss(url)
+                if html:
+                    all_vessel_map.update(parse_vessels_with_voyage(html))
+                time.sleep(0.4)
 
     print(f"toyoshingo 수집: {len(all_vessel_map)}건")
 
