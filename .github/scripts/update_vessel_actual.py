@@ -902,7 +902,11 @@ def fetch_cnc_playwright(bookings, actual_map, now):
                        f"?tab=2&port_id={port_id}&start_week=monday&view_type=WEEK&current_index={idx}")
                 try:
                     page.goto(url, timeout=25000)
-                    body = smart_wait_body(page, r'\d{4}/\d{2}/\d{2}', max_ms=5000)
+                    try:
+                        page.wait_for_selector('.event-content', timeout=5000)
+                    except Exception:
+                        pass
+                    body = page.inner_text('body')
                     # year_month 추출
                     ym_m = re.search(r'(\d{4})/(\d{2})/\d{2}', body)
                     if not ym_m:
@@ -1118,12 +1122,12 @@ def fetch_yangming_tracking(bookings, actual_map, now):
                 page.wait_for_selector('input[type="text"]', timeout=15000)
                 # React 네이티브 입력
                 inp = page.query_selector('input[type="text"]')
-                page.evaluate("""(el, val) => {
+                page.evaluate("""([el, val]) => {
                     const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
                     setter.call(el, val);
                     el.dispatchEvent(new Event('input', {bubbles:true}));
                     el.dispatchEvent(new Event('change', {bubbles:true}));
-                }""", inp, bkg_no)
+                }""", [inp, bkg_no])
                 page.click('button:has-text("Search")')
                 body = smart_wait_body(page, r'On Board Date|ETA|\d{4}[-/]\d{2}[-/]\d{2}|No records', max_ms=8000)
                 print(f"    → YANGMING body 길이: {len(body)}, 첫100자: {body[:100].replace(chr(10),' ')}")
@@ -1500,8 +1504,14 @@ def main():
     print(f"\n✅ 전체 갱신: {total}건 (tyo:{cnt_tyo}, jj:{cnt_jj}, ehime:{cnt_ehime}, kmtc:{cnt_kmtc}, tracking:{cnt_track}, fallback:{cnt_fallback})")
 
     content = json.dumps(actual_map, ensure_ascii=False, indent=2)
+    # 409 Conflict 방지: 저장 직전에 최신 SHA 재취득
+    try:
+        latest = github_get('vessel_actual.json')
+        actual_sha = latest['sha']
+    except Exception as e:
+        print(f"  SHA 재취득 실패 (기존 SHA 사용): {e}")
     r = github_put('vessel_actual.json', content,
-        f"Auto update v4.2 - {now} (tyo:{len(tyo_results)}, jj:{len(jj_results)}, ehime:{len(ehime_results)}, kmtc:{len(kmtc_results)})", actual_sha)
+        f"Sync {now} ({len(actual_map)}件)", actual_sha)
     print(f"✅ 저장 완료: {r['commit']['sha'][:7]}")
 
 if __name__ == '__main__':
