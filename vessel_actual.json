@@ -140,7 +140,7 @@
     "scheduled_etd": "2026-06-12",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-12 ETA:None",
-    "updated_at": "2026-06-24 06:13"
+    "updated_at": "2026-06-24 06:36"
   },
   "I272245289": {
     "actual_etd": "2026-06-19",
@@ -501,10 +501,10 @@
     "carrier": "NAMSUNG",
     "pol": "SENDAI",
     "scheduled_etd": "2026-07-08",
-    "confirmed": true,
-    "updated_at": "2026-06-24 14:30",
+    "confirmed": false,
+    "updated_at": "2026-06-24 06:36",
     "voyage": "2608E/2608W",
-    "note": "toyoshingo.com/namsung certificate confirmed ETD:2026-07-08"
+    "note": "ETD逆転疑い(VSS:2026-07-02<COMPASS:2026-07-08) 再確認待ち"
   },
   "JP01214379": {
     "actual_etd": "2026-07-03",
@@ -1548,7 +1548,7 @@
     "scheduled_etd": "2026-05-26",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-05-28 ETA:None",
-    "updated_at": "2026-06-24 06:13"
+    "updated_at": "2026-06-24 06:36"
   },
   "A07GX09309": {
     "actual_etd": "2026-05-26",
@@ -1713,7 +1713,7 @@
     "scheduled_etd": "2026-05-29",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-09 ETA:None",
-    "updated_at": "2026-06-24 06:13"
+    "updated_at": "2026-06-24 06:36"
   },
   "TYOG65507800": {
     "actual_etd": "2026-05-29",
@@ -1911,7 +1911,7 @@
     "scheduled_etd": "2026-06-02",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-02 ETA:2026-06-29",
-    "updated_at": "2026-06-24 06:13"
+    "updated_at": "2026-06-24 06:36"
   },
   "HASLJ01260500182": {
     "actual_etd": "2026-06-11",
@@ -1933,7 +1933,7 @@
     "scheduled_etd": "2026-06-03",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-03 ETA:2026-06-29",
-    "updated_at": "2026-06-24 06:13"
+    "updated_at": "2026-06-24 06:36"
   },
   "TYOG86534400": {
     "actual_etd": "2026-06-03",
@@ -2219,7 +2219,7 @@
     "scheduled_etd": "2026-06-09",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-09 ETA:2026-06-30",
-    "updated_at": "2026-06-24 05:49"
+    "updated_at": "2026-06-24 06:36"
   },
   "SNKO040260501116": {
     "actual_etd": "2026-06-09",
