@@ -36,7 +36,7 @@ Scraping sources per carrier:
 | JIN JIANG | `jinjiangshipping.jp` (Playwright) |
 | EHIME OCEAN | `ehime-ocean.co.jp` (Playwright) |
 | KMTC, INTERASIA, MAERSK, OOCL, ONE | `vessel-schedule-service.com` (Playwright) |
-| CNC | `vessel-schedule-service.com/cnc` (Playwright) — NOT toyoshingo/cmacgm which 403s from Actions |
+| CNC | `toyoshingo.com/cmacgm` (urllib, Shift-JIS) — vessel-schedule-service.com/cnc は 404 のため移行 |
 | MAERSK | `maersk.com/tracking/{BKG_NO}` (Playwright, higher priority) |
 | YANGMING | `yangming.com` (Playwright, higher priority) |
 | ONE | `one-line.com` (Playwright, higher priority) |
@@ -67,9 +67,10 @@ Tracking results (official carrier sites) always overwrite VSS schedule results.
 
 **`smart_merge` logic** (Python): Entries with `confirmed: true` are protected from being overwritten unless (a) the vessel name changed or (b) the VSS ETD is earlier than the COMPASS scheduled ETD (ETD reversal). Manual corrections in `vessel_actual.json` survive automatic runs.
 
-**CNC special handling**: toyoshingo.com/cmacgm returns HTTP 403 from GitHub Actions servers. CNC scraping happens two ways:
-- Browser: `fetchCncFromToyoshingo()` uses hidden iframes (index.html:875)
-- Python: `fetch_cnc_playwright()` uses `vessel-schedule-service.com/cnc` instead (update_vessel_actual.py:818)
+**CNC special handling**: Both browser and Python now use `toyoshingo.com/cmacgm` (HTTP 200, no login required):
+- Browser: `fetchCncFromToyoshingo()` uses hidden iframes (index.html)
+- Python: `fetch_cnc_toyoshingo()` uses urllib + Shift-JIS decoding; port mapping `CNC_CMACGM_PORTS` (TOKYO=13, NAGOYA=35, KOBE=41 etc.); fetches week=0 (current) + week=4-7 (future); parses `title` attribute's `<dt>Sailing:</dt>` field for ETD
+- Note field: successful match uses `"toyoshingo.com/cmacgm {pol}..."` (with `.com`), 未登載 uses `"CNC toyoshingo/cmacgm 未登載..."` (without `.com`) — this distinction drives the nodata badge in index.html
 
 **Voyage matching**: CNC voyage strings like `0IZOVS1NC` are partially matched — extract letters after the leading `0` and look for 4-character substrings in the VSS voyage field.
 

@@ -64,8 +64,7 @@ VSS_CONFIG = {
         "base": "https://www.toyoshingo.com/kmtc/index.php",
         "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41, "SENDAI":19, "YOKOHAMA":13, "NIIGATA":24}
     },
-    # CNC: toyoshingo/cmacgm은 403 차단 → fetch_cnc_playwright() 전용 처리
-    # VSS_CONFIG에서 제외하여 toyoshingo 스크래핑 스킵
+    # CNC: VSS_CONFIG에서 제외 → fetch_cnc_toyoshingo()로 별도 처리
     # "CNC": { ... },  ← 비활성화
 }
 
@@ -568,7 +567,13 @@ def match_ehime(bookings, ehime_data, actual_map, now):
     return results
 
 
-# ── vessel-schedule-service.com (KMTC/ONE/MAERSK/OOCL) Playwright 스크래핑 ──
+# ── vessel-schedule-service.com Playwright 스크래핑 ──
+# 부킹 carrier명 정규화: OOCL(N) → OOCL, WAN HAI → WANHAI
+VSS_CARRIER_NORMALIZE = {
+    'OOCL(N)': 'OOCL',
+    'WAN HAI': 'WANHAI',
+}
+
 VSS_SERVICE_CONFIG = {
     "KMTC": {
         "base": "https://vessel-schedule-service.com/kmtc/vessel-schedule",
@@ -605,6 +610,13 @@ VSS_SERVICE_CONFIG = {
             "TOKYO": 16, "YOKOHAMA": 14, "NAGOYA": 37, "OSAKA": 40,
             "KOBE": 41, "HAKATA": 66, "SHIMIZU": 33, "MOJI": 63,
             "NAHA": 53,
+        }
+    },
+    "WANHAI": {
+        "base": "https://vessel-schedule-service.com/wanhai/vessel-schedule",
+        "ports": {
+            "TOKYO": 16, "YOKOHAMA": 14, "NAGOYA": 37, "OSAKA": 40,
+            "KOBE": 41, "HAKATA": 66,
         }
     },
 }
@@ -656,9 +668,12 @@ def fetch_vss_service_playwright(bookings):
             events.append({'vessel': vessel, 'voyage': voyage, 'etd': etd})
         return events
 
-    # 대상 선사 목록 (vessel-schedule-service.com 공통)
+    # 대상 선사 목록 (vessel-schedule-service.com 공통) — carrier명 정규화 적용
+    def normalize_carrier(c):
+        return VSS_CARRIER_NORMALIZE.get(c, c)
+
     target_carriers = list(VSS_SERVICE_CONFIG.keys())
-    target_bkgs = [b for b in bookings if b.get('carrier') in target_carriers]
+    target_bkgs = [b for b in bookings if normalize_carrier(b.get('carrier', '')) in target_carriers]
 
     if not target_bkgs:
         return {}
@@ -671,7 +686,7 @@ def fetch_vss_service_playwright(bookings):
         page = browser.new_page()
 
         for carrier, cfg in VSS_SERVICE_CONFIG.items():
-            carrier_bkgs = [b for b in target_bkgs if b.get('carrier') == carrier]
+            carrier_bkgs = [b for b in target_bkgs if normalize_carrier(b.get('carrier', '')) == carrier]
             if not carrier_bkgs:
                 continue
             needed_ports = list(set(b.get('pol','').upper() for b in carrier_bkgs))
@@ -702,7 +717,7 @@ def fetch_vss_service_playwright(bookings):
     results = {}
     now = datetime.now().strftime('%Y-%m-%d %H:%M')
     for bkg in target_bkgs:
-        carrier = bkg.get('carrier', '')
+        carrier = normalize_carrier(bkg.get('carrier', ''))
         vname = re.sub(r'[^\x20-\x7E]', ' ', bkg.get('vessel_name','')).strip().upper()
         bkg_voyage = extract_voyage(vname)
         if not bkg_voyage: continue
@@ -828,60 +843,58 @@ def fetch_compass_bookings():
 
 
 # ════════════════════════════════════════════════════════════════
-# CNC 전용 스크래핑 - vessel-schedule-service.com/cnc (Playwright)
-# toyoshingo/cmacgm은 GitHub Actions 서버에서 403 차단되므로 여기서 처리
+# CNC 전용 스크래핑 - toyoshingo.com/cmacgm (urllib + Shift-JIS)
+# vessel-schedule-service.com/cnc 는 404 이므로 toyoshingo로 이행
 # ════════════════════════════════════════════════════════════════
 
-CNC_VSS_PORTS = {
-    "TOKYO":    16, "YOKOHAMA": 14, "NAGOYA": 37,
-    "OSAKA":    40, "KOBE":     41, "HAKATA": 66,
+CNC_CMACGM_PORTS = {
+    'TOKYO': 13, 'YOKOHAMA': 11, 'NAGOYA': 35,
+    'KOBE': 41, 'OSAKA': 40, 'HAKATA': 77,
 }
 
-def fetch_cnc_playwright(bookings, actual_map, now):
-    """CNC 전체 건 vessel-schedule-service.com/cnc 에서 ETD 취득"""
+def fetch_cnc_toyoshingo(bookings, actual_map, now):
+    """CNC スケジュール取得 - toyoshingo.com/cmacgm (urllib, Shift-JIS)"""
     cnc_bkgs = [b for b in bookings if b.get('carrier','').upper() == 'CNC']
     if not cnc_bkgs:
         return {}
 
     today_str = datetime.now().strftime('%Y-%m-%d')
-    # 미래 건만 대상 (이미 출항 건은 조회 불필요)
     future_bkgs = [b for b in cnc_bkgs if b.get('etd','') >= today_str]
     if not future_bkgs:
         print(f"  CNC 미래 건 없음 (전체 {len(cnc_bkgs)}건 모두 출항 완료)")
         return {}
 
     print(f"  CNC 트래킹 대상: {len(future_bkgs)}건 (전체 {len(cnc_bkgs)}건 중 미래)")
-    results = {}
 
-    try:
-        from playwright.sync_api import sync_playwright
-    except ImportError:
-        print("  ⚠ Playwright 미설치 → CNC 스킵")
-        return {}
+    def fetch_cmacgm_page(port_id, week):
+        url = f"https://www.toyoshingo.com/cmacgm/index.php?port={port_id}&week={week}"
+        req = urllib.request.Request(url, headers={
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36'
+        })
+        with urllib.request.urlopen(req, timeout=15) as res:
+            return res.read().decode('shift_jis', errors='replace')
 
-    def parse_week_events(page, year_month):
-        """vessel-schedule-service.com 주간 이벤트 파싱"""
+    def parse_cmacgm_html(html):
+        """title 속성의 Sailing 필드에서 ETD 추출"""
         events = []
-        for el in page.query_selector_all('.event-content'):
-            vessel_el = el.query_selector('.vessel-name')
-            voyage_el = el.query_selector('.voyage')
-            time_el   = el.query_selector('.vessel-time')
-            if not vessel_el or not voyage_el: continue
-            vessel  = vessel_el.inner_text().strip()
-            voyage  = voyage_el.inner_text().strip()
-            time_tx = time_el.inner_text().strip() if time_el else ''
-
-            dep_day = None
-            dep_confirmed = False
-            m1 = re.match(r'(\d{1,2})/(\d{2}:\d{2})\s*-\s*(\d{1,2})/(\d{2}:\d{2})', time_tx)
-            m2 = re.match(r'(\d{1,2})\s*-\s*(\d{1,2})', time_tx)
-            if m1:
-                dep_day = m1.group(3).zfill(2)
-            elif m2:
-                dep_day = m2.group(2).zfill(2)
-            if dep_day:
-                events.append({'vessel': vessel, 'voyage': voyage,
-                               'etd': f"{year_month}-{dep_day}"})
+        blocks = re.findall(
+            r'title="(<dl>.*?</dl>)"[^>]*>.*?<span class="vesselname">([^<]+)</span>',
+            html, re.DOTALL
+        )
+        for title_html, vessel in blocks:
+            vessel = vessel.strip()
+            voy_m = re.search(r'<dt>Voyage:\s*</dt><dd>([^<]+)</dd>', title_html)
+            if not voy_m:
+                continue
+            voyages = [v.strip() for v in voy_m.group(1).split('/')]
+            sail_m = re.search(
+                r'<dt>Sailing:\s*</dt><dd><span[^>]*>(\d{4}/\d{2}/\d{2})(?:\s+(\d{2}:\d{2}))?</span>',
+                title_html
+            )
+            if sail_m:
+                etd = sail_m.group(1).replace('/', '-')
+                for voy in voyages:
+                    events.append({'vessel': vessel, 'voyage': voy, 'etd': etd})
         return events
 
     def extract_cnc_voyage(vessel_name):
@@ -891,56 +904,39 @@ def fetch_cnc_playwright(bookings, actual_map, now):
 
     def voyage_match_cnc(bkg_voy, vss_voyage):
         """CNC voyage 부분 일치 (4자 이상)"""
-        if not bkg_voy or not vss_voyage: return False
+        if not bkg_voy or not vss_voyage:
+            return False
         vss_upper = vss_voyage.upper()
-        if bkg_voy in vss_upper: return True
+        if bkg_voy in vss_upper:
+            return True
         for i in range(len(bkg_voy) - 3):
-            if bkg_voy[i:i+4] in vss_upper: return True
+            if bkg_voy[i:i+4] in vss_upper:
+                return True
         return False
 
-    # POL별로 조회할 주(week) 범위 결정
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page(
-            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36'
-        )
+    needed_pols = list(set(
+        b.get('pol','').upper() for b in future_bkgs
+        if b.get('pol','').upper() in CNC_CMACGM_PORTS
+    ))
+    print(f"  조회 POL: {needed_pols}")
 
-        # 필요한 POL 목록
-        needed_pols = list(set(b.get('pol','').upper() for b in future_bkgs if b.get('pol','').upper() in CNC_VSS_PORTS))
-        print(f"  조회 POL: {needed_pols}")
-
-        # POL별 × week별 전체 수집
-        all_events = []  # {'vessel', 'voyage', 'etd', 'pol'}
-        for pol in needed_pols:
-            port_id = CNC_VSS_PORTS[pol]
-            for idx in range(2, 8):  # 현재 주 포함 향후 6주
-                url = (f"https://vessel-schedule-service.com/cnc/vessel-schedule"
-                       f"?tab=2&port_id={port_id}&start_week=monday&view_type=WEEK&current_index={idx}")
-                try:
-                    page.goto(url, timeout=25000)
-                    try:
-                        page.wait_for_selector('.event-content', timeout=5000)
-                    except Exception:
-                        pass
-                    body = page.inner_text('body')
-                    # year_month 추출
-                    ym_m = re.search(r'(\d{4})/(\d{2})/\d{2}', body)
-                    if not ym_m:
-                        continue
-                    year_month = f"{ym_m.group(1)}-{ym_m.group(2)}"
-                    events = parse_week_events(page, year_month)
-                    for ev in events:
-                        ev['pol'] = pol
-                    all_events.extend(events)
-                except Exception as e:
-                    print(f"    CNC {pol} idx={idx} 오류: {e}")
-                    break
-
-        browser.close()
+    # 현재 주(week=0) + 미래 4주(week=4~7)
+    all_events = []
+    for pol in needed_pols:
+        port_id = CNC_CMACGM_PORTS[pol]
+        for week in [0, 4, 5, 6, 7]:
+            try:
+                html = fetch_cmacgm_page(port_id, week)
+                events = parse_cmacgm_html(html)
+                for ev in events:
+                    ev['pol'] = pol
+                all_events.extend(events)
+            except Exception as e:
+                print(f"    CNC {pol} week={week} 오류: {e}")
 
     print(f"  CNC 수집 이벤트: {len(all_events)}건")
 
-    # 부킹 매칭
+    results = {}
     for bkg in future_bkgs:
         bkg_no  = bkg['bkg_no']
         vessel  = bkg.get('vessel_name','').upper()
@@ -948,22 +944,23 @@ def fetch_cnc_playwright(bookings, actual_map, now):
         bkg_etd = bkg.get('etd','')
         bkg_voy = extract_cnc_voyage(vessel)
 
-        # 본선명 핵심어 (voyage 코드 제거)
         base_vessel = re.sub(r'\s*0[A-Z0-9]{4,8}\S*', '', vessel).strip()
         base_words  = [w for w in base_vessel.split() if len(w) > 1]
 
-        best = None
+        best     = None
         best_etd = None
         for ev in all_events:
-            if ev['pol'] != pol: continue
+            if ev['pol'] != pol:
+                continue
             ev_vessel = ev['vessel'].upper()
-            # 본선명 일치
             name_ok = all(w in ev_vessel for w in base_words) if base_words else False
-            # voyage 부분 일치
             voy_ok  = voyage_match_cnc(bkg_voy, ev['voyage']) if bkg_voy else False
             if name_ok and (voy_ok or not bkg_voy):
-                # ETD가 COMPASS ETD와 가장 가까운 건 선택
-                if best is None or abs((datetime.strptime(ev['etd'],'%Y-%m-%d') - datetime.strptime(bkg_etd,'%Y-%m-%d')).days) < abs((datetime.strptime(best_etd,'%Y-%m-%d') - datetime.strptime(bkg_etd,'%Y-%m-%d')).days):
+                if best is None or abs(
+                    (datetime.strptime(ev['etd'], '%Y-%m-%d') - datetime.strptime(bkg_etd, '%Y-%m-%d')).days
+                ) < abs(
+                    (datetime.strptime(best_etd, '%Y-%m-%d') - datetime.strptime(bkg_etd, '%Y-%m-%d')).days
+                ):
                     best     = ev
                     best_etd = ev['etd']
 
@@ -980,13 +977,12 @@ def fetch_cnc_playwright(bookings, actual_map, now):
                 'scheduled_etd': bkg_etd,
                 'confirmed':     True,
                 'voyage':        best['voyage'],
-                'note':          f"vessel-schedule-service.com/cnc {pol} ETD:{best_etd}{'(changed)' if changed else ''}",
+                'note':          f"toyoshingo.com/cmacgm {pol} ETD:{best_etd}{' (changed)' if changed else ''}",
                 'updated_at':    now,
             }
             status = f"⚠ ETD変更:{old_etd}→{best_etd}" if changed else f"✅ {best_etd}"
             print(f"    {bkg_no:<15} {bkg.get('vessel_name','')[:28]:<30} {pol:<10} {status}")
         else:
-            # 미조회 → COMPASS ETD 유지, confirmed:False
             if bkg_no not in actual_map:
                 results[bkg_no] = {
                     'actual_etd':    bkg_etd,
@@ -996,10 +992,10 @@ def fetch_cnc_playwright(bookings, actual_map, now):
                     'pod':           bkg.get('pod',''),
                     'scheduled_etd': bkg_etd,
                     'confirmed':     False,
-                    'note':          f'CNC vessel-schedule-service.com 未登載 COMPASS ETD:{bkg_etd}',
+                    'note':          f'CNC toyoshingo/cmacgm 未登載 COMPASS ETD:{bkg_etd}',
                     'updated_at':    now,
                 }
-            print(f"    {bkg_no:<15} 未確認 (VSS未登載)")
+            print(f"    {bkg_no:<15} 未確認 (cmacgm 未登載)")
 
     return results
 
@@ -1418,7 +1414,7 @@ def main():
     print(f"ONE 트래킹: {len(one_results)}건")
 
     print("\n[6/6] CNC vessel-schedule-service.com 스크래핑...")
-    cnc_results = fetch_cnc_playwright(bookings, actual_map, now)
+    cnc_results = fetch_cnc_toyoshingo(bookings, actual_map, now)
     print(f"CNC 확인: {len(cnc_results)}건")
 
     # ── 스마트 병합: 본선명 변경 감지 + confirmed:True 보호 ──
