@@ -699,7 +699,12 @@ def fetch_vss_service_playwright(bookings):
                     url = f"{cfg['base']}?tab=2&port_id={port_id}&start_week=monday&view_type=WEEK&current_index={idx}"
                     try:
                         page.goto(url, timeout=30000)
-                        page.wait_for_selector('.vessel-name', timeout=15000)
+                        # JS完全レンダリング待機: networkidle後にevent-content確認
+                        try:
+                            page.wait_for_load_state('networkidle', timeout=15000)
+                        except Exception:
+                            pass
+                        page.wait_for_selector('.event-content', timeout=10000)
                         body_text = page.inner_text('body')
                         date_m = re.search(r'(\d{4})/(\d{2})/\d{2}', body_text)
                         year_month = f"{date_m.group(1)}-{date_m.group(2)}" if date_m else '2026-06'
@@ -709,7 +714,7 @@ def fetch_vss_service_playwright(bookings):
                     except Exception as e:
                         print(f"  {carrier} {port} week{idx} error: {e}")
                     import time
-                    time.sleep(0.2)
+                    time.sleep(0.3)
 
         browser.close()
 
