@@ -905,7 +905,7 @@
   },
   {
     "bkg_no": "AMP0551845",
-    "vessel_name": "CNC JAGUAR 0IZORS",
+    "vessel_name": "CNC JAGUAR 0IZORS1NC",
     "carrier": "CNC",
     "pol": "TOKYO",
     "pod": "JAKARTA",
@@ -913,7 +913,7 @@
   },
   {
     "bkg_no": "AMP0551623",
-    "vessel_name": "CNC JAGUAR 0IZORS",
+    "vessel_name": "CNC JAGUAR 0IZORS1NC",
     "carrier": "CNC",
     "pol": "YOKOHAMA",
     "pod": "JAKARTA",
@@ -985,7 +985,7 @@
   },
   {
     "bkg_no": "AMP0551862",
-    "vessel_name": "CNC JAGUAR 0IZORS",
+    "vessel_name": "CNC JAGUAR 0IZORS1NC",
     "carrier": "CNC",
     "pol": "YOKOHAMA",
     "pod": "SURABAYA",
@@ -1392,14 +1392,6 @@
     "etd": "2026-06-30"
   },
   {
-    "bkg_no": "AMP0550432",
-    "vessel_name": "EVER BUILD 0PL4OS1NC",
-    "carrier": "CNC",
-    "pol": "NAGOYA",
-    "pod": "JAKARTA",
-    "etd": "2026-06-30"
-  },
-  {
     "bkg_no": "JP01214379",
     "vessel_name": "SUNNY CAMELLIA 2608W",
     "carrier": "KMTC",
@@ -1520,6 +1512,14 @@
     "etd": "2026-07-04"
   },
   {
+    "bkg_no": "AMP0550432",
+    "vessel_name": "EVER BUILD 0PL4OS1NC",
+    "carrier": "CNC",
+    "pol": "NAGOYA",
+    "pod": "JAKARTA",
+    "etd": "2026-07-05"
+  },
+  {
     "bkg_no": "SNKO040260600168",
     "vessel_name": "HONOR GLORY 2625W",
     "carrier": "SINOKOR",
@@ -1533,6 +1533,14 @@
     "carrier": "JIN JIANG",
     "pol": "HAKATA",
     "pod": "CAT LAI",
+    "etd": "2026-07-06"
+  },
+  {
+    "bkg_no": "PCJTYO26065353",
+    "vessel_name": "AKITA TRADER 2625W",
+    "carrier": "PAN OCEAN",
+    "pol": "TOKYO",
+    "pod": "PUSAN",
     "etd": "2026-07-06"
   },
   {
@@ -1597,6 +1605,22 @@
     "carrier": "ONE",
     "pol": "TOKYO",
     "pod": "JAKARTA",
+    "etd": "2026-07-07"
+  },
+  {
+    "bkg_no": "272513400",
+    "vessel_name": "GLORY ZHENDONG 627W",
+    "carrier": "MAERSK",
+    "pol": "TOKYO",
+    "pod": "CAT LAI",
+    "etd": "2026-07-07"
+  },
+  {
+    "bkg_no": "272282502",
+    "vessel_name": "GLORY ZHENDONG 627W",
+    "carrier": "MAERSK",
+    "pol": "TOKYO",
+    "pod": "CAT LAI",
     "etd": "2026-07-07"
   },
   {
@@ -1670,6 +1694,14 @@
     "pol": "KOBE",
     "pod": "JAKARTA",
     "etd": "2026-07-12"
+  },
+  {
+    "bkg_no": "A07GX14557",
+    "vessel_name": "INTERASIA ELEVATE S069",
+    "carrier": "INTERASIA",
+    "pol": "HAKATA",
+    "pod": "KWANGYANG",
+    "etd": "2026-07-14"
   },
   {
     "bkg_no": "TYOGC5005500",
