@@ -726,7 +726,12 @@ def fetch_vss_service_playwright(bookings):
         vname = re.sub(r'[^\x20-\x7E]', ' ', bkg.get('vessel_name','')).strip().upper()
         bkg_voyage = extract_voyage(vname)
         if not bkg_voyage: continue
-        base_name = re.sub(r'\s*\d{4}[EWNS]\s*$', '', vname).strip()
+        # voyage コードを末尾から除去 (4桁EWNS / 3桁EWNS / [NS]3桁)
+        words = vname.split()
+        if words and re.match(r'^(?:\d{3,4}[EWNS]|[NS]\d{3})$', words[-1]):
+            base_name = ' '.join(words[:-1])
+        else:
+            base_name = re.sub(r'\s*\d{4}[EWNS]\s*$', '', vname).strip()
         base_words = [w for w in base_name.split() if len(w) > 1]
 
         matched = None
