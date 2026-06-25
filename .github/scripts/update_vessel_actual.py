@@ -876,7 +876,7 @@ def fetch_cnc_toyoshingo(bookings, actual_map, now):
         return {}
 
     today_str = datetime.now().strftime('%Y-%m-%d')
-    future_bkgs = [b for b in cnc_bkgs if b.get('etd','') >= today_str]
+    future_bkgs = [b for b in cnc_bkgs if b.get('etd','') >= today_str or actual_map.get(b['bkg_no'], {}).get('actual_etd','') >= today_str]
     if not future_bkgs:
         print(f"  CNC 미래 건 없음 (전체 {len(cnc_bkgs)}건 모두 출항 완료)")
         return {}
@@ -1434,14 +1434,13 @@ def main():
     cnc_results = fetch_cnc_toyoshingo(bookings, actual_map, now)
     print(f"CNC 확인: {len(cnc_results)}건")
 
-    # ── 스마트 병합: 본선명 변경 감지 + confirmed:True 보호 ──
-    def smart_merge(actual_map, new_results, source_name, bookings_map=None, protect_confirmed=True):
+    # ── 스마트 병합: 본선명 변경 감지 + VSS ETD 항상 갱신 ──
+    def smart_merge(actual_map, new_results, source_name, bookings_map=None):
         """
         병합 규칙:
-        1. 본선명(vessel_name)이 변경된 경우 → 무조건 덮어씀 + 재매칭 필요 알림
-        2. VSS ETD < COMPASS scheduled_etd (ETD 역전) → 의심 → confirmed:False로 리셋
-        3. confirmed:True이고 본선명 동일 + ETD 정상 → 스킵 (수동 수정 보호) ← protect_confirmed=True 시만
-        4. 미등록 또는 confirmed:False → 덮어씀
+        1. 본선명(vessel_name)이 변경된 경우 → 무조건 덮어씀 + 재확인 대기
+        2. VSS ETD < COMPASS scheduled_etd (ETD 역전, 2일 이상) → 의심 → confirmed:False로 리셋
+        3. 그 외 → VSS 出港時間을 항상 갱신 (confirmed 여부 무관)
         """
         updated = 0
         for bkg_no, new_data in new_results.items():
@@ -1488,11 +1487,9 @@ def main():
                     'note': f'ETD逆転疑い(VSS:{vss_etd}<COMPASS:{compass_etd}) 再確認待ち',
                 }
                 updated += 1
-            elif existing.get('confirmed') == True and protect_confirmed:
-                # confirmed:True + 정상 → 스킵 (수동 수정 보호)
-                pass
             else:
-                actual_map[bkg_no] = new_data
+                # 出港時間を常時更新 (confirmed 여부 무관, 기존 필드 보존하며 덮어씀)
+                actual_map[bkg_no] = {**existing, **new_data}
                 updated += 1
         return updated
 
@@ -1501,7 +1498,7 @@ def main():
 
     cnt_tyo   = smart_merge(actual_map, tyo_results,     'toyoshingo', bookings_map)
     cnt_jj    = smart_merge(actual_map, jj_results,      'jinjiang',   bookings_map)
-    cnt_ehime = smart_merge(actual_map, ehime_results,   'ehime',      bookings_map, protect_confirmed=False)
+    cnt_ehime = smart_merge(actual_map, ehime_results,   'ehime',      bookings_map)
     cnt_kmtc  = smart_merge(actual_map, kmtc_results,    'vss-service',bookings_map)
     # 트래킹 결과는 항상 최우선 (confirmed:True 덮어씀)
     for bkg_no, data in {**maersk_results, **yangming_results, **one_results, **cnc_results}.items():
