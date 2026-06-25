@@ -2,8 +2,9 @@ name: Update Vessel Actual ETD v5.2
 
 on:
   schedule:
-    - cron: '0 0 * * *'   # 09:00 JST
-    - cron: '0 4 * * *'   # 13:00 JST
+    - cron: '0 22 * * *'  # 07:00 JST
+    - cron: '0 2 * * *'   # 11:00 JST
+    - cron: '0 6 * * *'   # 15:00 JST
   workflow_dispatch:
 
 permissions:
