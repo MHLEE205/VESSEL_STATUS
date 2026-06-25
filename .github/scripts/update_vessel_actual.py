@@ -7,7 +7,7 @@ VESSEL STATUS - Actual ETD Auto Update v5.5
 """
 import json
 import os, re, sys, time, urllib.request, os, base64
-from datetime import datetime
+from datetime import datetime, timedelta
 
 GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN', '')
 REPO = 'MHLEE205/VESSEL_STATUS'
@@ -71,6 +71,13 @@ VSS_CONFIG = {
 # ── JIN JIANG 컬럼 매핑 ──
 JJ_COL_SHANGHAI = {'TOKYO':3,'YOKOHAMA':4,'NAGOYA':5,'SHIMIZU':6,'OSAKA':7,'KOBE':8,'HAKATA':9,'MOJI':10,'NAHA':11}
 JJ_COL_QINGDAO  = {'MOJI':3,'HAKATA':4,'OSAKA':5,'KOBE':6,'NAGOYA':7,'TOKYO':8,'YOKOHAMA':9}
+
+# ── ETD 날짜 차이 (compass - vss, 일수), 날짜 파싱 실패 시 -1 ──
+def etd_gap_days(vss_etd: str, compass_etd: str) -> int:
+    try:
+        return (datetime.strptime(compass_etd, '%Y-%m-%d') - datetime.strptime(vss_etd, '%Y-%m-%d')).days
+    except Exception:
+        return -1
 
 # ── VOYAGE 번호 추출 ──
 def extract_voyage(vessel_name):
@@ -1314,8 +1321,8 @@ def main():
             }
             pre_reset += 1
 
-        # ② ETD 역전 감지 (VSS ETD < COMPASS ETD, 미래 건만)
-        elif vss_etd and compass_etd and vss_etd < compass_etd and va.get('confirmed'):
+        # ② ETD 역전 감지 (VSS ETD < COMPASS ETD, 2일 이상 차이, 미래 건만)
+        elif vss_etd and compass_etd and va.get('confirmed') and etd_gap_days(vss_etd, compass_etd) >= 2:
             print(f"  ⚠️ [사전검사] ETD逆転: {bkg_no} | VSS:{vss_etd} < COMPASS:{compass_etd} | {compass_vessel[:25]}")
             actual_map[bkg_no] = {
                 **va,
@@ -1452,13 +1459,13 @@ def main():
             if not compass_etd:
                 compass_etd = existing.get('scheduled_etd','') or new_data.get('scheduled_etd','')
 
-            # ETD 역전 체크: VSS ETD < COMPASS ETD → 의심 (미래 건만, 이미 출항 완료 건 제외)
+            # ETD 역전 체크: VSS ETD < COMPASS ETD 2일 이상 → 의심 (미래 건만)
             vss_etd = new_data.get('actual_etd','')
             today_str = datetime.now().strftime('%Y-%m-%d')
             etd_reversed = (
                 vss_etd and compass_etd
-                and vss_etd < compass_etd
                 and compass_etd >= today_str  # 미래 건만 체크
+                and etd_gap_days(vss_etd, compass_etd) >= 2
             )
 
             if vessel_changed:
