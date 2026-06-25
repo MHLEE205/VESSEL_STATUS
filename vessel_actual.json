@@ -63,7 +63,7 @@
     "confirmed": false,
     "voyage": "625N/627S I88",
     "note": "ETD逆転疑い(VSS:2026-06-05<COMPASS:2026-07-06) 再確認待ち",
-    "updated_at": "2026-06-25 22:50"
+    "updated_at": "2026-06-25 22:57"
   },
   "2326306350": {
     "actual_etd": "2026-05-31",
@@ -140,7 +140,7 @@
     "scheduled_etd": "2026-06-12",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-12 ETA:2026-06-30",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "I272245289": {
     "actual_etd": "2026-06-19",
@@ -151,7 +151,7 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-19 ETA:None",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "I272245291": {
     "actual_etd": "2026-06-19",
@@ -162,7 +162,7 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-19 ETA:None",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "I272245659": {
     "actual_etd": "2026-06-19",
@@ -173,7 +173,7 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-19 ETA:None",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "I272244407": {
     "actual_etd": "2026-06-19",
@@ -184,7 +184,7 @@
     "scheduled_etd": "2026-06-17",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-19 ETA:None",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "I272244409": {
     "actual_etd": "2026-06-23",
@@ -195,7 +195,7 @@
     "scheduled_etd": "2026-06-23",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-23 ETA:2026-06-29",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "I272244404": {
     "actual_etd": "2026-07-02",
@@ -205,8 +205,8 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-30",
     "confirmed": true,
-    "note": "yangming.com tracking ETD:2026-07-02 ETA:None",
-    "updated_at": "2026-06-25 22:43"
+    "note": "yangming.com tracking ETD:2026-07-02 ETA:None(changed)",
+    "updated_at": "2026-06-25 06:18"
   },
   "I272245627": {
     "actual_etd": "2026-06-24",
@@ -217,7 +217,7 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-24 ETA:None",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "I272245891": {
     "actual_etd": "2026-06-24",
@@ -228,7 +228,7 @@
     "scheduled_etd": "2026-06-24",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-24 ETA:2026-06-29",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "A07GX12706": {
     "actual_etd": "2026-06-27",
@@ -283,7 +283,7 @@
     "confirmed": false,
     "voyage": "N085/S086 PAS",
     "note": "ETD逆転疑い(VSS:2026-06-06<COMPASS:2026-06-26) 再確認待ち",
-    "updated_at": "2026-06-25 22:50"
+    "updated_at": "2026-06-25 22:57"
   },
   "A07GX12707": {
     "actual_etd": "2026-06-26",
@@ -294,7 +294,7 @@
     "confirmed": false,
     "voyage": "N085/S086 PAS",
     "note": "ETD逆転疑い(VSS:2026-06-06<COMPASS:2026-06-26) 再確認待ち",
-    "updated_at": "2026-06-25 22:50"
+    "updated_at": "2026-06-25 22:57"
   },
   "A07GX11309": {
     "actual_etd": "2026-07-08",
@@ -522,7 +522,7 @@
     "pol": "SENDAI",
     "scheduled_etd": "2026-07-08",
     "confirmed": false,
-    "updated_at": "2026-06-25 22:43",
+    "updated_at": "2026-06-25 22:52",
     "voyage": "2608E/2608W",
     "note": "ETD逆転疑い(VSS:2026-07-03<COMPASS:2026-07-08) 再確認待ち"
   },
@@ -535,7 +535,7 @@
     "confirmed": false,
     "voyage": "2608E/2608W NCJ",
     "note": "ETD逆転疑い(VSS:2026-06-01<COMPASS:2026-06-30) 再確認待ち",
-    "updated_at": "2026-06-25 22:50"
+    "updated_at": "2026-06-25 22:57"
   },
   "NMG2606-05": {
     "actual_etd": "2026-06-19",
@@ -786,7 +786,7 @@
     "confirmed": true,
     "voyage": "0IZOTS",
     "note": "toyoshingo.com/cmacgm YOKOHAMA ETD:2026-06-29",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "AMP0550427": {
     "actual_etd": "2026-07-01",
@@ -879,7 +879,7 @@
     "pol": "NAHA",
     "scheduled_etd": "2026-06-27",
     "confirmed": true,
-    "updated_at": "2026-06-25 22:43",
+    "updated_at": "2026-06-25 22:52",
     "voyage": "265N/266S",
     "note": "ehime-ocean.co.jp ITX HIGO 265N/266S NAHA1 auto-confirmed"
   },
@@ -1002,7 +1002,7 @@
     "confirmed": true,
     "voyage": "265N/266S",
     "note": "ehime-ocean.co.jp ITX HIGO 265N/266S NAHA2 auto-confirmed",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "ILN0052015007": {
     "actual_etd": "2026-06-28",
@@ -1013,7 +1013,7 @@
     "confirmed": true,
     "voyage": "265N/266S",
     "note": "ehime-ocean.co.jp ITX HIGO 265N/266S NAHA1 auto-confirmed",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "ILN0052014950": {
     "actual_etd": "2026-07-01",
@@ -1102,7 +1102,7 @@
     "scheduled_etd": "2026-06-28",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-30 ETA:None",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "TKJJ2600052": {
     "actual_etd": "2026-06-25",
@@ -1168,7 +1168,7 @@
     "scheduled_etd": "2026-06-28",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-30 ETA:None",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "A07GX14139": {
     "actual_etd": "2026-07-08",
@@ -1190,7 +1190,7 @@
     "confirmed": false,
     "voyage": "N059/S060 NS5",
     "note": "ETD逆転疑い(VSS:2026-06-01<COMPASS:2026-06-28) 再確認待ち",
-    "updated_at": "2026-06-25 22:50"
+    "updated_at": "2026-06-25 22:57"
   },
   "AMP0554427": {
     "actual_etd": "2026-06-29",
@@ -1213,7 +1213,7 @@
     "confirmed": true,
     "voyage": "0IZOTS",
     "note": "toyoshingo.com/cmacgm YOKOHAMA ETD:2026-06-29",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "TYOGC4337500": {
     "actual_etd": "2026-06-26",
@@ -1258,7 +1258,7 @@
     "confirmed": true,
     "voyage": "0IZOTS",
     "note": "toyoshingo.com/cmacgm TOKYO ETD:2026-06-29",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "PCJTYO26065620": {
     "actual_etd": "2026-07-01",
@@ -1291,7 +1291,7 @@
     "confirmed": false,
     "voyage": "N086/S086 JSV",
     "note": "ETD逆転疑い(VSS:2026-06-05<COMPASS:2026-07-07) 再確認待ち",
-    "updated_at": "2026-06-25 22:50"
+    "updated_at": "2026-06-25 22:57"
   },
   "SNKO040260600168": {
     "actual_etd": "2026-07-06",
@@ -1314,7 +1314,7 @@
     "confirmed": true,
     "voyage": "0IZOTS",
     "note": "toyoshingo.com/cmacgm TOKYO ETD:2026-06-29",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "SNKO040260600369": {
     "actual_etd": "2026-07-04",
@@ -1578,7 +1578,7 @@
     "scheduled_etd": "2026-05-26",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-05-28 ETA:None",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 05:14"
   },
   "A07GX09309": {
     "actual_etd": "2026-06-19",
@@ -1743,7 +1743,7 @@
     "scheduled_etd": "2026-05-29",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-09 ETA:None",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "TYOG65507800": {
     "actual_etd": "2026-05-29",
@@ -1941,7 +1941,7 @@
     "scheduled_etd": "2026-06-02",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-02 ETA:2026-06-29",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "HASLJ01260500182": {
     "actual_etd": "2026-06-11",
@@ -1963,7 +1963,7 @@
     "scheduled_etd": "2026-06-03",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-03 ETA:2026-06-29",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "TYOG86534400": {
     "actual_etd": "2026-06-09",
@@ -2249,7 +2249,7 @@
     "scheduled_etd": "2026-06-09",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-09 ETA:2026-07-01",
-    "updated_at": "2026-06-25 22:43"
+    "updated_at": "2026-06-25 22:52"
   },
   "SNKO040260501116": {
     "actual_etd": "2026-06-09",
@@ -2403,7 +2403,7 @@
     "confirmed": false,
     "voyage": "073E/074W FP1",
     "note": "ETD逆転疑い(VSS:2026-06-04<COMPASS:2026-07-02) 再確認待ち",
-    "updated_at": "2026-06-25 22:50"
+    "updated_at": "2026-06-25 22:57"
   },
   "TYOG88069900": {
     "actual_etd": "2026-07-02",
@@ -2414,7 +2414,7 @@
     "confirmed": false,
     "voyage": "073E/074W FP1",
     "note": "ETD逆転疑い(VSS:2026-06-04<COMPASS:2026-07-02) 再確認待ち",
-    "updated_at": "2026-06-25 22:50"
+    "updated_at": "2026-06-25 22:57"
   },
   "I272246590": {
     "actual_etd": "2026-07-03",
@@ -2569,5 +2569,49 @@
     "confirmed": false,
     "note": "COMPASS ETD基準(VSS未確認) ONE",
     "updated_at": "2026-06-25 01:52"
+  },
+  "PCJTYO26065353": {
+    "actual_etd": "2026-07-07",
+    "vessel_name": "AKITA TRADER 2625W",
+    "carrier": "PAN OCEAN",
+    "pol": "TOKYO",
+    "scheduled_etd": "2026-07-06",
+    "confirmed": true,
+    "updated_at": "2026-06-25 22:52",
+    "voyage": "2625E/2625W",
+    "note": "toyoshingo.com confirmed"
+  },
+  "272513400": {
+    "actual_etd": "2026-07-07",
+    "vessel_name": "GLORY ZHENDONG 627W",
+    "carrier": "MAERSK",
+    "pol": "TOKYO",
+    "pod": "CAT LAI",
+    "scheduled_etd": "2026-07-07",
+    "confirmed": false,
+    "note": "COMPASS ETD基準(VSS未確認) MAERSK",
+    "updated_at": "2026-06-25 22:52"
+  },
+  "272282502": {
+    "actual_etd": "2026-07-07",
+    "vessel_name": "GLORY ZHENDONG 627W",
+    "carrier": "MAERSK",
+    "pol": "TOKYO",
+    "pod": "CAT LAI",
+    "scheduled_etd": "2026-07-07",
+    "confirmed": false,
+    "note": "COMPASS ETD基準(VSS未確認) MAERSK",
+    "updated_at": "2026-06-25 22:52"
+  },
+  "A07GX14557": {
+    "actual_etd": "2026-07-14",
+    "vessel_name": "INTERASIA ELEVATE S069",
+    "carrier": "INTERASIA",
+    "pol": "HAKATA",
+    "pod": "KWANGYANG",
+    "scheduled_etd": "2026-07-14",
+    "confirmed": false,
+    "note": "COMPASS ETD基準(VSS未確認) INTERASIA",
+    "updated_at": "2026-06-25 22:52"
   }
 }
