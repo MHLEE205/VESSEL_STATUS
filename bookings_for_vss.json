@@ -1,45 +1,5 @@
 [
   {
-    "bkg_no": "I272242816",
-    "vessel_name": "INTERASIA RESILIENCE S080 ",
-    "carrier": "YANGMING",
-    "pol": "OSAKA",
-    "pod": "PORT KLANG",
-    "etd": "2026-05-26"
-  },
-  {
-    "bkg_no": "A07GX09309",
-    "vessel_name": "INTERASIA RESILIENCE S080",
-    "carrier": "INTERASIA",
-    "pol": "KOBE",
-    "pod": "HAIPHONG",
-    "etd": "2026-05-26"
-  },
-  {
-    "bkg_no": "AMP0549003",
-    "vessel_name": "SHUN LONG 0QIO9S1NC",
-    "carrier": "CNC",
-    "pol": "TOKYO",
-    "pod": "JAKARTA",
-    "etd": "2026-05-26"
-  },
-  {
-    "bkg_no": "JJCTKHPJNA65A21",
-    "vessel_name": "A ONTAKE 2621W",
-    "carrier": "JIN JIANG",
-    "pol": "TOKYO",
-    "pod": "HAIPHONG",
-    "etd": "2026-05-26"
-  },
-  {
-    "bkg_no": "AMP0548935",
-    "vessel_name": "SHUN LONG 0QIO9S1NC",
-    "carrier": "CNC",
-    "pol": "YOKOHAMA",
-    "pod": "JAKARTA",
-    "etd": "2026-05-26"
-  },
-  {
     "bkg_no": "SGM26D00159",
     "vessel_name": "SUNNY CANNA 2606W",
     "carrier": "NAMSUNG",
