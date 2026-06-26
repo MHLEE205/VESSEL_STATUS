@@ -39,10 +39,8 @@ VSS_CONFIG = {
         "base": "https://www.toyoshingo.com/kmtc/index.php",
         "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41, "SENDAI":19, "YOKOHAMA":13, "NIIGATA":24}
     },
-    "DONG YOUNG": {
-        "base": "https://www.toyoshingo.com/dongjin/index.php",
-        "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":35, "HAKATA":41, "YOKOHAMA":13}
-    },
+    # DONG YOUNG: toyoshingo.com/dongjin → vessel-schedule-service.com 이전됨
+    # VSS_SERVICE_CONFIG로 이동
     "YANGMING": {
         "base": "https://www.toyoshingo.com/yangming/index.php",
         "ports": {"TOKYO":13, "OSAKA":11, "NAGOYA":30, "HAKATA":41, "YOKOHAMA":11, "KOBE":41}
@@ -665,6 +663,13 @@ VSS_SERVICE_CONFIG = {
         "ports": {
             "TOKYO": 16, "YOKOHAMA": 14, "NAGOYA": 37, "OSAKA": 40,
             "KOBE": 41, "HAKATA": 66,
+        }
+    },
+    "DONG YOUNG": {
+        "base": "https://vessel-schedule-service.com/dongjin/vessel-schedule",
+        "ports": {
+            "TOKYO": 16, "YOKOHAMA": 14, "NAGOYA": 37, "OSAKA": 40,
+            "KOBE": 41, "HAKATA": 66, "MOJI": 63,
         }
     },
 }
@@ -1486,8 +1491,8 @@ def main():
     ehime_results = match_ehime(bookings, ehime_data, actual_map, now) if ehime_data else {}
     print(f"EHIME OCEAN 매칭: {len(ehime_results)}건")
 
-    # ── vessel-schedule-service.com (KMTC/MAERSK/OOCL/ONE) 스크래핑 ──
-    print("\n[4/4] vessel-schedule-service.com 스크래핑 (KMTC/MAERSK/OOCL/ONE)...")
+    # ── vessel-schedule-service.com (KMTC/MAERSK/OOCL/ONE/DONGJIN 등) 스크래핑 ──
+    print("\n[4/4] vessel-schedule-service.com 스크래핑 (KMTC/MAERSK/OOCL/ONE/DONG YOUNG)...")
     kmtc_results = fetch_vss_service_playwright(bookings)
     print(f"VSS-Service 매칭: {len(kmtc_results)}건")
 
