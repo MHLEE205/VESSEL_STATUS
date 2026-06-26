@@ -933,26 +933,43 @@ def fetch_cnc_toyoshingo(bookings, actual_map, now):
             return res.read().decode('shift_jis', errors='replace')
 
     def parse_cmacgm_html(html):
-        """title 속성의 Sailing 필드에서 ETD 추출"""
+        """出港日 = title の Sailing 日 と セル内全日付 のうち最大値を採用
+        (入港翌日出港ケース: Sailing フィールドに入港日が入る港でも正しい出港日を取得)"""
         events = []
+        # title 属性 + </td> までのセル内容を一括キャプチャ
         blocks = re.findall(
-            r'title="(<dl>.*?</dl>)"[^>]*>.*?<span class="vesselname">([^<]+)</span>',
+            r'title="(<dl>.*?</dl>)"[^>]*>(.*?)</td>',
             html, re.DOTALL
         )
-        for title_html, vessel in blocks:
-            vessel = vessel.strip()
+        for title_html, cell_content in blocks:
+            vessel_m = re.search(r'<span class="vesselname">([^<]+)</span>', cell_content)
+            if not vessel_m:
+                continue
+            vessel = vessel_m.group(1).strip()
+
             voy_m = re.search(r'<dt>Voyage:\s*</dt><dd>([^<]+)</dd>', title_html)
             if not voy_m:
                 continue
             voyages = [v.strip() for v in voy_m.group(1).split('/')]
+
+            # Sailing フィールド日付 (入港日が入ることがある)
             sail_m = re.search(
-                r'<dt>Sailing:\s*</dt><dd><span[^>]*>(\d{4}/\d{2}/\d{2})(?:\s+(\d{2}:\d{2}))?</span>',
+                r'<dt>Sailing:\s*</dt><dd><span[^>]*>(\d{4}/\d{2}/\d{2})',
                 title_html
             )
-            if sail_m:
-                etd = sail_m.group(1).replace('/', '-')
-                for voy in voyages:
-                    events.append({'vessel': vessel, 'voyage': voy, 'etd': etd})
+            sail_date = sail_m.group(1).replace('/', '-') if sail_m else None
+
+            # セル内の全日付 (YYYY/MM/DD 形式)
+            cell_dates = [d.replace('/', '-') for d in re.findall(r'\d{4}/\d{2}/\d{2}', cell_content)]
+
+            # 出港日 = 入港日・Sailing日・セル内日付の最大値 (翌日出港を正しく取得)
+            candidates = ([sail_date] if sail_date else []) + cell_dates
+            etd = max(candidates) if candidates else None
+            if not etd:
+                continue
+
+            for voy in voyages:
+                events.append({'vessel': vessel, 'voyage': voy, 'etd': etd})
         return events
 
     def extract_cnc_voyage(vessel_name):
@@ -961,16 +978,18 @@ def fetch_cnc_toyoshingo(bookings, actual_map, now):
         return m.group(1) if m else ''
 
     def voyage_match_cnc(bkg_voy, vss_voyage):
-        """CNC voyage 부분 일치 (4자 이상)"""
+        """CNC voyage 매칭 - (matched: bool, score: int)
+        score: len(bkg_voy)=full match, 4=partial, -1=no match
+        full match 우선 → S/N 방향 오매칭 방지 (IZOTS vs IZOTN 등)"""
         if not bkg_voy or not vss_voyage:
-            return False
+            return False, -1
         vss_upper = vss_voyage.upper()
         if bkg_voy in vss_upper:
-            return True
+            return True, len(bkg_voy)
         for i in range(len(bkg_voy) - 3):
             if bkg_voy[i:i+4] in vss_upper:
-                return True
-        return False
+                return True, 4
+        return False, -1
 
     needed_pols = list(set(
         b.get('pol','').upper() for b in future_bkgs
@@ -1005,22 +1024,32 @@ def fetch_cnc_toyoshingo(bookings, actual_map, now):
         base_vessel = re.sub(r'\s*0[A-Z0-9]{4,8}\S*', '', vessel).strip()
         base_words  = [w for w in base_vessel.split() if len(w) > 1]
 
-        best     = None
-        best_etd = None
+        # voyage score: full match(len) > partial(4) > no match(-1)
+        # 동점 시 COMPASS ETD와 날짜 근접도 우선
+        best       = None
+        best_etd   = None
+        best_score = -1
+        best_gap   = float('inf')
         for ev in all_events:
             if ev['pol'] != pol:
                 continue
             ev_vessel = ev['vessel'].upper()
             name_ok = all(w in ev_vessel for w in base_words) if base_words else False
-            voy_ok  = voyage_match_cnc(bkg_voy, ev['voyage']) if bkg_voy else False
-            if name_ok and (voy_ok or not bkg_voy):
-                if best is None or abs(
-                    (datetime.strptime(ev['etd'], '%Y-%m-%d') - datetime.strptime(bkg_etd, '%Y-%m-%d')).days
-                ) < abs(
-                    (datetime.strptime(best_etd, '%Y-%m-%d') - datetime.strptime(bkg_etd, '%Y-%m-%d')).days
-                ):
-                    best     = ev
-                    best_etd = ev['etd']
+            if not name_ok:
+                continue
+            _, voy_score = voyage_match_cnc(bkg_voy, ev['voyage']) if bkg_voy else (True, 0)
+            if bkg_voy and voy_score < 0:
+                continue
+            try:
+                gap = abs((datetime.strptime(ev['etd'], '%Y-%m-%d') - datetime.strptime(bkg_etd, '%Y-%m-%d')).days)
+            except Exception:
+                continue
+            # full match 우선, 동점 시 날짜 근접
+            if (voy_score > best_score) or (voy_score == best_score and gap < best_gap):
+                best       = ev
+                best_etd   = ev['etd']
+                best_score = voy_score
+                best_gap   = gap
 
         existing = actual_map.get(bkg_no, {})
         if best:
