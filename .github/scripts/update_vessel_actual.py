@@ -492,12 +492,19 @@ def fetch_ehime_playwright():
 
 
 def match_ehime(bookings, ehime_data, actual_map, now):
-    """EHIME OCEAN 부킹 매칭 - POD로 Naha① or ② 판정"""
+    """EHIME OCEAN 부킹 매칭 - POD로 Naha① or ② 판정
+    항로: Taichung→Kaohsiung→Naha①→Yatsushiro→Busan→Oita→Matsuyama→Shibushi→Naha②→(Keelung→)Taichung...
+    Naha①: 以後 Yatsushiro/Busan/日本国内/タイ方面 → 上のNaha
+    Naha②: 以後 Keelung/Taichung/台湾方面 → 下のNaha
+    """
     results = {}
-    # POD → Naha 인덱스 매핑
-    # Naha①: PUSAN, LAT KRABANG, BUSAN 등 북행 POD
-    # Naha②: TAICHUNG, KEELUNG, KAOHSIUNG 등 남행 POD
-    NAHA1_PODS = {'PUSAN', 'BUSAN', 'LAT KRABANG', 'BANGKOK', 'LAEM CHABANG'}
+    # Naha①=上 (→Yatsushiro→Busan→Oita→Matsuyama→Shibushi)
+    NAHA1_PODS = {
+        'PUSAN', 'BUSAN',
+        'YATSUSHIRO', 'OITA', 'MATSUYAMA', 'SHIBUSHI',
+        'LAT KRABANG', 'BANGKOK', 'LAEM CHABANG',
+    }
+    # Naha②=下 (→Keelung→Taichung→Kaohsiung)
     NAHA2_PODS = {'TAICHUNG', 'KEELUNG', 'KAOHSIUNG', 'TAOYUAN'}
 
     ehime_bookings = [b for b in bookings if b.get('carrier') in ('EHIME OCEAN', 'ONE')
@@ -549,9 +556,42 @@ def match_ehime(bookings, ehime_data, actual_map, now):
         if matched['omit']:
             etd = existing.get('scheduled_etd') or bkg.get('etd', '')
             note = 'EHIME OCEAN NAHA OMIT'
+            anomaly = False
+            confirmed_flag = False
         else:
             etd = matched['etd']
-            note = f"ehime-ocean.co.jp {vessel_key} {matched['voyage']} NAHA{target_naha_idx} auto-confirmed"
+            anomaly = False
+
+            # ── 5日以上乖離検知: 反対Nahaインデックスで再マッチ試行 ──
+            compass_etd = bkg.get('etd', '')
+            if etd and compass_etd:
+                gap = abs(etd_gap_days(etd, compass_etd))
+                if gap >= 5:
+                    alt_naha_idx = 2 if target_naha_idx == 1 else 1
+                    alt_matched = next(
+                        (s for s in vessel_schedules
+                         if voy_num in s.get('voyage', '').replace(' ', '')
+                         and s.get('naha_idx') == alt_naha_idx
+                         and not s.get('omit')),
+                        None
+                    )
+                    if alt_matched and alt_matched.get('etd'):
+                        alt_gap = abs(etd_gap_days(alt_matched['etd'], compass_etd))
+                        if alt_gap < gap:
+                            print(f"  🔄 {bkg['bkg_no']} NAHA{target_naha_idx}→NAHA{alt_naha_idx} 재매칭 "
+                                  f"(COMPASS:{compass_etd} 乖離:{gap}d→{alt_gap}d)")
+                            matched = alt_matched
+                            target_naha_idx = alt_naha_idx
+                            etd = alt_matched['etd']
+                            gap = alt_gap
+                    if gap >= 5:
+                        anomaly = True
+                        print(f"  ⚠️ {bkg['bkg_no']} EHIME NAHA{target_naha_idx} "
+                              f"VSS:{etd} COMPASS:{compass_etd} 乖離{gap}日 要確認")
+
+            note = (f"ehime-ocean.co.jp {vessel_key} {matched['voyage']} NAHA{target_naha_idx}"
+                    + (" ⚠乖離5日以上 要確認" if anomaly else " auto-confirmed"))
+            confirmed_flag = not anomaly
 
         if not etd: continue
 
@@ -563,12 +603,13 @@ def match_ehime(bookings, ehime_data, actual_map, now):
             'carrier': bkg.get('carrier'),
             'pol': 'NAHA',
             'scheduled_etd': existing.get('scheduled_etd') or bkg.get('etd', etd),
-            'confirmed': not matched['omit'],
+            'confirmed': confirmed_flag,
             'voyage': matched['voyage'],
             'note': note + (' (ETD changed)' if changed else ''),
             'updated_at': now,
         }
-        status = f"OMIT" if matched['omit'] else f"ETD:{etd}{' changed' if changed else ''}"
+        flag = '⚠️' if anomaly else ''
+        status = f"OMIT" if matched.get('omit') else f"{flag}ETD:{etd}{' changed' if changed else ''}"
         print(f"  {bkg['bkg_no']:<25} {vessel_key} {matched['voyage']} NAHA{target_naha_idx} POD:{pod} → {status}")
 
     return results
