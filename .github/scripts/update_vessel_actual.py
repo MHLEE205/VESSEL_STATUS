@@ -954,42 +954,26 @@ def fetch_cnc_toyoshingo(bookings, actual_map, now):
             return res.read().decode('shift_jis', errors='replace')
 
     def parse_cmacgm_html(html):
-        """出港日 = title の Sailing 日 と セル内全日付 のうち最大値を採用
-        (入港翌日出港ケース: Sailing フィールドに入港日が入る港でも正しい出港日を取得)"""
+        """toyoshingo.com/cmacgm 달력 파싱 - parse_vessels_with_voyage와 동일 방식
+        title 속성 안의 Vessel Name / Voyage / Sailing 텍스트에서 추출"""
         import html as _html_mod
+        import re as _re
         events = []
-        # title属性はHTMLエンティティエンコード済(&lt;dl&gt;等) → unescape後にdl検索
-        for m in re.finditer(r'title="([^"]*)"[^>]*>(.*?)</td>', html, re.DOTALL):
-            title_raw, cell_content = m.group(1), m.group(2)
-            title_html = _html_mod.unescape(title_raw)
-            if '<dl>' not in title_html:
+        for link_m in _re.finditer(r'title="([^"]+)"', html):
+            raw = link_m.group(1)
+            t = _html_mod.unescape(raw)
+            if 'Vessel Name' not in t or 'Sailing' not in t:
                 continue
-            vessel_m = re.search(r'<span class="vesselname">([^<]+)</span>', cell_content)
-            if not vessel_m:
+            vn_m = _re.search(r'Vessel Name[^:]*:\s*([^<\n]+)', t, _re.I)
+            voy_m = _re.search(r'Voyage[^:]*:\s*([^<\n]+)', t, _re.I)
+            sail_m = _re.search(r'Sailing.*?<span[^>]*>([\d/]+)', t, _re.I)
+            if not vn_m or not voy_m:
                 continue
-            vessel = vessel_m.group(1).strip()
-
-            voy_m = re.search(r'<dt>Voyage:\s*</dt><dd>([^<]+)</dd>', title_html)
-            if not voy_m:
-                continue
+            vessel = _re.sub(r'\s*\([^)]+\)\s*$', '', vn_m.group(1).strip()).strip()
             voyages = [v.strip() for v in voy_m.group(1).split('/')]
-
-            # Sailing フィールド日付 (入港日が入ることがある)
-            sail_m = re.search(
-                r'<dt>Sailing:\s*</dt><dd><span[^>]*>(\d{4}/\d{2}/\d{2})',
-                title_html
-            )
-            sail_date = sail_m.group(1).replace('/', '-') if sail_m else None
-
-            # セル内の全日付 (YYYY/MM/DD 形式)
-            cell_dates = [d.replace('/', '-') for d in re.findall(r'\d{4}/\d{2}/\d{2}', cell_content)]
-
-            # 出港日 = 入港日・Sailing日・セル内日付の最大値 (翌日出港を正しく取得)
-            candidates = ([sail_date] if sail_date else []) + cell_dates
-            etd = max(candidates) if candidates else None
+            etd = sail_m.group(1).replace('/', '-') if sail_m else None
             if not etd:
                 continue
-
             for voy in voyages:
                 events.append({'vessel': vessel, 'voyage': voy, 'etd': etd})
         return events
@@ -1030,6 +1014,10 @@ def fetch_cnc_toyoshingo(bookings, actual_map, now):
                 for ev in events:
                     ev['pol'] = pol
                 all_events.extend(events)
+                if events:
+                    print(f"    CNC {pol} week={week}: {len(events)}건 (예:{events[0]['vessel']} {events[0]['voyage']} {events[0]['etd']})")
+                else:
+                    print(f"    CNC {pol} week={week}: 0건")
             except Exception as e:
                 print(f"    CNC {pol} week={week} 오류: {e}")
 
