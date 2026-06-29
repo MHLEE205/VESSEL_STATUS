@@ -1323,9 +1323,12 @@ def fetch_one_tracking(bookings, actual_map, now):
                     existing = actual_map.get(bkg_no, {})
                     old_etd = existing.get('actual_etd','')
                     changed = etd and etd != old_etd
+                    # ETD 없을 때: 기존 actual_etd 유지 (vessel-schedule-service.com 결과 보존)
+                    resolved_etd = etd or old_etd or bkg.get('etd','')
                     results[bkg_no] = {
-                        'actual_etd': etd or bkg.get('etd',''),
-                        'actual_eta': eta or '',
+                        **existing,
+                        'actual_etd': resolved_etd,
+                        'actual_eta': eta or existing.get('actual_eta',''),
                         'vessel_name': bkg.get('vessel_name',''),
                         'carrier': 'ONE', 'pol': bkg.get('pol',''),
                         'scheduled_etd': bkg.get('etd',''),
@@ -1333,7 +1336,7 @@ def fetch_one_tracking(bookings, actual_map, now):
                         'note': f'one-line.com tracking ETD:{etd} ETA:{eta}{"(changed)" if changed else ""}',
                         'updated_at': now,
                     }
-                    print(f"    {bkg_no:<25} ETD:{etd} ETA:{eta} {'⚠ ETD변경' if changed else '✅'}")
+                    print(f"    {bkg_no:<25} ETD:{etd or '(기존유지:'+old_etd+')'} ETA:{eta} {'⚠ ETD변경' if changed else '✅'}")
                 else:
                     print(f"    {bkg_no:<25} 데이터 없음 (미출항 or 완료건)")
             except Exception as e:
