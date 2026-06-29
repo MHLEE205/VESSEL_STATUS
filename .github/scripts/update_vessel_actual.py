@@ -402,31 +402,54 @@ EHIME_VESSELS = {
 }
 
 def fetch_ehime_playwright():
-    """Playwright로 ehime-ocean.co.jp 스케줄 스크래핑"""
+    """Playwright로 ehime-ocean.co.jp 스케줄 스크래핑
+    현재 항해 기준 PREV 1 + 현재 + NEXT 4 = 총 최대 6항해 수집.
+    부킹 항차가 현재 페이지에 없으면 PREVIOUS/NEXT로 이동해서 취득.
+    """
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
         print("  ⚠ Playwright 미설치 → EHIME OCEAN 스킵")
         return {}
 
+    def get_current_voyage(page):
+        """현재 페이지의 Voyage 텍스트 추출 (예: '265N/266S')"""
+        for el in page.query_selector_all('p, h2, h3, h4, span, div, td, th'):
+            t = el.inner_text().strip()
+            m = re.search(r'(\d{3}[NS]\s*/\s*\d{3}[NS])', t)
+            if m:
+                return m.group(1).replace(' ', '')
+        return None
+
+    def try_navigate(page, direction):
+        """PREVIOUS 또는 NEXT 버튼 클릭. 성공 시 True"""
+        if direction == 'next':
+            candidates = ['NEXT', 'Next', 'next', '次', '次の航海', '次へ', '→', '>>']
+        else:
+            candidates = ['PREVIOUS', 'Previous', 'previous', 'PREV', 'Prev',
+                          '前', '前の航海', '前へ', '←', '<<']
+        for text in candidates:
+            for tag in ['a', 'button', 'input']:
+                try:
+                    el = page.query_selector(f'{tag}:has-text("{text}")')
+                    if el and el.is_visible() and el.is_enabled():
+                        el.click()
+                        page.wait_for_timeout(1500)
+                        return True
+                except Exception:
+                    pass
+        return False
+
     def parse_schedule(page, vessel_name):
         """페이지에서 Voyage + Naha ETD 파싱"""
         results = []
-        # Current Voyage 번호 추출
-        voyage_text = ''
-        for el in page.query_selector_all('p, h2, h3, span, div'):
-            t = el.inner_text().strip()
-            m = re.search(r'(\d{3}N\s*/\s*\d{3}S)', t)
-            if m:
-                voyage_text = m.group(1).replace(' ', '')
-                break
+        voyage_text = get_current_voyage(page) or ''
 
         def _last_date(cell):
             """셀에서 가장 마지막 날짜 추출 (departure = 마지막 시각의 날짜)"""
             dates = re.findall(r'(\d{4}-\d{2}-\d{2})', cell.inner_text())
             return dates[-1] if dates else None
 
-        # 테이블 행 파싱
         naha_idx = 0
         rows = page.query_selector_all('tr')
         for row in rows:
@@ -446,9 +469,6 @@ def fetch_ehime_playwright():
                 })
                 continue
 
-            # テーブル列数に応じて Actual出港日 > Estimated出港日 > Original出港日 の優先順で取得
-            # 7列構造: Port(0)|OrigArr(1)|OrigDep(2)|EstArr(3)|EstDep(4)|ActArr(5)|ActDep(6)
-            # 4列構造: Port(0)|Original(1)|Estimated(2)|Actual(3) ― 各セルにArrival+Departure両方含む
             n = len(cells)
             if n >= 7:
                 etd = _last_date(cells[6]) or _last_date(cells[4]) or _last_date(cells[2])
@@ -465,7 +485,31 @@ def fetch_ehime_playwright():
             })
         return results
 
-    all_results = {}  # vessel_value → [naha_schedule]
+    def collect_page(page, vessel_name):
+        voyage = get_current_voyage(page)
+        schedules = parse_schedule(page, vessel_name)
+        print(f"    VOY:{voyage or '?'} → Naha {len(schedules)}행")
+        return schedules
+
+    def select_vessel(page, vessel_value, vessel_name):
+        try:
+            page.select_option('select', vessel_value, timeout=5000)
+            return True
+        except Exception:
+            opts = page.eval_on_selector_all(
+                'select option',
+                'els => els.map(e => ({value: e.value, text: e.textContent.trim()}))'
+            )
+            print(f"  {vessel_name} available options: {opts}")
+            kw = vessel_name.split()[-1].upper()
+            opt = next((o for o in opts if kw in o['text'].upper()), None)
+            if opt:
+                page.select_option('select', opt['value'], timeout=5000)
+                return True
+            print(f"  {vessel_name}: オプション未検出 → スキップ")
+            return False
+
+    all_results = {}
     print("  Playwright 기동 (EHIME OCEAN)...")
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
@@ -475,26 +519,28 @@ def fetch_ehime_playwright():
             try:
                 page.goto('https://ehime-ocean.co.jp/service/schedule/', timeout=30000)
                 page.wait_for_load_state('networkidle', timeout=15000)
-                # ドロップダウン選択: value優先 → 船名テキスト一致フォールバック
-                try:
-                    page.select_option('select', vessel_value, timeout=5000)
-                except Exception:
-                    opts = page.eval_on_selector_all(
-                        'select option',
-                        'els => els.map(e => ({value: e.value, text: e.textContent.trim()}))'
-                    )
-                    print(f"  {vessel_name} available options: {opts}")
-                    kw = vessel_name.split()[-1].upper()  # 'EHIME' or 'HIGO'
-                    opt = next((o for o in opts if kw in o['text'].upper()), None)
-                    if opt:
-                        page.select_option('select', opt['value'], timeout=5000)
-                    else:
-                        print(f"  {vessel_name}: オプション未検出 → スキップ")
-                        continue
+                if not select_vessel(page, vessel_value, vessel_name):
+                    continue
                 page.wait_for_timeout(2000)
-                schedules = parse_schedule(page, vessel_name)
-                all_results[vessel_name] = schedules
-                print(f"  {vessel_name}: Naha {len(schedules)}행 확인")
+
+                vessel_schedules = []
+
+                # PREV 1항해 (이전 항차 데이터)
+                if try_navigate(page, 'prev'):
+                    vessel_schedules.extend(collect_page(page, vessel_name))
+                    try_navigate(page, 'next')   # 현재 항해로 복귀
+                    page.wait_for_timeout(1000)
+
+                # 현재 항해 + NEXT 4항해
+                vessel_schedules.extend(collect_page(page, vessel_name))
+                for i in range(4):
+                    if not try_navigate(page, 'next'):
+                        print(f"    {vessel_name}: NEXT 없음 ({i+1}번째에서 종료)")
+                        break
+                    vessel_schedules.extend(collect_page(page, vessel_name))
+
+                all_results[vessel_name] = vessel_schedules
+                print(f"  {vessel_name}: 총 {len(vessel_schedules)} Naha 레코드 수집")
             except Exception as e:
                 print(f"  {vessel_name} error: {e}")
 
