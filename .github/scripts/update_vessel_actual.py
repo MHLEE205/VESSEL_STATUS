@@ -1447,7 +1447,7 @@ def main():
             page_key = f"{cfg_key}__{pol}"
             if page_key in scraped_pages: continue
             scraped_pages.add(page_key)
-            for week in [1, 2, 3]:
+            for week in [0, 1, 2, 3]:
                 url  = f"{cfg['base']}?port={port_code}&week={week}"
                 html = fetch_vss(url)
                 if html:
