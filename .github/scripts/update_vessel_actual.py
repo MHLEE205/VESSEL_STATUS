@@ -1435,7 +1435,7 @@ def main():
             page_key = f"{cfg_key}__{pol}"
             if page_key in scraped_pages: continue
             scraped_pages.add(page_key)
-            for week in [0, 1, 2, 3]:
+            for week in [-1, 0, 1, 2, 3]:
                 url  = f"{cfg['base']}?port={port_code}&week={week}"
                 html = fetch_vss(url)
                 if html:
@@ -1483,6 +1483,10 @@ def main():
                 "updated_at": now, "voyage": best['voyage'],
                 "note": "OMIT" if best.get('omit') else f"toyoshingo.com confirmed",
             }
+        elif best:
+            print(f"  ⚠ {bkg_no:<25} VOY:{bkg_voyage:<6} → {best['voyage']:<15} 매칭됐으나 sailing 날짜 취득 불가 (ETD:{etd} 유지)")
+        elif bkg_voyage:
+            print(f"  ✗ {bkg_no:<25} VOY:{bkg_voyage:<6} {vessel[:28]:<30} {pol} toyoshingo 미매칭")
 
     # ── JIN JIANG Playwright 스크래핑 ──
     print("\n[2/3] JIN JIANG jinjiangshipping.jp 스크래핑...")
