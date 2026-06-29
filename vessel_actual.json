@@ -458,14 +458,15 @@
     "note": "toyoshingo.com confirmed"
   },
   "SNKO040260600372": {
-    "actual_etd": "2026-06-26",
+    "actual_etd": "2026-06-30",
     "vessel_name": "VOSTOCHNY VOYAGER 2636W",
     "carrier": "SINOKOR",
     "pol": "KANAZAWA",
     "scheduled_etd": "2026-06-26",
-    "confirmed": false,
-    "updated_at": "2026-06-16 00:45",
-    "voyage": "2636E/2636W"
+    "confirmed": true,
+    "updated_at": "2026-06-29 manual",
+    "voyage": "2636E/2636W",
+    "note": "Manual: VOSTOCHNY VOYAGER Dep 2026/06/30 14:30 KANAZAWA (GOKUDEN PIER NO.3)"
   },
   "SNKO040260600380": {
     "actual_etd": "2026-06-27",
