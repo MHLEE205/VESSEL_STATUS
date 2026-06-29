@@ -1149,8 +1149,7 @@ def smart_wait_body(page, pattern, max_ms=10000, interval_ms=500):
 
 def fetch_maersk_tracking(bookings, actual_map, now):
     """MAERSK - www.maersk.com/tracking/{BKG_NO} 직접 URL 조회"""
-    target = [b for b in bookings if 'MAERSK' in b.get('carrier','').upper()
-              and not is_fresh_confirmed(b['bkg_no'], b.get('etd',''), actual_map)]
+    target = [b for b in bookings if 'MAERSK' in b.get('carrier','').upper()]
     if not target:
         return {}
     results = {}
@@ -1207,8 +1206,7 @@ def fetch_maersk_tracking(bookings, actual_map, now):
 
 def fetch_yangming_tracking(bookings, actual_map, now):
     """YANGMING - www.yangming.com 부킹번호 조회"""
-    target = [b for b in bookings if ('YANGMING' in b.get('carrier','').upper() or 'YANG MING' in b.get('carrier','').upper())
-              and not is_fresh_confirmed(b['bkg_no'], b.get('etd',''), actual_map)]
+    target = [b for b in bookings if 'YANGMING' in b.get('carrier','').upper() or 'YANG MING' in b.get('carrier','').upper()]
     if not target:
         return {}
     results = {}
@@ -1277,8 +1275,7 @@ def fetch_yangming_tracking(bookings, actual_map, now):
 
 def fetch_one_tracking(bookings, actual_map, now):
     """ONE LINE - ecomm.one-line.com 부킹번호 직접 URL 조회"""
-    target = [b for b in bookings if b.get('carrier','').upper() in ('ONE', 'ONE LINE', 'ONE LINE (OCEAN NETWORK EXPRESS)')
-              and not is_fresh_confirmed(b['bkg_no'], b.get('etd',''), actual_map)]
+    target = [b for b in bookings if b.get('carrier','').upper() in ('ONE', 'ONE LINE', 'ONE LINE (OCEAN NETWORK EXPRESS)')]
     if not target:
         return {}
     results = {}
