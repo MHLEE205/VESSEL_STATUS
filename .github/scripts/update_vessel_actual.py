@@ -475,8 +475,22 @@ def fetch_ehime_playwright():
             try:
                 page.goto('https://ehime-ocean.co.jp/service/schedule/', timeout=30000)
                 page.wait_for_load_state('networkidle', timeout=15000)
-                # 드롭다운 선택
-                page.select_option('select', vessel_value)
+                # ドロップダウン選択: value優先 → 船名テキスト一致フォールバック
+                try:
+                    page.select_option('select', vessel_value, timeout=5000)
+                except Exception:
+                    opts = page.eval_on_selector_all(
+                        'select option',
+                        'els => els.map(e => ({value: e.value, text: e.textContent.trim()}))'
+                    )
+                    print(f"  {vessel_name} available options: {opts}")
+                    kw = vessel_name.split()[-1].upper()  # 'EHIME' or 'HIGO'
+                    opt = next((o for o in opts if kw in o['text'].upper()), None)
+                    if opt:
+                        page.select_option('select', opt['value'], timeout=5000)
+                    else:
+                        print(f"  {vessel_name}: オプション未検出 → スキップ")
+                        continue
                 page.wait_for_timeout(2000)
                 schedules = parse_schedule(page, vessel_name)
                 all_results[vessel_name] = schedules
@@ -772,6 +786,7 @@ def fetch_vss_service_playwright(bookings):
         browser.close()
 
     # bkg_no별 매핑
+    today_str = datetime.now().strftime('%Y-%m-%d')
     results = {}
     now = datetime.now().strftime('%Y-%m-%d %H:%M')
     for bkg in target_bkgs:
@@ -789,6 +804,7 @@ def fetch_vss_service_playwright(bookings):
 
         matched = None
         for ev in all_events_by_carrier.get(carrier, []):
+            if ev.get('etd', '') < today_str: continue  # 過去日付スキップ
             if bkg_voyage not in ev['voyage']: continue
             vn = ev['vessel'].upper()
             if all(w in vn for w in base_words):
@@ -940,13 +956,14 @@ def fetch_cnc_toyoshingo(bookings, actual_map, now):
     def parse_cmacgm_html(html):
         """出港日 = title の Sailing 日 と セル内全日付 のうち最大値を採用
         (入港翌日出港ケース: Sailing フィールドに入港日が入る港でも正しい出港日を取得)"""
+        import html as _html_mod
         events = []
-        # title 属性 + </td> までのセル内容を一括キャプチャ
-        blocks = re.findall(
-            r'title="(<dl>.*?</dl>)"[^>]*>(.*?)</td>',
-            html, re.DOTALL
-        )
-        for title_html, cell_content in blocks:
+        # title属性はHTMLエンティティエンコード済(&lt;dl&gt;等) → unescape後にdl検索
+        for m in re.finditer(r'title="([^"]*)"[^>]*>(.*?)</td>', html, re.DOTALL):
+            title_raw, cell_content = m.group(1), m.group(2)
+            title_html = _html_mod.unescape(title_raw)
+            if '<dl>' not in title_html:
+                continue
             vessel_m = re.search(r'<span class="vesselname">([^<]+)</span>', cell_content)
             if not vessel_m:
                 continue
@@ -1002,11 +1019,11 @@ def fetch_cnc_toyoshingo(bookings, actual_map, now):
     ))
     print(f"  조회 POL: {needed_pols}")
 
-    # 현재 주(week=0) + 미래 4주(week=4~7)
+    # 현재 주(week=0) + 미래 4주(week=1~4)
     all_events = []
     for pol in needed_pols:
         port_id = CNC_CMACGM_PORTS[pol]
-        for week in [0, 4, 5, 6, 7]:
+        for week in [0, 1, 2, 3, 4]:
             try:
                 html = fetch_cmacgm_page(port_id, week)
                 events = parse_cmacgm_html(html)
