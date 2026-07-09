@@ -127,7 +127,7 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-07-01",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2624E/2624W",
     "note": "toyoshingo.com confirmed"
   },
@@ -140,7 +140,7 @@
     "scheduled_etd": "2026-06-12",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-12 ETA:None",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "I272245289": {
     "actual_etd": "2026-06-19",
@@ -151,7 +151,7 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-07-09",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "I272245291": {
     "actual_etd": "2026-06-19",
@@ -162,7 +162,7 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-07-09",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "I272245659": {
     "actual_etd": "2026-06-19",
@@ -173,7 +173,7 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-19 ETA:2026-07-09",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "I272244407": {
     "actual_etd": "2026-06-19",
@@ -184,7 +184,7 @@
     "scheduled_etd": "2026-06-17",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-19 ETA:None",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "I272244409": {
     "actual_etd": "2026-06-23",
@@ -195,7 +195,7 @@
     "scheduled_etd": "2026-06-23",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-23 ETA:None",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "I272244404": {
     "actual_etd": "2026-07-03",
@@ -205,8 +205,9 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-30",
     "confirmed": true,
-    "note": "yangming.com tracking ETD:2026-07-03 ETA:None",
-    "updated_at": "2026-07-08 23:37"
+    "note": "toyoshingo.com confirmed",
+    "updated_at": "2026-07-09 00:12",
+    "voyage": "427N/428S"
   },
   "I272245627": {
     "actual_etd": "2026-06-24",
@@ -217,7 +218,7 @@
     "scheduled_etd": "2026-06-19",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-24 ETA:2026-07-09",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "I272245891": {
     "actual_etd": "2026-06-24",
@@ -228,7 +229,7 @@
     "scheduled_etd": "2026-06-24",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-24 ETA:None",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "A07GX12706": {
     "actual_etd": "2026-07-20",
@@ -272,7 +273,7 @@
     "confirmed": true,
     "voyage": "N609/S610 PAS",
     "note": "vessel-schedule-service.com INTERASIA ETD:2026-07-11 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "A07GX13427": {
     "actual_etd": "2026-07-08",
@@ -305,7 +306,7 @@
     "confirmed": true,
     "voyage": "N609/S610 PAS",
     "note": "vessel-schedule-service.com INTERASIA ETD:2026-07-11 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "A07GX12781": {
     "actual_etd": "2026-06-17",
@@ -446,7 +447,7 @@
     "pol": "ISHIKARI",
     "scheduled_etd": "2026-06-25",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2624E/2624W",
     "note": "toyoshingo.com confirmed"
   },
@@ -490,7 +491,7 @@
     "scheduled_etd": "2026-06-27",
     "confirmed": true,
     "voyage": "2634E/2634W",
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "note": "toyoshingo.com confirmed"
   },
   "SNKO040260600395": {
@@ -523,15 +524,15 @@
     "note": "本船名変更 SUNNY VIOLET 2607W→STAR RANGER 2608W COMPASS ETD:2026-06-27"
   },
   "SGM26E00149": {
-    "actual_etd": "2026-07-08",
+    "actual_etd": "2026-07-04",
     "vessel_name": "STAR EXPRESS 2608W",
     "carrier": "NAMSUNG",
     "pol": "SENDAI",
     "scheduled_etd": "2026-07-08",
-    "confirmed": false,
-    "updated_at": "2026-07-08 23:37",
+    "confirmed": true,
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2608E/2608W",
-    "note": "ETD逆転疑い(VSS:2026-07-04<COMPASS:2026-07-08) 再確認待ち"
+    "note": "toyoshingo.com confirmed"
   },
   "JP01214379": {
     "actual_etd": "2026-07-07",
@@ -542,7 +543,7 @@
     "confirmed": true,
     "voyage": "2608E/2608W",
     "note": "toyoshingo.com confirmed",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "NMG2606-05": {
     "actual_etd": "2026-06-19",
@@ -893,7 +894,7 @@
     "pol": "NAHA",
     "scheduled_etd": "2026-06-27",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "265N/266S",
     "note": "ehime-ocean.co.jp ITX HIGO 265N/266S NAHA1 auto-confirmed",
     "actual_eta": "2026-07-01"
@@ -905,7 +906,7 @@
     "pol": "KOBE",
     "scheduled_etd": "2026-06-24",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "1061E/1061W",
     "note": "toyoshingo.com confirmed"
   },
@@ -916,7 +917,7 @@
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-22",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2623E/2623W",
     "note": "toyoshingo.com confirmed"
   },
@@ -1017,7 +1018,7 @@
     "confirmed": false,
     "voyage": "265N/266S",
     "note": "ehime-ocean.co.jp ITX HIGO 265N/266S NAHA1 ⚠乖離5日以上 要確認",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "ILN0052015007": {
     "actual_etd": "2026-06-28",
@@ -1028,7 +1029,7 @@
     "confirmed": true,
     "voyage": "265N/266S",
     "note": "ehime-ocean.co.jp ITX HIGO 265N/266S NAHA1 auto-confirmed",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "ILN0052014950": {
     "actual_etd": "2026-07-07",
@@ -1039,7 +1040,7 @@
     "confirmed": false,
     "voyage": "111N/112S",
     "note": "ehime-ocean.co.jp ITX EHIME 111N/112S NAHA1 ⚠乖離5日以上 要確認",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "SNKO040260600786": {
     "actual_etd": "2026-06-25",
@@ -1048,7 +1049,7 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-24",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "1061E/1061W",
     "note": "toyoshingo.com confirmed"
   },
@@ -1083,7 +1084,7 @@
     "scheduled_etd": "2026-07-03",
     "confirmed": true,
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2626E/2626W"
   },
   "JJCHALCJNA66A04": {
@@ -1095,7 +1096,7 @@
     "confirmed": true,
     "voyage": "2626N/2626S",
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "JJCHAHPJNA66A08": {
     "actual_etd": "2026-07-04",
@@ -1106,7 +1107,7 @@
     "confirmed": true,
     "voyage": "2626N/2626S",
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "I272246077": {
     "actual_etd": "2026-06-30",
@@ -1116,8 +1117,9 @@
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-28",
     "confirmed": true,
-    "note": "yangming.com tracking ETD:2026-06-30 ETA:None",
-    "updated_at": "2026-07-08 23:37"
+    "note": "toyoshingo.com confirmed",
+    "updated_at": "2026-07-09 00:12",
+    "voyage": "------/343S"
   },
   "TKJJ2600052": {
     "actual_etd": "2026-06-29",
@@ -1183,7 +1185,7 @@
     "scheduled_etd": "2026-06-28",
     "confirmed": true,
     "note": "yangming.com tracking ETD:2026-06-30 ETA:None",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "A07GX14139": {
     "actual_etd": "2026-07-11",
@@ -1194,7 +1196,7 @@
     "confirmed": true,
     "voyage": "N609/S610 PAS",
     "note": "vessel-schedule-service.com INTERASIA ETD:2026-07-11 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "A07GX13316": {
     "actual_etd": "2026-06-02",
@@ -1249,7 +1251,7 @@
     "pol": "TOKYO",
     "scheduled_etd": "2026-06-27",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2625E/2625W",
     "note": "toyoshingo.com confirmed"
   },
@@ -1262,7 +1264,7 @@
     "confirmed": true,
     "voyage": "2625E/2625W",
     "note": "toyoshingo.com confirmed",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "AMP0549397": {
     "actual_etd": "2026-06-29",
@@ -1283,7 +1285,7 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-07-01",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2624E/2624W",
     "note": "toyoshingo.com confirmed"
   },
@@ -1316,7 +1318,7 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-07-06",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2625E/2625W",
     "note": "toyoshingo.com confirmed"
   },
@@ -1339,7 +1341,7 @@
     "pol": "MIZUSHIMA",
     "scheduled_etd": "2026-07-04",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2640E/2640W",
     "note": "toyoshingo.com confirmed"
   },
@@ -1352,7 +1354,7 @@
     "confirmed": true,
     "voyage": "2608E/2608W",
     "note": "toyoshingo.com confirmed",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "JP01211101": {
     "actual_etd": "2026-07-12",
@@ -1363,7 +1365,7 @@
     "confirmed": true,
     "voyage": "2608E/2608W NCJ",
     "note": "vessel-schedule-service.com KMTC ETD:2026-07-12 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "JP01216051": {
     "actual_etd": "2026-07-13",
@@ -1374,7 +1376,7 @@
     "confirmed": true,
     "voyage": "2624E/2624W JEH4",
     "note": "vessel-schedule-service.com KMTC ETD:2026-07-13 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "HASLJ01260600190": {
     "actual_etd": "2026-07-11",
@@ -1385,7 +1387,7 @@
     "confirmed": true,
     "voyage": "2626E/2626W",
     "note": "toyoshingo.com confirmed",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "TYOG83605700": {
     "actual_etd": "2026-05-23",
@@ -2246,7 +2248,7 @@
     "confirmed": true,
     "voyage": "103N/104S JID",
     "note": "vessel-schedule-service.com ONE ETD:2026-07-20 (ETD changed)",
-    "updated_at": "2026-07-08 23:46",
+    "updated_at": "2026-07-09 00:19",
     "actual_eta": "2026-07-02"
   },
   "JP01211724": {
@@ -2268,8 +2270,8 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-06-09",
     "confirmed": true,
-    "note": "yangming.com tracking ETD:2026-06-09 ETA:None(changed)",
-    "updated_at": "2026-07-08 23:37"
+    "note": "yangming.com tracking ETD:2026-06-09 ETA:None",
+    "updated_at": "2026-07-09 00:12"
   },
   "SNKO040260501116": {
     "actual_etd": "2026-06-09",
@@ -2368,7 +2370,7 @@
     "confirmed": true,
     "voyage": "N043/S044 NS5",
     "note": "vessel-schedule-service.com INTERASIA ETD:2026-07-19 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "NGJF2600078": {
     "actual_etd": "2026-06-19",
@@ -2456,7 +2458,7 @@
     "scheduled_etd": "2026-07-06",
     "confirmed": true,
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2628E/2628W"
   },
   "JJCHASGJNA67A03": {
@@ -2468,7 +2470,7 @@
     "scheduled_etd": "2026-07-09",
     "confirmed": true,
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2628E/2628W"
   },
   "TYOGC5005500": {
@@ -2480,7 +2482,7 @@
     "scheduled_etd": "2026-07-17",
     "confirmed": true,
     "note": "vessel-schedule-service.com ONE ETD:2026-07-20 (ETD changed)",
-    "updated_at": "2026-07-08 23:46",
+    "updated_at": "2026-07-09 00:19",
     "voyage": "103N/104S JID"
   },
   "TYOGC6457300": {
@@ -2503,7 +2505,7 @@
     "confirmed": true,
     "voyage": "1592E/1592W",
     "note": "toyoshingo.com confirmed",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "JJCOSSGJNA67A01": {
     "actual_etd": "2026-07-10",
@@ -2514,7 +2516,7 @@
     "confirmed": true,
     "voyage": "2628E/2628W",
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "PCJTYO26065358": {
     "actual_etd": "2026-07-06",
@@ -2523,7 +2525,7 @@
     "pol": "TOKYO",
     "scheduled_etd": "2026-07-01",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "1591E/1591W",
     "note": "toyoshingo.com confirmed"
   },
@@ -2556,7 +2558,7 @@
     "pol": "TOKYO",
     "scheduled_etd": "2026-07-04",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2626E/2626W",
     "note": "toyoshingo.com confirmed"
   },
@@ -2569,7 +2571,7 @@
     "scheduled_etd": "2026-07-06",
     "confirmed": true,
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2628E/2628W"
   },
   "TYOGC8690400": {
@@ -2581,7 +2583,7 @@
     "scheduled_etd": "2026-07-06",
     "confirmed": true,
     "note": "ehime-ocean.co.jp ITX EHIME 111N/112S NAHA1 auto-confirmed",
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "111N/112S"
   },
   "TYOGC5049600": {
@@ -2593,7 +2595,7 @@
     "scheduled_etd": "2026-07-16",
     "confirmed": true,
     "note": "vessel-schedule-service.com ONE ETD:2026-07-20 (ETD changed)",
-    "updated_at": "2026-07-08 23:46",
+    "updated_at": "2026-07-09 00:19",
     "voyage": "103N/104S JID"
   },
   "PCJTYO26065353": {
@@ -2603,7 +2605,7 @@
     "pol": "TOKYO",
     "scheduled_etd": "2026-07-06",
     "confirmed": false,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2625E/2625W",
     "note": "OMIT"
   },
@@ -2649,7 +2651,7 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-07-08",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "1064E/1064W",
     "note": "toyoshingo.com confirmed"
   },
@@ -2660,7 +2662,7 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-07-08",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "1064E/1064W",
     "note": "toyoshingo.com confirmed"
   },
@@ -2671,7 +2673,7 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-07-08",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "1064E/1064W",
     "note": "toyoshingo.com confirmed"
   },
@@ -2716,7 +2718,7 @@
     "pol": "ISHIKARI",
     "scheduled_etd": "2026-07-10",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2626S/2626N",
     "note": "toyoshingo.com confirmed"
   },
@@ -2727,7 +2729,7 @@
     "pol": "NAGOYA",
     "scheduled_etd": "2026-07-11",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2624S/2624N",
     "note": "toyoshingo.com confirmed"
   },
@@ -2738,7 +2740,7 @@
     "pol": "TOKYO",
     "scheduled_etd": "2026-07-11",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "1592E/1592W",
     "note": "toyoshingo.com confirmed"
   },
@@ -2749,7 +2751,7 @@
     "pol": "TOKYO",
     "scheduled_etd": "2026-07-13",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2626E/2626W",
     "note": "toyoshingo.com confirmed"
   },
@@ -2760,7 +2762,7 @@
     "pol": "NAGOYA",
     "scheduled_etd": "2026-07-14",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2626E/2626W",
     "note": "toyoshingo.com confirmed"
   },
@@ -2771,7 +2773,7 @@
     "pol": "NAGOYA",
     "scheduled_etd": "2026-07-15",
     "confirmed": false,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2625S/2625N",
     "note": "ETD逆転疑い(VSS:2026-07-13<COMPASS:2026-07-15) 再確認待ち"
   },
@@ -2782,7 +2784,7 @@
     "pol": "TOKYO",
     "scheduled_etd": "2026-07-15",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "1038E/1038W",
     "note": "toyoshingo.com confirmed"
   },
@@ -2793,7 +2795,7 @@
     "pol": "KOBE",
     "scheduled_etd": "2026-07-15",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2627E/2627W",
     "note": "toyoshingo.com confirmed"
   },
@@ -2804,7 +2806,7 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-07-17",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "1066E/1066W",
     "note": "toyoshingo.com confirmed"
   },
@@ -2815,7 +2817,7 @@
     "pol": "ISHIKARI",
     "scheduled_etd": "2026-07-19",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2625E/2625W",
     "note": "toyoshingo.com confirmed"
   },
@@ -2826,7 +2828,7 @@
     "pol": "OSAKA",
     "scheduled_etd": "2026-07-20",
     "confirmed": true,
-    "updated_at": "2026-07-08 23:37",
+    "updated_at": "2026-07-09 00:12",
     "voyage": "2628E/2628W",
     "note": "toyoshingo.com confirmed"
   },
@@ -2839,7 +2841,7 @@
     "confirmed": true,
     "voyage": "2628E/2628W",
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "JJCNATALNA67A04": {
     "actual_etd": "2026-07-12",
@@ -2850,7 +2852,7 @@
     "confirmed": true,
     "voyage": "2627E/2627W",
     "note": "jinjiangshipping.jp auto-confirmed",
-    "updated_at": "2026-07-08 23:37"
+    "updated_at": "2026-07-09 00:12"
   },
   "JJCNATALNA67A13": {
     "actual_etd": "2026-07-17",
@@ -2872,7 +2874,7 @@
     "confirmed": true,
     "voyage": "2615E/2615W KJK3",
     "note": "vessel-schedule-service.com DONG YOUNG ETD:2026-07-11 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "TYOGD4158700": {
     "actual_etd": "2026-07-10",
@@ -2883,7 +2885,7 @@
     "confirmed": true,
     "voyage": "062E/062W JKS",
     "note": "vessel-schedule-service.com ONE ETD:2026-07-10 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "272387547": {
     "actual_etd": "2026-07-12",
@@ -2894,7 +2896,7 @@
     "confirmed": true,
     "voyage": "628E/628W A06",
     "note": "vessel-schedule-service.com MAERSK ETD:2026-07-12 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "OSJJ2600023": {
     "actual_etd": "2026-07-13",
@@ -2905,7 +2907,7 @@
     "confirmed": true,
     "voyage": "1065E/1065W KJH2",
     "note": "vessel-schedule-service.com DONG YOUNG ETD:2026-07-13 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "TYOGA6521700": {
     "actual_etd": "2026-07-13",
@@ -2916,7 +2918,7 @@
     "confirmed": true,
     "voyage": "0107E/0108W JTI",
     "note": "vessel-schedule-service.com ONE ETD:2026-07-13 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "A07GX15143": {
     "actual_etd": "2026-07-15",
@@ -2927,7 +2929,7 @@
     "confirmed": true,
     "voyage": "N613/S614 JHS",
     "note": "vessel-schedule-service.com INTERASIA ETD:2026-07-15 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "272268200": {
     "actual_etd": "2026-07-18",
@@ -2938,7 +2940,7 @@
     "confirmed": true,
     "voyage": "628E/628W SK1",
     "note": "vessel-schedule-service.com MAERSK ETD:2026-07-18 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "JP01218329": {
     "actual_etd": "2026-07-13",
@@ -2949,7 +2951,7 @@
     "confirmed": true,
     "voyage": "2624E/2624W JEH4",
     "note": "vessel-schedule-service.com KMTC ETD:2026-07-13 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "NGJJ2600130": {
     "actual_etd": "2026-07-18",
@@ -2960,7 +2962,7 @@
     "confirmed": true,
     "voyage": "2614E/2614W KJK3",
     "note": "vessel-schedule-service.com DONG YOUNG ETD:2026-07-18 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "JP01217409": {
     "actual_etd": "2026-07-17",
@@ -2971,7 +2973,7 @@
     "confirmed": true,
     "voyage": "2608E/2608W NTP",
     "note": "vessel-schedule-service.com KMTC ETD:2026-07-17 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "TYOGC6458400": {
     "actual_etd": "2026-07-20",
@@ -2982,7 +2984,7 @@
     "confirmed": true,
     "voyage": "103N/104S JID",
     "note": "vessel-schedule-service.com ONE ETD:2026-07-20 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "272272883": {
     "actual_etd": "2026-07-19",
@@ -2993,7 +2995,7 @@
     "confirmed": true,
     "voyage": "627N/629S I88",
     "note": "vessel-schedule-service.com MAERSK ETD:2026-07-19 (ETD changed)",
-    "updated_at": "2026-07-08 23:46"
+    "updated_at": "2026-07-09 00:19"
   },
   "AMP0555037": {
     "actual_etd": "2026-07-14",
