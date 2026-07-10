@@ -1552,14 +1552,6 @@
     "etd": "2026-07-21"
   },
   {
-    "bkg_no": "OSJJ2600024",
-    "vessel_name": "HONOR OCEAN 1067W",
-    "carrier": "DONG YOUNG",
-    "pol": "OSAKA",
-    "pod": "INCHEON",
-    "etd": "2026-07-22"
-  },
-  {
     "bkg_no": "JJCOSSGJNA67A02",
     "vessel_name": "AN DA 2629W",
     "carrier": "JIN JIANG",
@@ -1605,6 +1597,14 @@
     "carrier": "ONE",
     "pol": "ISHIKARI",
     "pod": "JAKARTA",
+    "etd": "2026-07-23"
+  },
+  {
+    "bkg_no": "I272247799",
+    "vessel_name": "TAICHUNG 429S",
+    "carrier": "YANGMING",
+    "pol": "OSAKA",
+    "pod": "CAT LAI",
     "etd": "2026-07-23"
   },
   {
@@ -1765,14 +1765,6 @@
     "carrier": "INTERASIA",
     "pol": "HAKATA",
     "pod": "PUSAN",
-    "etd": "2026-07-31"
-  },
-  {
-    "bkg_no": "JJCOSSGJNA67A26",
-    "vessel_name": "GLORY SHENGDONG 2631W",
-    "carrier": "JIN JIANG",
-    "pol": "OSAKA",
-    "pod": "CAT LAI",
     "etd": "2026-07-31"
   },
   {
