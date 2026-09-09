@@ -1,53 +1,5 @@
 [
   {
-    "bkg_no": "PCJTYO26075292",
-    "vessel_name": "JI YONG 1041W",
-    "carrier": "PAN OCEAN",
-    "pol": "TOKYO",
-    "pod": "KWANGYANG",
-    "etd": "2026-08-07"
-  },
-  {
-    "bkg_no": "PCJTYO26075546",
-    "vessel_name": "JI YONG 1041W",
-    "carrier": "PAN OCEAN",
-    "pol": "TOKYO",
-    "pod": "KWANGYANG",
-    "etd": "2026-08-07"
-  },
-  {
-    "bkg_no": "ISI26G00028",
-    "vessel_name": "STAR CHASER 2608W",
-    "carrier": "NAMSUNG",
-    "pol": "ISHIKARI",
-    "pod": "INCHEON",
-    "etd": "2026-08-07"
-  },
-  {
-    "bkg_no": "274581265",
-    "vessel_name": "IRENES SOUTHERN 632W",
-    "carrier": "MAERSK",
-    "pol": "TOKYO",
-    "pod": "CAT LAI",
-    "etd": "2026-08-08"
-  },
-  {
-    "bkg_no": "275055016",
-    "vessel_name": "IRENES SOUTHERN 632W",
-    "carrier": "MAERSK",
-    "pol": "TOKYO",
-    "pod": "CAT LAI",
-    "etd": "2026-08-08"
-  },
-  {
-    "bkg_no": "SNKO040260700600",
-    "vessel_name": "SINOKOR NIIGATA 2631W",
-    "carrier": "SINOKOR",
-    "pol": "KUMAMOTO",
-    "pod": "PUSAN",
-    "etd": "2026-08-09"
-  },
-  {
     "bkg_no": "TYOGE8798800",
     "vessel_name": "BAI CHAY BRIDGE 0153W",
     "carrier": "ONE",
@@ -1192,14 +1144,6 @@
     "etd": "2026-09-14"
   },
   {
-    "bkg_no": "ISI26H00041",
-    "vessel_name": "STAR CHASER 2609W",
-    "carrier": "NAMSUNG",
-    "pol": "ISHIKARI",
-    "pod": "INCHEON",
-    "etd": "2026-09-14"
-  },
-  {
     "bkg_no": "TYOGJ2502900",
     "vessel_name": "NYK FUTAGO 0109W",
     "carrier": "ONE",
@@ -1232,14 +1176,6 @@
     "etd": "2026-09-17"
   },
   {
-    "bkg_no": "JP01223402",
-    "vessel_name": "STAR RANGER 2611W",
-    "carrier": "KMTC",
-    "pol": "SENDAI",
-    "pod": "PUSAN",
-    "etd": "2026-09-17"
-  },
-  {
     "bkg_no": "I272249334",
     "vessel_name": "QING YUN HE 762S",
     "carrier": "YANGMING",
@@ -1256,14 +1192,6 @@
     "etd": "2026-09-17"
   },
   {
-    "bkg_no": "JP01223195",
-    "vessel_name": "SUNNY DAISY 2610W",
-    "carrier": "KMTC",
-    "pol": "ISHIKARI",
-    "pod": "PUSAN",
-    "etd": "2026-09-17"
-  },
-  {
     "bkg_no": "A07GX18894",
     "vessel_name": "INTERASIA MOMENTUM S075",
     "carrier": "INTERASIA",
@@ -1276,6 +1204,14 @@
     "vessel_name": "INTERASIA MOMENTUM S075",
     "carrier": "INTERASIA",
     "pol": "HAKATA",
+    "pod": "PUSAN",
+    "etd": "2026-09-18"
+  },
+  {
+    "bkg_no": "JP01223402",
+    "vessel_name": "STAR RANGER 2611W",
+    "carrier": "KMTC",
+    "pol": "SENDAI",
     "pod": "PUSAN",
     "etd": "2026-09-18"
   },
@@ -1320,6 +1256,30 @@
     "etd": "2026-09-18"
   },
   {
+    "bkg_no": "A07GX19550",
+    "vessel_name": "INTERASIA MOMENTUM S075",
+    "carrier": "INTERASIA",
+    "pol": "HAKATA",
+    "pod": "PUSAN",
+    "etd": "2026-09-18"
+  },
+  {
+    "bkg_no": "AMP0565094",
+    "vessel_name": "PRESIDENT LB JOHNSON 0DBP2W1NC",
+    "carrier": "CNC",
+    "pol": "NAHA",
+    "pod": "JAKARTA",
+    "etd": "2026-09-18"
+  },
+  {
+    "bkg_no": "ISI26H00041",
+    "vessel_name": "STAR CHASER 2609W",
+    "carrier": "NAMSUNG",
+    "pol": "ISHIKARI",
+    "pod": "INCHEON",
+    "etd": "2026-09-19"
+  },
+  {
     "bkg_no": "AMP0559640",
     "vessel_name": "EVER BEAMY 0PL5AS1NC",
     "carrier": "CNC",
@@ -1344,16 +1304,16 @@
     "etd": "2026-09-20"
   },
   {
-    "bkg_no": "ISI26H00067",
-    "vessel_name": "STAR RANGER 2611W",
-    "carrier": "NAMSUNG",
-    "pol": "ISHIKARI",
-    "pod": "INCHEON",
-    "etd": "2026-09-20"
+    "bkg_no": "276084839",
+    "vessel_name": "MAERSK NORESUND 638S",
+    "carrier": "MAERSK",
+    "pol": "KOBE",
+    "pod": "CAT LAI",
+    "etd": "2026-09-21"
   },
   {
-    "bkg_no": "276084839",
-    "vessel_name": "MARTIN SCHULTE 638S",
+    "bkg_no": "274498451",
+    "vessel_name": "MAERSK NORESUND 638S",
     "carrier": "MAERSK",
     "pol": "KOBE",
     "pod": "CAT LAI",
@@ -1368,6 +1328,38 @@
     "etd": "2026-09-21"
   },
   {
+    "bkg_no": "276340766",
+    "vessel_name": "MAERSK NORESUND 638S",
+    "carrier": "MAERSK",
+    "pol": "KOBE",
+    "pod": "CAT LAI",
+    "etd": "2026-09-21"
+  },
+  {
+    "bkg_no": "I272251501",
+    "vessel_name": "INTERASIA RESILIENCE S085",
+    "carrier": "YANGMING",
+    "pol": "OSAKA",
+    "pod": "CAT LAI",
+    "etd": "2026-09-21"
+  },
+  {
+    "bkg_no": "AMP0563881",
+    "vessel_name": "EVER BIRTH　0PL5CS1NC",
+    "carrier": "CNC",
+    "pol": "TOKYO",
+    "pod": "JAKARTA",
+    "etd": "2026-09-21"
+  },
+  {
+    "bkg_no": "ISI26H00067",
+    "vessel_name": "STAR RANGER 2611W",
+    "carrier": "NAMSUNG",
+    "pol": "ISHIKARI",
+    "pod": "INCHEON",
+    "etd": "2026-09-22"
+  },
+  {
     "bkg_no": "JP01228069",
     "vessel_name": "STAR CLIPPER 2612W",
     "carrier": "KMTC",
@@ -1376,24 +1368,16 @@
     "etd": "2026-09-22"
   },
   {
-    "bkg_no": "274498451",
-    "vessel_name": "NAKSKOV MAERSK 638S",
-    "carrier": "MAERSK",
-    "pol": "KOBE",
-    "pod": "CAT LAI",
-    "etd": "2026-09-23"
+    "bkg_no": "SNKO040260900065",
+    "vessel_name": "SINOKOR NIIGATA 2637W",
+    "carrier": "SINOKOR",
+    "pol": "KUMAMOTO",
+    "pod": "PUSAN",
+    "etd": "2026-09-22"
   },
   {
     "bkg_no": "276084697",
-    "vessel_name": "NAKSKOV MAERSK 638S",
-    "carrier": "MAERSK",
-    "pol": "KOBE",
-    "pod": "CAT LAI",
-    "etd": "2026-09-23"
-  },
-  {
-    "bkg_no": "276340766",
-    "vessel_name": "NAKSKOV MAERSK 638S",
+    "vessel_name": "MAERSK NORESUND 638S",
     "carrier": "MAERSK",
     "pol": "KOBE",
     "pod": "CAT LAI",
@@ -1429,6 +1413,22 @@
     "carrier": "JIN JIANG",
     "pol": "NAHA",
     "pod": "TAICHUNG",
+    "etd": "2026-09-25"
+  },
+  {
+    "bkg_no": "JP01223195",
+    "vessel_name": "SUNNY DAISY 2610W",
+    "carrier": "KMTC",
+    "pol": "ISHIKARI",
+    "pod": "PUSAN",
+    "etd": "2026-09-25"
+  },
+  {
+    "bkg_no": "TYOGH3143400",
+    "vessel_name": "MIYARABI II 2626W",
+    "carrier": "ONE",
+    "pol": "NAHA",
+    "pod": "CAI MEP",
     "etd": "2026-09-25"
   },
   {
@@ -1478,5 +1478,77 @@
     "pol": "OSAKA",
     "pod": "PUSAN",
     "etd": "2026-09-28"
+  },
+  {
+    "bkg_no": "008GX67594",
+    "vessel_name": "ITX EHIME  S117",
+    "carrier": "WAN HAI",
+    "pol": "NAHA",
+    "pod": "TAICHUNG",
+    "etd": "2026-09-28"
+  },
+  {
+    "bkg_no": "A07GX18896",
+    "vessel_name": "YM CERTAINTY S089",
+    "carrier": "INTERASIA",
+    "pol": "HAKATA",
+    "pod": "CAT LAI",
+    "etd": "2026-09-28"
+  },
+  {
+    "bkg_no": "A07GX18511",
+    "vessel_name": "TAICHUNG S432",
+    "carrier": "INTERASIA",
+    "pol": "OSAKA",
+    "pod": "HAIPHONG",
+    "etd": "2026-09-28"
+  },
+  {
+    "bkg_no": "A07GX19486",
+    "vessel_name": "YM CERTAINTY S089",
+    "carrier": "INTERASIA",
+    "pol": "HAKATA",
+    "pod": "CAT LAI",
+    "etd": "2026-09-28"
+  },
+  {
+    "bkg_no": "TYOGH6843700",
+    "vessel_name": "ITX HIGO 272S",
+    "carrier": "ONE",
+    "pol": "NAHA",
+    "pod": "LAT KRABANG",
+    "etd": "2026-09-29"
+  },
+  {
+    "bkg_no": "HASLJ01260900132",
+    "vessel_name": "HEUNG-A XIAMEN 2637N",
+    "carrier": "HEUNG A",
+    "pol": "NAGOYA",
+    "pod": "KWANGYANG",
+    "etd": "2026-09-29"
+  },
+  {
+    "bkg_no": "I272251294",
+    "vessel_name": "CAPE FELTON 2607S",
+    "carrier": "YANGMING",
+    "pol": "NAGOYA",
+    "pod": "PORT KLANG",
+    "etd": "2026-09-30"
+  },
+  {
+    "bkg_no": "TYOGJ0744800",
+    "vessel_name": "BROOKLYN BRIDGE 0185W",
+    "carrier": "ONE",
+    "pol": "SENDAI",
+    "pod": "CAI MEP",
+    "etd": "2026-10-05"
+  },
+  {
+    "bkg_no": "TYOGJ1138600",
+    "vessel_name": "BAI CHAY BRIDGE 0154W",
+    "carrier": "ONE",
+    "pol": "SENDAI",
+    "pod": "CAI MEP",
+    "etd": "2026-10-12"
   }
 ]
